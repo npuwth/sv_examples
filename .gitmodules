@@ -1,0 +1,12 @@
+[submodule "riscv-mini/riscv-mini"]
+	path = riscv-mini/riscv-mini
+	url = https://github.com/ucb-bar/riscv-mini.git
+[submodule "darkriscv/darkriscv"]
+	path = darkriscv/darkriscv
+	url = https://github.com/darklife/darkriscv.git
+[submodule "serv/serv"]
+	path = serv/serv
+	url = https://github.com/olofk/serv.git
+[submodule "yosys"]
+	path = yosys
+	url = https://github.com/YosysHQ/yosys.git

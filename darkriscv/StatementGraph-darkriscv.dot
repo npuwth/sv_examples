@@ -1,0 +1,58 @@
+digraph StatementGraph {
+  1 [label=_GEN_0]
+  2 [label=DADDR]
+  3 [label=_GEN_1]
+  4 [label=_eq____darkriscv_rtl_darkriscv_v_561_259]
+  5 [label=_eq____darkriscv_rtl_darkriscv_v_562_260]
+  6 [label=_eq____darkriscv_rtl_darkriscv_v_563_261]
+  7 [label=_ternary____darkriscv_rtl_darkriscv_v_563_262]
+  8 [label=_ternary____darkriscv_rtl_darkriscv_v_562_263]
+  9 [label=U1REG]
+  10 [label=REGS_r0]
+  11 [label=_GEN_8]
+  12 [label=U2REG]
+  13 [label=REGS_r1]
+  14 [label=_GEN_45]
+  15 [label=_GEN_46]
+  16 [label=_ternary____darkriscv_rtl_darkriscv_v_328_155]
+  17 [label=_GEN_49]
+  18 [label=_ternary____darkriscv_rtl_darkriscv_v_327_156]
+  19 [label=_GEN_129]
+  20 [label=IDLE]
+  21 [label=DEBUG]
+  22 [label=RD]
+  23 [label=WR]
+  24 [label=BE]
+  25 [label=DATAO]
+  26 [label=IADDR]
+  27 [label=REGS_r2]
+  28 [label=REGS_r3]
+  1 -> 3
+  2 -> 1
+  3 -> 4
+  3 -> 5
+  3 -> 6
+  4 -> 24
+  4 -> 25
+  5 -> 8
+  5 -> 18
+  6 -> 7
+  6 -> 16
+  7 -> 8
+  8 -> 24
+  9 -> 11
+  10 -> 9
+  11 -> 2
+  12 -> 14
+  13 -> 12
+  14 -> 15
+  14 -> 16
+  14 -> 17
+  14 -> 25
+  15 -> 16
+  16 -> 18
+  17 -> 18
+  18 -> 25
+  19 -> 21
+  20 -> 19
+}

@@ -1,0 +1,2 @@
+read_verilog anlogic.v
+write_firrtl anlogic.firrtl

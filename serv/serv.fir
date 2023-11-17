@@ -1,0 +1,4207 @@
+circuit serv_aligner: @[serv/rtl/serv_aligner.v:1.1-67.10]
+  module serv_top: @[serv/rtl/serv_top.v:3.1-658.10]
+    output o_mdu_valid: UInt<1> @[serv/rtl/serv_top.v:71.23-71.34]
+    output o_ext_rs2: UInt<32> @[serv/rtl/serv_top.v:69.23-69.32]
+    output o_ext_rs1: UInt<32> @[serv/rtl/serv_top.v:68.23-68.32]
+    input i_ext_rd: UInt<32> @[serv/rtl/serv_top.v:67.23-67.31]
+    input i_ext_ready: UInt<1> @[serv/rtl/serv_top.v:66.23-66.34]
+    output o_ext_funct3: UInt<3> @[serv/rtl/serv_top.v:65.23-65.35]
+    input i_dbus_ack: UInt<1> @[serv/rtl/serv_top.v:63.23-63.33]
+    input i_dbus_rdt: UInt<32> @[serv/rtl/serv_top.v:62.29-62.39]
+    output o_dbus_cyc: UInt<1> @[serv/rtl/serv_top.v:61.24-61.34]
+    output o_dbus_we: UInt<1> @[serv/rtl/serv_top.v:60.24-60.33]
+    output o_dbus_sel: UInt<4> @[serv/rtl/serv_top.v:59.29-59.39]
+    output o_dbus_dat: UInt<32> @[serv/rtl/serv_top.v:58.30-58.40]
+    output o_dbus_adr: UInt<32> @[serv/rtl/serv_top.v:57.30-57.40]
+    input i_ibus_ack: UInt<1> @[serv/rtl/serv_top.v:56.23-56.33]
+    input i_ibus_rdt: UInt<32> @[serv/rtl/serv_top.v:55.29-55.39]
+    output o_ibus_cyc: UInt<1> @[serv/rtl/serv_top.v:54.24-54.34]
+    output o_ibus_adr: UInt<32> @[serv/rtl/serv_top.v:53.30-53.40]
+    input i_rdata1: UInt<1> @[serv/rtl/serv_top.v:51.23-51.31]
+    input i_rdata0: UInt<1> @[serv/rtl/serv_top.v:50.23-50.31]
+    output o_rreg1: UInt<6> @[serv/rtl/serv_top.v:49.31-49.38]
+    output o_rreg0: UInt<6> @[serv/rtl/serv_top.v:48.31-48.38]
+    output o_wdata1: UInt<1> @[serv/rtl/serv_top.v:47.24-47.32]
+    output o_wdata0: UInt<1> @[serv/rtl/serv_top.v:46.24-46.32]
+    output o_wen1: UInt<1> @[serv/rtl/serv_top.v:45.24-45.30]
+    output o_wen0: UInt<1> @[serv/rtl/serv_top.v:44.24-44.30]
+    output o_wreg1: UInt<6> @[serv/rtl/serv_top.v:43.31-43.38]
+    output o_wreg0: UInt<6> @[serv/rtl/serv_top.v:42.31-42.38]
+    input i_rf_ready: UInt<1> @[serv/rtl/serv_top.v:41.23-41.33]
+    output o_rf_wreq: UInt<1> @[serv/rtl/serv_top.v:40.24-40.33]
+    output o_rf_rreq: UInt<1> @[serv/rtl/serv_top.v:39.24-39.33]
+    input i_timer_irq: UInt<1> @[serv/rtl/serv_top.v:14.23-14.34]
+    input i_rst: UInt<1> @[serv/rtl/serv_top.v:13.23-13.28]
+    input clk: UInt<1> @[serv/rtl/serv_top.v:12.23-12.26]
+
+    wire _logic_not_serv_rtl_serv_top_v_550_546_Y: UInt<1> @[serv/rtl/serv_top.v:550.21-550.30]
+    wire _or_serv_rtl_serv_top_v_435_545_Y: UInt<1> @[serv/rtl/serv_top.v:435.20-435.31]
+    wire wb_ibus_ack: UInt<1> @[serv/rtl/serv_top.v:182.16-182.27]
+    wire wb_ibus_rdt: UInt<32> @[serv/rtl/serv_top.v:181.16-181.27]
+    wire wb_ibus_cyc: UInt<1> @[serv/rtl/serv_top.v:180.16-180.27]
+    wire wb_ibus_adr: UInt<32> @[serv/rtl/serv_top.v:179.16-179.27]
+    wire i_wb_rdt: UInt<32> @[serv/rtl/serv_top.v:177.16-177.24]
+    wire lsb: UInt<2> @[serv/rtl/serv_top.v:175.17-175.20]
+    wire new_irq: UInt<1> @[serv/rtl/serv_top.v:173.11-173.18]
+    wire dbus_en: UInt<1> @[serv/rtl/serv_top.v:171.11-171.18]
+    wire rf_csr_out: UInt<1> @[serv/rtl/serv_top.v:170.11-170.21]
+    wire csr_in: UInt<1> @[serv/rtl/serv_top.v:169.11-169.17]
+    wire csr_imm_en: UInt<1> @[serv/rtl/serv_top.v:168.11-168.21]
+    wire csr_pc: UInt<1> @[serv/rtl/serv_top.v:167.11-167.17]
+    wire csr_addr: UInt<2> @[serv/rtl/serv_top.v:166.17-166.25]
+    wire csr_en: UInt<1> @[serv/rtl/serv_top.v:165.11-165.17]
+    wire csr_d_sel: UInt<1> @[serv/rtl/serv_top.v:164.11-164.20]
+    wire csr_imm: UInt<1> @[serv/rtl/serv_top.v:163.11-163.18]
+    wire csr_source: UInt<2> @[serv/rtl/serv_top.v:162.16-162.26]
+    wire csr_mcause_en: UInt<1> @[serv/rtl/serv_top.v:161.11-161.24]
+    wire csr_mie_en: UInt<1> @[serv/rtl/serv_top.v:160.11-160.21]
+    wire csr_mstatus_en: UInt<1> @[serv/rtl/serv_top.v:159.11-159.25]
+    wire bad_pc: UInt<1> @[serv/rtl/serv_top.v:157.11-157.17]
+    wire mem_misalign: UInt<1> @[serv/rtl/serv_top.v:155.11-155.23]
+    wire byte_valid: UInt<1> @[serv/rtl/serv_top.v:153.11-153.21]
+    wire sh_done_r: UInt<1> @[serv/rtl/serv_top.v:152.11-152.20]
+    wire sh_done: UInt<1> @[serv/rtl/serv_top.v:151.11-151.18]
+    wire mem_bytecnt: UInt<2> @[serv/rtl/serv_top.v:150.17-150.28]
+    wire mem_half: UInt<1> @[serv/rtl/serv_top.v:149.18-149.26]
+    wire mem_word: UInt<1> @[serv/rtl/serv_top.v:148.18-148.26]
+    wire mem_signed: UInt<1> @[serv/rtl/serv_top.v:147.18-147.28]
+    wire op_b_sel: UInt<1> @[serv/rtl/serv_top.v:145.18-145.26]
+    wire op_b: UInt<1> @[serv/rtl/serv_top.v:144.18-144.22]
+    wire rd_en: UInt<1> @[serv/rtl/serv_top.v:142.18-142.23]
+    wire rs2: UInt<1> @[serv/rtl/serv_top.v:141.18-141.21]
+    wire rs1: UInt<1> @[serv/rtl/serv_top.v:140.18-140.21]
+    wire alu_rd_sel: UInt<3> @[serv/rtl/serv_top.v:138.18-138.28]
+    wire alu_cmp: UInt<1> @[serv/rtl/serv_top.v:137.18-137.25]
+    wire alu_cmp_sig: UInt<1> @[serv/rtl/serv_top.v:136.18-136.29]
+    wire alu_cmp_eq: UInt<1> @[serv/rtl/serv_top.v:135.18-135.28]
+    wire alu_bool_op: UInt<2> @[serv/rtl/serv_top.v:134.17-134.28]
+    wire alu_sub: UInt<1> @[serv/rtl/serv_top.v:133.18-133.25]
+    wire dbus_ack: UInt<1> @[serv/rtl/serv_top.v:131.16-131.24]
+    wire dbus_rdt: UInt<32> @[serv/rtl/serv_top.v:130.16-130.24]
+    wire bufreg2_q: UInt<1> @[serv/rtl/serv_top.v:129.11-129.20]
+    wire bufreg_q: UInt<1> @[serv/rtl/serv_top.v:128.11-128.19]
+    wire bufreg_clr_lsb: UInt<1> @[serv/rtl/serv_top.v:127.11-127.25]
+    wire bufreg_imm_en: UInt<1> @[serv/rtl/serv_top.v:126.11-126.24]
+    wire bufreg_rs1_en: UInt<1> @[serv/rtl/serv_top.v:125.11-125.24]
+    wire bufreg_sh_signed: UInt<1> @[serv/rtl/serv_top.v:124.18-124.34]
+    wire bufreg_en: UInt<1> @[serv/rtl/serv_top.v:123.11-123.20]
+    wire cnt_done: UInt<1> @[serv/rtl/serv_top.v:121.11-121.19]
+    wire cnt7: UInt<1> @[serv/rtl/serv_top.v:119.18-119.22]
+    wire cnt3: UInt<1> @[serv/rtl/serv_top.v:118.18-118.22]
+    wire cnt2: UInt<1> @[serv/rtl/serv_top.v:117.18-117.22]
+    wire cnt1: UInt<1> @[serv/rtl/serv_top.v:116.18-116.22]
+    wire cnt0: UInt<1> @[serv/rtl/serv_top.v:115.18-115.22]
+    wire cnt12to31: UInt<1> @[serv/rtl/serv_top.v:114.11-114.20]
+    wire cnt0to3: UInt<1> @[serv/rtl/serv_top.v:113.11-113.18]
+    wire cnt_en: UInt<1> @[serv/rtl/serv_top.v:112.18-112.24]
+    wire init: UInt<1> @[serv/rtl/serv_top.v:111.18-111.22]
+    wire iscomp: UInt<1> @[serv/rtl/serv_top.v:109.18-109.24]
+    wire pc_rel: UInt<1> @[serv/rtl/serv_top.v:108.11-108.17]
+    wire trap: UInt<1> @[serv/rtl/serv_top.v:107.11-107.15]
+    wire imm: UInt<1> @[serv/rtl/serv_top.v:106.18-106.21]
+    wire mret: UInt<1> @[serv/rtl/serv_top.v:105.11-105.15]
+    wire utype: UInt<1> @[serv/rtl/serv_top.v:104.18-104.23]
+    wire jal_or_jalr: UInt<1> @[serv/rtl/serv_top.v:103.18-103.29]
+    wire jump: UInt<1> @[serv/rtl/serv_top.v:102.18-102.22]
+    wire ctrl_pc_en: UInt<1> @[serv/rtl/serv_top.v:101.18-101.28]
+    wire mtval_pc: UInt<1> @[serv/rtl/serv_top.v:99.11-99.19]
+    wire csr_rd: UInt<1> @[serv/rtl/serv_top.v:98.18-98.24]
+    wire mem_rd: UInt<1> @[serv/rtl/serv_top.v:97.18-97.24]
+    wire alu_rd: UInt<1> @[serv/rtl/serv_top.v:96.18-96.24]
+    wire ctrl_rd: UInt<1> @[serv/rtl/serv_top.v:95.18-95.25]
+    wire rd_mem_en: UInt<1> @[serv/rtl/serv_top.v:94.11-94.20]
+    wire rd_csr_en: UInt<1> @[serv/rtl/serv_top.v:93.11-93.20]
+    wire rd_alu_en: UInt<1> @[serv/rtl/serv_top.v:92.11-92.20]
+    wire mdu_op: UInt<1> @[serv/rtl/serv_top.v:90.11-90.17]
+    wire rd_op: UInt<1> @[serv/rtl/serv_top.v:89.11-89.16]
+    wire slt_or_branch: UInt<1> @[serv/rtl/serv_top.v:88.11-88.24]
+    wire shift_op: UInt<1> @[serv/rtl/serv_top.v:87.11-87.19]
+    wire branch_op: UInt<1> @[serv/rtl/serv_top.v:86.11-86.20]
+    wire ebreak: UInt<1> @[serv/rtl/serv_top.v:85.11-85.17]
+    wire e_op: UInt<1> @[serv/rtl/serv_top.v:84.11-84.15]
+    wire two_stage_op: UInt<1> @[serv/rtl/serv_top.v:83.11-83.23]
+    wire cond_branch: UInt<1> @[serv/rtl/serv_top.v:82.11-82.22]
+    wire bne_or_bge: UInt<1> @[serv/rtl/serv_top.v:81.11-81.21]
+    wire sh_right: UInt<1> @[serv/rtl/serv_top.v:80.18-80.26]
+    wire immdec_en: UInt<4> @[serv/rtl/serv_top.v:78.16-78.25]
+    wire immdec_ctrl: UInt<4> @[serv/rtl/serv_top.v:77.17-77.28]
+    wire rs2_addr: UInt<5> @[serv/rtl/serv_top.v:75.18-75.26]
+    wire rs1_addr: UInt<5> @[serv/rtl/serv_top.v:74.18-74.26]
+    wire rd_addr: UInt<5> @[serv/rtl/serv_top.v:73.18-73.25]
+    wire _logic_not_serv_rtl_serv_top_v_550_546: UInt<1> @[serv/rtl/serv_top.v:550.21-550.30]
+    wire _or_serv_rtl_serv_top_v_435_545: UInt<1> @[serv/rtl/serv_top.v:435.20-435.31]
+    wire _0: UInt<32>
+    wire _1: UInt<32>
+    wire _2: UInt<1>
+    wire _3: UInt<32>
+    wire _4: UInt<1>
+    wire _5: UInt<32>
+    wire _6: UInt<1>
+    wire _7: UInt<32>
+    wire _8: UInt<1>
+    wb_ibus_cyc is invalid
+    wb_ibus_adr is invalid
+    lsb is invalid
+    new_irq is invalid
+    dbus_en is invalid
+    rf_csr_out is invalid
+    csr_in is invalid
+    csr_imm_en is invalid
+    csr_pc is invalid
+    csr_addr is invalid
+    csr_en is invalid
+    csr_d_sel is invalid
+    csr_imm is invalid
+    csr_source is invalid
+    csr_mcause_en is invalid
+    csr_mie_en is invalid
+    csr_mstatus_en is invalid
+    bad_pc is invalid
+    mem_misalign is invalid
+    byte_valid is invalid
+    sh_done_r is invalid
+    sh_done is invalid
+    mem_bytecnt is invalid
+    mem_half is invalid
+    mem_word is invalid
+    mem_signed is invalid
+    op_b_sel is invalid
+    op_b is invalid
+    rd_en is invalid
+    rs2 is invalid
+    rs1 is invalid
+    alu_rd_sel is invalid
+    alu_cmp is invalid
+    alu_cmp_sig is invalid
+    alu_cmp_eq is invalid
+    alu_bool_op is invalid
+    alu_sub is invalid
+    bufreg2_q is invalid
+    bufreg_q is invalid
+    bufreg_clr_lsb is invalid
+    bufreg_imm_en is invalid
+    bufreg_rs1_en is invalid
+    bufreg_sh_signed is invalid
+    bufreg_en is invalid
+    cnt_done is invalid
+    cnt7 is invalid
+    cnt3 is invalid
+    cnt2 is invalid
+    cnt1 is invalid
+    cnt0 is invalid
+    cnt12to31 is invalid
+    cnt0to3 is invalid
+    cnt_en is invalid
+    init is invalid
+    pc_rel is invalid
+    trap is invalid
+    imm is invalid
+    mret is invalid
+    utype is invalid
+    jal_or_jalr is invalid
+    jump is invalid
+    ctrl_pc_en is invalid
+    mtval_pc is invalid
+    csr_rd is invalid
+    mem_rd is invalid
+    alu_rd is invalid
+    ctrl_rd is invalid
+    rd_mem_en is invalid
+    rd_csr_en is invalid
+    rd_alu_en is invalid
+    mdu_op is invalid
+    rd_op is invalid
+    slt_or_branch is invalid
+    shift_op is invalid
+    branch_op is invalid
+    ebreak is invalid
+    e_op is invalid
+    two_stage_op is invalid
+    cond_branch is invalid
+    bne_or_bge is invalid
+    sh_right is invalid
+    immdec_en is invalid
+    immdec_ctrl is invalid
+    rs2_addr is invalid
+    rs1_addr is invalid
+    rd_addr is invalid
+    o_mdu_valid is invalid
+    o_ext_rs1 is invalid
+    o_ext_funct3 is invalid
+    o_dbus_cyc is invalid
+    o_dbus_we is invalid
+    o_dbus_sel is invalid
+    o_dbus_dat is invalid
+    o_dbus_adr is invalid
+    o_rreg1 is invalid
+    o_rreg0 is invalid
+    o_wdata1 is invalid
+    o_wdata0 is invalid
+    o_wen1 is invalid
+    o_wen0 is invalid
+    o_wreg1 is invalid
+    o_wreg0 is invalid
+    o_rf_wreq is invalid
+    o_rf_rreq is invalid
+
+
+    _logic_not_serv_rtl_serv_top_v_550_546 <= eq(mtval_pc, UInt(0)) @[serv/rtl/serv_top.v:550.21-550.30]
+    _or_serv_rtl_serv_top_v_435_545 <= or(trap, asUInt(mret)) @[serv/rtl/serv_top.v:435.20-435.31]
+    _0 <= o_dbus_dat
+    _1 <= wb_ibus_adr
+    _2 <= wb_ibus_cyc
+    _3 <= i_ibus_rdt
+    _4 <= i_ibus_ack
+    _5 <= wb_ibus_rdt
+    _6 <= UInt<1>("h0")
+    _7 <= i_dbus_rdt
+    _8 <= i_dbus_ack
+
+    inst genblk3_csr of serv_csr @[serv/rtl/serv_top.v:539.3-569.29]
+    csr_rd <= genblk3_csr.o_q @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_rs1 <= rs1 @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_csr_imm <= csr_imm @[serv/rtl/serv_top.v:539.3-569.29]
+    csr_in <= genblk3_csr.o_csr_in @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_rf_csr_out <= rf_csr_out @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_csr_d_sel <= csr_d_sel @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mret <= mret @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_csr_source <= csr_source @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mcause_en <= csr_mcause_en @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mie_en <= csr_mie_en @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mstatus_en <= csr_mstatus_en @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mem_cmd <= o_dbus_we @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_ebreak <= ebreak @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_e_op <= e_op @[serv/rtl/serv_top.v:539.3-569.29]
+    new_irq <= genblk3_csr.o_new_irq @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_trap <= trap @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mtip <= i_timer_irq @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_mem_op <= _logic_not_serv_rtl_serv_top_v_550_546_Y @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_cnt_done <= cnt_done @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_cnt7 <= cnt7 @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_cnt3 <= cnt3 @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_cnt0to3 <= cnt0to3 @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_en <= cnt_en @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_trig_irq <= wb_ibus_ack @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_rst <= i_rst @[serv/rtl/serv_top.v:539.3-569.29]
+    genblk3_csr.i_clk <= clk @[serv/rtl/serv_top.v:539.3-569.29]
+    inst mem_if of serv_mem_if @[serv/rtl/serv_top.v:516.4-533.34]
+    o_dbus_sel <= mem_if.o_wb_sel @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_rd <= mem_if.o_rd @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_bufreg2_q <= bufreg2_q @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_half <= mem_half @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_word <= mem_word @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_signed <= mem_signed @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_mdu_op <= mdu_op @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_misalign <= mem_if.o_misalign @[serv/rtl/serv_top.v:516.4-533.34]
+    byte_valid <= mem_if.o_byte_valid @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_lsb <= lsb @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_bytecnt <= mem_bytecnt @[serv/rtl/serv_top.v:516.4-533.34]
+    mem_if.i_clk <= clk @[serv/rtl/serv_top.v:516.4-533.34]
+    inst rf_if of serv_rf_if @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_csr_out <= rf_if.o_csr @[serv/rtl/serv_top.v:467.4-512.33]
+    rs2 <= rf_if.o_rs2 @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rs2_raddr <= rs2_addr @[serv/rtl/serv_top.v:467.4-512.33]
+    rs1 <= rf_if.o_rs1 @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rs1_raddr <= rs1_addr @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rd_mem_en <= rd_mem_en @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_mem_rd <= mem_rd @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rd_csr_en <= rd_csr_en @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_csr_rd <= csr_rd @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rd_alu_en <= rd_alu_en @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_alu_rd <= alu_rd @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_ctrl_rd <= ctrl_rd @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rd_waddr <= rd_addr @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rd_wen <= rd_en @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_csr <= csr_in @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_csr_addr <= csr_addr @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_csr_en <= csr_en @[serv/rtl/serv_top.v:467.4-512.33]
+    csr_pc <= rf_if.o_csr_pc @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_bad_pc <= bad_pc @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_bufreg_q <= bufreg_q @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_mtval_pc <= mtval_pc @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_mepc <= bits(wb_ibus_adr, 0, 0) @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_mret <= mret @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_trap <= trap @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rdata1 <= i_rdata1 @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_rdata0 <= i_rdata0 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_rreg1 <= rf_if.o_rreg1 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_rreg0 <= rf_if.o_rreg0 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wdata1 <= rf_if.o_wdata1 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wdata0 <= rf_if.o_wdata0 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wen1 <= rf_if.o_wen1 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wen0 <= rf_if.o_wen0 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wreg1 <= rf_if.o_wreg1 @[serv/rtl/serv_top.v:467.4-512.33]
+    o_wreg0 <= rf_if.o_wreg0 @[serv/rtl/serv_top.v:467.4-512.33]
+    rf_if.i_cnt_en <= cnt_en @[serv/rtl/serv_top.v:467.4-512.33]
+    inst alu of serv_alu @[serv/rtl/serv_top.v:446.13-463.28]
+    alu_rd <= alu.o_rd @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_buf <= bufreg_q @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_op_b <= op_b @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_rs1 <= rs1 @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_rd_sel <= alu_rd_sel @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_cmp_sig <= alu_cmp_sig @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_cmp_eq <= alu_cmp_eq @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_bool_op <= alu_bool_op @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_sub <= alu_sub @[serv/rtl/serv_top.v:446.13-463.28]
+    alu_cmp <= alu.o_cmp @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_cnt0 <= cnt0 @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.i_en <= cnt_en @[serv/rtl/serv_top.v:446.13-463.28]
+    alu.clk <= clk @[serv/rtl/serv_top.v:446.13-463.28]
+    inst ctrl of serv_ctrl @[serv/rtl/serv_top.v:420.4-444.33]
+    wb_ibus_adr <= ctrl.o_ibus_adr @[serv/rtl/serv_top.v:420.4-444.33]
+    bad_pc <= ctrl.o_bad_pc @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl_rd <= ctrl.o_rd @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_csr_pc <= csr_pc @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_buf <= bufreg_q @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_imm <= imm @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_iscomp <= iscomp @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_trap <= _or_serv_rtl_serv_top_v_435_545_Y @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_pc_rel <= pc_rel @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_utype <= utype @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_jal_or_jalr <= jal_or_jalr @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_jump <= jump @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_cnt2 <= cnt2 @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_cnt1 <= cnt1 @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_cnt0 <= cnt0 @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_cnt12to31 <= cnt12to31 @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_pc_en <= ctrl_pc_en @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.i_rst <= i_rst @[serv/rtl/serv_top.v:420.4-444.33]
+    ctrl.clk <= clk @[serv/rtl/serv_top.v:420.4-444.33]
+    inst bufreg2 of serv_bufreg2 @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_dat <= dbus_rdt @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_load <= dbus_ack @[serv/rtl/serv_top.v:392.17-414.32]
+    o_dbus_dat <= bufreg2.o_dat @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2_q <= bufreg2.o_q @[serv/rtl/serv_top.v:392.17-414.32]
+    op_b <= bufreg2.o_op_b @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_imm <= imm @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_rs2 <= rs2 @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_shift_op <= shift_op @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_op_b_sel <= op_b_sel @[serv/rtl/serv_top.v:392.17-414.32]
+    sh_done_r <= bufreg2.o_sh_done_r @[serv/rtl/serv_top.v:392.17-414.32]
+    sh_done <= bufreg2.o_sh_done @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_byte_valid <= byte_valid @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_lsb <= lsb @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_cnt_done <= cnt_done @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_init <= init @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_en <= cnt_en @[serv/rtl/serv_top.v:392.17-414.32]
+    bufreg2.i_clk <= clk @[serv/rtl/serv_top.v:392.17-414.32]
+    inst bufreg of serv_bufreg @[serv/rtl/serv_top.v:369.4-390.31]
+    o_ext_rs1 <= bufreg.o_ext_rs1 @[serv/rtl/serv_top.v:369.4-390.31]
+    o_dbus_adr <= bufreg.o_dbus_adr @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg_q <= bufreg.o_q @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_imm <= imm @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_rs1 <= rs1 @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_clr_lsb <= bufreg_clr_lsb @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_imm_en <= bufreg_imm_en @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_rs1_en <= bufreg_rs1_en @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_sh_signed <= bufreg_sh_signed @[serv/rtl/serv_top.v:369.4-390.31]
+    lsb <= bufreg.o_lsb @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_mdu_op <= mdu_op @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_init <= init @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_en <= bufreg_en @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_cnt1 <= cnt1 @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_cnt0 <= cnt0 @[serv/rtl/serv_top.v:369.4-390.31]
+    bufreg.i_clk <= clk @[serv/rtl/serv_top.v:369.4-390.31]
+    inst immdec of serv_immdec @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_wb_rdt <= bits(i_wb_rdt, 31, 7) @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_wb_en <= wb_ibus_ack @[serv/rtl/serv_top.v:347.16-365.38]
+    imm <= immdec.o_imm @[serv/rtl/serv_top.v:347.16-365.38]
+    csr_imm <= immdec.o_csr_imm @[serv/rtl/serv_top.v:347.16-365.38]
+    rs2_addr <= immdec.o_rs2_addr @[serv/rtl/serv_top.v:347.16-365.38]
+    rs1_addr <= immdec.o_rs1_addr @[serv/rtl/serv_top.v:347.16-365.38]
+    rd_addr <= immdec.o_rd_addr @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_ctrl <= immdec_ctrl @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_csr_imm_en <= csr_imm_en @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_immdec_en <= immdec_en @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_cnt_done <= cnt_done @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_cnt_en <= cnt_en @[serv/rtl/serv_top.v:347.16-365.38]
+    immdec.i_clk <= clk @[serv/rtl/serv_top.v:347.16-365.38]
+    inst decode of serv_decode @[serv/rtl/serv_top.v:284.4-345.39]
+    rd_alu_en <= decode.o_rd_alu_en @[serv/rtl/serv_top.v:284.4-345.39]
+    rd_csr_en <= decode.o_rd_csr_en @[serv/rtl/serv_top.v:284.4-345.39]
+    rd_mem_en <= decode.o_rd_mem_en @[serv/rtl/serv_top.v:284.4-345.39]
+    immdec_en <= decode.o_immdec_en @[serv/rtl/serv_top.v:284.4-345.39]
+    immdec_ctrl <= decode.o_immdec_ctrl @[serv/rtl/serv_top.v:284.4-345.39]
+    mtval_pc <= decode.o_mtval_pc @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_imm_en <= decode.o_csr_imm_en @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_d_sel <= decode.o_csr_d_sel @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_source <= decode.o_csr_source @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_mcause_en <= decode.o_csr_mcause_en @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_mie_en <= decode.o_csr_mie_en @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_mstatus_en <= decode.o_csr_mstatus_en @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_addr <= decode.o_csr_addr @[serv/rtl/serv_top.v:284.4-345.39]
+    csr_en <= decode.o_csr_en @[serv/rtl/serv_top.v:284.4-345.39]
+    mem_half <= decode.o_mem_half @[serv/rtl/serv_top.v:284.4-345.39]
+    mem_word <= decode.o_mem_word @[serv/rtl/serv_top.v:284.4-345.39]
+    mem_signed <= decode.o_mem_signed @[serv/rtl/serv_top.v:284.4-345.39]
+    o_dbus_we <= decode.o_mem_cmd @[serv/rtl/serv_top.v:284.4-345.39]
+    alu_rd_sel <= decode.o_alu_rd_sel @[serv/rtl/serv_top.v:284.4-345.39]
+    alu_cmp_sig <= decode.o_alu_cmp_sig @[serv/rtl/serv_top.v:284.4-345.39]
+    alu_cmp_eq <= decode.o_alu_cmp_eq @[serv/rtl/serv_top.v:284.4-345.39]
+    alu_bool_op <= decode.o_alu_bool_op @[serv/rtl/serv_top.v:284.4-345.39]
+    alu_sub <= decode.o_alu_sub @[serv/rtl/serv_top.v:284.4-345.39]
+    mret <= decode.o_ctrl_mret @[serv/rtl/serv_top.v:284.4-345.39]
+    pc_rel <= decode.o_ctrl_pc_rel @[serv/rtl/serv_top.v:284.4-345.39]
+    utype <= decode.o_ctrl_utype @[serv/rtl/serv_top.v:284.4-345.39]
+    jal_or_jalr <= decode.o_ctrl_jal_or_jalr @[serv/rtl/serv_top.v:284.4-345.39]
+    op_b_sel <= decode.o_op_b_source @[serv/rtl/serv_top.v:284.4-345.39]
+    bufreg_sh_signed <= decode.o_bufreg_sh_signed @[serv/rtl/serv_top.v:284.4-345.39]
+    bufreg_clr_lsb <= decode.o_bufreg_clr_lsb @[serv/rtl/serv_top.v:284.4-345.39]
+    bufreg_imm_en <= decode.o_bufreg_imm_en @[serv/rtl/serv_top.v:284.4-345.39]
+    bufreg_rs1_en <= decode.o_bufreg_rs1_en @[serv/rtl/serv_top.v:284.4-345.39]
+    o_ext_funct3 <= decode.o_ext_funct3 @[serv/rtl/serv_top.v:284.4-345.39]
+    two_stage_op <= decode.o_two_stage_op @[serv/rtl/serv_top.v:284.4-345.39]
+    mdu_op <= decode.o_mdu_op @[serv/rtl/serv_top.v:284.4-345.39]
+    sh_right <= decode.o_sh_right @[serv/rtl/serv_top.v:284.4-345.39]
+    rd_op <= decode.o_rd_op @[serv/rtl/serv_top.v:284.4-345.39]
+    slt_or_branch <= decode.o_slt_or_branch @[serv/rtl/serv_top.v:284.4-345.39]
+    shift_op <= decode.o_shift_op @[serv/rtl/serv_top.v:284.4-345.39]
+    branch_op <= decode.o_branch_op @[serv/rtl/serv_top.v:284.4-345.39]
+    ebreak <= decode.o_ebreak @[serv/rtl/serv_top.v:284.4-345.39]
+    e_op <= decode.o_e_op @[serv/rtl/serv_top.v:284.4-345.39]
+    dbus_en <= decode.o_dbus_en @[serv/rtl/serv_top.v:284.4-345.39]
+    cond_branch <= decode.o_cond_branch @[serv/rtl/serv_top.v:284.4-345.39]
+    bne_or_bge <= decode.o_bne_or_bge @[serv/rtl/serv_top.v:284.4-345.39]
+    decode.i_wb_en <= wb_ibus_ack @[serv/rtl/serv_top.v:284.4-345.39]
+    decode.i_wb_rdt <= bits(i_wb_rdt, 31, 2) @[serv/rtl/serv_top.v:284.4-345.39]
+    decode.clk <= clk @[serv/rtl/serv_top.v:284.4-345.39]
+    inst state of serv_state @[serv/rtl/serv_top.v:228.4-279.31]
+    rd_en <= state.o_rf_rd_en @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_rf_ready <= i_rf_ready @[serv/rtl/serv_top.v:228.4-279.31]
+    o_rf_wreq <= state.o_rf_wreq @[serv/rtl/serv_top.v:228.4-279.31]
+    o_rf_rreq <= state.o_rf_rreq @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_ibus_ack <= wb_ibus_ack @[serv/rtl/serv_top.v:228.4-279.31]
+    wb_ibus_cyc <= state.o_ibus_cyc @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_dbus_ack <= i_dbus_ack @[serv/rtl/serv_top.v:228.4-279.31]
+    o_dbus_cyc <= state.o_dbus_cyc @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_mdu_ready <= i_ext_ready @[serv/rtl/serv_top.v:228.4-279.31]
+    o_mdu_valid <= state.o_mdu_valid @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_mdu_op <= mdu_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_rd_op <= rd_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_e_op <= e_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_slt_or_branch <= slt_or_branch @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_sh_right <= sh_right @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_shift_op <= shift_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_branch_op <= branch_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_two_stage_op <= two_stage_op @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_dbus_en <= dbus_en @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_cond_branch <= cond_branch @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_bne_or_bge <= bne_or_bge @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_mem_misalign <= mem_misalign @[serv/rtl/serv_top.v:228.4-279.31]
+    mem_bytecnt <= state.o_mem_bytecnt @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_sh_done_r <= sh_done_r @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_sh_done <= sh_done @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_ctrl_misalign <= bits(lsb, 1, 1) @[serv/rtl/serv_top.v:228.4-279.31]
+    trap <= state.o_ctrl_trap @[serv/rtl/serv_top.v:228.4-279.31]
+    jump <= state.o_ctrl_jump @[serv/rtl/serv_top.v:228.4-279.31]
+    ctrl_pc_en <= state.o_ctrl_pc_en @[serv/rtl/serv_top.v:228.4-279.31]
+    bufreg_en <= state.o_bufreg_en @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt_done <= state.o_cnt_done @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt7 <= state.o_cnt7 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt3 <= state.o_cnt3 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt2 <= state.o_cnt2 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt1 <= state.o_cnt1 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt0 <= state.o_cnt0 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt12to31 <= state.o_cnt12to31 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt0to3 <= state.o_cnt0to3 @[serv/rtl/serv_top.v:228.4-279.31]
+    cnt_en <= state.o_cnt_en @[serv/rtl/serv_top.v:228.4-279.31]
+    init <= state.o_init @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_alu_cmp <= alu_cmp @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_new_irq <= new_irq @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_rst <= i_rst @[serv/rtl/serv_top.v:228.4-279.31]
+    state.i_clk <= clk @[serv/rtl/serv_top.v:228.4-279.31]
+    _logic_not_serv_rtl_serv_top_v_550_546_Y <= bits(_logic_not_serv_rtl_serv_top_v_550_546, 0, 0) @[serv/rtl/serv_top.v:550.21-550.30]
+    _or_serv_rtl_serv_top_v_435_545_Y <= bits(_or_serv_rtl_serv_top_v_435_545, 0, 0) @[serv/rtl/serv_top.v:435.20-435.31]
+    wb_ibus_ack <= bits(_4, 0, 0) @[serv/rtl/serv_top.v:182.16-182.27]
+    wb_ibus_rdt <= bits(_3, 31, 0) @[serv/rtl/serv_top.v:181.16-181.27]
+    i_wb_rdt <= bits(_5, 31, 0) @[serv/rtl/serv_top.v:177.16-177.24]
+    dbus_ack <= bits(_8, 0, 0) @[serv/rtl/serv_top.v:131.16-131.24]
+    dbus_rdt <= bits(_7, 31, 0) @[serv/rtl/serv_top.v:130.16-130.24]
+    iscomp <= bits(_6, 0, 0) @[serv/rtl/serv_top.v:109.18-109.24]
+    o_ext_rs2 <= bits(_0, 31, 0) @[serv/rtl/serv_top.v:69.23-69.32]
+    o_ibus_cyc <= bits(_2, 0, 0) @[serv/rtl/serv_top.v:54.24-54.34]
+    o_ibus_adr <= bits(_1, 31, 0) @[serv/rtl/serv_top.v:53.30-53.40]
+
+  module serv_synth_wrapper: @[serv/rtl/serv_synth_wrapper.v:3.1-131.10]
+    input i_rdata: UInt<2> @[serv/rtl/serv_synth_wrapper.v:40.31-40.38]
+    output o_raddr: UInt<10> @[serv/rtl/serv_synth_wrapper.v:39.31-39.38]
+    output o_wen: UInt<1> @[serv/rtl/serv_synth_wrapper.v:38.24-38.29]
+    output o_wdata: UInt<2> @[serv/rtl/serv_synth_wrapper.v:37.31-37.38]
+    output o_waddr: UInt<10> @[serv/rtl/serv_synth_wrapper.v:36.31-36.38]
+    input i_dbus_ack: UInt<1> @[serv/rtl/serv_synth_wrapper.v:34.23-34.33]
+    input i_dbus_rdt: UInt<32> @[serv/rtl/serv_synth_wrapper.v:33.29-33.39]
+    output o_dbus_cyc: UInt<1> @[serv/rtl/serv_synth_wrapper.v:32.24-32.34]
+    output o_dbus_we: UInt<1> @[serv/rtl/serv_synth_wrapper.v:31.24-31.33]
+    output o_dbus_sel: UInt<4> @[serv/rtl/serv_synth_wrapper.v:30.29-30.39]
+    output o_dbus_dat: UInt<32> @[serv/rtl/serv_synth_wrapper.v:29.30-29.40]
+    output o_dbus_adr: UInt<32> @[serv/rtl/serv_synth_wrapper.v:28.30-28.40]
+    input i_ibus_ack: UInt<1> @[serv/rtl/serv_synth_wrapper.v:27.23-27.33]
+    input i_ibus_rdt: UInt<32> @[serv/rtl/serv_synth_wrapper.v:26.29-26.39]
+    output o_ibus_cyc: UInt<1> @[serv/rtl/serv_synth_wrapper.v:25.24-25.34]
+    output o_ibus_adr: UInt<32> @[serv/rtl/serv_synth_wrapper.v:24.30-24.40]
+    input i_timer_irq: UInt<1> @[serv/rtl/serv_synth_wrapper.v:23.23-23.34]
+    input i_rst: UInt<1> @[serv/rtl/serv_synth_wrapper.v:22.23-22.28]
+    input clk: UInt<1> @[serv/rtl/serv_synth_wrapper.v:21.23-21.26]
+
+    wire rdata1: UInt<1> @[serv/rtl/serv_synth_wrapper.v:56.16-56.22]
+    wire rdata0: UInt<1> @[serv/rtl/serv_synth_wrapper.v:55.16-55.22]
+    wire rf_ready: UInt<1> @[serv/rtl/serv_synth_wrapper.v:54.16-54.24]
+    wire rreg1: UInt<6> @[serv/rtl/serv_synth_wrapper.v:53.24-53.29]
+    wire rreg0: UInt<6> @[serv/rtl/serv_synth_wrapper.v:52.24-52.29]
+    wire wdata1: UInt<1> @[serv/rtl/serv_synth_wrapper.v:51.16-51.22]
+    wire wdata0: UInt<1> @[serv/rtl/serv_synth_wrapper.v:50.16-50.22]
+    wire wen1: UInt<1> @[serv/rtl/serv_synth_wrapper.v:49.16-49.20]
+    wire wen0: UInt<1> @[serv/rtl/serv_synth_wrapper.v:48.16-48.20]
+    wire wreg1: UInt<6> @[serv/rtl/serv_synth_wrapper.v:47.24-47.29]
+    wire wreg0: UInt<6> @[serv/rtl/serv_synth_wrapper.v:46.24-46.29]
+    wire rf_rreq: UInt<1> @[serv/rtl/serv_synth_wrapper.v:45.16-45.23]
+    wire rf_wreq: UInt<1> @[serv/rtl/serv_synth_wrapper.v:44.16-44.23]
+    rdata1 is invalid
+    rdata0 is invalid
+    rf_ready is invalid
+    rreg1 is invalid
+    rreg0 is invalid
+    wdata1 is invalid
+    wdata0 is invalid
+    wen1 is invalid
+    wen0 is invalid
+    wreg1 is invalid
+    wreg0 is invalid
+    rf_rreq is invalid
+    rf_wreq is invalid
+    o_raddr is invalid
+    o_wen is invalid
+    o_wdata is invalid
+    o_waddr is invalid
+    o_dbus_cyc is invalid
+    o_dbus_we is invalid
+    o_dbus_sel is invalid
+    o_dbus_dat is invalid
+    o_dbus_adr is invalid
+    o_ibus_cyc is invalid
+    o_ibus_adr is invalid
+
+
+
+    inst cpu of serv_top @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_ext_rd <= UInt<32>("h00000000") @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_ext_ready <= UInt<1>("h0") @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_dbus_ack <= i_dbus_ack @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_dbus_rdt <= i_dbus_rdt @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_dbus_cyc <= cpu.o_dbus_cyc @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_dbus_we <= cpu.o_dbus_we @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_dbus_sel <= cpu.o_dbus_sel @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_dbus_dat <= cpu.o_dbus_dat @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_dbus_adr <= cpu.o_dbus_adr @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_ibus_ack <= i_ibus_ack @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_ibus_rdt <= i_ibus_rdt @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_ibus_cyc <= cpu.o_ibus_cyc @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    o_ibus_adr <= cpu.o_ibus_adr @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_rdata1 <= rdata1 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_rdata0 <= rdata0 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    rreg1 <= cpu.o_rreg1 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    rreg0 <= cpu.o_rreg0 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wdata1 <= cpu.o_wdata1 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wdata0 <= cpu.o_wdata0 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wen1 <= cpu.o_wen1 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wen0 <= cpu.o_wen0 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wreg1 <= cpu.o_wreg1 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    wreg0 <= cpu.o_wreg0 @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_rf_ready <= rf_ready @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    rf_wreq <= cpu.o_rf_wreq @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    rf_rreq <= cpu.o_rf_rreq @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_timer_irq <= i_timer_irq @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.i_rst <= i_rst @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    cpu.clk <= clk @[serv/rtl/serv_synth_wrapper.v:90.4-129.24]
+    inst rf_ram_if of serv_rf_ram_if @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_rdata <= i_rdata @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    o_raddr <= rf_ram_if.o_raddr @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    o_wen <= rf_ram_if.o_wen @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    o_wdata <= rf_ram_if.o_wdata @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    o_waddr <= rf_ram_if.o_waddr @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rdata1 <= rf_ram_if.o_rdata1 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rdata0 <= rf_ram_if.o_rdata0 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_rreg1 <= rreg1 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_rreg0 <= rreg0 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wdata1 <= wdata1 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wdata0 <= wdata0 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wen1 <= wen1 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wen0 <= wen0 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wreg1 <= wreg1 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wreg0 <= wreg0 @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ready <= rf_ram_if.o_ready @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_rreq <= rf_rreq @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_wreq <= rf_wreq @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_rst <= i_rst @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+    rf_ram_if.i_clk <= clk @[serv/rtl/serv_synth_wrapper.v:62.4-82.27]
+
+  module serv_state: @[serv/rtl/serv_state.v:1.1-223.10]
+    output o_rf_rd_en: UInt<1> @[serv/rtl/serv_state.v:58.22-58.32]
+    input i_rf_ready: UInt<1> @[serv/rtl/serv_state.v:57.21-57.31]
+    output o_rf_wreq: UInt<1> @[serv/rtl/serv_state.v:56.22-56.31]
+    output o_rf_rreq: UInt<1> @[serv/rtl/serv_state.v:55.22-55.31]
+    input i_ibus_ack: UInt<1> @[serv/rtl/serv_state.v:53.21-53.31]
+    output o_ibus_cyc: UInt<1> @[serv/rtl/serv_state.v:52.22-52.32]
+    input i_dbus_ack: UInt<1> @[serv/rtl/serv_state.v:51.21-51.31]
+    output o_dbus_cyc: UInt<1> @[serv/rtl/serv_state.v:50.22-50.32]
+    input i_mdu_ready: UInt<1> @[serv/rtl/serv_state.v:48.21-48.32]
+    output o_mdu_valid: UInt<1> @[serv/rtl/serv_state.v:46.22-46.33]
+    input i_mdu_op: UInt<1> @[serv/rtl/serv_state.v:45.21-45.29]
+    input i_rd_op: UInt<1> @[serv/rtl/serv_state.v:43.21-43.28]
+    input i_e_op: UInt<1> @[serv/rtl/serv_state.v:42.21-42.27]
+    input i_slt_or_branch: UInt<1> @[serv/rtl/serv_state.v:41.21-41.36]
+    input i_sh_right: UInt<1> @[serv/rtl/serv_state.v:40.21-40.31]
+    input i_shift_op: UInt<1> @[serv/rtl/serv_state.v:39.21-39.31]
+    input i_branch_op: UInt<1> @[serv/rtl/serv_state.v:38.21-38.32]
+    input i_two_stage_op: UInt<1> @[serv/rtl/serv_state.v:37.21-37.35]
+    input i_dbus_en: UInt<1> @[serv/rtl/serv_state.v:36.21-36.30]
+    input i_cond_branch: UInt<1> @[serv/rtl/serv_state.v:35.21-35.34]
+    input i_bne_or_bge: UInt<1> @[serv/rtl/serv_state.v:34.21-34.33]
+    input i_mem_misalign: UInt<1> @[serv/rtl/serv_state.v:32.21-32.35]
+    output o_mem_bytecnt: UInt<2> @[serv/rtl/serv_state.v:31.22-31.35]
+    input i_sh_done_r: UInt<1> @[serv/rtl/serv_state.v:30.21-30.32]
+    input i_sh_done: UInt<1> @[serv/rtl/serv_state.v:29.21-29.30]
+    input i_ctrl_misalign: UInt<1> @[serv/rtl/serv_state.v:28.21-28.36]
+    output o_ctrl_trap: UInt<1> @[serv/rtl/serv_state.v:27.22-27.33]
+    output o_ctrl_jump: UInt<1> @[serv/rtl/serv_state.v:26.21-26.32]
+    output o_ctrl_pc_en: UInt<1> @[serv/rtl/serv_state.v:25.22-25.34]
+    output o_bufreg_en: UInt<1> @[serv/rtl/serv_state.v:24.22-24.33]
+    output o_cnt_done: UInt<1> @[serv/rtl/serv_state.v:23.22-23.32]
+    output o_cnt7: UInt<1> @[serv/rtl/serv_state.v:22.22-22.28]
+    output o_cnt3: UInt<1> @[serv/rtl/serv_state.v:21.22-21.28]
+    output o_cnt2: UInt<1> @[serv/rtl/serv_state.v:20.22-20.28]
+    output o_cnt1: UInt<1> @[serv/rtl/serv_state.v:19.22-19.28]
+    output o_cnt0: UInt<1> @[serv/rtl/serv_state.v:18.22-18.28]
+    output o_cnt12to31: UInt<1> @[serv/rtl/serv_state.v:17.22-17.33]
+    output o_cnt0to3: UInt<1> @[serv/rtl/serv_state.v:16.22-16.31]
+    output o_cnt_en: UInt<1> @[serv/rtl/serv_state.v:15.21-15.29]
+    output o_init: UInt<1> @[serv/rtl/serv_state.v:14.22-14.28]
+    input i_alu_cmp: UInt<1> @[serv/rtl/serv_state.v:13.21-13.30]
+    input i_new_irq: UInt<1> @[serv/rtl/serv_state.v:12.21-12.30]
+    input i_rst: UInt<1> @[serv/rtl/serv_state.v:10.21-10.26]
+    input i_clk: UInt<1> @[serv/rtl/serv_state.v:9.21-9.26]
+
+    wire _and_serv_rtl_serv_state_v_217_544_Y: UInt<1> @[serv/rtl/serv_state.v:217.32-217.104]
+    wire _or_serv_rtl_serv_state_v_217_543_Y: UInt<1> @[serv/rtl/serv_state.v:217.57-217.103]
+    wire _and_serv_rtl_serv_state_v_217_542_Y: UInt<1> @[serv/rtl/serv_state.v:217.58-217.79]
+    wire _logic_not_serv_rtl_serv_state_v_217_541_Y: UInt<1> @[serv/rtl/serv_state.v:217.32-217.53]
+    wire _or_serv_rtl_serv_state_v_217_540_Y: UInt<1> @[serv/rtl/serv_state.v:217.34-217.52]
+    wire _or_serv_rtl_serv_state_v_216_539_Y: UInt<1> @[serv/rtl/serv_state.v:216.10-216.41]
+    wire _or_serv_rtl_serv_state_v_216_538_Y: UInt<1> @[serv/rtl/serv_state.v:216.10-216.33]
+    wire _0_genblk1_misalign_trap_sync_r_0_0_: UInt<1> @[serv/rtl/serv_state.v:215.3-218.6]
+    wire _and_serv_rtl_serv_state_v_212_536_Y: UInt<1> @[serv/rtl/serv_state.v:212.23-213.38]
+    wire _or_serv_rtl_serv_state_v_212_535_Y: UInt<1> @[serv/rtl/serv_state.v:212.35-213.37]
+    wire _and_serv_rtl_serv_state_v_213_534_Y: UInt<1> @[serv/rtl/serv_state.v:213.8-213.36]
+    wire _and_serv_rtl_serv_state_v_212_533_Y: UInt<1> @[serv/rtl/serv_state.v:212.36-212.74]
+    wire _and_serv_rtl_serv_state_v_212_532_Y: UInt<1> @[serv/rtl/serv_state.v:212.36-212.65]
+    wire _and_serv_rtl_serv_state_v_204_531_Y: UInt<1> @[serv/rtl/serv_state.v:204.25-204.77]
+    wire _or_serv_rtl_serv_state_v_204_530_Y: UInt<1> @[serv/rtl/serv_state.v:204.37-204.76]
+    wire _or_serv_rtl_serv_state_v_204_529_Y: UInt<1> @[serv/rtl/serv_state.v:204.37-204.55]
+    wire _reduce_or_serv_rtl_serv_state_v_200_528_Y: UInt<1> @[serv/rtl/serv_state.v:200.17-200.23]
+    wire _1_o_cnt_en_0_0_: UInt<1> @[serv/rtl/serv_state.v:198.4-202.22]
+    wire _0_o_cnt_en_0_0_: UInt<1> @[serv/rtl/serv_state.v:198.4-202.22]
+    wire _or_serv_rtl_serv_state_v_185_526_Y: UInt<1> @[serv/rtl/serv_state.v:185.32-185.83]
+    wire _and_serv_rtl_serv_state_v_185_525_Y: UInt<1> @[serv/rtl/serv_state.v:185.60-185.82]
+    wire _logic_not_serv_rtl_serv_state_v_185_524_Y: UInt<1> @[serv/rtl/serv_state.v:185.73-185.82]
+    wire _and_serv_rtl_serv_state_v_185_523_Y: UInt<1> @[serv/rtl/serv_state.v:185.33-185.55]
+    wire _logic_not_serv_rtl_serv_state_v_185_522_Y: UInt<1> @[serv/rtl/serv_state.v:185.44-185.55]
+    wire _add_serv_rtl_serv_state_v_184_521_Y: UInt<3> @[serv/rtl/serv_state.v:184.20-184.43]
+    wire _0_cnt_r_3_0_: UInt<4> @[serv/rtl/serv_state.v:156.4-196.7]
+    wire _0_o_cnt_2_0_: UInt<3> @[serv/rtl/serv_state.v:156.4-196.7]
+    wire _and_serv_rtl_serv_state_v_145_519_Y: UInt<1> @[serv/rtl/serv_state.v:145.24-145.43]
+    wire _and_serv_rtl_serv_state_v_141_518_Y: UInt<1> @[serv/rtl/serv_state.v:141.18-141.38]
+    wire _and_serv_rtl_serv_state_v_140_517_Y: UInt<1> @[serv/rtl/serv_state.v:140.16-140.35]
+    wire _logic_not_serv_rtl_serv_state_v_140_516_Y: UInt<1> @[serv/rtl/serv_state.v:140.25-140.35]
+    wire _or_serv_rtl_serv_state_v_137_515_Y: UInt<1> @[serv/rtl/serv_state.v:137.14-137.34]
+    wire _or_serv_rtl_serv_state_v_136_514_Y: UInt<1> @[serv/rtl/serv_state.v:136.11-136.42]
+    wire _or_serv_rtl_serv_state_v_136_513_Y: UInt<1> @[serv/rtl/serv_state.v:136.11-136.34]
+    wire _0_ibus_cyc_0_0_: UInt<1> @[serv/rtl/serv_state.v:126.4-154.7]
+    wire _0_init_done_0_0_: UInt<1> @[serv/rtl/serv_state.v:126.4-154.7]
+    wire _0_stage_two_req_0_0_: UInt<1> @[serv/rtl/serv_state.v:126.4-154.7]
+    wire _0_o_ctrl_jump_0_0_: UInt<1> @[serv/rtl/serv_state.v:126.4-154.7]
+    wire _and_serv_rtl_serv_state_v_124_511_Y: UInt<1> @[serv/rtl/serv_state.v:124.24-124.57]
+    wire _eq_serv_rtl_serv_state_v_124_510_Y: UInt<1> @[serv/rtl/serv_state.v:124.25-124.45]
+    wire _and_serv_rtl_serv_state_v_122_509_Y: UInt<1> @[serv/rtl/serv_state.v:122.20-122.60]
+    wire _logic_not_serv_rtl_serv_state_v_122_508_Y: UInt<1> @[serv/rtl/serv_state.v:122.50-122.60]
+    wire _and_serv_rtl_serv_state_v_122_507_Y: UInt<1> @[serv/rtl/serv_state.v:122.20-122.47]
+    wire _logic_not_serv_rtl_serv_state_v_122_506_Y: UInt<1> @[serv/rtl/serv_state.v:122.37-122.47]
+    wire _and_serv_rtl_serv_state_v_120_505_Y: UInt<1> @[serv/rtl/serv_state.v:120.24-120.41]
+    wire _logic_not_serv_rtl_serv_state_v_120_504_Y: UInt<1> @[serv/rtl/serv_state.v:120.35-120.41]
+    wire _or_serv_rtl_serv_state_v_118_503_Y: UInt<1> @[serv/rtl/serv_state.v:118.25-118.168]
+    wire _and_serv_rtl_serv_state_v_118_502_Y: UInt<1> @[serv/rtl/serv_state.v:118.99-118.167]
+    wire _and_serv_rtl_serv_state_v_118_501_Y: UInt<1> @[serv/rtl/serv_state.v:118.99-118.155]
+    wire _or_serv_rtl_serv_state_v_118_500_Y: UInt<1> @[serv/rtl/serv_state.v:118.130-118.154]
+    wire _and_serv_rtl_serv_state_v_118_499_Y: UInt<1> @[serv/rtl/serv_state.v:118.99-118.126]
+    wire _logic_not_serv_rtl_serv_state_v_118_498_Y: UInt<1> @[serv/rtl/serv_state.v:118.112-118.126]
+    wire _and_serv_rtl_serv_state_v_118_497_Y: UInt<1> @[serv/rtl/serv_state.v:118.26-118.94]
+    wire _or_serv_rtl_serv_state_v_118_496_Y: UInt<1> @[serv/rtl/serv_state.v:118.38-118.93]
+    wire _and_serv_rtl_serv_state_v_118_495_Y: UInt<1> @[serv/rtl/serv_state.v:118.48-118.92]
+    wire _or_serv_rtl_serv_state_v_118_494_Y: UInt<1> @[serv/rtl/serv_state.v:118.49-118.74]
+    wire _and_serv_rtl_serv_state_v_105_493_Y: UInt<1> @[serv/rtl/serv_state.v:105.24-105.41]
+    wire _logic_not_serv_rtl_serv_state_v_105_492_Y: UInt<1> @[serv/rtl/serv_state.v:105.34-105.41]
+    wire _or_serv_rtl_serv_state_v_103_491_Y: UInt<1> @[serv/rtl/serv_state.v:103.23-103.72]
+    wire _and_serv_rtl_serv_state_v_103_490_Y: UInt<1> @[serv/rtl/serv_state.v:103.37-103.71]
+    wire _and_serv_rtl_serv_state_v_99_489_Y: UInt<1> @[serv/rtl/serv_state.v:99.24-99.75]
+    wire _logic_not_serv_rtl_serv_state_v_99_488_Y: UInt<1> @[serv/rtl/serv_state.v:99.60-99.75]
+    wire _and_serv_rtl_serv_state_v_99_487_Y: UInt<1> @[serv/rtl/serv_state.v:99.24-99.57]
+    wire _and_serv_rtl_serv_state_v_99_486_Y: UInt<1> @[serv/rtl/serv_state.v:99.24-99.45]
+    wire _logic_not_serv_rtl_serv_state_v_99_485_Y: UInt<1> @[serv/rtl/serv_state.v:99.24-99.33]
+    wire _and_serv_rtl_serv_state_v_94_484_Y: UInt<1> @[serv/rtl/serv_state.v:94.23-97.29]
+    wire _or_serv_rtl_serv_state_v_95_483_Y: UInt<1> @[serv/rtl/serv_state.v:95.13-97.28]
+    wire _or_serv_rtl_serv_state_v_95_482_Y: UInt<1> @[serv/rtl/serv_state.v:95.13-96.45]
+    wire _and_serv_rtl_serv_state_v_96_481_Y: UInt<1> @[serv/rtl/serv_state.v:96.27-96.44]
+    wire _or_serv_rtl_serv_state_v_95_480_Y: UInt<1> @[serv/rtl/serv_state.v:95.13-96.23]
+    wire _and_serv_rtl_serv_state_v_95_479_Y: UInt<1> @[serv/rtl/serv_state.v:95.14-95.52]
+    wire _or_serv_rtl_serv_state_v_95_478_Y: UInt<1> @[serv/rtl/serv_state.v:95.28-95.51]
+    wire _logic_not_serv_rtl_serv_state_v_95_477_Y: UInt<1> @[serv/rtl/serv_state.v:95.40-95.51]
+    wire _and_serv_rtl_serv_state_v_94_476_Y: UInt<1> @[serv/rtl/serv_state.v:94.23-94.66]
+    wire _and_serv_rtl_serv_state_v_94_475_Y: UInt<1> @[serv/rtl/serv_state.v:94.23-94.54]
+    wire _logic_not_serv_rtl_serv_state_v_94_474_Y: UInt<1> @[serv/rtl/serv_state.v:94.45-94.54]
+    wire _logic_not_serv_rtl_serv_state_v_94_473_Y: UInt<1> @[serv/rtl/serv_state.v:94.23-94.42]
+    wire _and_serv_rtl_serv_state_v_90_472_Y: UInt<1> @[serv/rtl/serv_state.v:90.25-90.63]
+    wire _and_serv_rtl_serv_state_v_90_471_Y: UInt<1> @[serv/rtl/serv_state.v:90.25-90.52]
+    wire _and_serv_rtl_serv_state_v_90_470_Y: UInt<1> @[serv/rtl/serv_state.v:90.25-90.40]
+    wire _logic_not_serv_rtl_serv_state_v_90_469_Y: UInt<1> @[serv/rtl/serv_state.v:90.31-90.40]
+    wire _and_serv_rtl_serv_state_v_87_468_Y: UInt<1> @[serv/rtl/serv_state.v:87.28-87.85]
+    wire _or_serv_rtl_serv_state_v_87_467_Y: UInt<1> @[serv/rtl/serv_state.v:87.43-87.84]
+    wire _xor_serv_rtl_serv_state_v_87_466_Y: UInt<1> @[serv/rtl/serv_state.v:87.61-87.83]
+    wire _logic_not_serv_rtl_serv_state_v_87_465_Y: UInt<1> @[serv/rtl/serv_state.v:87.43-87.57]
+    wire _and_serv_rtl_serv_state_v_79_464_Y: UInt<1> @[serv/rtl/serv_state.v:79.20-79.51]
+    wire _eq_serv_rtl_serv_state_v_79_463_Y: UInt<1> @[serv/rtl/serv_state.v:79.21-79.39]
+    wire _and_serv_rtl_serv_state_v_78_462_Y: UInt<1> @[serv/rtl/serv_state.v:78.20-78.51]
+    wire _eq_serv_rtl_serv_state_v_78_461_Y: UInt<1> @[serv/rtl/serv_state.v:78.21-78.39]
+    wire _and_serv_rtl_serv_state_v_77_460_Y: UInt<1> @[serv/rtl/serv_state.v:77.20-77.51]
+    wire _eq_serv_rtl_serv_state_v_77_459_Y: UInt<1> @[serv/rtl/serv_state.v:77.21-77.39]
+    wire _and_serv_rtl_serv_state_v_76_458_Y: UInt<1> @[serv/rtl/serv_state.v:76.20-76.51]
+    wire _eq_serv_rtl_serv_state_v_76_457_Y: UInt<1> @[serv/rtl/serv_state.v:76.21-76.39]
+    wire _and_serv_rtl_serv_state_v_75_456_Y: UInt<1> @[serv/rtl/serv_state.v:75.20-75.51]
+    wire _eq_serv_rtl_serv_state_v_75_455_Y: UInt<1> @[serv/rtl/serv_state.v:75.21-75.39]
+    wire _or_serv_rtl_serv_state_v_74_454_Y: UInt<1> @[serv/rtl/serv_state.v:74.26-74.58]
+    wire _eq_serv_rtl_serv_state_v_74_453_Y: UInt<1> @[serv/rtl/serv_state.v:74.38-74.57]
+    wire _eq_serv_rtl_serv_state_v_73_452_Y: UInt<1> @[serv/rtl/serv_state.v:73.26-73.44]
+    wire _and_serv_rtl_serv_state_v_69_451_Y: UInt<1> @[serv/rtl/serv_state.v:69.27-69.45]
+    wire _logic_not_serv_rtl_serv_state_v_69_450_Y: UInt<1> @[serv/rtl/serv_state.v:69.38-69.45]
+    wire genblk1_trap_pending: UInt<1> @[serv/rtl/serv_state.v:212.8-212.20]
+    wire genblk1_misalign_trap_sync_r: UInt<1> @[serv/rtl/serv_state.v:208.8-208.28]
+    wire take_branch: UInt<1> @[serv/rtl/serv_state.v:87.14-87.25]
+    wire ibus_cyc: UInt<1> @[serv/rtl/serv_state.v:67.14-67.22]
+    wire cnt_r: UInt<4> @[serv/rtl/serv_state.v:65.14-65.19]
+    wire o_cnt: UInt<3> @[serv/rtl/serv_state.v:64.14-64.19]
+    wire misalign_trap_sync: UInt<1> @[serv/rtl/serv_state.v:62.9-62.27]
+    wire init_done: UInt<1> @[serv/rtl/serv_state.v:61.9-61.18]
+    wire stage_two_req: UInt<1> @[serv/rtl/serv_state.v:60.9-60.22]
+    wire _and_serv_rtl_serv_state_v_217_544: UInt<1> @[serv/rtl/serv_state.v:217.32-217.104]
+    wire _or_serv_rtl_serv_state_v_217_543: UInt<1> @[serv/rtl/serv_state.v:217.57-217.103]
+    wire _and_serv_rtl_serv_state_v_217_542: UInt<1> @[serv/rtl/serv_state.v:217.58-217.79]
+    wire _logic_not_serv_rtl_serv_state_v_217_541: UInt<1> @[serv/rtl/serv_state.v:217.32-217.53]
+    wire _or_serv_rtl_serv_state_v_217_540: UInt<1> @[serv/rtl/serv_state.v:217.34-217.52]
+    wire _or_serv_rtl_serv_state_v_216_539: UInt<1> @[serv/rtl/serv_state.v:216.10-216.41]
+    wire _or_serv_rtl_serv_state_v_216_538: UInt<1> @[serv/rtl/serv_state.v:216.10-216.33]
+    wire _and_serv_rtl_serv_state_v_212_536: UInt<1> @[serv/rtl/serv_state.v:212.23-213.38]
+    wire _or_serv_rtl_serv_state_v_212_535: UInt<1> @[serv/rtl/serv_state.v:212.35-213.37]
+    wire _and_serv_rtl_serv_state_v_213_534: UInt<1> @[serv/rtl/serv_state.v:213.8-213.36]
+    wire _and_serv_rtl_serv_state_v_212_533: UInt<1> @[serv/rtl/serv_state.v:212.36-212.74]
+    wire _and_serv_rtl_serv_state_v_212_532: UInt<1> @[serv/rtl/serv_state.v:212.36-212.65]
+    wire _and_serv_rtl_serv_state_v_204_531: UInt<1> @[serv/rtl/serv_state.v:204.25-204.77]
+    wire _or_serv_rtl_serv_state_v_204_530: UInt<1> @[serv/rtl/serv_state.v:204.37-204.76]
+    wire _or_serv_rtl_serv_state_v_204_529: UInt<1> @[serv/rtl/serv_state.v:204.37-204.55]
+    wire _reduce_or_serv_rtl_serv_state_v_200_528: UInt<1> @[serv/rtl/serv_state.v:200.17-200.23]
+    wire _or_serv_rtl_serv_state_v_185_526: UInt<1> @[serv/rtl/serv_state.v:185.32-185.83]
+    wire _and_serv_rtl_serv_state_v_185_525: UInt<1> @[serv/rtl/serv_state.v:185.60-185.82]
+    wire _logic_not_serv_rtl_serv_state_v_185_524: UInt<1> @[serv/rtl/serv_state.v:185.73-185.82]
+    wire _and_serv_rtl_serv_state_v_185_523: UInt<1> @[serv/rtl/serv_state.v:185.33-185.55]
+    wire _logic_not_serv_rtl_serv_state_v_185_522: UInt<1> @[serv/rtl/serv_state.v:185.44-185.55]
+    wire _add_serv_rtl_serv_state_v_184_521: UInt<3> @[serv/rtl/serv_state.v:184.20-184.43]
+    wire _and_serv_rtl_serv_state_v_145_519: UInt<1> @[serv/rtl/serv_state.v:145.24-145.43]
+    wire _and_serv_rtl_serv_state_v_141_518: UInt<1> @[serv/rtl/serv_state.v:141.18-141.38]
+    wire _and_serv_rtl_serv_state_v_140_517: UInt<1> @[serv/rtl/serv_state.v:140.16-140.35]
+    wire _logic_not_serv_rtl_serv_state_v_140_516: UInt<1> @[serv/rtl/serv_state.v:140.25-140.35]
+    wire _or_serv_rtl_serv_state_v_137_515: UInt<1> @[serv/rtl/serv_state.v:137.14-137.34]
+    wire _or_serv_rtl_serv_state_v_136_514: UInt<1> @[serv/rtl/serv_state.v:136.11-136.42]
+    wire _or_serv_rtl_serv_state_v_136_513: UInt<1> @[serv/rtl/serv_state.v:136.11-136.34]
+    wire _and_serv_rtl_serv_state_v_124_511: UInt<1> @[serv/rtl/serv_state.v:124.24-124.57]
+    wire _eq_serv_rtl_serv_state_v_124_510: UInt<1> @[serv/rtl/serv_state.v:124.25-124.45]
+    wire _and_serv_rtl_serv_state_v_122_509: UInt<1> @[serv/rtl/serv_state.v:122.20-122.60]
+    wire _logic_not_serv_rtl_serv_state_v_122_508: UInt<1> @[serv/rtl/serv_state.v:122.50-122.60]
+    wire _and_serv_rtl_serv_state_v_122_507: UInt<1> @[serv/rtl/serv_state.v:122.20-122.47]
+    wire _logic_not_serv_rtl_serv_state_v_122_506: UInt<1> @[serv/rtl/serv_state.v:122.37-122.47]
+    wire _and_serv_rtl_serv_state_v_120_505: UInt<1> @[serv/rtl/serv_state.v:120.24-120.41]
+    wire _logic_not_serv_rtl_serv_state_v_120_504: UInt<1> @[serv/rtl/serv_state.v:120.35-120.41]
+    wire _or_serv_rtl_serv_state_v_118_503: UInt<1> @[serv/rtl/serv_state.v:118.25-118.168]
+    wire _and_serv_rtl_serv_state_v_118_502: UInt<1> @[serv/rtl/serv_state.v:118.99-118.167]
+    wire _and_serv_rtl_serv_state_v_118_501: UInt<1> @[serv/rtl/serv_state.v:118.99-118.155]
+    wire _or_serv_rtl_serv_state_v_118_500: UInt<1> @[serv/rtl/serv_state.v:118.130-118.154]
+    wire _and_serv_rtl_serv_state_v_118_499: UInt<1> @[serv/rtl/serv_state.v:118.99-118.126]
+    wire _logic_not_serv_rtl_serv_state_v_118_498: UInt<1> @[serv/rtl/serv_state.v:118.112-118.126]
+    wire _and_serv_rtl_serv_state_v_118_497: UInt<1> @[serv/rtl/serv_state.v:118.26-118.94]
+    wire _or_serv_rtl_serv_state_v_118_496: UInt<1> @[serv/rtl/serv_state.v:118.38-118.93]
+    wire _and_serv_rtl_serv_state_v_118_495: UInt<1> @[serv/rtl/serv_state.v:118.48-118.92]
+    wire _or_serv_rtl_serv_state_v_118_494: UInt<1> @[serv/rtl/serv_state.v:118.49-118.74]
+    wire _and_serv_rtl_serv_state_v_105_493: UInt<1> @[serv/rtl/serv_state.v:105.24-105.41]
+    wire _logic_not_serv_rtl_serv_state_v_105_492: UInt<1> @[serv/rtl/serv_state.v:105.34-105.41]
+    wire _or_serv_rtl_serv_state_v_103_491: UInt<1> @[serv/rtl/serv_state.v:103.23-103.72]
+    wire _and_serv_rtl_serv_state_v_103_490: UInt<1> @[serv/rtl/serv_state.v:103.37-103.71]
+    wire _and_serv_rtl_serv_state_v_99_489: UInt<1> @[serv/rtl/serv_state.v:99.24-99.75]
+    wire _logic_not_serv_rtl_serv_state_v_99_488: UInt<1> @[serv/rtl/serv_state.v:99.60-99.75]
+    wire _and_serv_rtl_serv_state_v_99_487: UInt<1> @[serv/rtl/serv_state.v:99.24-99.57]
+    wire _and_serv_rtl_serv_state_v_99_486: UInt<1> @[serv/rtl/serv_state.v:99.24-99.45]
+    wire _logic_not_serv_rtl_serv_state_v_99_485: UInt<1> @[serv/rtl/serv_state.v:99.24-99.33]
+    wire _and_serv_rtl_serv_state_v_94_484: UInt<1> @[serv/rtl/serv_state.v:94.23-97.29]
+    wire _or_serv_rtl_serv_state_v_95_483: UInt<1> @[serv/rtl/serv_state.v:95.13-97.28]
+    wire _or_serv_rtl_serv_state_v_95_482: UInt<1> @[serv/rtl/serv_state.v:95.13-96.45]
+    wire _and_serv_rtl_serv_state_v_96_481: UInt<1> @[serv/rtl/serv_state.v:96.27-96.44]
+    wire _or_serv_rtl_serv_state_v_95_480: UInt<1> @[serv/rtl/serv_state.v:95.13-96.23]
+    wire _and_serv_rtl_serv_state_v_95_479: UInt<1> @[serv/rtl/serv_state.v:95.14-95.52]
+    wire _or_serv_rtl_serv_state_v_95_478: UInt<1> @[serv/rtl/serv_state.v:95.28-95.51]
+    wire _logic_not_serv_rtl_serv_state_v_95_477: UInt<1> @[serv/rtl/serv_state.v:95.40-95.51]
+    wire _and_serv_rtl_serv_state_v_94_476: UInt<1> @[serv/rtl/serv_state.v:94.23-94.66]
+    wire _and_serv_rtl_serv_state_v_94_475: UInt<1> @[serv/rtl/serv_state.v:94.23-94.54]
+    wire _logic_not_serv_rtl_serv_state_v_94_474: UInt<1> @[serv/rtl/serv_state.v:94.45-94.54]
+    wire _logic_not_serv_rtl_serv_state_v_94_473: UInt<1> @[serv/rtl/serv_state.v:94.23-94.42]
+    wire _and_serv_rtl_serv_state_v_90_472: UInt<1> @[serv/rtl/serv_state.v:90.25-90.63]
+    wire _and_serv_rtl_serv_state_v_90_471: UInt<1> @[serv/rtl/serv_state.v:90.25-90.52]
+    wire _and_serv_rtl_serv_state_v_90_470: UInt<1> @[serv/rtl/serv_state.v:90.25-90.40]
+    wire _logic_not_serv_rtl_serv_state_v_90_469: UInt<1> @[serv/rtl/serv_state.v:90.31-90.40]
+    wire _and_serv_rtl_serv_state_v_87_468: UInt<1> @[serv/rtl/serv_state.v:87.28-87.85]
+    wire _or_serv_rtl_serv_state_v_87_467: UInt<1> @[serv/rtl/serv_state.v:87.43-87.84]
+    wire _xor_serv_rtl_serv_state_v_87_466: UInt<1> @[serv/rtl/serv_state.v:87.61-87.83]
+    wire _logic_not_serv_rtl_serv_state_v_87_465: UInt<1> @[serv/rtl/serv_state.v:87.43-87.57]
+    wire _and_serv_rtl_serv_state_v_79_464: UInt<1> @[serv/rtl/serv_state.v:79.20-79.51]
+    wire _eq_serv_rtl_serv_state_v_79_463: UInt<1> @[serv/rtl/serv_state.v:79.21-79.39]
+    wire _and_serv_rtl_serv_state_v_78_462: UInt<1> @[serv/rtl/serv_state.v:78.20-78.51]
+    wire _eq_serv_rtl_serv_state_v_78_461: UInt<1> @[serv/rtl/serv_state.v:78.21-78.39]
+    wire _and_serv_rtl_serv_state_v_77_460: UInt<1> @[serv/rtl/serv_state.v:77.20-77.51]
+    wire _eq_serv_rtl_serv_state_v_77_459: UInt<1> @[serv/rtl/serv_state.v:77.21-77.39]
+    wire _and_serv_rtl_serv_state_v_76_458: UInt<1> @[serv/rtl/serv_state.v:76.20-76.51]
+    wire _eq_serv_rtl_serv_state_v_76_457: UInt<1> @[serv/rtl/serv_state.v:76.21-76.39]
+    wire _and_serv_rtl_serv_state_v_75_456: UInt<1> @[serv/rtl/serv_state.v:75.20-75.51]
+    wire _eq_serv_rtl_serv_state_v_75_455: UInt<1> @[serv/rtl/serv_state.v:75.21-75.39]
+    wire _or_serv_rtl_serv_state_v_74_454: UInt<1> @[serv/rtl/serv_state.v:74.26-74.58]
+    wire _eq_serv_rtl_serv_state_v_74_453: UInt<1> @[serv/rtl/serv_state.v:74.38-74.57]
+    wire _eq_serv_rtl_serv_state_v_73_452: UInt<1> @[serv/rtl/serv_state.v:73.26-73.44]
+    wire _and_serv_rtl_serv_state_v_69_451: UInt<1> @[serv/rtl/serv_state.v:69.27-69.45]
+    wire _logic_not_serv_rtl_serv_state_v_69_450: UInt<1> @[serv/rtl/serv_state.v:69.38-69.45]
+    wire _137: UInt<1>
+    wire _138: UInt<2>
+    wire _139: UInt<1>
+    wire _140: UInt<1>
+    wire _141: UInt<1>
+    wire _142: UInt<1>
+    wire _143: UInt<1>
+    wire _144: UInt<1>
+    wire _145: UInt<1>
+    wire _146: UInt<1>
+    wire _147: UInt<1>
+    wire _148: UInt<1>
+    wire _149: UInt<1>
+    wire _150: UInt<1>
+    wire _151: UInt<1>
+    wire _152: UInt<1>
+    wire _153: UInt<1>
+    wire _154: UInt<1>
+    wire _155: UInt<1>
+    wire _156: UInt<1>
+    wire _157: UInt<1>
+    wire _158: UInt<1>
+    _0_genblk1_misalign_trap_sync_r_0_0_ is invalid
+    _1_o_cnt_en_0_0_ is invalid
+    _0_o_cnt_en_0_0_ is invalid
+    _0_cnt_r_3_0_ is invalid
+    _0_o_cnt_2_0_ is invalid
+    _0_ibus_cyc_0_0_ is invalid
+    _0_init_done_0_0_ is invalid
+    _0_stage_two_req_0_0_ is invalid
+    _0_o_ctrl_jump_0_0_ is invalid
+    genblk1_misalign_trap_sync_r is invalid
+    ibus_cyc is invalid
+    cnt_r is invalid
+    o_cnt is invalid
+    init_done is invalid
+    stage_two_req is invalid
+    o_ctrl_jump is invalid
+    o_cnt_en is invalid
+
+
+    _and_serv_rtl_serv_state_v_217_544 <= and(_logic_not_serv_rtl_serv_state_v_217_541_Y, asUInt(_or_serv_rtl_serv_state_v_217_543_Y)) @[serv/rtl/serv_state.v:217.32-217.104]
+    _or_serv_rtl_serv_state_v_217_543 <= or(_and_serv_rtl_serv_state_v_217_542_Y, asUInt(genblk1_misalign_trap_sync_r)) @[serv/rtl/serv_state.v:217.57-217.103]
+    _and_serv_rtl_serv_state_v_217_542 <= and(genblk1_trap_pending, asUInt(o_init)) @[serv/rtl/serv_state.v:217.58-217.79]
+    _logic_not_serv_rtl_serv_state_v_217_541 <= eq(_or_serv_rtl_serv_state_v_217_540_Y, UInt(0)) @[serv/rtl/serv_state.v:217.32-217.53]
+    _or_serv_rtl_serv_state_v_217_540 <= or(i_ibus_ack, asUInt(i_rst)) @[serv/rtl/serv_state.v:217.34-217.52]
+    _or_serv_rtl_serv_state_v_216_539 <= or(_or_serv_rtl_serv_state_v_216_538_Y, asUInt(i_rst)) @[serv/rtl/serv_state.v:216.10-216.41]
+    _or_serv_rtl_serv_state_v_216_538 <= or(i_ibus_ack, asUInt(o_cnt_done)) @[serv/rtl/serv_state.v:216.10-216.33]
+    _and_serv_rtl_serv_state_v_212_536 <= and(UInt<1>("h1"), asUInt(_or_serv_rtl_serv_state_v_212_535_Y)) @[serv/rtl/serv_state.v:212.23-213.38]
+    _or_serv_rtl_serv_state_v_212_535 <= or(_and_serv_rtl_serv_state_v_212_533_Y, asUInt(_and_serv_rtl_serv_state_v_213_534_Y)) @[serv/rtl/serv_state.v:212.35-213.37]
+    _and_serv_rtl_serv_state_v_213_534 <= and(i_dbus_en, asUInt(i_mem_misalign)) @[serv/rtl/serv_state.v:213.8-213.36]
+    _and_serv_rtl_serv_state_v_212_533 <= and(_and_serv_rtl_serv_state_v_212_532_Y, asUInt(UInt<1>("h1"))) @[serv/rtl/serv_state.v:212.36-212.74]
+    _and_serv_rtl_serv_state_v_212_532 <= and(take_branch, asUInt(i_ctrl_misalign)) @[serv/rtl/serv_state.v:212.36-212.65]
+    _and_serv_rtl_serv_state_v_204_531 <= and(UInt<1>("h1"), asUInt(_or_serv_rtl_serv_state_v_204_530_Y)) @[serv/rtl/serv_state.v:204.25-204.77]
+    _or_serv_rtl_serv_state_v_204_530 <= or(_or_serv_rtl_serv_state_v_204_529_Y, asUInt(misalign_trap_sync)) @[serv/rtl/serv_state.v:204.37-204.76]
+    _or_serv_rtl_serv_state_v_204_529 <= or(i_e_op, asUInt(i_new_irq)) @[serv/rtl/serv_state.v:204.37-204.55]
+    _reduce_or_serv_rtl_serv_state_v_200_528 <= orr(pad(cnt_r, 1)) @[serv/rtl/serv_state.v:200.17-200.23]
+    _or_serv_rtl_serv_state_v_185_526 <= or(_and_serv_rtl_serv_state_v_185_523_Y, asUInt(_and_serv_rtl_serv_state_v_185_525_Y)) @[serv/rtl/serv_state.v:185.32-185.83]
+    _and_serv_rtl_serv_state_v_185_525 <= and(i_rf_ready, asUInt(_logic_not_serv_rtl_serv_state_v_185_524_Y)) @[serv/rtl/serv_state.v:185.60-185.82]
+    _logic_not_serv_rtl_serv_state_v_185_524 <= eq(o_cnt_en, UInt(0)) @[serv/rtl/serv_state.v:185.73-185.82]
+    _and_serv_rtl_serv_state_v_185_523 <= and(bits(cnt_r, 3, 3), asUInt(_logic_not_serv_rtl_serv_state_v_185_522_Y)) @[serv/rtl/serv_state.v:185.33-185.55]
+    _logic_not_serv_rtl_serv_state_v_185_522 <= eq(o_cnt_done, UInt(0)) @[serv/rtl/serv_state.v:185.44-185.55]
+    _add_serv_rtl_serv_state_v_184_521 <= add(o_cnt, asUInt(cat(UInt<2>("h0"), bits(cnt_r, 3, 3)))) @[serv/rtl/serv_state.v:184.20-184.43]
+    _and_serv_rtl_serv_state_v_145_519 <= and(o_cnt_done, asUInt(o_init)) @[serv/rtl/serv_state.v:145.24-145.43]
+    _and_serv_rtl_serv_state_v_141_518 <= and(o_init, asUInt(take_branch)) @[serv/rtl/serv_state.v:141.18-141.38]
+    _and_serv_rtl_serv_state_v_140_517 <= and(o_init, asUInt(_logic_not_serv_rtl_serv_state_v_140_516_Y)) @[serv/rtl/serv_state.v:140.16-140.35]
+    _logic_not_serv_rtl_serv_state_v_140_516 <= eq(init_done, UInt(0)) @[serv/rtl/serv_state.v:140.25-140.35]
+    _or_serv_rtl_serv_state_v_137_515 <= or(o_ctrl_pc_en, asUInt(i_rst)) @[serv/rtl/serv_state.v:137.14-137.34]
+    _or_serv_rtl_serv_state_v_136_514 <= or(_or_serv_rtl_serv_state_v_136_513_Y, asUInt(i_rst)) @[serv/rtl/serv_state.v:136.11-136.42]
+    _or_serv_rtl_serv_state_v_136_513 <= or(i_ibus_ack, asUInt(o_cnt_done)) @[serv/rtl/serv_state.v:136.11-136.34]
+    _and_serv_rtl_serv_state_v_124_511 <= and(_eq_serv_rtl_serv_state_v_124_510_Y, asUInt(bits(cnt_r, 3, 3))) @[serv/rtl/serv_state.v:124.24-124.57]
+    _eq_serv_rtl_serv_state_v_124_510 <= eq(o_cnt, asUInt(UInt<3>("h7"))) @[serv/rtl/serv_state.v:124.25-124.45]
+    _and_serv_rtl_serv_state_v_122_509 <= and(_and_serv_rtl_serv_state_v_122_507_Y, asUInt(_logic_not_serv_rtl_serv_state_v_122_508_Y)) @[serv/rtl/serv_state.v:122.20-122.60]
+    _logic_not_serv_rtl_serv_state_v_122_508 <= eq(init_done, UInt(0)) @[serv/rtl/serv_state.v:122.50-122.60]
+    _and_serv_rtl_serv_state_v_122_507 <= and(i_two_stage_op, asUInt(_logic_not_serv_rtl_serv_state_v_122_506_Y)) @[serv/rtl/serv_state.v:122.20-122.47]
+    _logic_not_serv_rtl_serv_state_v_122_506 <= eq(i_new_irq, UInt(0)) @[serv/rtl/serv_state.v:122.37-122.47]
+    _and_serv_rtl_serv_state_v_120_505 <= and(ibus_cyc, asUInt(_logic_not_serv_rtl_serv_state_v_120_504_Y)) @[serv/rtl/serv_state.v:120.24-120.41]
+    _logic_not_serv_rtl_serv_state_v_120_504 <= eq(i_rst, UInt(0)) @[serv/rtl/serv_state.v:120.35-120.41]
+    _or_serv_rtl_serv_state_v_118_503 <= or(_and_serv_rtl_serv_state_v_118_497_Y, asUInt(_and_serv_rtl_serv_state_v_118_502_Y)) @[serv/rtl/serv_state.v:118.25-118.168]
+    _and_serv_rtl_serv_state_v_118_502 <= and(_and_serv_rtl_serv_state_v_118_501_Y, asUInt(init_done)) @[serv/rtl/serv_state.v:118.99-118.167]
+    _and_serv_rtl_serv_state_v_118_501 <= and(_and_serv_rtl_serv_state_v_118_499_Y, asUInt(_or_serv_rtl_serv_state_v_118_500_Y)) @[serv/rtl/serv_state.v:118.99-118.155]
+    _or_serv_rtl_serv_state_v_118_500 <= or(i_sh_right, asUInt(i_sh_done_r)) @[serv/rtl/serv_state.v:118.130-118.154]
+    _and_serv_rtl_serv_state_v_118_499 <= and(i_shift_op, asUInt(_logic_not_serv_rtl_serv_state_v_118_498_Y)) @[serv/rtl/serv_state.v:118.99-118.126]
+    _logic_not_serv_rtl_serv_state_v_118_498 <= eq(stage_two_req, UInt(0)) @[serv/rtl/serv_state.v:118.112-118.126]
+    _and_serv_rtl_serv_state_v_118_497 <= and(o_cnt_en, asUInt(_or_serv_rtl_serv_state_v_118_496_Y)) @[serv/rtl/serv_state.v:118.26-118.94]
+    _or_serv_rtl_serv_state_v_118_496 <= or(o_init, asUInt(_and_serv_rtl_serv_state_v_118_495_Y)) @[serv/rtl/serv_state.v:118.38-118.93]
+    _and_serv_rtl_serv_state_v_118_495 <= and(_or_serv_rtl_serv_state_v_118_494_Y, asUInt(i_two_stage_op)) @[serv/rtl/serv_state.v:118.48-118.92]
+    _or_serv_rtl_serv_state_v_118_494 <= or(o_ctrl_trap, asUInt(i_branch_op)) @[serv/rtl/serv_state.v:118.49-118.74]
+    _and_serv_rtl_serv_state_v_105_493 <= and(i_rd_op, asUInt(_logic_not_serv_rtl_serv_state_v_105_492_Y)) @[serv/rtl/serv_state.v:105.24-105.41]
+    _logic_not_serv_rtl_serv_state_v_105_492 <= eq(o_init, UInt(0)) @[serv/rtl/serv_state.v:105.34-105.41]
+    _or_serv_rtl_serv_state_v_103_491 <= or(i_ibus_ack, asUInt(_and_serv_rtl_serv_state_v_103_490_Y)) @[serv/rtl/serv_state.v:103.23-103.72]
+    _and_serv_rtl_serv_state_v_103_490 <= and(stage_two_req, asUInt(misalign_trap_sync)) @[serv/rtl/serv_state.v:103.37-103.71]
+    _and_serv_rtl_serv_state_v_99_489 <= and(_and_serv_rtl_serv_state_v_99_487_Y, asUInt(_logic_not_serv_rtl_serv_state_v_99_488_Y)) @[serv/rtl/serv_state.v:99.24-99.75]
+    _logic_not_serv_rtl_serv_state_v_99_488 <= eq(i_mem_misalign, UInt(0)) @[serv/rtl/serv_state.v:99.60-99.75]
+    _and_serv_rtl_serv_state_v_99_487 <= and(_and_serv_rtl_serv_state_v_99_486_Y, asUInt(i_dbus_en)) @[serv/rtl/serv_state.v:99.24-99.57]
+    _and_serv_rtl_serv_state_v_99_486 <= and(_logic_not_serv_rtl_serv_state_v_99_485_Y, asUInt(init_done)) @[serv/rtl/serv_state.v:99.24-99.45]
+    _logic_not_serv_rtl_serv_state_v_99_485 <= eq(o_cnt_en, UInt(0)) @[serv/rtl/serv_state.v:99.24-99.33]
+    _and_serv_rtl_serv_state_v_94_484 <= and(_and_serv_rtl_serv_state_v_94_476_Y, asUInt(_or_serv_rtl_serv_state_v_95_483_Y)) @[serv/rtl/serv_state.v:94.23-97.29]
+    _or_serv_rtl_serv_state_v_95_483 <= or(_or_serv_rtl_serv_state_v_95_482_Y, asUInt(i_slt_or_branch)) @[serv/rtl/serv_state.v:95.13-97.28]
+    _or_serv_rtl_serv_state_v_95_482 <= or(_or_serv_rtl_serv_state_v_95_480_Y, asUInt(_and_serv_rtl_serv_state_v_96_481_Y)) @[serv/rtl/serv_state.v:95.13-96.45]
+    _and_serv_rtl_serv_state_v_96_481 <= and(UInt<1>("h0"), asUInt(i_mdu_ready)) @[serv/rtl/serv_state.v:96.27-96.44]
+    _or_serv_rtl_serv_state_v_95_480 <= or(_and_serv_rtl_serv_state_v_95_479_Y, asUInt(i_dbus_ack)) @[serv/rtl/serv_state.v:95.13-96.23]
+    _and_serv_rtl_serv_state_v_95_479 <= and(i_shift_op, asUInt(_or_serv_rtl_serv_state_v_95_478_Y)) @[serv/rtl/serv_state.v:95.14-95.52]
+    _or_serv_rtl_serv_state_v_95_478 <= or(i_sh_done, asUInt(_logic_not_serv_rtl_serv_state_v_95_477_Y)) @[serv/rtl/serv_state.v:95.28-95.51]
+    _logic_not_serv_rtl_serv_state_v_95_477 <= eq(i_sh_right, UInt(0)) @[serv/rtl/serv_state.v:95.40-95.51]
+    _and_serv_rtl_serv_state_v_94_476 <= and(_and_serv_rtl_serv_state_v_94_475_Y, asUInt(init_done)) @[serv/rtl/serv_state.v:94.23-94.66]
+    _and_serv_rtl_serv_state_v_94_475 <= and(_logic_not_serv_rtl_serv_state_v_94_473_Y, asUInt(_logic_not_serv_rtl_serv_state_v_94_474_Y)) @[serv/rtl/serv_state.v:94.23-94.54]
+    _logic_not_serv_rtl_serv_state_v_94_474 <= eq(o_cnt_en, UInt(0)) @[serv/rtl/serv_state.v:94.45-94.54]
+    _logic_not_serv_rtl_serv_state_v_94_473 <= eq(misalign_trap_sync, UInt(0)) @[serv/rtl/serv_state.v:94.23-94.42]
+    _and_serv_rtl_serv_state_v_90_472 <= and(_and_serv_rtl_serv_state_v_90_471_Y, asUInt(i_mdu_op)) @[serv/rtl/serv_state.v:90.25-90.63]
+    _and_serv_rtl_serv_state_v_90_471 <= and(_and_serv_rtl_serv_state_v_90_470_Y, asUInt(init_done)) @[serv/rtl/serv_state.v:90.25-90.52]
+    _and_serv_rtl_serv_state_v_90_470 <= and(UInt<1>("h0"), asUInt(_logic_not_serv_rtl_serv_state_v_90_469_Y)) @[serv/rtl/serv_state.v:90.25-90.40]
+    _logic_not_serv_rtl_serv_state_v_90_469 <= eq(o_cnt_en, UInt(0)) @[serv/rtl/serv_state.v:90.31-90.40]
+    _and_serv_rtl_serv_state_v_87_468 <= and(i_branch_op, asUInt(_or_serv_rtl_serv_state_v_87_467_Y)) @[serv/rtl/serv_state.v:87.28-87.85]
+    _or_serv_rtl_serv_state_v_87_467 <= or(_logic_not_serv_rtl_serv_state_v_87_465_Y, asUInt(_xor_serv_rtl_serv_state_v_87_466_Y)) @[serv/rtl/serv_state.v:87.43-87.84]
+    _xor_serv_rtl_serv_state_v_87_466 <= xor(i_alu_cmp, asUInt(i_bne_or_bge)) @[serv/rtl/serv_state.v:87.61-87.83]
+    _logic_not_serv_rtl_serv_state_v_87_465 <= eq(i_cond_branch, UInt(0)) @[serv/rtl/serv_state.v:87.43-87.57]
+    _and_serv_rtl_serv_state_v_79_464 <= and(_eq_serv_rtl_serv_state_v_79_463_Y, asUInt(bits(cnt_r, 3, 3))) @[serv/rtl/serv_state.v:79.20-79.51]
+    _eq_serv_rtl_serv_state_v_79_463 <= eq(o_cnt, asUInt(UInt<3>("h1"))) @[serv/rtl/serv_state.v:79.21-79.39]
+    _and_serv_rtl_serv_state_v_78_462 <= and(_eq_serv_rtl_serv_state_v_78_461_Y, asUInt(bits(cnt_r, 3, 3))) @[serv/rtl/serv_state.v:78.20-78.51]
+    _eq_serv_rtl_serv_state_v_78_461 <= eq(o_cnt, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_state.v:78.21-78.39]
+    _and_serv_rtl_serv_state_v_77_460 <= and(_eq_serv_rtl_serv_state_v_77_459_Y, asUInt(bits(cnt_r, 2, 2))) @[serv/rtl/serv_state.v:77.20-77.51]
+    _eq_serv_rtl_serv_state_v_77_459 <= eq(o_cnt, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_state.v:77.21-77.39]
+    _and_serv_rtl_serv_state_v_76_458 <= and(_eq_serv_rtl_serv_state_v_76_457_Y, asUInt(bits(cnt_r, 1, 1))) @[serv/rtl/serv_state.v:76.20-76.51]
+    _eq_serv_rtl_serv_state_v_76_457 <= eq(o_cnt, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_state.v:76.21-76.39]
+    _and_serv_rtl_serv_state_v_75_456 <= and(_eq_serv_rtl_serv_state_v_75_455_Y, asUInt(bits(cnt_r, 0, 0))) @[serv/rtl/serv_state.v:75.20-75.51]
+    _eq_serv_rtl_serv_state_v_75_455 <= eq(o_cnt, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_state.v:75.21-75.39]
+    _or_serv_rtl_serv_state_v_74_454 <= or(bits(o_cnt, 2, 2), asUInt(_eq_serv_rtl_serv_state_v_74_453_Y)) @[serv/rtl/serv_state.v:74.26-74.58]
+    _eq_serv_rtl_serv_state_v_74_453 <= eq(bits(o_cnt, 1, 0), asUInt(UInt<2>("h3"))) @[serv/rtl/serv_state.v:74.38-74.57]
+    _eq_serv_rtl_serv_state_v_73_452 <= eq(o_cnt, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_state.v:73.26-73.44]
+    _and_serv_rtl_serv_state_v_69_451 <= and(o_cnt_en, asUInt(_logic_not_serv_rtl_serv_state_v_69_450_Y)) @[serv/rtl/serv_state.v:69.27-69.45]
+    _logic_not_serv_rtl_serv_state_v_69_450 <= eq(o_init, UInt(0)) @[serv/rtl/serv_state.v:69.38-69.45]
+    _137 <= _and_serv_rtl_serv_state_v_69_451_Y
+    _138 <= bits(o_cnt, 2, 1)
+    _139 <= _eq_serv_rtl_serv_state_v_73_452_Y
+    _140 <= _or_serv_rtl_serv_state_v_74_454_Y
+    _141 <= _and_serv_rtl_serv_state_v_75_456_Y
+    _142 <= _and_serv_rtl_serv_state_v_76_458_Y
+    _143 <= _and_serv_rtl_serv_state_v_77_460_Y
+    _144 <= _and_serv_rtl_serv_state_v_78_462_Y
+    _145 <= _and_serv_rtl_serv_state_v_79_464_Y
+    _146 <= _and_serv_rtl_serv_state_v_87_468_Y
+    _147 <= _and_serv_rtl_serv_state_v_90_472_Y
+    _148 <= _and_serv_rtl_serv_state_v_94_484_Y
+    _149 <= _and_serv_rtl_serv_state_v_99_489_Y
+    _150 <= _or_serv_rtl_serv_state_v_103_491_Y
+    _151 <= _and_serv_rtl_serv_state_v_105_493_Y
+    _152 <= _or_serv_rtl_serv_state_v_118_503_Y
+    _153 <= _and_serv_rtl_serv_state_v_120_505_Y
+    _154 <= _and_serv_rtl_serv_state_v_122_509_Y
+    _155 <= _and_serv_rtl_serv_state_v_124_511_Y
+    _156 <= _and_serv_rtl_serv_state_v_204_531_Y
+    _157 <= _and_serv_rtl_serv_state_v_212_536_Y
+    _158 <= genblk1_misalign_trap_sync_r
+
+    _and_serv_rtl_serv_state_v_217_544_Y <= bits(_and_serv_rtl_serv_state_v_217_544, 0, 0) @[serv/rtl/serv_state.v:217.32-217.104]
+    _or_serv_rtl_serv_state_v_217_543_Y <= bits(_or_serv_rtl_serv_state_v_217_543, 0, 0) @[serv/rtl/serv_state.v:217.57-217.103]
+    _and_serv_rtl_serv_state_v_217_542_Y <= bits(_and_serv_rtl_serv_state_v_217_542, 0, 0) @[serv/rtl/serv_state.v:217.58-217.79]
+    _logic_not_serv_rtl_serv_state_v_217_541_Y <= bits(_logic_not_serv_rtl_serv_state_v_217_541, 0, 0) @[serv/rtl/serv_state.v:217.32-217.53]
+    _or_serv_rtl_serv_state_v_217_540_Y <= bits(_or_serv_rtl_serv_state_v_217_540, 0, 0) @[serv/rtl/serv_state.v:217.34-217.52]
+    _or_serv_rtl_serv_state_v_216_539_Y <= bits(_or_serv_rtl_serv_state_v_216_539, 0, 0) @[serv/rtl/serv_state.v:216.10-216.41]
+    _or_serv_rtl_serv_state_v_216_538_Y <= bits(_or_serv_rtl_serv_state_v_216_538, 0, 0) @[serv/rtl/serv_state.v:216.10-216.33]
+    _and_serv_rtl_serv_state_v_212_536_Y <= bits(_and_serv_rtl_serv_state_v_212_536, 0, 0) @[serv/rtl/serv_state.v:212.23-213.38]
+    _or_serv_rtl_serv_state_v_212_535_Y <= bits(_or_serv_rtl_serv_state_v_212_535, 0, 0) @[serv/rtl/serv_state.v:212.35-213.37]
+    _and_serv_rtl_serv_state_v_213_534_Y <= bits(_and_serv_rtl_serv_state_v_213_534, 0, 0) @[serv/rtl/serv_state.v:213.8-213.36]
+    _and_serv_rtl_serv_state_v_212_533_Y <= bits(_and_serv_rtl_serv_state_v_212_533, 0, 0) @[serv/rtl/serv_state.v:212.36-212.74]
+    _and_serv_rtl_serv_state_v_212_532_Y <= bits(_and_serv_rtl_serv_state_v_212_532, 0, 0) @[serv/rtl/serv_state.v:212.36-212.65]
+    _and_serv_rtl_serv_state_v_204_531_Y <= bits(_and_serv_rtl_serv_state_v_204_531, 0, 0) @[serv/rtl/serv_state.v:204.25-204.77]
+    _or_serv_rtl_serv_state_v_204_530_Y <= bits(_or_serv_rtl_serv_state_v_204_530, 0, 0) @[serv/rtl/serv_state.v:204.37-204.76]
+    _or_serv_rtl_serv_state_v_204_529_Y <= bits(_or_serv_rtl_serv_state_v_204_529, 0, 0) @[serv/rtl/serv_state.v:204.37-204.55]
+    _reduce_or_serv_rtl_serv_state_v_200_528_Y <= bits(_reduce_or_serv_rtl_serv_state_v_200_528, 0, 0) @[serv/rtl/serv_state.v:200.17-200.23]
+    _or_serv_rtl_serv_state_v_185_526_Y <= bits(_or_serv_rtl_serv_state_v_185_526, 0, 0) @[serv/rtl/serv_state.v:185.32-185.83]
+    _and_serv_rtl_serv_state_v_185_525_Y <= bits(_and_serv_rtl_serv_state_v_185_525, 0, 0) @[serv/rtl/serv_state.v:185.60-185.82]
+    _logic_not_serv_rtl_serv_state_v_185_524_Y <= bits(_logic_not_serv_rtl_serv_state_v_185_524, 0, 0) @[serv/rtl/serv_state.v:185.73-185.82]
+    _and_serv_rtl_serv_state_v_185_523_Y <= bits(_and_serv_rtl_serv_state_v_185_523, 0, 0) @[serv/rtl/serv_state.v:185.33-185.55]
+    _logic_not_serv_rtl_serv_state_v_185_522_Y <= bits(_logic_not_serv_rtl_serv_state_v_185_522, 0, 0) @[serv/rtl/serv_state.v:185.44-185.55]
+    _add_serv_rtl_serv_state_v_184_521_Y <= bits(_add_serv_rtl_serv_state_v_184_521, 2, 0) @[serv/rtl/serv_state.v:184.20-184.43]
+    _and_serv_rtl_serv_state_v_145_519_Y <= bits(_and_serv_rtl_serv_state_v_145_519, 0, 0) @[serv/rtl/serv_state.v:145.24-145.43]
+    _and_serv_rtl_serv_state_v_141_518_Y <= bits(_and_serv_rtl_serv_state_v_141_518, 0, 0) @[serv/rtl/serv_state.v:141.18-141.38]
+    _and_serv_rtl_serv_state_v_140_517_Y <= bits(_and_serv_rtl_serv_state_v_140_517, 0, 0) @[serv/rtl/serv_state.v:140.16-140.35]
+    _logic_not_serv_rtl_serv_state_v_140_516_Y <= bits(_logic_not_serv_rtl_serv_state_v_140_516, 0, 0) @[serv/rtl/serv_state.v:140.25-140.35]
+    _or_serv_rtl_serv_state_v_137_515_Y <= bits(_or_serv_rtl_serv_state_v_137_515, 0, 0) @[serv/rtl/serv_state.v:137.14-137.34]
+    _or_serv_rtl_serv_state_v_136_514_Y <= bits(_or_serv_rtl_serv_state_v_136_514, 0, 0) @[serv/rtl/serv_state.v:136.11-136.42]
+    _or_serv_rtl_serv_state_v_136_513_Y <= bits(_or_serv_rtl_serv_state_v_136_513, 0, 0) @[serv/rtl/serv_state.v:136.11-136.34]
+    _and_serv_rtl_serv_state_v_124_511_Y <= bits(_and_serv_rtl_serv_state_v_124_511, 0, 0) @[serv/rtl/serv_state.v:124.24-124.57]
+    _eq_serv_rtl_serv_state_v_124_510_Y <= bits(_eq_serv_rtl_serv_state_v_124_510, 0, 0) @[serv/rtl/serv_state.v:124.25-124.45]
+    _and_serv_rtl_serv_state_v_122_509_Y <= bits(_and_serv_rtl_serv_state_v_122_509, 0, 0) @[serv/rtl/serv_state.v:122.20-122.60]
+    _logic_not_serv_rtl_serv_state_v_122_508_Y <= bits(_logic_not_serv_rtl_serv_state_v_122_508, 0, 0) @[serv/rtl/serv_state.v:122.50-122.60]
+    _and_serv_rtl_serv_state_v_122_507_Y <= bits(_and_serv_rtl_serv_state_v_122_507, 0, 0) @[serv/rtl/serv_state.v:122.20-122.47]
+    _logic_not_serv_rtl_serv_state_v_122_506_Y <= bits(_logic_not_serv_rtl_serv_state_v_122_506, 0, 0) @[serv/rtl/serv_state.v:122.37-122.47]
+    _and_serv_rtl_serv_state_v_120_505_Y <= bits(_and_serv_rtl_serv_state_v_120_505, 0, 0) @[serv/rtl/serv_state.v:120.24-120.41]
+    _logic_not_serv_rtl_serv_state_v_120_504_Y <= bits(_logic_not_serv_rtl_serv_state_v_120_504, 0, 0) @[serv/rtl/serv_state.v:120.35-120.41]
+    _or_serv_rtl_serv_state_v_118_503_Y <= bits(_or_serv_rtl_serv_state_v_118_503, 0, 0) @[serv/rtl/serv_state.v:118.25-118.168]
+    _and_serv_rtl_serv_state_v_118_502_Y <= bits(_and_serv_rtl_serv_state_v_118_502, 0, 0) @[serv/rtl/serv_state.v:118.99-118.167]
+    _and_serv_rtl_serv_state_v_118_501_Y <= bits(_and_serv_rtl_serv_state_v_118_501, 0, 0) @[serv/rtl/serv_state.v:118.99-118.155]
+    _or_serv_rtl_serv_state_v_118_500_Y <= bits(_or_serv_rtl_serv_state_v_118_500, 0, 0) @[serv/rtl/serv_state.v:118.130-118.154]
+    _and_serv_rtl_serv_state_v_118_499_Y <= bits(_and_serv_rtl_serv_state_v_118_499, 0, 0) @[serv/rtl/serv_state.v:118.99-118.126]
+    _logic_not_serv_rtl_serv_state_v_118_498_Y <= bits(_logic_not_serv_rtl_serv_state_v_118_498, 0, 0) @[serv/rtl/serv_state.v:118.112-118.126]
+    _and_serv_rtl_serv_state_v_118_497_Y <= bits(_and_serv_rtl_serv_state_v_118_497, 0, 0) @[serv/rtl/serv_state.v:118.26-118.94]
+    _or_serv_rtl_serv_state_v_118_496_Y <= bits(_or_serv_rtl_serv_state_v_118_496, 0, 0) @[serv/rtl/serv_state.v:118.38-118.93]
+    _and_serv_rtl_serv_state_v_118_495_Y <= bits(_and_serv_rtl_serv_state_v_118_495, 0, 0) @[serv/rtl/serv_state.v:118.48-118.92]
+    _or_serv_rtl_serv_state_v_118_494_Y <= bits(_or_serv_rtl_serv_state_v_118_494, 0, 0) @[serv/rtl/serv_state.v:118.49-118.74]
+    _and_serv_rtl_serv_state_v_105_493_Y <= bits(_and_serv_rtl_serv_state_v_105_493, 0, 0) @[serv/rtl/serv_state.v:105.24-105.41]
+    _logic_not_serv_rtl_serv_state_v_105_492_Y <= bits(_logic_not_serv_rtl_serv_state_v_105_492, 0, 0) @[serv/rtl/serv_state.v:105.34-105.41]
+    _or_serv_rtl_serv_state_v_103_491_Y <= bits(_or_serv_rtl_serv_state_v_103_491, 0, 0) @[serv/rtl/serv_state.v:103.23-103.72]
+    _and_serv_rtl_serv_state_v_103_490_Y <= bits(_and_serv_rtl_serv_state_v_103_490, 0, 0) @[serv/rtl/serv_state.v:103.37-103.71]
+    _and_serv_rtl_serv_state_v_99_489_Y <= bits(_and_serv_rtl_serv_state_v_99_489, 0, 0) @[serv/rtl/serv_state.v:99.24-99.75]
+    _logic_not_serv_rtl_serv_state_v_99_488_Y <= bits(_logic_not_serv_rtl_serv_state_v_99_488, 0, 0) @[serv/rtl/serv_state.v:99.60-99.75]
+    _and_serv_rtl_serv_state_v_99_487_Y <= bits(_and_serv_rtl_serv_state_v_99_487, 0, 0) @[serv/rtl/serv_state.v:99.24-99.57]
+    _and_serv_rtl_serv_state_v_99_486_Y <= bits(_and_serv_rtl_serv_state_v_99_486, 0, 0) @[serv/rtl/serv_state.v:99.24-99.45]
+    _logic_not_serv_rtl_serv_state_v_99_485_Y <= bits(_logic_not_serv_rtl_serv_state_v_99_485, 0, 0) @[serv/rtl/serv_state.v:99.24-99.33]
+    _and_serv_rtl_serv_state_v_94_484_Y <= bits(_and_serv_rtl_serv_state_v_94_484, 0, 0) @[serv/rtl/serv_state.v:94.23-97.29]
+    _or_serv_rtl_serv_state_v_95_483_Y <= bits(_or_serv_rtl_serv_state_v_95_483, 0, 0) @[serv/rtl/serv_state.v:95.13-97.28]
+    _or_serv_rtl_serv_state_v_95_482_Y <= bits(_or_serv_rtl_serv_state_v_95_482, 0, 0) @[serv/rtl/serv_state.v:95.13-96.45]
+    _and_serv_rtl_serv_state_v_96_481_Y <= bits(_and_serv_rtl_serv_state_v_96_481, 0, 0) @[serv/rtl/serv_state.v:96.27-96.44]
+    _or_serv_rtl_serv_state_v_95_480_Y <= bits(_or_serv_rtl_serv_state_v_95_480, 0, 0) @[serv/rtl/serv_state.v:95.13-96.23]
+    _and_serv_rtl_serv_state_v_95_479_Y <= bits(_and_serv_rtl_serv_state_v_95_479, 0, 0) @[serv/rtl/serv_state.v:95.14-95.52]
+    _or_serv_rtl_serv_state_v_95_478_Y <= bits(_or_serv_rtl_serv_state_v_95_478, 0, 0) @[serv/rtl/serv_state.v:95.28-95.51]
+    _logic_not_serv_rtl_serv_state_v_95_477_Y <= bits(_logic_not_serv_rtl_serv_state_v_95_477, 0, 0) @[serv/rtl/serv_state.v:95.40-95.51]
+    _and_serv_rtl_serv_state_v_94_476_Y <= bits(_and_serv_rtl_serv_state_v_94_476, 0, 0) @[serv/rtl/serv_state.v:94.23-94.66]
+    _and_serv_rtl_serv_state_v_94_475_Y <= bits(_and_serv_rtl_serv_state_v_94_475, 0, 0) @[serv/rtl/serv_state.v:94.23-94.54]
+    _logic_not_serv_rtl_serv_state_v_94_474_Y <= bits(_logic_not_serv_rtl_serv_state_v_94_474, 0, 0) @[serv/rtl/serv_state.v:94.45-94.54]
+    _logic_not_serv_rtl_serv_state_v_94_473_Y <= bits(_logic_not_serv_rtl_serv_state_v_94_473, 0, 0) @[serv/rtl/serv_state.v:94.23-94.42]
+    _and_serv_rtl_serv_state_v_90_472_Y <= bits(_and_serv_rtl_serv_state_v_90_472, 0, 0) @[serv/rtl/serv_state.v:90.25-90.63]
+    _and_serv_rtl_serv_state_v_90_471_Y <= bits(_and_serv_rtl_serv_state_v_90_471, 0, 0) @[serv/rtl/serv_state.v:90.25-90.52]
+    _and_serv_rtl_serv_state_v_90_470_Y <= bits(_and_serv_rtl_serv_state_v_90_470, 0, 0) @[serv/rtl/serv_state.v:90.25-90.40]
+    _logic_not_serv_rtl_serv_state_v_90_469_Y <= bits(_logic_not_serv_rtl_serv_state_v_90_469, 0, 0) @[serv/rtl/serv_state.v:90.31-90.40]
+    _and_serv_rtl_serv_state_v_87_468_Y <= bits(_and_serv_rtl_serv_state_v_87_468, 0, 0) @[serv/rtl/serv_state.v:87.28-87.85]
+    _or_serv_rtl_serv_state_v_87_467_Y <= bits(_or_serv_rtl_serv_state_v_87_467, 0, 0) @[serv/rtl/serv_state.v:87.43-87.84]
+    _xor_serv_rtl_serv_state_v_87_466_Y <= bits(_xor_serv_rtl_serv_state_v_87_466, 0, 0) @[serv/rtl/serv_state.v:87.61-87.83]
+    _logic_not_serv_rtl_serv_state_v_87_465_Y <= bits(_logic_not_serv_rtl_serv_state_v_87_465, 0, 0) @[serv/rtl/serv_state.v:87.43-87.57]
+    _and_serv_rtl_serv_state_v_79_464_Y <= bits(_and_serv_rtl_serv_state_v_79_464, 0, 0) @[serv/rtl/serv_state.v:79.20-79.51]
+    _eq_serv_rtl_serv_state_v_79_463_Y <= bits(_eq_serv_rtl_serv_state_v_79_463, 0, 0) @[serv/rtl/serv_state.v:79.21-79.39]
+    _and_serv_rtl_serv_state_v_78_462_Y <= bits(_and_serv_rtl_serv_state_v_78_462, 0, 0) @[serv/rtl/serv_state.v:78.20-78.51]
+    _eq_serv_rtl_serv_state_v_78_461_Y <= bits(_eq_serv_rtl_serv_state_v_78_461, 0, 0) @[serv/rtl/serv_state.v:78.21-78.39]
+    _and_serv_rtl_serv_state_v_77_460_Y <= bits(_and_serv_rtl_serv_state_v_77_460, 0, 0) @[serv/rtl/serv_state.v:77.20-77.51]
+    _eq_serv_rtl_serv_state_v_77_459_Y <= bits(_eq_serv_rtl_serv_state_v_77_459, 0, 0) @[serv/rtl/serv_state.v:77.21-77.39]
+    _and_serv_rtl_serv_state_v_76_458_Y <= bits(_and_serv_rtl_serv_state_v_76_458, 0, 0) @[serv/rtl/serv_state.v:76.20-76.51]
+    _eq_serv_rtl_serv_state_v_76_457_Y <= bits(_eq_serv_rtl_serv_state_v_76_457, 0, 0) @[serv/rtl/serv_state.v:76.21-76.39]
+    _and_serv_rtl_serv_state_v_75_456_Y <= bits(_and_serv_rtl_serv_state_v_75_456, 0, 0) @[serv/rtl/serv_state.v:75.20-75.51]
+    _eq_serv_rtl_serv_state_v_75_455_Y <= bits(_eq_serv_rtl_serv_state_v_75_455, 0, 0) @[serv/rtl/serv_state.v:75.21-75.39]
+    _or_serv_rtl_serv_state_v_74_454_Y <= bits(_or_serv_rtl_serv_state_v_74_454, 0, 0) @[serv/rtl/serv_state.v:74.26-74.58]
+    _eq_serv_rtl_serv_state_v_74_453_Y <= bits(_eq_serv_rtl_serv_state_v_74_453, 0, 0) @[serv/rtl/serv_state.v:74.38-74.57]
+    _eq_serv_rtl_serv_state_v_73_452_Y <= bits(_eq_serv_rtl_serv_state_v_73_452, 0, 0) @[serv/rtl/serv_state.v:73.26-73.44]
+    _and_serv_rtl_serv_state_v_69_451_Y <= bits(_and_serv_rtl_serv_state_v_69_451, 0, 0) @[serv/rtl/serv_state.v:69.27-69.45]
+    _logic_not_serv_rtl_serv_state_v_69_450_Y <= bits(_logic_not_serv_rtl_serv_state_v_69_450, 0, 0) @[serv/rtl/serv_state.v:69.38-69.45]
+    genblk1_trap_pending <= bits(_157, 0, 0) @[serv/rtl/serv_state.v:212.8-212.20]
+    take_branch <= bits(_146, 0, 0) @[serv/rtl/serv_state.v:87.14-87.25]
+    misalign_trap_sync <= bits(_158, 0, 0) @[serv/rtl/serv_state.v:62.9-62.27]
+    o_rf_rd_en <= bits(_151, 0, 0) @[serv/rtl/serv_state.v:58.22-58.32]
+    o_rf_wreq <= bits(_148, 0, 0) @[serv/rtl/serv_state.v:56.22-56.31]
+    o_rf_rreq <= bits(_150, 0, 0) @[serv/rtl/serv_state.v:55.22-55.31]
+    o_ibus_cyc <= bits(_153, 0, 0) @[serv/rtl/serv_state.v:52.22-52.32]
+    o_dbus_cyc <= bits(_149, 0, 0) @[serv/rtl/serv_state.v:50.22-50.32]
+    o_mdu_valid <= bits(_147, 0, 0) @[serv/rtl/serv_state.v:46.22-46.33]
+    o_mem_bytecnt <= bits(_138, 1, 0) @[serv/rtl/serv_state.v:31.22-31.35]
+    o_ctrl_trap <= bits(_156, 0, 0) @[serv/rtl/serv_state.v:27.22-27.33]
+    o_ctrl_pc_en <= bits(_137, 0, 0) @[serv/rtl/serv_state.v:25.22-25.34]
+    o_bufreg_en <= bits(_152, 0, 0) @[serv/rtl/serv_state.v:24.22-24.33]
+    o_cnt_done <= bits(_155, 0, 0) @[serv/rtl/serv_state.v:23.22-23.32]
+    o_cnt7 <= bits(_145, 0, 0) @[serv/rtl/serv_state.v:22.22-22.28]
+    o_cnt3 <= bits(_144, 0, 0) @[serv/rtl/serv_state.v:21.22-21.28]
+    o_cnt2 <= bits(_143, 0, 0) @[serv/rtl/serv_state.v:20.22-20.28]
+    o_cnt1 <= bits(_142, 0, 0) @[serv/rtl/serv_state.v:19.22-19.28]
+    o_cnt0 <= bits(_141, 0, 0) @[serv/rtl/serv_state.v:18.22-18.28]
+    o_cnt12to31 <= bits(_140, 0, 0) @[serv/rtl/serv_state.v:17.22-17.33]
+    o_cnt0to3 <= bits(_139, 0, 0) @[serv/rtl/serv_state.v:16.22-16.31]
+    o_init <= bits(_154, 0, 0) @[serv/rtl/serv_state.v:14.22-14.28]
+
+  module serv_rf_top: @[serv/rtl/serv_rf_top.v:3.1-215.10]
+    output o_mdu_valid: UInt<1> @[serv/rtl/serv_rf_top.v:79.23-79.34]
+    input i_ext_ready: UInt<1> @[serv/rtl/serv_rf_top.v:77.23-77.34]
+    input i_ext_rd: UInt<32> @[serv/rtl/serv_rf_top.v:76.23-76.31]
+    output o_ext_funct3: UInt<3> @[serv/rtl/serv_rf_top.v:75.23-75.35]
+    output o_ext_rs2: UInt<32> @[serv/rtl/serv_rf_top.v:74.23-74.32]
+    output o_ext_rs1: UInt<32> @[serv/rtl/serv_rf_top.v:73.23-73.32]
+    input i_dbus_ack: UInt<1> @[serv/rtl/serv_rf_top.v:70.22-70.32]
+    input i_dbus_rdt: UInt<32> @[serv/rtl/serv_rf_top.v:69.23-69.33]
+    output o_dbus_cyc: UInt<1> @[serv/rtl/serv_rf_top.v:68.23-68.33]
+    output o_dbus_we: UInt<1> @[serv/rtl/serv_rf_top.v:67.23-67.32]
+    output o_dbus_sel: UInt<4> @[serv/rtl/serv_rf_top.v:66.23-66.33]
+    output o_dbus_dat: UInt<32> @[serv/rtl/serv_rf_top.v:65.23-65.33]
+    output o_dbus_adr: UInt<32> @[serv/rtl/serv_rf_top.v:64.23-64.33]
+    input i_ibus_ack: UInt<1> @[serv/rtl/serv_rf_top.v:63.22-63.32]
+    input i_ibus_rdt: UInt<32> @[serv/rtl/serv_rf_top.v:62.23-62.33]
+    output o_ibus_cyc: UInt<1> @[serv/rtl/serv_rf_top.v:61.23-61.33]
+    output o_ibus_adr: UInt<32> @[serv/rtl/serv_rf_top.v:60.23-60.33]
+    input i_timer_irq: UInt<1> @[serv/rtl/serv_rf_top.v:36.22-36.33]
+    input i_rst: UInt<1> @[serv/rtl/serv_rf_top.v:35.22-35.27]
+    input clk: UInt<1> @[serv/rtl/serv_rf_top.v:34.22-34.25]
+
+    wire rdata: UInt<2> @[serv/rtl/serv_rf_top.v:102.24-102.29]
+    wire ren: UInt<1> @[serv/rtl/serv_rf_top.v:101.17-101.20]
+    wire raddr: UInt<10> @[serv/rtl/serv_rf_top.v:100.24-100.29]
+    wire wen: UInt<1> @[serv/rtl/serv_rf_top.v:99.17-99.20]
+    wire wdata: UInt<2> @[serv/rtl/serv_rf_top.v:98.24-98.29]
+    wire waddr: UInt<10> @[serv/rtl/serv_rf_top.v:97.24-97.29]
+    wire rdata1: UInt<1> @[serv/rtl/serv_rf_top.v:95.16-95.22]
+    wire rdata0: UInt<1> @[serv/rtl/serv_rf_top.v:94.16-94.22]
+    wire rf_ready: UInt<1> @[serv/rtl/serv_rf_top.v:93.16-93.24]
+    wire rreg1: UInt<6> @[serv/rtl/serv_rf_top.v:92.24-92.29]
+    wire rreg0: UInt<6> @[serv/rtl/serv_rf_top.v:91.24-91.29]
+    wire wdata1: UInt<1> @[serv/rtl/serv_rf_top.v:90.16-90.22]
+    wire wdata0: UInt<1> @[serv/rtl/serv_rf_top.v:89.16-89.22]
+    wire wen1: UInt<1> @[serv/rtl/serv_rf_top.v:88.16-88.20]
+    wire wen0: UInt<1> @[serv/rtl/serv_rf_top.v:87.16-87.20]
+    wire wreg1: UInt<6> @[serv/rtl/serv_rf_top.v:86.24-86.29]
+    wire wreg0: UInt<6> @[serv/rtl/serv_rf_top.v:85.24-85.29]
+    wire rf_rreq: UInt<1> @[serv/rtl/serv_rf_top.v:84.16-84.23]
+    wire rf_wreq: UInt<1> @[serv/rtl/serv_rf_top.v:83.16-83.23]
+    rdata is invalid
+    ren is invalid
+    raddr is invalid
+    wen is invalid
+    wdata is invalid
+    waddr is invalid
+    rdata1 is invalid
+    rdata0 is invalid
+    rf_ready is invalid
+    rreg1 is invalid
+    rreg0 is invalid
+    wdata1 is invalid
+    wdata0 is invalid
+    wen1 is invalid
+    wen0 is invalid
+    wreg1 is invalid
+    wreg0 is invalid
+    rf_rreq is invalid
+    rf_wreq is invalid
+    o_mdu_valid is invalid
+    o_ext_funct3 is invalid
+    o_ext_rs2 is invalid
+    o_ext_rs1 is invalid
+    o_dbus_cyc is invalid
+    o_dbus_we is invalid
+    o_dbus_sel is invalid
+    o_dbus_dat is invalid
+    o_dbus_adr is invalid
+    o_ibus_cyc is invalid
+    o_ibus_adr is invalid
+
+
+
+    inst cpu of serv_top @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_mdu_valid <= cpu.o_mdu_valid @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_ext_rs2 <= cpu.o_ext_rs2 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_ext_rs1 <= cpu.o_ext_rs1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_ext_rd <= i_ext_rd @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_ext_ready <= i_ext_ready @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_ext_funct3 <= cpu.o_ext_funct3 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_dbus_ack <= i_dbus_ack @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_dbus_rdt <= i_dbus_rdt @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_dbus_cyc <= cpu.o_dbus_cyc @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_dbus_we <= cpu.o_dbus_we @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_dbus_sel <= cpu.o_dbus_sel @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_dbus_dat <= cpu.o_dbus_dat @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_dbus_adr <= cpu.o_dbus_adr @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_ibus_ack <= i_ibus_ack @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_ibus_rdt <= i_ibus_rdt @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_ibus_cyc <= cpu.o_ibus_cyc @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    o_ibus_adr <= cpu.o_ibus_adr @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_rdata1 <= rdata1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_rdata0 <= rdata0 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    rreg1 <= cpu.o_rreg1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    rreg0 <= cpu.o_rreg0 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wdata1 <= cpu.o_wdata1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wdata0 <= cpu.o_wdata0 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wen1 <= cpu.o_wen1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wen0 <= cpu.o_wen0 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wreg1 <= cpu.o_wreg1 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    wreg0 <= cpu.o_wreg0 @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_rf_ready <= rf_ready @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    rf_wreq <= cpu.o_rf_wreq @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    rf_rreq <= cpu.o_rf_rreq @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_timer_irq <= i_timer_irq @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.i_rst <= i_rst @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    cpu.clk <= clk @[serv/rtl/serv_rf_top.v:151.4-213.35]
+    inst rf_ram of serv_rf_ram @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rdata <= rf_ram.o_rdata @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_ren <= ren @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_raddr <= raddr @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_wen <= wen @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_wdata <= wdata @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_waddr <= waddr @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    rf_ram.i_clk <= clk @[serv/rtl/serv_rf_top.v:134.4-141.24]
+    inst rf_ram_if of serv_rf_ram_if @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_rdata <= rdata @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    ren <= rf_ram_if.o_ren @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    raddr <= rf_ram_if.o_raddr @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    wen <= rf_ram_if.o_wen @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    wdata <= rf_ram_if.o_wdata @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    waddr <= rf_ram_if.o_waddr @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rdata1 <= rf_ram_if.o_rdata1 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rdata0 <= rf_ram_if.o_rdata0 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_rreg1 <= rreg1 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_rreg0 <= rreg0 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wdata1 <= wdata1 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wdata0 <= wdata0 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wen1 <= wen1 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wen0 <= wen0 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wreg1 <= wreg1 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wreg0 <= wreg0 @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ready <= rf_ram_if.o_ready @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_rreq <= rf_rreq @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_wreq <= rf_wreq @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_rst <= i_rst @[serv/rtl/serv_rf_top.v:108.4-129.25]
+    rf_ram_if.i_clk <= clk @[serv/rtl/serv_rf_top.v:108.4-129.25]
+
+  module serv_rf_ram_if: @[serv/rtl/serv_rf_ram_if.v:2.1-170.10]
+    input i_rdata: UInt<8> @[serv/rtl/serv_rf_ram_if.v:42.28-42.35]
+    output o_ren: UInt<1> @[serv/rtl/serv_rf_ram_if.v:41.20-41.25]
+    output o_raddr: UInt<8> @[serv/rtl/serv_rf_ram_if.v:40.28-40.35]
+    output o_wen: UInt<1> @[serv/rtl/serv_rf_ram_if.v:39.20-39.25]
+    output o_wdata: UInt<8> @[serv/rtl/serv_rf_ram_if.v:38.28-38.35]
+    output o_waddr: UInt<8> @[serv/rtl/serv_rf_ram_if.v:37.28-37.35]
+    output o_rdata1: UInt<1> @[serv/rtl/serv_rf_ram_if.v:35.20-35.28]
+    output o_rdata0: UInt<1> @[serv/rtl/serv_rf_ram_if.v:34.20-34.28]
+    input i_rreg1: UInt<6> @[serv/rtl/serv_rf_ram_if.v:33.28-33.35]
+    input i_rreg0: UInt<6> @[serv/rtl/serv_rf_ram_if.v:32.28-32.35]
+    input i_wdata1: UInt<1> @[serv/rtl/serv_rf_ram_if.v:31.19-31.27]
+    input i_wdata0: UInt<1> @[serv/rtl/serv_rf_ram_if.v:30.19-30.27]
+    input i_wen1: UInt<1> @[serv/rtl/serv_rf_ram_if.v:29.19-29.25]
+    input i_wen0: UInt<1> @[serv/rtl/serv_rf_ram_if.v:28.19-28.25]
+    input i_wreg1: UInt<6> @[serv/rtl/serv_rf_ram_if.v:27.28-27.35]
+    input i_wreg0: UInt<6> @[serv/rtl/serv_rf_ram_if.v:26.28-26.35]
+    output o_ready: UInt<1> @[serv/rtl/serv_rf_ram_if.v:25.20-25.27]
+    input i_rreq: UInt<1> @[serv/rtl/serv_rf_ram_if.v:24.19-24.25]
+    input i_wreq: UInt<1> @[serv/rtl/serv_rf_ram_if.v:23.19-23.25]
+    input i_rst: UInt<1> @[serv/rtl/serv_rf_ram_if.v:22.19-22.24]
+    input i_clk: UInt<1> @[serv/rtl/serv_rf_ram_if.v:21.19-21.24]
+
+    wire _0_rdata1_6_0_: UInt<7> @[serv/rtl/serv_rf_ram_if.v:133.6-137.9]
+    wire _and_serv_rtl_serv_rf_ram_if_v_127_448_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:127.21-127.49]
+    wire _eq_serv_rtl_serv_rf_ram_if_v_127_447_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:127.30-127.48]
+    wire _0_genblk1_wtrig0_r_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:69.7-69.50]
+    wire _or_serv_rtl_serv_rf_ram_if_v_148_445_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:148.11-148.26]
+    wire _add_serv_rtl_serv_rf_ram_if_v_147_444_Y: UInt<5> @[serv/rtl/serv_rf_ram_if.v:147.15-147.24]
+    wire _or_serv_rtl_serv_rf_ram_if_v_143_443_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:143.11-143.25]
+    wire _reduce_and_serv_rtl_serv_rf_ram_if_v_143_442_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:143.11-143.16]
+    wire _0_rreq_r_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _0_rgate_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _0_rdata0_7_0_: UInt<8> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _0_rtrig1_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _0_rcnt_4_0_: UInt<5> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _0_rgnt_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:142.4-166.7]
+    wire _eq_serv_rtl_serv_rf_ram_if_v_122_440_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:122.21-122.39]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_120_439_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:120.22-120.53]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_107_438_Y: UInt<6> @[serv/rtl/serv_rf_ram_if.v:107.26-107.52]
+    wire _0_wen1_r_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:89.4-98.7]
+    wire _0_wen0_r_0_0_: UInt<1> @[serv/rtl/serv_rf_ram_if.v:89.4-98.7]
+    wire _0_wdata1_r_8_0_: UInt<9> @[serv/rtl/serv_rf_ram_if.v:89.4-98.7]
+    wire _0_wdata0_r_7_0_: UInt<8> @[serv/rtl/serv_rf_ram_if.v:89.4-98.7]
+    wire _sub_serv_rtl_serv_rf_ram_if_v_87_436_Y: UInt<32> @[serv/rtl/serv_rf_ram_if.v:87.18-87.24]
+    wire _or_serv_rtl_serv_rf_ram_if_v_85_435_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.19-85.56]
+    wire _and_serv_rtl_serv_rf_ram_if_v_85_434_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.40-85.55]
+    wire _and_serv_rtl_serv_rf_ram_if_v_85_433_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.20-85.35]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_78_432_Y: UInt<6> @[serv/rtl/serv_rf_ram_if.v:78.27-78.53]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_74_431_Y: UInt<8> @[serv/rtl/serv_rf_ram_if.v:74.27-76.19]
+    wire _or_serv_rtl_serv_rf_ram_if_v_45_430_Y: UInt<1> @[serv/rtl/serv_rf_ram_if.v:45.21-45.34]
+    wire genblk1_wtrig0_r: UInt<1> @[serv/rtl/serv_rf_ram_if.v:68.11-68.19]
+    wire rreq_r: UInt<1> @[serv/rtl/serv_rf_ram_if.v:130.15-130.21]
+    wire rgate: UInt<1> @[serv/rtl/serv_rf_ram_if.v:117.14-117.19]
+    wire rdata1: UInt<7> @[serv/rtl/serv_rf_ram_if.v:115.21-115.27]
+    wire rdata0: UInt<8> @[serv/rtl/serv_rf_ram_if.v:114.21-114.27]
+    wire rreg: UInt<6> @[serv/rtl/serv_rf_ram_if.v:107.19-107.23]
+    wire rtrig0: UInt<1> @[serv/rtl/serv_rf_ram_if.v:105.12-105.18]
+    wire wreg: UInt<6> @[serv/rtl/serv_rf_ram_if.v:78.19-78.23]
+    wire wtrig1: UInt<1> @[serv/rtl/serv_rf_ram_if.v:61.15-61.21]
+    wire wtrig0: UInt<1> @[serv/rtl/serv_rf_ram_if.v:60.15-60.21]
+    wire wen1_r: UInt<1> @[serv/rtl/serv_rf_ram_if.v:59.15-59.21]
+    wire wen0_r: UInt<1> @[serv/rtl/serv_rf_ram_if.v:58.15-58.21]
+    wire wdata1_r: UInt<9> @[serv/rtl/serv_rf_ram_if.v:56.22-56.30]
+    wire wdata0_r: UInt<8> @[serv/rtl/serv_rf_ram_if.v:55.22-55.30]
+    wire wcnt: UInt<5> @[serv/rtl/serv_rf_ram_if.v:53.21-53.25]
+    wire rtrig1: UInt<1> @[serv/rtl/serv_rf_ram_if.v:48.12-48.18]
+    wire rcnt: UInt<5> @[serv/rtl/serv_rf_ram_if.v:46.17-46.21]
+    wire rgnt: UInt<1> @[serv/rtl/serv_rf_ram_if.v:44.15-44.19]
+    wire _and_serv_rtl_serv_rf_ram_if_v_127_448: UInt<1> @[serv/rtl/serv_rf_ram_if.v:127.21-127.49]
+    wire _eq_serv_rtl_serv_rf_ram_if_v_127_447: UInt<1> @[serv/rtl/serv_rf_ram_if.v:127.30-127.48]
+    wire _or_serv_rtl_serv_rf_ram_if_v_148_445: UInt<1> @[serv/rtl/serv_rf_ram_if.v:148.11-148.26]
+    wire _add_serv_rtl_serv_rf_ram_if_v_147_444: UInt<5> @[serv/rtl/serv_rf_ram_if.v:147.15-147.24]
+    wire _or_serv_rtl_serv_rf_ram_if_v_143_443: UInt<1> @[serv/rtl/serv_rf_ram_if.v:143.11-143.25]
+    wire _reduce_and_serv_rtl_serv_rf_ram_if_v_143_442: UInt<1> @[serv/rtl/serv_rf_ram_if.v:143.11-143.16]
+    wire _eq_serv_rtl_serv_rf_ram_if_v_122_440: UInt<1> @[serv/rtl/serv_rf_ram_if.v:122.21-122.39]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_120_439: UInt<1> @[serv/rtl/serv_rf_ram_if.v:120.22-120.53]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_107_438: UInt<6> @[serv/rtl/serv_rf_ram_if.v:107.26-107.52]
+    wire _sub_serv_rtl_serv_rf_ram_if_v_87_436: UInt<32> @[serv/rtl/serv_rf_ram_if.v:87.18-87.24]
+    wire _or_serv_rtl_serv_rf_ram_if_v_85_435: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.19-85.56]
+    wire _and_serv_rtl_serv_rf_ram_if_v_85_434: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.40-85.55]
+    wire _and_serv_rtl_serv_rf_ram_if_v_85_433: UInt<1> @[serv/rtl/serv_rf_ram_if.v:85.20-85.35]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_78_432: UInt<6> @[serv/rtl/serv_rf_ram_if.v:78.27-78.53]
+    wire _ternary_serv_rtl_serv_rf_ram_if_v_74_431: UInt<8> @[serv/rtl/serv_rf_ram_if.v:74.27-76.19]
+    wire _or_serv_rtl_serv_rf_ram_if_v_45_430: UInt<1> @[serv/rtl/serv_rf_ram_if.v:45.21-45.34]
+    wire _206: UInt<1>
+    wire _207: UInt<1>
+    wire _208: UInt<8>
+    wire _209: UInt<6>
+    wire _210: UInt<1>
+    wire _211: UInt<5>
+    wire _212: UInt<6>
+    wire _213: UInt<1>
+    wire _214: UInt<1>
+    wire _215: UInt<1>
+    wire _216: UInt<1>
+    wire _217: UInt<8>
+    wire _218: UInt<8>
+    wire _219: UInt<1>
+    _0_rdata1_6_0_ is invalid
+    _0_genblk1_wtrig0_r_0_0_ is invalid
+    _0_rreq_r_0_0_ is invalid
+    _0_rgate_0_0_ is invalid
+    _0_rdata0_7_0_ is invalid
+    _0_rtrig1_0_0_ is invalid
+    _0_rcnt_4_0_ is invalid
+    _0_rgnt_0_0_ is invalid
+    _0_wen1_r_0_0_ is invalid
+    _0_wen0_r_0_0_ is invalid
+    _0_wdata1_r_8_0_ is invalid
+    _0_wdata0_r_7_0_ is invalid
+    genblk1_wtrig0_r is invalid
+    rreq_r is invalid
+    rgate is invalid
+    rdata1 is invalid
+    rdata0 is invalid
+    wen1_r is invalid
+    wen0_r is invalid
+    wdata1_r is invalid
+    wdata0_r is invalid
+    rtrig1 is invalid
+    rcnt is invalid
+    rgnt is invalid
+
+
+    _and_serv_rtl_serv_rf_ram_if_v_127_448 <= and(rgate, asUInt(_eq_serv_rtl_serv_rf_ram_if_v_127_447_Y)) @[serv/rtl/serv_rf_ram_if.v:127.21-127.49]
+    _eq_serv_rtl_serv_rf_ram_if_v_127_447 <= eq(bits(rcnt, 2, 1), asUInt(UInt<32>("h00000000"))) @[serv/rtl/serv_rf_ram_if.v:127.30-127.48]
+    _or_serv_rtl_serv_rf_ram_if_v_148_445 <= or(i_rreq, asUInt(i_wreq)) @[serv/rtl/serv_rf_ram_if.v:148.11-148.26]
+    _add_serv_rtl_serv_rf_ram_if_v_147_444 <= add(rcnt, asUInt(UInt<5>("h01"))) @[serv/rtl/serv_rf_ram_if.v:147.15-147.24]
+    _or_serv_rtl_serv_rf_ram_if_v_143_443 <= or(_reduce_and_serv_rtl_serv_rf_ram_if_v_143_442_Y, asUInt(i_rreq)) @[serv/rtl/serv_rf_ram_if.v:143.11-143.25]
+    _reduce_and_serv_rtl_serv_rf_ram_if_v_143_442 <= andr(pad(rcnt, 1)) @[serv/rtl/serv_rf_ram_if.v:143.11-143.16]
+    _eq_serv_rtl_serv_rf_ram_if_v_122_440 <= eq(bits(rcnt, 2, 0), asUInt(UInt<32>("h00000001"))) @[serv/rtl/serv_rf_ram_if.v:122.21-122.39]
+    _ternary_serv_rtl_serv_rf_ram_if_v_120_439 <= mux(rtrig1, bits(i_rdata, 0, 0), bits(rdata1, 0, 0)) @[serv/rtl/serv_rf_ram_if.v:120.22-120.53]
+    _ternary_serv_rtl_serv_rf_ram_if_v_107_438 <= mux(rtrig0, i_rreg1, i_rreg0) @[serv/rtl/serv_rf_ram_if.v:107.26-107.52]
+    _sub_serv_rtl_serv_rf_ram_if_v_87_436 <= asUInt(sub(pad(rcnt, 32), asUInt(UInt<32>("h00000004")))) @[serv/rtl/serv_rf_ram_if.v:87.18-87.24]
+    _or_serv_rtl_serv_rf_ram_if_v_85_435 <= or(_and_serv_rtl_serv_rf_ram_if_v_85_433_Y, asUInt(_and_serv_rtl_serv_rf_ram_if_v_85_434_Y)) @[serv/rtl/serv_rf_ram_if.v:85.19-85.56]
+    _and_serv_rtl_serv_rf_ram_if_v_85_434 <= and(wtrig1, asUInt(wen1_r)) @[serv/rtl/serv_rf_ram_if.v:85.40-85.55]
+    _and_serv_rtl_serv_rf_ram_if_v_85_433 <= and(wtrig0, asUInt(wen0_r)) @[serv/rtl/serv_rf_ram_if.v:85.20-85.35]
+    _ternary_serv_rtl_serv_rf_ram_if_v_78_432 <= mux(wtrig1, i_wreg1, i_wreg0) @[serv/rtl/serv_rf_ram_if.v:78.27-78.53]
+    _ternary_serv_rtl_serv_rf_ram_if_v_74_431 <= mux(wtrig1, bits(wdata1_r, 7, 0), wdata0_r) @[serv/rtl/serv_rf_ram_if.v:74.27-76.19]
+    _or_serv_rtl_serv_rf_ram_if_v_45_430 <= or(rgnt, asUInt(i_wreq)) @[serv/rtl/serv_rf_ram_if.v:45.21-45.34]
+    _206 <= _or_serv_rtl_serv_rf_ram_if_v_45_430_Y
+    _207 <= rtrig1
+    _208 <= _ternary_serv_rtl_serv_rf_ram_if_v_74_431_Y
+    _209 <= _ternary_serv_rtl_serv_rf_ram_if_v_78_432_Y
+    _210 <= _or_serv_rtl_serv_rf_ram_if_v_85_435_Y
+    _211 <= bits(_sub_serv_rtl_serv_rf_ram_if_v_87_436_Y, 4, 0)
+    _212 <= _ternary_serv_rtl_serv_rf_ram_if_v_107_438_Y
+    _213 <= bits(rdata0, 0, 0)
+    _214 <= _ternary_serv_rtl_serv_rf_ram_if_v_120_439_Y
+    _215 <= _eq_serv_rtl_serv_rf_ram_if_v_122_440_Y
+    _216 <= genblk1_wtrig0_r
+    _217 <= cat(wreg, bits(wcnt, 4, 3))
+    _218 <= cat(rreg, bits(rcnt, 4, 3))
+    _219 <= _and_serv_rtl_serv_rf_ram_if_v_127_448_Y
+
+    _and_serv_rtl_serv_rf_ram_if_v_127_448_Y <= bits(_and_serv_rtl_serv_rf_ram_if_v_127_448, 0, 0) @[serv/rtl/serv_rf_ram_if.v:127.21-127.49]
+    _eq_serv_rtl_serv_rf_ram_if_v_127_447_Y <= bits(_eq_serv_rtl_serv_rf_ram_if_v_127_447, 0, 0) @[serv/rtl/serv_rf_ram_if.v:127.30-127.48]
+    _or_serv_rtl_serv_rf_ram_if_v_148_445_Y <= bits(_or_serv_rtl_serv_rf_ram_if_v_148_445, 0, 0) @[serv/rtl/serv_rf_ram_if.v:148.11-148.26]
+    _add_serv_rtl_serv_rf_ram_if_v_147_444_Y <= bits(_add_serv_rtl_serv_rf_ram_if_v_147_444, 4, 0) @[serv/rtl/serv_rf_ram_if.v:147.15-147.24]
+    _or_serv_rtl_serv_rf_ram_if_v_143_443_Y <= bits(_or_serv_rtl_serv_rf_ram_if_v_143_443, 0, 0) @[serv/rtl/serv_rf_ram_if.v:143.11-143.25]
+    _reduce_and_serv_rtl_serv_rf_ram_if_v_143_442_Y <= bits(_reduce_and_serv_rtl_serv_rf_ram_if_v_143_442, 0, 0) @[serv/rtl/serv_rf_ram_if.v:143.11-143.16]
+    _eq_serv_rtl_serv_rf_ram_if_v_122_440_Y <= bits(_eq_serv_rtl_serv_rf_ram_if_v_122_440, 0, 0) @[serv/rtl/serv_rf_ram_if.v:122.21-122.39]
+    _ternary_serv_rtl_serv_rf_ram_if_v_120_439_Y <= bits(_ternary_serv_rtl_serv_rf_ram_if_v_120_439, 0, 0) @[serv/rtl/serv_rf_ram_if.v:120.22-120.53]
+    _ternary_serv_rtl_serv_rf_ram_if_v_107_438_Y <= bits(_ternary_serv_rtl_serv_rf_ram_if_v_107_438, 5, 0) @[serv/rtl/serv_rf_ram_if.v:107.26-107.52]
+    _sub_serv_rtl_serv_rf_ram_if_v_87_436_Y <= bits(_sub_serv_rtl_serv_rf_ram_if_v_87_436, 31, 0) @[serv/rtl/serv_rf_ram_if.v:87.18-87.24]
+    _or_serv_rtl_serv_rf_ram_if_v_85_435_Y <= bits(_or_serv_rtl_serv_rf_ram_if_v_85_435, 0, 0) @[serv/rtl/serv_rf_ram_if.v:85.19-85.56]
+    _and_serv_rtl_serv_rf_ram_if_v_85_434_Y <= bits(_and_serv_rtl_serv_rf_ram_if_v_85_434, 0, 0) @[serv/rtl/serv_rf_ram_if.v:85.40-85.55]
+    _and_serv_rtl_serv_rf_ram_if_v_85_433_Y <= bits(_and_serv_rtl_serv_rf_ram_if_v_85_433, 0, 0) @[serv/rtl/serv_rf_ram_if.v:85.20-85.35]
+    _ternary_serv_rtl_serv_rf_ram_if_v_78_432_Y <= bits(_ternary_serv_rtl_serv_rf_ram_if_v_78_432, 5, 0) @[serv/rtl/serv_rf_ram_if.v:78.27-78.53]
+    _ternary_serv_rtl_serv_rf_ram_if_v_74_431_Y <= bits(_ternary_serv_rtl_serv_rf_ram_if_v_74_431, 7, 0) @[serv/rtl/serv_rf_ram_if.v:74.27-76.19]
+    _or_serv_rtl_serv_rf_ram_if_v_45_430_Y <= bits(_or_serv_rtl_serv_rf_ram_if_v_45_430, 0, 0) @[serv/rtl/serv_rf_ram_if.v:45.21-45.34]
+    rreg <= bits(_212, 5, 0) @[serv/rtl/serv_rf_ram_if.v:107.19-107.23]
+    rtrig0 <= bits(_215, 0, 0) @[serv/rtl/serv_rf_ram_if.v:105.12-105.18]
+    wreg <= bits(_209, 5, 0) @[serv/rtl/serv_rf_ram_if.v:78.19-78.23]
+    wtrig1 <= bits(_216, 0, 0) @[serv/rtl/serv_rf_ram_if.v:61.15-61.21]
+    wtrig0 <= bits(_207, 0, 0) @[serv/rtl/serv_rf_ram_if.v:60.15-60.21]
+    wcnt <= bits(_211, 4, 0) @[serv/rtl/serv_rf_ram_if.v:53.21-53.25]
+    o_ren <= bits(_219, 0, 0) @[serv/rtl/serv_rf_ram_if.v:41.20-41.25]
+    o_raddr <= bits(_218, 7, 0) @[serv/rtl/serv_rf_ram_if.v:40.28-40.35]
+    o_wen <= bits(_210, 0, 0) @[serv/rtl/serv_rf_ram_if.v:39.20-39.25]
+    o_wdata <= bits(_208, 7, 0) @[serv/rtl/serv_rf_ram_if.v:38.28-38.35]
+    o_waddr <= bits(_217, 7, 0) @[serv/rtl/serv_rf_ram_if.v:37.28-37.35]
+    o_rdata1 <= bits(_214, 0, 0) @[serv/rtl/serv_rf_ram_if.v:35.20-35.28]
+    o_rdata0 <= bits(_213, 0, 0) @[serv/rtl/serv_rf_ram_if.v:34.20-34.28]
+    o_ready <= bits(_206, 0, 0) @[serv/rtl/serv_rf_ram_if.v:25.20-25.27]
+
+  module serv_rf_ram: @[serv/rtl/serv_rf_ram.v:1.1-45.10]
+    output o_rdata: UInt<2> @[serv/rtl/serv_rf_ram.v:11.33-11.40]
+    input i_ren: UInt<1> @[serv/rtl/serv_rf_ram.v:10.21-10.26]
+    input i_raddr: UInt<2> @[serv/rtl/serv_rf_ram.v:9.36-9.43]
+    input i_wen: UInt<1> @[serv/rtl/serv_rf_ram.v:8.22-8.27]
+    input i_wdata: UInt<2> @[serv/rtl/serv_rf_ram.v:7.32-7.39]
+    input i_waddr: UInt<2> @[serv/rtl/serv_rf_ram.v:6.36-6.43]
+    input i_clk: UInt<1> @[serv/rtl/serv_rf_ram.v:5.16-5.21]
+
+    wire _and_serv_rtl_serv_rf_ram_v_37_429_Y: UInt<2> @[serv/rtl/serv_rf_ram.v:37.21-37.46]
+    wire _not_serv_rtl_serv_rf_ram_v_37_428_Y: UInt<2> @[serv/rtl/serv_rf_ram.v:37.29-37.46]
+    wire _logic_not_serv_rtl_serv_rf_ram_v_35_427_Y: UInt<1> @[serv/rtl/serv_rf_ram.v:35.17-35.61]
+    wire _reduce_or_serv_rtl_serv_rf_ram_v_35_426_Y: UInt<1> @[serv/rtl/serv_rf_ram.v:35.19-35.60]
+    wire _0_regzero_0_0_: UInt<1> @[serv/rtl/serv_rf_ram.v:34.4-35.62]
+    wire _ternary_serv_rtl_serv_rf_ram_v_19_424_Y: UInt<2> @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    wire _extend_serv_rtl_serv_rf_ram_v_19_423_Y: UInt<2> @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    wire _memrd__memory_serv_rtl_serv_rf_ram_v_19_422_DATA: UInt<2> @[serv/rtl/serv_rf_ram.v:19.24-19.30]
+    wire _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN_1_0__421: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA_1_0__420: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR_1_0__419: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN_1_0__418: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA_1_0__417: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR_1_0__416: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _0_rdata_1_0_: UInt<2> @[serv/rtl/serv_rf_ram.v:16.4-20.7]
+    wire _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN: UInt<2> @[serv/rtl/serv_rf_ram.v:0.0-0.0]
+    wire _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA: UInt<2> @[serv/rtl/serv_rf_ram.v:0.0-0.0]
+    wire _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR: UInt<2> @[serv/rtl/serv_rf_ram.v:0.0-0.0]
+    wire regzero: UInt<1> @[serv/rtl/serv_rf_ram.v:32.8-32.15]
+    wire rdata: UInt<2> @[serv/rtl/serv_rf_ram.v:14.25-14.30]
+    wire _and_serv_rtl_serv_rf_ram_v_37_429: UInt<2> @[serv/rtl/serv_rf_ram.v:37.21-37.46]
+    wire _not_serv_rtl_serv_rf_ram_v_37_428: UInt<2> @[serv/rtl/serv_rf_ram.v:37.29-37.46]
+    wire _logic_not_serv_rtl_serv_rf_ram_v_35_427: UInt<1> @[serv/rtl/serv_rf_ram.v:35.17-35.61]
+    wire _reduce_or_serv_rtl_serv_rf_ram_v_35_426: UInt<1> @[serv/rtl/serv_rf_ram.v:35.19-35.60]
+    wire _ternary_serv_rtl_serv_rf_ram_v_19_424: UInt<2> @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    wire _extend_serv_rtl_serv_rf_ram_v_19_423: UInt<2>
+    wire _244: UInt<2>
+    _0_regzero_0_0_ is invalid
+    _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN_1_0__421 is invalid
+    _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA_1_0__420 is invalid
+    _1_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR_1_0__419 is invalid
+    _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN_1_0__418 is invalid
+    _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA_1_0__417 is invalid
+    _0_memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR_1_0__416 is invalid
+    _0_rdata_1_0_ is invalid
+    _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_EN is invalid
+    _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_DATA is invalid
+    _memwr__memory_serv_rtl_serv_rf_ram_v_18_414_ADDR is invalid
+    regzero is invalid
+    rdata is invalid
+
+    mem memory:
+      data-type => UInt<2>
+      depth => 1
+      reader => r0
+      read-latency => 0
+      write-latency => 1
+      read-under-write => undefined
+
+    _and_serv_rtl_serv_rf_ram_v_37_429 <= and(rdata, asUInt(_not_serv_rtl_serv_rf_ram_v_37_428_Y)) @[serv/rtl/serv_rf_ram.v:37.21-37.46]
+    _not_serv_rtl_serv_rf_ram_v_37_428 <= not(pad(UInt<2>("h0"), 2)) @[serv/rtl/serv_rf_ram.v:37.29-37.46]
+    _logic_not_serv_rtl_serv_rf_ram_v_35_427 <= eq(_reduce_or_serv_rtl_serv_rf_ram_v_35_426_Y, UInt(0)) @[serv/rtl/serv_rf_ram.v:35.17-35.61]
+    _reduce_or_serv_rtl_serv_rf_ram_v_35_426 <= orr(pad(cat(i_raddr, UInt<5>("h00")), 1)) @[serv/rtl/serv_rf_ram.v:35.19-35.60]
+    _ternary_serv_rtl_serv_rf_ram_v_19_424 <= mux(i_ren, _memrd__memory_serv_rtl_serv_rf_ram_v_19_422_DATA, _extend_serv_rtl_serv_rf_ram_v_19_423_Y) @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    _extend_serv_rtl_serv_rf_ram_v_19_423 <= pad(, 2)
+    memory.r0.addr <= i_raddr
+    memory.r0.en <= UInt<1>("h1")
+    memory.r0.clk <= asClock(UInt<1>("h0"))
+    _244 <= _and_serv_rtl_serv_rf_ram_v_37_429_Y
+
+    _and_serv_rtl_serv_rf_ram_v_37_429_Y <= bits(_and_serv_rtl_serv_rf_ram_v_37_429, 1, 0) @[serv/rtl/serv_rf_ram.v:37.21-37.46]
+    _not_serv_rtl_serv_rf_ram_v_37_428_Y <= bits(_not_serv_rtl_serv_rf_ram_v_37_428, 1, 0) @[serv/rtl/serv_rf_ram.v:37.29-37.46]
+    _logic_not_serv_rtl_serv_rf_ram_v_35_427_Y <= bits(_logic_not_serv_rtl_serv_rf_ram_v_35_427, 0, 0) @[serv/rtl/serv_rf_ram.v:35.17-35.61]
+    _reduce_or_serv_rtl_serv_rf_ram_v_35_426_Y <= bits(_reduce_or_serv_rtl_serv_rf_ram_v_35_426, 0, 0) @[serv/rtl/serv_rf_ram.v:35.19-35.60]
+    _ternary_serv_rtl_serv_rf_ram_v_19_424_Y <= bits(_ternary_serv_rtl_serv_rf_ram_v_19_424, 1, 0) @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    _extend_serv_rtl_serv_rf_ram_v_19_423_Y <= bits(_extend_serv_rtl_serv_rf_ram_v_19_423, 1, 0) @[serv/rtl/serv_rf_ram.v:19.16-19.55]
+    _memrd__memory_serv_rtl_serv_rf_ram_v_19_422_DATA <= bits(memory.r0.data, 1, 0) @[serv/rtl/serv_rf_ram.v:19.24-19.30]
+    o_rdata <= bits(_244, 1, 0) @[serv/rtl/serv_rf_ram.v:11.33-11.40]
+
+  module serv_rf_if: @[serv/rtl/serv_rf_if.v:2.1-149.10]
+    output o_rs2: UInt<1> @[serv/rtl/serv_rf_if.v:46.24-46.29]
+    input i_rs2_raddr: UInt<5> @[serv/rtl/serv_rf_if.v:45.28-45.39]
+    output o_rs1: UInt<1> @[serv/rtl/serv_rf_if.v:43.24-43.29]
+    input i_rs1_raddr: UInt<5> @[serv/rtl/serv_rf_if.v:42.28-42.39]
+    input i_rd_mem_en: UInt<1> @[serv/rtl/serv_rf_if.v:39.23-39.34]
+    input i_mem_rd: UInt<1> @[serv/rtl/serv_rf_if.v:38.23-38.31]
+    input i_rd_csr_en: UInt<1> @[serv/rtl/serv_rf_if.v:37.23-37.34]
+    input i_csr_rd: UInt<1> @[serv/rtl/serv_rf_if.v:36.23-36.31]
+    input i_rd_alu_en: UInt<1> @[serv/rtl/serv_rf_if.v:35.23-35.34]
+    input i_alu_rd: UInt<1> @[serv/rtl/serv_rf_if.v:34.23-34.31]
+    input i_ctrl_rd: UInt<1> @[serv/rtl/serv_rf_if.v:33.23-33.32]
+    input i_rd_waddr: UInt<5> @[serv/rtl/serv_rf_if.v:32.28-32.38]
+    input i_rd_wen: UInt<1> @[serv/rtl/serv_rf_if.v:31.23-31.31]
+    output o_csr: UInt<1> @[serv/rtl/serv_rf_if.v:29.24-29.29]
+    input i_csr: UInt<1> @[serv/rtl/serv_rf_if.v:28.23-28.28]
+    input i_csr_addr: UInt<2> @[serv/rtl/serv_rf_if.v:27.28-27.38]
+    input i_csr_en: UInt<1> @[serv/rtl/serv_rf_if.v:26.23-26.31]
+    output o_csr_pc: UInt<1> @[serv/rtl/serv_rf_if.v:24.24-24.32]
+    input i_bad_pc: UInt<1> @[serv/rtl/serv_rf_if.v:23.23-23.31]
+    input i_bufreg_q: UInt<1> @[serv/rtl/serv_rf_if.v:22.23-22.33]
+    input i_mtval_pc: UInt<1> @[serv/rtl/serv_rf_if.v:21.23-21.33]
+    input i_mepc: UInt<1> @[serv/rtl/serv_rf_if.v:20.23-20.29]
+    input i_mret: UInt<1> @[serv/rtl/serv_rf_if.v:19.23-19.29]
+    input i_trap: UInt<1> @[serv/rtl/serv_rf_if.v:18.23-18.29]
+    input i_rdata1: UInt<1> @[serv/rtl/serv_rf_if.v:15.23-15.31]
+    input i_rdata0: UInt<1> @[serv/rtl/serv_rf_if.v:14.23-14.31]
+    output o_rreg1: UInt<6> @[serv/rtl/serv_rf_if.v:13.31-13.38]
+    output o_rreg0: UInt<6> @[serv/rtl/serv_rf_if.v:12.31-12.38]
+    output o_wdata1: UInt<1> @[serv/rtl/serv_rf_if.v:11.24-11.32]
+    output o_wdata0: UInt<1> @[serv/rtl/serv_rf_if.v:10.24-10.32]
+    output o_wen1: UInt<1> @[serv/rtl/serv_rf_if.v:9.24-9.30]
+    output o_wen0: UInt<1> @[serv/rtl/serv_rf_if.v:8.24-8.30]
+    output o_wreg1: UInt<6> @[serv/rtl/serv_rf_if.v:7.31-7.38]
+    output o_wreg0: UInt<6> @[serv/rtl/serv_rf_if.v:6.31-6.38]
+    input i_cnt_en: UInt<1> @[serv/rtl/serv_rf_if.v:5.23-5.31]
+
+    wire _and_serv_rtl_serv_rf_if_v_119_413_Y: UInt<1> @[serv/rtl/serv_rf_if.v:119.19-119.38]
+    wire _not_serv_rtl_serv_rf_if_v_113_412_Y: UInt<1> @[serv/rtl/serv_rf_if.v:113.22-113.30]
+    wire _and_serv_rtl_serv_rf_if_v_114_411_Y: UInt<3> @[serv/rtl/serv_rf_if.v:114.8-114.39]
+    wire _or_serv_rtl_serv_rf_if_v_115_410_Y: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.104]
+    wire _and_serv_rtl_serv_rf_if_v_115_409_Y: UInt<2> @[serv/rtl/serv_rf_if.v:115.72-115.103]
+    wire _or_serv_rtl_serv_rf_if_v_115_408_Y: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.68]
+    wire _and_serv_rtl_serv_rf_if_v_115_407_Y: UInt<2> @[serv/rtl/serv_rf_if.v:115.41-115.67]
+    wire _or_serv_rtl_serv_rf_if_v_115_406_Y: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.37]
+    wire _logic_not_serv_rtl_serv_rf_if_v_112_405_Y: UInt<1> @[serv/rtl/serv_rf_if.v:112.19-112.48]
+    wire _or_serv_rtl_serv_rf_if_v_112_404_Y: UInt<1> @[serv/rtl/serv_rf_if.v:112.21-112.47]
+    wire _or_serv_rtl_serv_rf_if_v_112_403_Y: UInt<1> @[serv/rtl/serv_rf_if.v:112.21-112.36]
+    wire _and_serv_rtl_serv_rf_if_v_82_402_Y: UInt<1> @[serv/rtl/serv_rf_if.v:82.26-82.56]
+    wire _or_serv_rtl_serv_rf_if_v_82_401_Y: UInt<1> @[serv/rtl/serv_rf_if.v:82.38-82.55]
+    wire _and_serv_rtl_serv_rf_if_v_81_400_Y: UInt<1> @[serv/rtl/serv_rf_if.v:81.26-81.54]
+    wire _or_serv_rtl_serv_rf_if_v_81_399_Y: UInt<1> @[serv/rtl/serv_rf_if.v:81.38-81.53]
+    wire _ternary_serv_rtl_serv_rf_if_v_79_398_Y: UInt<6> @[serv/rtl/serv_rf_if.v:79.21-79.64]
+    wire _ternary_serv_rtl_serv_rf_if_v_78_397_Y: UInt<6> @[serv/rtl/serv_rf_if.v:78.21-78.61]
+    wire _ternary_serv_rtl_serv_rf_if_v_65_396_Y: UInt<1> @[serv/rtl/serv_rf_if.v:65.27-65.50]
+    wire _ternary_serv_rtl_serv_rf_if_v_64_395_Y: UInt<1> @[serv/rtl/serv_rf_if.v:64.28-64.48]
+    wire _ternary_serv_rtl_serv_rf_if_v_62_394_Y: UInt<1> @[serv/rtl/serv_rf_if.v:62.23-62.57]
+    wire _or_serv_rtl_serv_rf_if_v_57_393_Y: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-60.30]
+    wire _and_serv_rtl_serv_rf_if_v_60_392_Y: UInt<1> @[serv/rtl/serv_rf_if.v:60.7-60.29]
+    wire _or_serv_rtl_serv_rf_if_v_57_391_Y: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-59.30]
+    wire _and_serv_rtl_serv_rf_if_v_59_390_Y: UInt<1> @[serv/rtl/serv_rf_if.v:59.7-59.29]
+    wire _or_serv_rtl_serv_rf_if_v_57_389_Y: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-58.30]
+    wire _and_serv_rtl_serv_rf_if_v_58_388_Y: UInt<1> @[serv/rtl/serv_rf_if.v:58.7-58.29]
+    wire _and_serv_rtl_serv_rf_if_v_53_387_Y: UInt<1> @[serv/rtl/serv_rf_if.v:53.24-53.48]
+    wire _reduce_or_serv_rtl_serv_rf_if_v_53_386_Y: UInt<1> @[serv/rtl/serv_rf_if.v:53.36-53.47]
+    wire genblk1_sel_rs2: UInt<1> @[serv/rtl/serv_rf_if.v:112.9-112.16]
+    wire genblk1_mtval: UInt<1> @[serv/rtl/serv_rf_if.v:62.15-62.20]
+    wire genblk1_rd: UInt<1> @[serv/rtl/serv_rf_if.v:57.15-57.17]
+    wire rd_wen: UInt<1> @[serv/rtl/serv_rf_if.v:53.15-53.21]
+    wire _and_serv_rtl_serv_rf_if_v_119_413: UInt<1> @[serv/rtl/serv_rf_if.v:119.19-119.38]
+    wire _not_serv_rtl_serv_rf_if_v_113_412: UInt<1> @[serv/rtl/serv_rf_if.v:113.22-113.30]
+    wire _and_serv_rtl_serv_rf_if_v_114_411: UInt<3> @[serv/rtl/serv_rf_if.v:114.8-114.39]
+    wire _or_serv_rtl_serv_rf_if_v_115_410: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.104]
+    wire _and_serv_rtl_serv_rf_if_v_115_409: UInt<2> @[serv/rtl/serv_rf_if.v:115.72-115.103]
+    wire _or_serv_rtl_serv_rf_if_v_115_408: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.68]
+    wire _and_serv_rtl_serv_rf_if_v_115_407: UInt<2> @[serv/rtl/serv_rf_if.v:115.41-115.67]
+    wire _or_serv_rtl_serv_rf_if_v_115_406: UInt<2> @[serv/rtl/serv_rf_if.v:115.8-115.37]
+    wire _logic_not_serv_rtl_serv_rf_if_v_112_405: UInt<1> @[serv/rtl/serv_rf_if.v:112.19-112.48]
+    wire _or_serv_rtl_serv_rf_if_v_112_404: UInt<1> @[serv/rtl/serv_rf_if.v:112.21-112.47]
+    wire _or_serv_rtl_serv_rf_if_v_112_403: UInt<1> @[serv/rtl/serv_rf_if.v:112.21-112.36]
+    wire _and_serv_rtl_serv_rf_if_v_82_402: UInt<1> @[serv/rtl/serv_rf_if.v:82.26-82.56]
+    wire _or_serv_rtl_serv_rf_if_v_82_401: UInt<1> @[serv/rtl/serv_rf_if.v:82.38-82.55]
+    wire _and_serv_rtl_serv_rf_if_v_81_400: UInt<1> @[serv/rtl/serv_rf_if.v:81.26-81.54]
+    wire _or_serv_rtl_serv_rf_if_v_81_399: UInt<1> @[serv/rtl/serv_rf_if.v:81.38-81.53]
+    wire _ternary_serv_rtl_serv_rf_if_v_79_398: UInt<6> @[serv/rtl/serv_rf_if.v:79.21-79.64]
+    wire _ternary_serv_rtl_serv_rf_if_v_78_397: UInt<6> @[serv/rtl/serv_rf_if.v:78.21-78.61]
+    wire _ternary_serv_rtl_serv_rf_if_v_65_396: UInt<1> @[serv/rtl/serv_rf_if.v:65.27-65.50]
+    wire _ternary_serv_rtl_serv_rf_if_v_64_395: UInt<1> @[serv/rtl/serv_rf_if.v:64.28-64.48]
+    wire _ternary_serv_rtl_serv_rf_if_v_62_394: UInt<1> @[serv/rtl/serv_rf_if.v:62.23-62.57]
+    wire _or_serv_rtl_serv_rf_if_v_57_393: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-60.30]
+    wire _and_serv_rtl_serv_rf_if_v_60_392: UInt<1> @[serv/rtl/serv_rf_if.v:60.7-60.29]
+    wire _or_serv_rtl_serv_rf_if_v_57_391: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-59.30]
+    wire _and_serv_rtl_serv_rf_if_v_59_390: UInt<1> @[serv/rtl/serv_rf_if.v:59.7-59.29]
+    wire _or_serv_rtl_serv_rf_if_v_57_389: UInt<1> @[serv/rtl/serv_rf_if.v:57.20-58.30]
+    wire _and_serv_rtl_serv_rf_if_v_58_388: UInt<1> @[serv/rtl/serv_rf_if.v:58.7-58.29]
+    wire _and_serv_rtl_serv_rf_if_v_53_387: UInt<1> @[serv/rtl/serv_rf_if.v:53.24-53.48]
+    wire _reduce_or_serv_rtl_serv_rf_if_v_53_386: UInt<1> @[serv/rtl/serv_rf_if.v:53.36-53.47]
+    wire _258: UInt<1>
+    wire _259: UInt<1>
+    wire _260: UInt<1>
+    wire _261: UInt<1>
+    wire _262: UInt<1>
+    wire _263: UInt<6>
+    wire _264: UInt<6>
+    wire _265: UInt<1>
+    wire _266: UInt<1>
+    wire _267: UInt<6>
+    wire _268: UInt<1>
+    wire _269: UInt<6>
+    wire _270: UInt<1>
+    wire _271: UInt<1>
+    wire _272: UInt<1>
+    wire _273: UInt<1>
+
+
+    _and_serv_rtl_serv_rf_if_v_119_413 <= and(i_rdata1, asUInt(i_csr_en)) @[serv/rtl/serv_rf_if.v:119.19-119.38]
+    _not_serv_rtl_serv_rf_if_v_113_412 <= not(pad(genblk1_sel_rs2, 1)) @[serv/rtl/serv_rf_if.v:113.22-113.30]
+    _and_serv_rtl_serv_rf_if_v_114_411 <= and(bits(i_rs2_raddr, 4, 2), asUInt(cat(genblk1_sel_rs2, cat(genblk1_sel_rs2, genblk1_sel_rs2)))) @[serv/rtl/serv_rf_if.v:114.8-114.39]
+    _or_serv_rtl_serv_rf_if_v_115_410 <= or(_or_serv_rtl_serv_rf_if_v_115_408_Y, asUInt(_and_serv_rtl_serv_rf_if_v_115_409_Y)) @[serv/rtl/serv_rf_if.v:115.8-115.104]
+    _and_serv_rtl_serv_rf_if_v_115_409 <= and(cat(genblk1_sel_rs2, genblk1_sel_rs2), asUInt(bits(i_rs2_raddr, 1, 0))) @[serv/rtl/serv_rf_if.v:115.72-115.103]
+    _or_serv_rtl_serv_rf_if_v_115_408 <= or(_or_serv_rtl_serv_rf_if_v_115_406_Y, asUInt(_and_serv_rtl_serv_rf_if_v_115_407_Y)) @[serv/rtl/serv_rf_if.v:115.8-115.68]
+    _and_serv_rtl_serv_rf_if_v_115_407 <= and(cat(i_csr_en, i_csr_en), asUInt(i_csr_addr)) @[serv/rtl/serv_rf_if.v:115.41-115.67]
+    _or_serv_rtl_serv_rf_if_v_115_406 <= or(cat(UInt<1>("h0"), i_trap), asUInt(cat(i_mret, UInt<1>("h0")))) @[serv/rtl/serv_rf_if.v:115.8-115.37]
+    _logic_not_serv_rtl_serv_rf_if_v_112_405 <= eq(_or_serv_rtl_serv_rf_if_v_112_404_Y, UInt(0)) @[serv/rtl/serv_rf_if.v:112.19-112.48]
+    _or_serv_rtl_serv_rf_if_v_112_404 <= or(_or_serv_rtl_serv_rf_if_v_112_403_Y, asUInt(i_csr_en)) @[serv/rtl/serv_rf_if.v:112.21-112.47]
+    _or_serv_rtl_serv_rf_if_v_112_403 <= or(i_trap, asUInt(i_mret)) @[serv/rtl/serv_rf_if.v:112.21-112.36]
+    _and_serv_rtl_serv_rf_if_v_82_402 <= and(i_cnt_en, asUInt(_or_serv_rtl_serv_rf_if_v_82_401_Y)) @[serv/rtl/serv_rf_if.v:82.26-82.56]
+    _or_serv_rtl_serv_rf_if_v_82_401 <= or(i_trap, asUInt(i_csr_en)) @[serv/rtl/serv_rf_if.v:82.38-82.55]
+    _and_serv_rtl_serv_rf_if_v_81_400 <= and(i_cnt_en, asUInt(_or_serv_rtl_serv_rf_if_v_81_399_Y)) @[serv/rtl/serv_rf_if.v:81.26-81.54]
+    _or_serv_rtl_serv_rf_if_v_81_399 <= or(i_trap, asUInt(rd_wen)) @[serv/rtl/serv_rf_if.v:81.38-81.53]
+    _ternary_serv_rtl_serv_rf_if_v_79_398 <= mux(i_trap, UInt<6>("h22"), cat(UInt<4>("h8"), i_csr_addr)) @[serv/rtl/serv_rf_if.v:79.21-79.64]
+    _ternary_serv_rtl_serv_rf_if_v_78_397 <= mux(i_trap, UInt<6>("h23"), cat(UInt<1>("h0"), i_rd_waddr)) @[serv/rtl/serv_rf_if.v:78.21-78.61]
+    _ternary_serv_rtl_serv_rf_if_v_65_396 <= mux(i_trap, i_mepc, i_csr) @[serv/rtl/serv_rf_if.v:65.27-65.50]
+    _ternary_serv_rtl_serv_rf_if_v_64_395 <= mux(i_trap, genblk1_mtval, genblk1_rd) @[serv/rtl/serv_rf_if.v:64.28-64.48]
+    _ternary_serv_rtl_serv_rf_if_v_62_394 <= mux(i_mtval_pc, i_bad_pc, i_bufreg_q) @[serv/rtl/serv_rf_if.v:62.23-62.57]
+    _or_serv_rtl_serv_rf_if_v_57_393 <= or(_or_serv_rtl_serv_rf_if_v_57_391_Y, asUInt(_and_serv_rtl_serv_rf_if_v_60_392_Y)) @[serv/rtl/serv_rf_if.v:57.20-60.30]
+    _and_serv_rtl_serv_rf_if_v_60_392 <= and(i_mem_rd, asUInt(i_rd_mem_en)) @[serv/rtl/serv_rf_if.v:60.7-60.29]
+    _or_serv_rtl_serv_rf_if_v_57_391 <= or(_or_serv_rtl_serv_rf_if_v_57_389_Y, asUInt(_and_serv_rtl_serv_rf_if_v_59_390_Y)) @[serv/rtl/serv_rf_if.v:57.20-59.30]
+    _and_serv_rtl_serv_rf_if_v_59_390 <= and(i_csr_rd, asUInt(i_rd_csr_en)) @[serv/rtl/serv_rf_if.v:59.7-59.29]
+    _or_serv_rtl_serv_rf_if_v_57_389 <= or(i_ctrl_rd, asUInt(_and_serv_rtl_serv_rf_if_v_58_388_Y)) @[serv/rtl/serv_rf_if.v:57.20-58.30]
+    _and_serv_rtl_serv_rf_if_v_58_388 <= and(i_alu_rd, asUInt(i_rd_alu_en)) @[serv/rtl/serv_rf_if.v:58.7-58.29]
+    _and_serv_rtl_serv_rf_if_v_53_387 <= and(i_rd_wen, asUInt(_reduce_or_serv_rtl_serv_rf_if_v_53_386_Y)) @[serv/rtl/serv_rf_if.v:53.24-53.48]
+    _reduce_or_serv_rtl_serv_rf_if_v_53_386 <= orr(pad(i_rd_waddr, 1)) @[serv/rtl/serv_rf_if.v:53.36-53.47]
+    _258 <= _and_serv_rtl_serv_rf_if_v_53_387_Y
+    _259 <= _or_serv_rtl_serv_rf_if_v_57_393_Y
+    _260 <= _ternary_serv_rtl_serv_rf_if_v_62_394_Y
+    _261 <= _ternary_serv_rtl_serv_rf_if_v_64_395_Y
+    _262 <= _ternary_serv_rtl_serv_rf_if_v_65_396_Y
+    _263 <= _ternary_serv_rtl_serv_rf_if_v_78_397_Y
+    _264 <= _ternary_serv_rtl_serv_rf_if_v_79_398_Y
+    _265 <= _and_serv_rtl_serv_rf_if_v_81_400_Y
+    _266 <= _and_serv_rtl_serv_rf_if_v_82_402_Y
+    _267 <= cat(UInt<1>("h0"), i_rs1_raddr)
+    _268 <= _logic_not_serv_rtl_serv_rf_if_v_112_405_Y
+    _269 <= cat(_not_serv_rtl_serv_rf_if_v_113_412_Y, cat(_and_serv_rtl_serv_rf_if_v_114_411_Y, _or_serv_rtl_serv_rf_if_v_115_410_Y))
+    _270 <= i_rdata0
+    _271 <= i_rdata1
+    _272 <= _and_serv_rtl_serv_rf_if_v_119_413_Y
+    _273 <= i_rdata1
+
+    _and_serv_rtl_serv_rf_if_v_119_413_Y <= bits(_and_serv_rtl_serv_rf_if_v_119_413, 0, 0) @[serv/rtl/serv_rf_if.v:119.19-119.38]
+    _not_serv_rtl_serv_rf_if_v_113_412_Y <= bits(_not_serv_rtl_serv_rf_if_v_113_412, 0, 0) @[serv/rtl/serv_rf_if.v:113.22-113.30]
+    _and_serv_rtl_serv_rf_if_v_114_411_Y <= bits(_and_serv_rtl_serv_rf_if_v_114_411, 2, 0) @[serv/rtl/serv_rf_if.v:114.8-114.39]
+    _or_serv_rtl_serv_rf_if_v_115_410_Y <= bits(_or_serv_rtl_serv_rf_if_v_115_410, 1, 0) @[serv/rtl/serv_rf_if.v:115.8-115.104]
+    _and_serv_rtl_serv_rf_if_v_115_409_Y <= bits(_and_serv_rtl_serv_rf_if_v_115_409, 1, 0) @[serv/rtl/serv_rf_if.v:115.72-115.103]
+    _or_serv_rtl_serv_rf_if_v_115_408_Y <= bits(_or_serv_rtl_serv_rf_if_v_115_408, 1, 0) @[serv/rtl/serv_rf_if.v:115.8-115.68]
+    _and_serv_rtl_serv_rf_if_v_115_407_Y <= bits(_and_serv_rtl_serv_rf_if_v_115_407, 1, 0) @[serv/rtl/serv_rf_if.v:115.41-115.67]
+    _or_serv_rtl_serv_rf_if_v_115_406_Y <= bits(_or_serv_rtl_serv_rf_if_v_115_406, 1, 0) @[serv/rtl/serv_rf_if.v:115.8-115.37]
+    _logic_not_serv_rtl_serv_rf_if_v_112_405_Y <= bits(_logic_not_serv_rtl_serv_rf_if_v_112_405, 0, 0) @[serv/rtl/serv_rf_if.v:112.19-112.48]
+    _or_serv_rtl_serv_rf_if_v_112_404_Y <= bits(_or_serv_rtl_serv_rf_if_v_112_404, 0, 0) @[serv/rtl/serv_rf_if.v:112.21-112.47]
+    _or_serv_rtl_serv_rf_if_v_112_403_Y <= bits(_or_serv_rtl_serv_rf_if_v_112_403, 0, 0) @[serv/rtl/serv_rf_if.v:112.21-112.36]
+    _and_serv_rtl_serv_rf_if_v_82_402_Y <= bits(_and_serv_rtl_serv_rf_if_v_82_402, 0, 0) @[serv/rtl/serv_rf_if.v:82.26-82.56]
+    _or_serv_rtl_serv_rf_if_v_82_401_Y <= bits(_or_serv_rtl_serv_rf_if_v_82_401, 0, 0) @[serv/rtl/serv_rf_if.v:82.38-82.55]
+    _and_serv_rtl_serv_rf_if_v_81_400_Y <= bits(_and_serv_rtl_serv_rf_if_v_81_400, 0, 0) @[serv/rtl/serv_rf_if.v:81.26-81.54]
+    _or_serv_rtl_serv_rf_if_v_81_399_Y <= bits(_or_serv_rtl_serv_rf_if_v_81_399, 0, 0) @[serv/rtl/serv_rf_if.v:81.38-81.53]
+    _ternary_serv_rtl_serv_rf_if_v_79_398_Y <= bits(_ternary_serv_rtl_serv_rf_if_v_79_398, 5, 0) @[serv/rtl/serv_rf_if.v:79.21-79.64]
+    _ternary_serv_rtl_serv_rf_if_v_78_397_Y <= bits(_ternary_serv_rtl_serv_rf_if_v_78_397, 5, 0) @[serv/rtl/serv_rf_if.v:78.21-78.61]
+    _ternary_serv_rtl_serv_rf_if_v_65_396_Y <= bits(_ternary_serv_rtl_serv_rf_if_v_65_396, 0, 0) @[serv/rtl/serv_rf_if.v:65.27-65.50]
+    _ternary_serv_rtl_serv_rf_if_v_64_395_Y <= bits(_ternary_serv_rtl_serv_rf_if_v_64_395, 0, 0) @[serv/rtl/serv_rf_if.v:64.28-64.48]
+    _ternary_serv_rtl_serv_rf_if_v_62_394_Y <= bits(_ternary_serv_rtl_serv_rf_if_v_62_394, 0, 0) @[serv/rtl/serv_rf_if.v:62.23-62.57]
+    _or_serv_rtl_serv_rf_if_v_57_393_Y <= bits(_or_serv_rtl_serv_rf_if_v_57_393, 0, 0) @[serv/rtl/serv_rf_if.v:57.20-60.30]
+    _and_serv_rtl_serv_rf_if_v_60_392_Y <= bits(_and_serv_rtl_serv_rf_if_v_60_392, 0, 0) @[serv/rtl/serv_rf_if.v:60.7-60.29]
+    _or_serv_rtl_serv_rf_if_v_57_391_Y <= bits(_or_serv_rtl_serv_rf_if_v_57_391, 0, 0) @[serv/rtl/serv_rf_if.v:57.20-59.30]
+    _and_serv_rtl_serv_rf_if_v_59_390_Y <= bits(_and_serv_rtl_serv_rf_if_v_59_390, 0, 0) @[serv/rtl/serv_rf_if.v:59.7-59.29]
+    _or_serv_rtl_serv_rf_if_v_57_389_Y <= bits(_or_serv_rtl_serv_rf_if_v_57_389, 0, 0) @[serv/rtl/serv_rf_if.v:57.20-58.30]
+    _and_serv_rtl_serv_rf_if_v_58_388_Y <= bits(_and_serv_rtl_serv_rf_if_v_58_388, 0, 0) @[serv/rtl/serv_rf_if.v:58.7-58.29]
+    _and_serv_rtl_serv_rf_if_v_53_387_Y <= bits(_and_serv_rtl_serv_rf_if_v_53_387, 0, 0) @[serv/rtl/serv_rf_if.v:53.24-53.48]
+    _reduce_or_serv_rtl_serv_rf_if_v_53_386_Y <= bits(_reduce_or_serv_rtl_serv_rf_if_v_53_386, 0, 0) @[serv/rtl/serv_rf_if.v:53.36-53.47]
+    genblk1_sel_rs2 <= bits(_268, 0, 0) @[serv/rtl/serv_rf_if.v:112.9-112.16]
+    genblk1_mtval <= bits(_260, 0, 0) @[serv/rtl/serv_rf_if.v:62.15-62.20]
+    genblk1_rd <= bits(_259, 0, 0) @[serv/rtl/serv_rf_if.v:57.15-57.17]
+    rd_wen <= bits(_258, 0, 0) @[serv/rtl/serv_rf_if.v:53.15-53.21]
+    o_rs2 <= bits(_271, 0, 0) @[serv/rtl/serv_rf_if.v:46.24-46.29]
+    o_rs1 <= bits(_270, 0, 0) @[serv/rtl/serv_rf_if.v:43.24-43.29]
+    o_csr <= bits(_272, 0, 0) @[serv/rtl/serv_rf_if.v:29.24-29.29]
+    o_csr_pc <= bits(_273, 0, 0) @[serv/rtl/serv_rf_if.v:24.24-24.32]
+    o_rreg1 <= bits(_269, 5, 0) @[serv/rtl/serv_rf_if.v:13.31-13.38]
+    o_rreg0 <= bits(_267, 5, 0) @[serv/rtl/serv_rf_if.v:12.31-12.38]
+    o_wdata1 <= bits(_262, 0, 0) @[serv/rtl/serv_rf_if.v:11.24-11.32]
+    o_wdata0 <= bits(_261, 0, 0) @[serv/rtl/serv_rf_if.v:10.24-10.32]
+    o_wen1 <= bits(_266, 0, 0) @[serv/rtl/serv_rf_if.v:9.24-9.30]
+    o_wen0 <= bits(_265, 0, 0) @[serv/rtl/serv_rf_if.v:8.24-8.30]
+    o_wreg1 <= bits(_264, 5, 0) @[serv/rtl/serv_rf_if.v:7.31-7.38]
+    o_wreg0 <= bits(_263, 5, 0) @[serv/rtl/serv_rf_if.v:6.31-6.38]
+
+  module serv_mem_if: @[serv/rtl/serv_mem_if.v:2.1-69.10]
+    output o_wb_sel: UInt<4> @[serv/rtl/serv_mem_if.v:25.22-25.30]
+    output o_rd: UInt<1> @[serv/rtl/serv_mem_if.v:23.22-23.26]
+    input i_bufreg2_q: UInt<1> @[serv/rtl/serv_mem_if.v:22.21-22.32]
+    input i_mdu_op: UInt<1> @[serv/rtl/serv_mem_if.v:20.21-20.29]
+    input i_half: UInt<1> @[serv/rtl/serv_mem_if.v:18.21-18.27]
+    input i_word: UInt<1> @[serv/rtl/serv_mem_if.v:17.21-17.27]
+    input i_signed: UInt<1> @[serv/rtl/serv_mem_if.v:16.21-16.29]
+    output o_misalign: UInt<1> @[serv/rtl/serv_mem_if.v:14.22-14.32]
+    output o_byte_valid: UInt<1> @[serv/rtl/serv_mem_if.v:13.22-13.34]
+    input i_lsb: UInt<2> @[serv/rtl/serv_mem_if.v:12.22-12.27]
+    input i_bytecnt: UInt<2> @[serv/rtl/serv_mem_if.v:11.22-11.31]
+    input i_clk: UInt<1> @[serv/rtl/serv_mem_if.v:9.21-9.26]
+
+    wire _and_serv_rtl_serv_mem_if_v_67_385_Y: UInt<1> @[serv/rtl/serv_mem_if.v:67.24-67.89]
+    wire _or_serv_rtl_serv_mem_if_v_67_384_Y: UInt<1> @[serv/rtl/serv_mem_if.v:67.36-67.88]
+    wire _and_serv_rtl_serv_mem_if_v_67_383_Y: UInt<1> @[serv/rtl/serv_mem_if.v:67.70-67.87]
+    wire _and_serv_rtl_serv_mem_if_v_67_382_Y: UInt<1> @[serv/rtl/serv_mem_if.v:67.37-67.65]
+    wire _or_serv_rtl_serv_mem_if_v_67_381_Y: UInt<1> @[serv/rtl/serv_mem_if.v:67.49-67.64]
+    wire _0_signbit_0_0_: UInt<1> @[serv/rtl/serv_mem_if.v:57.4-60.7]
+    wire _eq_serv_rtl_serv_mem_if_v_55_379_Y: UInt<1> @[serv/rtl/serv_mem_if.v:55.26-55.40]
+    wire _or_serv_rtl_serv_mem_if_v_54_378_Y: UInt<1> @[serv/rtl/serv_mem_if.v:54.25-54.73]
+    wire _and_serv_rtl_serv_mem_if_v_54_377_Y: UInt<1> @[serv/rtl/serv_mem_if.v:54.54-54.72]
+    wire _logic_not_serv_rtl_serv_mem_if_v_54_376_Y: UInt<1> @[serv/rtl/serv_mem_if.v:54.63-54.72]
+    wire _or_serv_rtl_serv_mem_if_v_54_375_Y: UInt<1> @[serv/rtl/serv_mem_if.v:54.25-54.50]
+    wire _eq_serv_rtl_serv_mem_if_v_54_374_Y: UInt<1> @[serv/rtl/serv_mem_if.v:54.26-54.40]
+    wire _or_serv_rtl_serv_mem_if_v_53_373_Y: UInt<1> @[serv/rtl/serv_mem_if.v:53.25-53.50]
+    wire _eq_serv_rtl_serv_mem_if_v_53_372_Y: UInt<1> @[serv/rtl/serv_mem_if.v:53.26-53.40]
+    wire _or_serv_rtl_serv_mem_if_v_52_371_Y: UInt<1> @[serv/rtl/serv_mem_if.v:52.25-52.72]
+    wire _and_serv_rtl_serv_mem_if_v_52_370_Y: UInt<1> @[serv/rtl/serv_mem_if.v:52.54-52.71]
+    wire _or_serv_rtl_serv_mem_if_v_52_369_Y: UInt<1> @[serv/rtl/serv_mem_if.v:52.25-52.50]
+    wire _eq_serv_rtl_serv_mem_if_v_52_368_Y: UInt<1> @[serv/rtl/serv_mem_if.v:52.26-52.40]
+    wire _ternary_serv_rtl_serv_mem_if_v_50_367_Y: UInt<1> @[serv/rtl/serv_mem_if.v:50.18-50.67]
+    wire _and_serv_rtl_serv_mem_if_v_50_366_Y: UInt<1> @[serv/rtl/serv_mem_if.v:50.47-50.65]
+    wire _or_serv_rtl_serv_mem_if_v_45_365_Y: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-48.26]
+    wire _and_serv_rtl_serv_mem_if_v_48_364_Y: UInt<1> @[serv/rtl/serv_mem_if.v:48.3-48.25]
+    wire _logic_not_serv_rtl_serv_mem_if_v_48_363_Y: UInt<1> @[serv/rtl/serv_mem_if.v:48.12-48.25]
+    wire _or_serv_rtl_serv_mem_if_v_45_362_Y: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-47.22]
+    wire _eq_serv_rtl_serv_mem_if_v_47_361_Y: UInt<1> @[serv/rtl/serv_mem_if.v:47.3-47.21]
+    wire _or_serv_rtl_serv_mem_if_v_45_360_Y: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-46.8]
+    wire _or_serv_rtl_serv_mem_if_v_38_359_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-42.35]
+    wire _and_serv_rtl_serv_mem_if_v_42_358_Y: UInt<1> @[serv/rtl/serv_mem_if.v:42.9-42.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_42_357_Y: UInt<1> @[serv/rtl/serv_mem_if.v:42.25-42.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_42_356_Y: UInt<1> @[serv/rtl/serv_mem_if.v:42.9-42.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_355_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-41.35]
+    wire _and_serv_rtl_serv_mem_if_v_41_354_Y: UInt<1> @[serv/rtl/serv_mem_if.v:41.9-41.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_41_353_Y: UInt<1> @[serv/rtl/serv_mem_if.v:41.25-41.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_41_352_Y: UInt<1> @[serv/rtl/serv_mem_if.v:41.9-41.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_351_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-40.35]
+    wire _and_serv_rtl_serv_mem_if_v_40_350_Y: UInt<1> @[serv/rtl/serv_mem_if.v:40.9-40.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_40_349_Y: UInt<1> @[serv/rtl/serv_mem_if.v:40.25-40.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_40_348_Y: UInt<1> @[serv/rtl/serv_mem_if.v:40.9-40.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_347_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-39.39]
+    wire _and_serv_rtl_serv_mem_if_v_39_346_Y: UInt<1> @[serv/rtl/serv_mem_if.v:39.9-39.38]
+    wire _logic_not_serv_rtl_serv_mem_if_v_39_345_Y: UInt<1> @[serv/rtl/serv_mem_if.v:39.25-39.38]
+    wire _logic_not_serv_rtl_serv_mem_if_v_39_344_Y: UInt<1> @[serv/rtl/serv_mem_if.v:39.9-39.22]
+    wire _and_serv_rtl_serv_mem_if_v_38_343_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.9-38.30]
+    wire _logic_not_serv_rtl_serv_mem_if_v_38_342_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.21-38.30]
+    wire _logic_not_serv_rtl_serv_mem_if_v_38_341_Y: UInt<1> @[serv/rtl/serv_mem_if.v:38.9-38.18]
+    wire dat_valid: UInt<1> @[serv/rtl/serv_mem_if.v:44.9-44.18]
+    wire signbit: UInt<1> @[serv/rtl/serv_mem_if.v:27.8-27.15]
+    wire _and_serv_rtl_serv_mem_if_v_67_385: UInt<1> @[serv/rtl/serv_mem_if.v:67.24-67.89]
+    wire _or_serv_rtl_serv_mem_if_v_67_384: UInt<1> @[serv/rtl/serv_mem_if.v:67.36-67.88]
+    wire _and_serv_rtl_serv_mem_if_v_67_383: UInt<1> @[serv/rtl/serv_mem_if.v:67.70-67.87]
+    wire _and_serv_rtl_serv_mem_if_v_67_382: UInt<1> @[serv/rtl/serv_mem_if.v:67.37-67.65]
+    wire _or_serv_rtl_serv_mem_if_v_67_381: UInt<1> @[serv/rtl/serv_mem_if.v:67.49-67.64]
+    wire _eq_serv_rtl_serv_mem_if_v_55_379: UInt<1> @[serv/rtl/serv_mem_if.v:55.26-55.40]
+    wire _or_serv_rtl_serv_mem_if_v_54_378: UInt<1> @[serv/rtl/serv_mem_if.v:54.25-54.73]
+    wire _and_serv_rtl_serv_mem_if_v_54_377: UInt<1> @[serv/rtl/serv_mem_if.v:54.54-54.72]
+    wire _logic_not_serv_rtl_serv_mem_if_v_54_376: UInt<1> @[serv/rtl/serv_mem_if.v:54.63-54.72]
+    wire _or_serv_rtl_serv_mem_if_v_54_375: UInt<1> @[serv/rtl/serv_mem_if.v:54.25-54.50]
+    wire _eq_serv_rtl_serv_mem_if_v_54_374: UInt<1> @[serv/rtl/serv_mem_if.v:54.26-54.40]
+    wire _or_serv_rtl_serv_mem_if_v_53_373: UInt<1> @[serv/rtl/serv_mem_if.v:53.25-53.50]
+    wire _eq_serv_rtl_serv_mem_if_v_53_372: UInt<1> @[serv/rtl/serv_mem_if.v:53.26-53.40]
+    wire _or_serv_rtl_serv_mem_if_v_52_371: UInt<1> @[serv/rtl/serv_mem_if.v:52.25-52.72]
+    wire _and_serv_rtl_serv_mem_if_v_52_370: UInt<1> @[serv/rtl/serv_mem_if.v:52.54-52.71]
+    wire _or_serv_rtl_serv_mem_if_v_52_369: UInt<1> @[serv/rtl/serv_mem_if.v:52.25-52.50]
+    wire _eq_serv_rtl_serv_mem_if_v_52_368: UInt<1> @[serv/rtl/serv_mem_if.v:52.26-52.40]
+    wire _ternary_serv_rtl_serv_mem_if_v_50_367: UInt<1> @[serv/rtl/serv_mem_if.v:50.18-50.67]
+    wire _and_serv_rtl_serv_mem_if_v_50_366: UInt<1> @[serv/rtl/serv_mem_if.v:50.47-50.65]
+    wire _or_serv_rtl_serv_mem_if_v_45_365: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-48.26]
+    wire _and_serv_rtl_serv_mem_if_v_48_364: UInt<1> @[serv/rtl/serv_mem_if.v:48.3-48.25]
+    wire _logic_not_serv_rtl_serv_mem_if_v_48_363: UInt<1> @[serv/rtl/serv_mem_if.v:48.12-48.25]
+    wire _or_serv_rtl_serv_mem_if_v_45_362: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-47.22]
+    wire _eq_serv_rtl_serv_mem_if_v_47_361: UInt<1> @[serv/rtl/serv_mem_if.v:47.3-47.21]
+    wire _or_serv_rtl_serv_mem_if_v_45_360: UInt<1> @[serv/rtl/serv_mem_if.v:45.2-46.8]
+    wire _or_serv_rtl_serv_mem_if_v_38_359: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-42.35]
+    wire _and_serv_rtl_serv_mem_if_v_42_358: UInt<1> @[serv/rtl/serv_mem_if.v:42.9-42.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_42_357: UInt<1> @[serv/rtl/serv_mem_if.v:42.25-42.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_42_356: UInt<1> @[serv/rtl/serv_mem_if.v:42.9-42.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_355: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-41.35]
+    wire _and_serv_rtl_serv_mem_if_v_41_354: UInt<1> @[serv/rtl/serv_mem_if.v:41.9-41.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_41_353: UInt<1> @[serv/rtl/serv_mem_if.v:41.25-41.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_41_352: UInt<1> @[serv/rtl/serv_mem_if.v:41.9-41.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_351: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-40.35]
+    wire _and_serv_rtl_serv_mem_if_v_40_350: UInt<1> @[serv/rtl/serv_mem_if.v:40.9-40.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_40_349: UInt<1> @[serv/rtl/serv_mem_if.v:40.25-40.34]
+    wire _logic_not_serv_rtl_serv_mem_if_v_40_348: UInt<1> @[serv/rtl/serv_mem_if.v:40.9-40.22]
+    wire _or_serv_rtl_serv_mem_if_v_38_347: UInt<1> @[serv/rtl/serv_mem_if.v:38.8-39.39]
+    wire _and_serv_rtl_serv_mem_if_v_39_346: UInt<1> @[serv/rtl/serv_mem_if.v:39.9-39.38]
+    wire _logic_not_serv_rtl_serv_mem_if_v_39_345: UInt<1> @[serv/rtl/serv_mem_if.v:39.25-39.38]
+    wire _logic_not_serv_rtl_serv_mem_if_v_39_344: UInt<1> @[serv/rtl/serv_mem_if.v:39.9-39.22]
+    wire _and_serv_rtl_serv_mem_if_v_38_343: UInt<1> @[serv/rtl/serv_mem_if.v:38.9-38.30]
+    wire _logic_not_serv_rtl_serv_mem_if_v_38_342: UInt<1> @[serv/rtl/serv_mem_if.v:38.21-38.30]
+    wire _logic_not_serv_rtl_serv_mem_if_v_38_341: UInt<1> @[serv/rtl/serv_mem_if.v:38.9-38.18]
+    wire _274: UInt<1>
+    wire _275: UInt<1>
+    wire _276: UInt<1>
+    wire _277: UInt<1>
+    wire _278: UInt<1>
+    wire _279: UInt<1>
+    wire _280: UInt<1>
+    wire _281: UInt<1>
+    _0_signbit_0_0_ is invalid
+    signbit is invalid
+
+
+    _and_serv_rtl_serv_mem_if_v_67_385 <= and(UInt<1>("h1"), asUInt(_or_serv_rtl_serv_mem_if_v_67_384_Y)) @[serv/rtl/serv_mem_if.v:67.24-67.89]
+    _or_serv_rtl_serv_mem_if_v_67_384 <= or(_and_serv_rtl_serv_mem_if_v_67_382_Y, asUInt(_and_serv_rtl_serv_mem_if_v_67_383_Y)) @[serv/rtl/serv_mem_if.v:67.36-67.88]
+    _and_serv_rtl_serv_mem_if_v_67_383 <= and(bits(i_lsb, 1, 1), asUInt(i_word)) @[serv/rtl/serv_mem_if.v:67.70-67.87]
+    _and_serv_rtl_serv_mem_if_v_67_382 <= and(bits(i_lsb, 0, 0), asUInt(_or_serv_rtl_serv_mem_if_v_67_381_Y)) @[serv/rtl/serv_mem_if.v:67.37-67.65]
+    _or_serv_rtl_serv_mem_if_v_67_381 <= or(i_word, asUInt(i_half)) @[serv/rtl/serv_mem_if.v:67.49-67.64]
+    _eq_serv_rtl_serv_mem_if_v_55_379 <= eq(i_lsb, asUInt(UInt<2>("h0"))) @[serv/rtl/serv_mem_if.v:55.26-55.40]
+    _or_serv_rtl_serv_mem_if_v_54_378 <= or(_or_serv_rtl_serv_mem_if_v_54_375_Y, asUInt(_and_serv_rtl_serv_mem_if_v_54_377_Y)) @[serv/rtl/serv_mem_if.v:54.25-54.73]
+    _and_serv_rtl_serv_mem_if_v_54_377 <= and(i_half, asUInt(_logic_not_serv_rtl_serv_mem_if_v_54_376_Y)) @[serv/rtl/serv_mem_if.v:54.54-54.72]
+    _logic_not_serv_rtl_serv_mem_if_v_54_376 <= eq(bits(i_lsb, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:54.63-54.72]
+    _or_serv_rtl_serv_mem_if_v_54_375 <= or(_eq_serv_rtl_serv_mem_if_v_54_374_Y, asUInt(i_word)) @[serv/rtl/serv_mem_if.v:54.25-54.50]
+    _eq_serv_rtl_serv_mem_if_v_54_374 <= eq(i_lsb, asUInt(UInt<2>("h1"))) @[serv/rtl/serv_mem_if.v:54.26-54.40]
+    _or_serv_rtl_serv_mem_if_v_53_373 <= or(_eq_serv_rtl_serv_mem_if_v_53_372_Y, asUInt(i_word)) @[serv/rtl/serv_mem_if.v:53.25-53.50]
+    _eq_serv_rtl_serv_mem_if_v_53_372 <= eq(i_lsb, asUInt(UInt<2>("h2"))) @[serv/rtl/serv_mem_if.v:53.26-53.40]
+    _or_serv_rtl_serv_mem_if_v_52_371 <= or(_or_serv_rtl_serv_mem_if_v_52_369_Y, asUInt(_and_serv_rtl_serv_mem_if_v_52_370_Y)) @[serv/rtl/serv_mem_if.v:52.25-52.72]
+    _and_serv_rtl_serv_mem_if_v_52_370 <= and(i_half, asUInt(bits(i_lsb, 1, 1))) @[serv/rtl/serv_mem_if.v:52.54-52.71]
+    _or_serv_rtl_serv_mem_if_v_52_369 <= or(_eq_serv_rtl_serv_mem_if_v_52_368_Y, asUInt(i_word)) @[serv/rtl/serv_mem_if.v:52.25-52.50]
+    _eq_serv_rtl_serv_mem_if_v_52_368 <= eq(i_lsb, asUInt(UInt<2>("h3"))) @[serv/rtl/serv_mem_if.v:52.26-52.40]
+    _ternary_serv_rtl_serv_mem_if_v_50_367 <= mux(dat_valid, i_bufreg2_q, _and_serv_rtl_serv_mem_if_v_50_366_Y) @[serv/rtl/serv_mem_if.v:50.18-50.67]
+    _and_serv_rtl_serv_mem_if_v_50_366 <= and(i_signed, asUInt(signbit)) @[serv/rtl/serv_mem_if.v:50.47-50.65]
+    _or_serv_rtl_serv_mem_if_v_45_365 <= or(_or_serv_rtl_serv_mem_if_v_45_362_Y, asUInt(_and_serv_rtl_serv_mem_if_v_48_364_Y)) @[serv/rtl/serv_mem_if.v:45.2-48.26]
+    _and_serv_rtl_serv_mem_if_v_48_364 <= and(i_half, asUInt(_logic_not_serv_rtl_serv_mem_if_v_48_363_Y)) @[serv/rtl/serv_mem_if.v:48.3-48.25]
+    _logic_not_serv_rtl_serv_mem_if_v_48_363 <= eq(bits(i_bytecnt, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:48.12-48.25]
+    _or_serv_rtl_serv_mem_if_v_45_362 <= or(_or_serv_rtl_serv_mem_if_v_45_360_Y, asUInt(_eq_serv_rtl_serv_mem_if_v_47_361_Y)) @[serv/rtl/serv_mem_if.v:45.2-47.22]
+    _eq_serv_rtl_serv_mem_if_v_47_361 <= eq(i_bytecnt, asUInt(UInt<2>("h0"))) @[serv/rtl/serv_mem_if.v:47.3-47.21]
+    _or_serv_rtl_serv_mem_if_v_45_360 <= or(i_mdu_op, asUInt(i_word)) @[serv/rtl/serv_mem_if.v:45.2-46.8]
+    _or_serv_rtl_serv_mem_if_v_38_359 <= or(_or_serv_rtl_serv_mem_if_v_38_355_Y, asUInt(_and_serv_rtl_serv_mem_if_v_42_358_Y)) @[serv/rtl/serv_mem_if.v:38.8-42.35]
+    _and_serv_rtl_serv_mem_if_v_42_358 <= and(_logic_not_serv_rtl_serv_mem_if_v_42_356_Y, asUInt(_logic_not_serv_rtl_serv_mem_if_v_42_357_Y)) @[serv/rtl/serv_mem_if.v:42.9-42.34]
+    _logic_not_serv_rtl_serv_mem_if_v_42_357 <= eq(bits(i_lsb, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:42.25-42.34]
+    _logic_not_serv_rtl_serv_mem_if_v_42_356 <= eq(bits(i_bytecnt, 0, 0), UInt(0)) @[serv/rtl/serv_mem_if.v:42.9-42.22]
+    _or_serv_rtl_serv_mem_if_v_38_355 <= or(_or_serv_rtl_serv_mem_if_v_38_351_Y, asUInt(_and_serv_rtl_serv_mem_if_v_41_354_Y)) @[serv/rtl/serv_mem_if.v:38.8-41.35]
+    _and_serv_rtl_serv_mem_if_v_41_354 <= and(_logic_not_serv_rtl_serv_mem_if_v_41_352_Y, asUInt(_logic_not_serv_rtl_serv_mem_if_v_41_353_Y)) @[serv/rtl/serv_mem_if.v:41.9-41.34]
+    _logic_not_serv_rtl_serv_mem_if_v_41_353 <= eq(bits(i_lsb, 0, 0), UInt(0)) @[serv/rtl/serv_mem_if.v:41.25-41.34]
+    _logic_not_serv_rtl_serv_mem_if_v_41_352 <= eq(bits(i_bytecnt, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:41.9-41.22]
+    _or_serv_rtl_serv_mem_if_v_38_351 <= or(_or_serv_rtl_serv_mem_if_v_38_347_Y, asUInt(_and_serv_rtl_serv_mem_if_v_40_350_Y)) @[serv/rtl/serv_mem_if.v:38.8-40.35]
+    _and_serv_rtl_serv_mem_if_v_40_350 <= and(_logic_not_serv_rtl_serv_mem_if_v_40_348_Y, asUInt(_logic_not_serv_rtl_serv_mem_if_v_40_349_Y)) @[serv/rtl/serv_mem_if.v:40.9-40.34]
+    _logic_not_serv_rtl_serv_mem_if_v_40_349 <= eq(bits(i_lsb, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:40.25-40.34]
+    _logic_not_serv_rtl_serv_mem_if_v_40_348 <= eq(bits(i_bytecnt, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:40.9-40.22]
+    _or_serv_rtl_serv_mem_if_v_38_347 <= or(_and_serv_rtl_serv_mem_if_v_38_343_Y, asUInt(_and_serv_rtl_serv_mem_if_v_39_346_Y)) @[serv/rtl/serv_mem_if.v:38.8-39.39]
+    _and_serv_rtl_serv_mem_if_v_39_346 <= and(_logic_not_serv_rtl_serv_mem_if_v_39_344_Y, asUInt(_logic_not_serv_rtl_serv_mem_if_v_39_345_Y)) @[serv/rtl/serv_mem_if.v:39.9-39.38]
+    _logic_not_serv_rtl_serv_mem_if_v_39_345 <= eq(bits(i_bytecnt, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:39.25-39.38]
+    _logic_not_serv_rtl_serv_mem_if_v_39_344 <= eq(bits(i_bytecnt, 0, 0), UInt(0)) @[serv/rtl/serv_mem_if.v:39.9-39.22]
+    _and_serv_rtl_serv_mem_if_v_38_343 <= and(_logic_not_serv_rtl_serv_mem_if_v_38_341_Y, asUInt(_logic_not_serv_rtl_serv_mem_if_v_38_342_Y)) @[serv/rtl/serv_mem_if.v:38.9-38.30]
+    _logic_not_serv_rtl_serv_mem_if_v_38_342 <= eq(bits(i_lsb, 1, 1), UInt(0)) @[serv/rtl/serv_mem_if.v:38.21-38.30]
+    _logic_not_serv_rtl_serv_mem_if_v_38_341 <= eq(bits(i_lsb, 0, 0), UInt(0)) @[serv/rtl/serv_mem_if.v:38.9-38.18]
+    _274 <= _or_serv_rtl_serv_mem_if_v_38_359_Y
+    _275 <= _or_serv_rtl_serv_mem_if_v_45_365_Y
+    _276 <= _ternary_serv_rtl_serv_mem_if_v_50_367_Y
+    _277 <= _or_serv_rtl_serv_mem_if_v_52_371_Y
+    _278 <= _or_serv_rtl_serv_mem_if_v_53_373_Y
+    _279 <= _or_serv_rtl_serv_mem_if_v_54_378_Y
+    _280 <= _eq_serv_rtl_serv_mem_if_v_55_379_Y
+    _281 <= _and_serv_rtl_serv_mem_if_v_67_385_Y
+
+    _and_serv_rtl_serv_mem_if_v_67_385_Y <= bits(_and_serv_rtl_serv_mem_if_v_67_385, 0, 0) @[serv/rtl/serv_mem_if.v:67.24-67.89]
+    _or_serv_rtl_serv_mem_if_v_67_384_Y <= bits(_or_serv_rtl_serv_mem_if_v_67_384, 0, 0) @[serv/rtl/serv_mem_if.v:67.36-67.88]
+    _and_serv_rtl_serv_mem_if_v_67_383_Y <= bits(_and_serv_rtl_serv_mem_if_v_67_383, 0, 0) @[serv/rtl/serv_mem_if.v:67.70-67.87]
+    _and_serv_rtl_serv_mem_if_v_67_382_Y <= bits(_and_serv_rtl_serv_mem_if_v_67_382, 0, 0) @[serv/rtl/serv_mem_if.v:67.37-67.65]
+    _or_serv_rtl_serv_mem_if_v_67_381_Y <= bits(_or_serv_rtl_serv_mem_if_v_67_381, 0, 0) @[serv/rtl/serv_mem_if.v:67.49-67.64]
+    _eq_serv_rtl_serv_mem_if_v_55_379_Y <= bits(_eq_serv_rtl_serv_mem_if_v_55_379, 0, 0) @[serv/rtl/serv_mem_if.v:55.26-55.40]
+    _or_serv_rtl_serv_mem_if_v_54_378_Y <= bits(_or_serv_rtl_serv_mem_if_v_54_378, 0, 0) @[serv/rtl/serv_mem_if.v:54.25-54.73]
+    _and_serv_rtl_serv_mem_if_v_54_377_Y <= bits(_and_serv_rtl_serv_mem_if_v_54_377, 0, 0) @[serv/rtl/serv_mem_if.v:54.54-54.72]
+    _logic_not_serv_rtl_serv_mem_if_v_54_376_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_54_376, 0, 0) @[serv/rtl/serv_mem_if.v:54.63-54.72]
+    _or_serv_rtl_serv_mem_if_v_54_375_Y <= bits(_or_serv_rtl_serv_mem_if_v_54_375, 0, 0) @[serv/rtl/serv_mem_if.v:54.25-54.50]
+    _eq_serv_rtl_serv_mem_if_v_54_374_Y <= bits(_eq_serv_rtl_serv_mem_if_v_54_374, 0, 0) @[serv/rtl/serv_mem_if.v:54.26-54.40]
+    _or_serv_rtl_serv_mem_if_v_53_373_Y <= bits(_or_serv_rtl_serv_mem_if_v_53_373, 0, 0) @[serv/rtl/serv_mem_if.v:53.25-53.50]
+    _eq_serv_rtl_serv_mem_if_v_53_372_Y <= bits(_eq_serv_rtl_serv_mem_if_v_53_372, 0, 0) @[serv/rtl/serv_mem_if.v:53.26-53.40]
+    _or_serv_rtl_serv_mem_if_v_52_371_Y <= bits(_or_serv_rtl_serv_mem_if_v_52_371, 0, 0) @[serv/rtl/serv_mem_if.v:52.25-52.72]
+    _and_serv_rtl_serv_mem_if_v_52_370_Y <= bits(_and_serv_rtl_serv_mem_if_v_52_370, 0, 0) @[serv/rtl/serv_mem_if.v:52.54-52.71]
+    _or_serv_rtl_serv_mem_if_v_52_369_Y <= bits(_or_serv_rtl_serv_mem_if_v_52_369, 0, 0) @[serv/rtl/serv_mem_if.v:52.25-52.50]
+    _eq_serv_rtl_serv_mem_if_v_52_368_Y <= bits(_eq_serv_rtl_serv_mem_if_v_52_368, 0, 0) @[serv/rtl/serv_mem_if.v:52.26-52.40]
+    _ternary_serv_rtl_serv_mem_if_v_50_367_Y <= bits(_ternary_serv_rtl_serv_mem_if_v_50_367, 0, 0) @[serv/rtl/serv_mem_if.v:50.18-50.67]
+    _and_serv_rtl_serv_mem_if_v_50_366_Y <= bits(_and_serv_rtl_serv_mem_if_v_50_366, 0, 0) @[serv/rtl/serv_mem_if.v:50.47-50.65]
+    _or_serv_rtl_serv_mem_if_v_45_365_Y <= bits(_or_serv_rtl_serv_mem_if_v_45_365, 0, 0) @[serv/rtl/serv_mem_if.v:45.2-48.26]
+    _and_serv_rtl_serv_mem_if_v_48_364_Y <= bits(_and_serv_rtl_serv_mem_if_v_48_364, 0, 0) @[serv/rtl/serv_mem_if.v:48.3-48.25]
+    _logic_not_serv_rtl_serv_mem_if_v_48_363_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_48_363, 0, 0) @[serv/rtl/serv_mem_if.v:48.12-48.25]
+    _or_serv_rtl_serv_mem_if_v_45_362_Y <= bits(_or_serv_rtl_serv_mem_if_v_45_362, 0, 0) @[serv/rtl/serv_mem_if.v:45.2-47.22]
+    _eq_serv_rtl_serv_mem_if_v_47_361_Y <= bits(_eq_serv_rtl_serv_mem_if_v_47_361, 0, 0) @[serv/rtl/serv_mem_if.v:47.3-47.21]
+    _or_serv_rtl_serv_mem_if_v_45_360_Y <= bits(_or_serv_rtl_serv_mem_if_v_45_360, 0, 0) @[serv/rtl/serv_mem_if.v:45.2-46.8]
+    _or_serv_rtl_serv_mem_if_v_38_359_Y <= bits(_or_serv_rtl_serv_mem_if_v_38_359, 0, 0) @[serv/rtl/serv_mem_if.v:38.8-42.35]
+    _and_serv_rtl_serv_mem_if_v_42_358_Y <= bits(_and_serv_rtl_serv_mem_if_v_42_358, 0, 0) @[serv/rtl/serv_mem_if.v:42.9-42.34]
+    _logic_not_serv_rtl_serv_mem_if_v_42_357_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_42_357, 0, 0) @[serv/rtl/serv_mem_if.v:42.25-42.34]
+    _logic_not_serv_rtl_serv_mem_if_v_42_356_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_42_356, 0, 0) @[serv/rtl/serv_mem_if.v:42.9-42.22]
+    _or_serv_rtl_serv_mem_if_v_38_355_Y <= bits(_or_serv_rtl_serv_mem_if_v_38_355, 0, 0) @[serv/rtl/serv_mem_if.v:38.8-41.35]
+    _and_serv_rtl_serv_mem_if_v_41_354_Y <= bits(_and_serv_rtl_serv_mem_if_v_41_354, 0, 0) @[serv/rtl/serv_mem_if.v:41.9-41.34]
+    _logic_not_serv_rtl_serv_mem_if_v_41_353_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_41_353, 0, 0) @[serv/rtl/serv_mem_if.v:41.25-41.34]
+    _logic_not_serv_rtl_serv_mem_if_v_41_352_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_41_352, 0, 0) @[serv/rtl/serv_mem_if.v:41.9-41.22]
+    _or_serv_rtl_serv_mem_if_v_38_351_Y <= bits(_or_serv_rtl_serv_mem_if_v_38_351, 0, 0) @[serv/rtl/serv_mem_if.v:38.8-40.35]
+    _and_serv_rtl_serv_mem_if_v_40_350_Y <= bits(_and_serv_rtl_serv_mem_if_v_40_350, 0, 0) @[serv/rtl/serv_mem_if.v:40.9-40.34]
+    _logic_not_serv_rtl_serv_mem_if_v_40_349_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_40_349, 0, 0) @[serv/rtl/serv_mem_if.v:40.25-40.34]
+    _logic_not_serv_rtl_serv_mem_if_v_40_348_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_40_348, 0, 0) @[serv/rtl/serv_mem_if.v:40.9-40.22]
+    _or_serv_rtl_serv_mem_if_v_38_347_Y <= bits(_or_serv_rtl_serv_mem_if_v_38_347, 0, 0) @[serv/rtl/serv_mem_if.v:38.8-39.39]
+    _and_serv_rtl_serv_mem_if_v_39_346_Y <= bits(_and_serv_rtl_serv_mem_if_v_39_346, 0, 0) @[serv/rtl/serv_mem_if.v:39.9-39.38]
+    _logic_not_serv_rtl_serv_mem_if_v_39_345_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_39_345, 0, 0) @[serv/rtl/serv_mem_if.v:39.25-39.38]
+    _logic_not_serv_rtl_serv_mem_if_v_39_344_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_39_344, 0, 0) @[serv/rtl/serv_mem_if.v:39.9-39.22]
+    _and_serv_rtl_serv_mem_if_v_38_343_Y <= bits(_and_serv_rtl_serv_mem_if_v_38_343, 0, 0) @[serv/rtl/serv_mem_if.v:38.9-38.30]
+    _logic_not_serv_rtl_serv_mem_if_v_38_342_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_38_342, 0, 0) @[serv/rtl/serv_mem_if.v:38.21-38.30]
+    _logic_not_serv_rtl_serv_mem_if_v_38_341_Y <= bits(_logic_not_serv_rtl_serv_mem_if_v_38_341, 0, 0) @[serv/rtl/serv_mem_if.v:38.9-38.18]
+    dat_valid <= bits(_275, 0, 0) @[serv/rtl/serv_mem_if.v:44.9-44.18]
+    o_wb_sel <= cat(bits(_277, 0, 0), cat(bits(_278, 0, 0), cat(bits(_279, 0, 0), bits(_280, 0, 0)))) @[serv/rtl/serv_mem_if.v:25.22-25.30]
+    o_rd <= bits(_276, 0, 0) @[serv/rtl/serv_mem_if.v:23.22-23.26]
+    o_misalign <= bits(_281, 0, 0) @[serv/rtl/serv_mem_if.v:14.22-14.32]
+    o_byte_valid <= bits(_274, 0, 0) @[serv/rtl/serv_mem_if.v:13.22-13.34]
+
+  module serv_immdec: @[serv/rtl/serv_immdec.v:2.1-95.10]
+    input i_wb_rdt: UInt<25> @[serv/rtl/serv_immdec.v:21.22-21.30]
+    input i_wb_en: UInt<1> @[serv/rtl/serv_immdec.v:20.21-20.28]
+    output o_imm: UInt<1> @[serv/rtl/serv_immdec.v:18.22-18.27]
+    output o_csr_imm: UInt<1> @[serv/rtl/serv_immdec.v:17.22-17.31]
+    output o_rs2_addr: UInt<5> @[serv/rtl/serv_immdec.v:15.22-15.32]
+    output o_rs1_addr: UInt<5> @[serv/rtl/serv_immdec.v:14.22-14.32]
+    output o_rd_addr: UInt<5> @[serv/rtl/serv_immdec.v:13.22-13.31]
+    input i_ctrl: UInt<4> @[serv/rtl/serv_immdec.v:12.22-12.28]
+    input i_csr_imm_en: UInt<1> @[serv/rtl/serv_immdec.v:11.21-11.33]
+    input i_immdec_en: UInt<4> @[serv/rtl/serv_immdec.v:10.22-10.33]
+    input i_cnt_done: UInt<1> @[serv/rtl/serv_immdec.v:8.21-8.31]
+    input i_cnt_en: UInt<1> @[serv/rtl/serv_immdec.v:7.21-7.29]
+    input i_clk: UInt<1> @[serv/rtl/serv_immdec.v:5.21-5.26]
+
+    wire _ternary_serv_rtl_serv_immdec_v_58_340_Y: UInt<5> @[serv/rtl/serv_immdec.v:58.23-58.77]
+    wire _or_serv_rtl_serv_immdec_v_57_339_Y: UInt<1> @[serv/rtl/serv_immdec.v:57.10-57.47]
+    wire _and_serv_rtl_serv_immdec_v_57_338_Y: UInt<1> @[serv/rtl/serv_immdec.v:57.21-57.46]
+    wire _ternary_serv_rtl_serv_immdec_v_55_337_Y: UInt<5> @[serv/rtl/serv_immdec.v:55.23-55.79]
+    wire _or_serv_rtl_serv_immdec_v_54_336_Y: UInt<1> @[serv/rtl/serv_immdec.v:54.10-54.47]
+    wire _and_serv_rtl_serv_immdec_v_54_335_Y: UInt<1> @[serv/rtl/serv_immdec.v:54.21-54.46]
+    wire _ternary_serv_rtl_serv_immdec_v_52_334_Y: UInt<6> @[serv/rtl/serv_immdec.v:52.23-52.123]
+    wire _ternary_serv_rtl_serv_immdec_v_52_333_Y: UInt<1> @[serv/rtl/serv_immdec.v:52.52-52.107]
+    wire _ternary_serv_rtl_serv_immdec_v_52_332_Y: UInt<1> @[serv/rtl/serv_immdec.v:52.71-52.107]
+    wire _or_serv_rtl_serv_immdec_v_51_331_Y: UInt<1> @[serv/rtl/serv_immdec.v:51.10-51.47]
+    wire _and_serv_rtl_serv_immdec_v_51_330_Y: UInt<1> @[serv/rtl/serv_immdec.v:51.21-51.46]
+    wire _ternary_serv_rtl_serv_immdec_v_49_329_Y: UInt<1> @[serv/rtl/serv_immdec.v:49.23-49.73]
+    wire _or_serv_rtl_serv_immdec_v_48_328_Y: UInt<1> @[serv/rtl/serv_immdec.v:48.10-48.30]
+    wire _ternary_serv_rtl_serv_immdec_v_47_327_Y: UInt<9> @[serv/rtl/serv_immdec.v:47.23-47.119]
+    wire _ternary_serv_rtl_serv_immdec_v_47_326_Y: UInt<1> @[serv/rtl/serv_immdec.v:47.67-47.100]
+    wire _or_serv_rtl_serv_immdec_v_46_325_Y: UInt<1> @[serv/rtl/serv_immdec.v:46.10-46.47]
+    wire _and_serv_rtl_serv_immdec_v_46_324_Y: UInt<1> @[serv/rtl/serv_immdec.v:46.21-46.46]
+    wire _0_imm11_7_4_0_: UInt<5> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _0_imm24_20_4_0_: UInt<5> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _0_imm30_25_5_0_: UInt<6> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _0_imm7_0_0_: UInt<1> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _0_imm19_12_20_8_0_: UInt<9> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _0_imm31_0_0_: UInt<1> @[serv/rtl/serv_immdec.v:41.3-59.6]
+    wire _ternary_serv_rtl_serv_immdec_v_93_322_Y: UInt<1> @[serv/rtl/serv_immdec.v:93.18-93.77]
+    wire _ternary_serv_rtl_serv_immdec_v_93_321_Y: UInt<1> @[serv/rtl/serv_immdec.v:93.41-93.77]
+    wire _and_serv_rtl_serv_immdec_v_33_320_Y: UInt<1> @[serv/rtl/serv_immdec.v:33.25-33.46]
+    wire _logic_not_serv_rtl_serv_immdec_v_33_319_Y: UInt<1> @[serv/rtl/serv_immdec.v:33.33-33.46]
+    wire signbit: UInt<1> @[serv/rtl/serv_immdec.v:33.15-33.22]
+    wire imm11_7: UInt<5> @[serv/rtl/serv_immdec.v:29.15-29.22]
+    wire imm24_20: UInt<5> @[serv/rtl/serv_immdec.v:28.15-28.23]
+    wire imm30_25: UInt<6> @[serv/rtl/serv_immdec.v:27.15-27.23]
+    wire imm7: UInt<1> @[serv/rtl/serv_immdec.v:26.15-26.19]
+    wire imm19_12_20: UInt<9> @[serv/rtl/serv_immdec.v:25.15-25.26]
+    wire imm31: UInt<1> @[serv/rtl/serv_immdec.v:23.15-23.20]
+    wire _ternary_serv_rtl_serv_immdec_v_58_340: UInt<5> @[serv/rtl/serv_immdec.v:58.23-58.77]
+    wire _or_serv_rtl_serv_immdec_v_57_339: UInt<1> @[serv/rtl/serv_immdec.v:57.10-57.47]
+    wire _and_serv_rtl_serv_immdec_v_57_338: UInt<1> @[serv/rtl/serv_immdec.v:57.21-57.46]
+    wire _ternary_serv_rtl_serv_immdec_v_55_337: UInt<5> @[serv/rtl/serv_immdec.v:55.23-55.79]
+    wire _or_serv_rtl_serv_immdec_v_54_336: UInt<1> @[serv/rtl/serv_immdec.v:54.10-54.47]
+    wire _and_serv_rtl_serv_immdec_v_54_335: UInt<1> @[serv/rtl/serv_immdec.v:54.21-54.46]
+    wire _ternary_serv_rtl_serv_immdec_v_52_334: UInt<6> @[serv/rtl/serv_immdec.v:52.23-52.123]
+    wire _ternary_serv_rtl_serv_immdec_v_52_333: UInt<1> @[serv/rtl/serv_immdec.v:52.52-52.107]
+    wire _ternary_serv_rtl_serv_immdec_v_52_332: UInt<1> @[serv/rtl/serv_immdec.v:52.71-52.107]
+    wire _or_serv_rtl_serv_immdec_v_51_331: UInt<1> @[serv/rtl/serv_immdec.v:51.10-51.47]
+    wire _and_serv_rtl_serv_immdec_v_51_330: UInt<1> @[serv/rtl/serv_immdec.v:51.21-51.46]
+    wire _ternary_serv_rtl_serv_immdec_v_49_329: UInt<1> @[serv/rtl/serv_immdec.v:49.23-49.73]
+    wire _or_serv_rtl_serv_immdec_v_48_328: UInt<1> @[serv/rtl/serv_immdec.v:48.10-48.30]
+    wire _ternary_serv_rtl_serv_immdec_v_47_327: UInt<9> @[serv/rtl/serv_immdec.v:47.23-47.119]
+    wire _ternary_serv_rtl_serv_immdec_v_47_326: UInt<1> @[serv/rtl/serv_immdec.v:47.67-47.100]
+    wire _or_serv_rtl_serv_immdec_v_46_325: UInt<1> @[serv/rtl/serv_immdec.v:46.10-46.47]
+    wire _and_serv_rtl_serv_immdec_v_46_324: UInt<1> @[serv/rtl/serv_immdec.v:46.21-46.46]
+    wire _ternary_serv_rtl_serv_immdec_v_93_322: UInt<1> @[serv/rtl/serv_immdec.v:93.18-93.77]
+    wire _ternary_serv_rtl_serv_immdec_v_93_321: UInt<1> @[serv/rtl/serv_immdec.v:93.41-93.77]
+    wire _and_serv_rtl_serv_immdec_v_33_320: UInt<1> @[serv/rtl/serv_immdec.v:33.25-33.46]
+    wire _logic_not_serv_rtl_serv_immdec_v_33_319: UInt<1> @[serv/rtl/serv_immdec.v:33.33-33.46]
+    wire _284: UInt<1>
+    wire _285: UInt<1>
+    wire _286: UInt<1>
+    wire _287: UInt<5>
+    wire _288: UInt<5>
+    wire _289: UInt<5>
+    _0_imm11_7_4_0_ is invalid
+    _0_imm24_20_4_0_ is invalid
+    _0_imm30_25_5_0_ is invalid
+    _0_imm7_0_0_ is invalid
+    _0_imm19_12_20_8_0_ is invalid
+    _0_imm31_0_0_ is invalid
+    imm11_7 is invalid
+    imm24_20 is invalid
+    imm30_25 is invalid
+    imm7 is invalid
+    imm19_12_20 is invalid
+    imm31 is invalid
+
+
+    _ternary_serv_rtl_serv_immdec_v_58_340 <= mux(i_wb_en, bits(i_wb_rdt, 4, 0), cat(bits(imm30_25, 0, 0), bits(imm11_7, 4, 1))) @[serv/rtl/serv_immdec.v:58.23-58.77]
+    _or_serv_rtl_serv_immdec_v_57_339 <= or(i_wb_en, asUInt(_and_serv_rtl_serv_immdec_v_57_338_Y)) @[serv/rtl/serv_immdec.v:57.10-57.47]
+    _and_serv_rtl_serv_immdec_v_57_338 <= and(i_cnt_en, asUInt(bits(i_immdec_en, 0, 0))) @[serv/rtl/serv_immdec.v:57.21-57.46]
+    _ternary_serv_rtl_serv_immdec_v_55_337 <= mux(i_wb_en, bits(i_wb_rdt, 17, 13), cat(bits(imm30_25, 0, 0), bits(imm24_20, 4, 1))) @[serv/rtl/serv_immdec.v:55.23-55.79]
+    _or_serv_rtl_serv_immdec_v_54_336 <= or(i_wb_en, asUInt(_and_serv_rtl_serv_immdec_v_54_335_Y)) @[serv/rtl/serv_immdec.v:54.10-54.47]
+    _and_serv_rtl_serv_immdec_v_54_335 <= and(i_cnt_en, asUInt(bits(i_immdec_en, 2, 2))) @[serv/rtl/serv_immdec.v:54.21-54.46]
+    _ternary_serv_rtl_serv_immdec_v_52_334 <= mux(i_wb_en, bits(i_wb_rdt, 23, 18), cat(_ternary_serv_rtl_serv_immdec_v_52_333_Y, bits(imm30_25, 5, 1))) @[serv/rtl/serv_immdec.v:52.23-52.123]
+    _ternary_serv_rtl_serv_immdec_v_52_333 <= mux(bits(i_ctrl, 2, 2), imm7, _ternary_serv_rtl_serv_immdec_v_52_332_Y) @[serv/rtl/serv_immdec.v:52.52-52.107]
+    _ternary_serv_rtl_serv_immdec_v_52_332 <= mux(bits(i_ctrl, 1, 1), signbit, bits(imm19_12_20, 0, 0)) @[serv/rtl/serv_immdec.v:52.71-52.107]
+    _or_serv_rtl_serv_immdec_v_51_331 <= or(i_wb_en, asUInt(_and_serv_rtl_serv_immdec_v_51_330_Y)) @[serv/rtl/serv_immdec.v:51.10-51.47]
+    _and_serv_rtl_serv_immdec_v_51_330 <= and(i_cnt_en, asUInt(bits(i_immdec_en, 3, 3))) @[serv/rtl/serv_immdec.v:51.21-51.46]
+    _ternary_serv_rtl_serv_immdec_v_49_329 <= mux(i_wb_en, bits(i_wb_rdt, 0, 0), signbit) @[serv/rtl/serv_immdec.v:49.23-49.73]
+    _or_serv_rtl_serv_immdec_v_48_328 <= or(i_wb_en, asUInt(i_cnt_en)) @[serv/rtl/serv_immdec.v:48.10-48.30]
+    _ternary_serv_rtl_serv_immdec_v_47_327 <= mux(i_wb_en, cat(bits(i_wb_rdt, 12, 5), bits(i_wb_rdt, 13, 13)), cat(_ternary_serv_rtl_serv_immdec_v_47_326_Y, bits(imm19_12_20, 8, 1))) @[serv/rtl/serv_immdec.v:47.23-47.119]
+    _ternary_serv_rtl_serv_immdec_v_47_326 <= mux(bits(i_ctrl, 3, 3), signbit, bits(imm24_20, 0, 0)) @[serv/rtl/serv_immdec.v:47.67-47.100]
+    _or_serv_rtl_serv_immdec_v_46_325 <= or(i_wb_en, asUInt(_and_serv_rtl_serv_immdec_v_46_324_Y)) @[serv/rtl/serv_immdec.v:46.10-46.47]
+    _and_serv_rtl_serv_immdec_v_46_324 <= and(i_cnt_en, asUInt(bits(i_immdec_en, 1, 1))) @[serv/rtl/serv_immdec.v:46.21-46.46]
+    _ternary_serv_rtl_serv_immdec_v_93_322 <= mux(i_cnt_done, signbit, _ternary_serv_rtl_serv_immdec_v_93_321_Y) @[serv/rtl/serv_immdec.v:93.18-93.77]
+    _ternary_serv_rtl_serv_immdec_v_93_321 <= mux(bits(i_ctrl, 0, 0), bits(imm11_7, 0, 0), bits(imm24_20, 0, 0)) @[serv/rtl/serv_immdec.v:93.41-93.77]
+    _and_serv_rtl_serv_immdec_v_33_320 <= and(imm31, asUInt(_logic_not_serv_rtl_serv_immdec_v_33_319_Y)) @[serv/rtl/serv_immdec.v:33.25-33.46]
+    _logic_not_serv_rtl_serv_immdec_v_33_319 <= eq(i_csr_imm_en, UInt(0)) @[serv/rtl/serv_immdec.v:33.33-33.46]
+    _284 <= bits(imm19_12_20, 4, 4)
+    _285 <= _and_serv_rtl_serv_immdec_v_33_320_Y
+    _286 <= _ternary_serv_rtl_serv_immdec_v_93_322_Y
+    _287 <= bits(imm19_12_20, 8, 4)
+    _288 <= imm24_20
+    _289 <= imm11_7
+
+    _ternary_serv_rtl_serv_immdec_v_58_340_Y <= bits(_ternary_serv_rtl_serv_immdec_v_58_340, 4, 0) @[serv/rtl/serv_immdec.v:58.23-58.77]
+    _or_serv_rtl_serv_immdec_v_57_339_Y <= bits(_or_serv_rtl_serv_immdec_v_57_339, 0, 0) @[serv/rtl/serv_immdec.v:57.10-57.47]
+    _and_serv_rtl_serv_immdec_v_57_338_Y <= bits(_and_serv_rtl_serv_immdec_v_57_338, 0, 0) @[serv/rtl/serv_immdec.v:57.21-57.46]
+    _ternary_serv_rtl_serv_immdec_v_55_337_Y <= bits(_ternary_serv_rtl_serv_immdec_v_55_337, 4, 0) @[serv/rtl/serv_immdec.v:55.23-55.79]
+    _or_serv_rtl_serv_immdec_v_54_336_Y <= bits(_or_serv_rtl_serv_immdec_v_54_336, 0, 0) @[serv/rtl/serv_immdec.v:54.10-54.47]
+    _and_serv_rtl_serv_immdec_v_54_335_Y <= bits(_and_serv_rtl_serv_immdec_v_54_335, 0, 0) @[serv/rtl/serv_immdec.v:54.21-54.46]
+    _ternary_serv_rtl_serv_immdec_v_52_334_Y <= bits(_ternary_serv_rtl_serv_immdec_v_52_334, 5, 0) @[serv/rtl/serv_immdec.v:52.23-52.123]
+    _ternary_serv_rtl_serv_immdec_v_52_333_Y <= bits(_ternary_serv_rtl_serv_immdec_v_52_333, 0, 0) @[serv/rtl/serv_immdec.v:52.52-52.107]
+    _ternary_serv_rtl_serv_immdec_v_52_332_Y <= bits(_ternary_serv_rtl_serv_immdec_v_52_332, 0, 0) @[serv/rtl/serv_immdec.v:52.71-52.107]
+    _or_serv_rtl_serv_immdec_v_51_331_Y <= bits(_or_serv_rtl_serv_immdec_v_51_331, 0, 0) @[serv/rtl/serv_immdec.v:51.10-51.47]
+    _and_serv_rtl_serv_immdec_v_51_330_Y <= bits(_and_serv_rtl_serv_immdec_v_51_330, 0, 0) @[serv/rtl/serv_immdec.v:51.21-51.46]
+    _ternary_serv_rtl_serv_immdec_v_49_329_Y <= bits(_ternary_serv_rtl_serv_immdec_v_49_329, 0, 0) @[serv/rtl/serv_immdec.v:49.23-49.73]
+    _or_serv_rtl_serv_immdec_v_48_328_Y <= bits(_or_serv_rtl_serv_immdec_v_48_328, 0, 0) @[serv/rtl/serv_immdec.v:48.10-48.30]
+    _ternary_serv_rtl_serv_immdec_v_47_327_Y <= bits(_ternary_serv_rtl_serv_immdec_v_47_327, 8, 0) @[serv/rtl/serv_immdec.v:47.23-47.119]
+    _ternary_serv_rtl_serv_immdec_v_47_326_Y <= bits(_ternary_serv_rtl_serv_immdec_v_47_326, 0, 0) @[serv/rtl/serv_immdec.v:47.67-47.100]
+    _or_serv_rtl_serv_immdec_v_46_325_Y <= bits(_or_serv_rtl_serv_immdec_v_46_325, 0, 0) @[serv/rtl/serv_immdec.v:46.10-46.47]
+    _and_serv_rtl_serv_immdec_v_46_324_Y <= bits(_and_serv_rtl_serv_immdec_v_46_324, 0, 0) @[serv/rtl/serv_immdec.v:46.21-46.46]
+    _ternary_serv_rtl_serv_immdec_v_93_322_Y <= bits(_ternary_serv_rtl_serv_immdec_v_93_322, 0, 0) @[serv/rtl/serv_immdec.v:93.18-93.77]
+    _ternary_serv_rtl_serv_immdec_v_93_321_Y <= bits(_ternary_serv_rtl_serv_immdec_v_93_321, 0, 0) @[serv/rtl/serv_immdec.v:93.41-93.77]
+    _and_serv_rtl_serv_immdec_v_33_320_Y <= bits(_and_serv_rtl_serv_immdec_v_33_320, 0, 0) @[serv/rtl/serv_immdec.v:33.25-33.46]
+    _logic_not_serv_rtl_serv_immdec_v_33_319_Y <= bits(_logic_not_serv_rtl_serv_immdec_v_33_319, 0, 0) @[serv/rtl/serv_immdec.v:33.33-33.46]
+    signbit <= bits(_285, 0, 0) @[serv/rtl/serv_immdec.v:33.15-33.22]
+    o_imm <= bits(_286, 0, 0) @[serv/rtl/serv_immdec.v:18.22-18.27]
+    o_csr_imm <= bits(_284, 0, 0) @[serv/rtl/serv_immdec.v:17.22-17.31]
+    o_rs2_addr <= bits(_288, 4, 0) @[serv/rtl/serv_immdec.v:15.22-15.32]
+    o_rs1_addr <= bits(_287, 4, 0) @[serv/rtl/serv_immdec.v:14.22-14.32]
+    o_rd_addr <= bits(_289, 4, 0) @[serv/rtl/serv_immdec.v:13.22-13.31]
+
+  module serv_decode: @[serv/rtl/serv_decode.v:2.1-365.10]
+    output o_rd_alu_en: UInt<1> @[serv/rtl/serv_decode.v:64.21-64.32]
+    output o_rd_csr_en: UInt<1> @[serv/rtl/serv_decode.v:63.21-63.32]
+    output o_rd_mem_en: UInt<1> @[serv/rtl/serv_decode.v:62.21-62.32]
+    output o_op_b_source: UInt<1> @[serv/rtl/serv_decode.v:60.21-60.34]
+    output o_immdec_en: UInt<4> @[serv/rtl/serv_decode.v:59.21-59.32]
+    output o_immdec_ctrl: UInt<4> @[serv/rtl/serv_decode.v:58.21-58.34]
+    output o_mtval_pc: UInt<1> @[serv/rtl/serv_decode.v:56.21-56.31]
+    output o_csr_imm_en: UInt<1> @[serv/rtl/serv_decode.v:55.21-55.33]
+    output o_csr_d_sel: UInt<1> @[serv/rtl/serv_decode.v:54.21-54.32]
+    output o_csr_source: UInt<2> @[serv/rtl/serv_decode.v:53.21-53.33]
+    output o_csr_mcause_en: UInt<1> @[serv/rtl/serv_decode.v:52.21-52.36]
+    output o_csr_mie_en: UInt<1> @[serv/rtl/serv_decode.v:51.21-51.33]
+    output o_csr_mstatus_en: UInt<1> @[serv/rtl/serv_decode.v:50.21-50.37]
+    output o_csr_addr: UInt<2> @[serv/rtl/serv_decode.v:49.21-49.31]
+    output o_csr_en: UInt<1> @[serv/rtl/serv_decode.v:48.21-48.29]
+    output o_mem_cmd: UInt<1> @[serv/rtl/serv_decode.v:46.21-46.30]
+    output o_mem_half: UInt<1> @[serv/rtl/serv_decode.v:45.21-45.31]
+    output o_mem_word: UInt<1> @[serv/rtl/serv_decode.v:44.21-44.31]
+    output o_mem_signed: UInt<1> @[serv/rtl/serv_decode.v:43.21-43.33]
+    output o_alu_rd_sel: UInt<3> @[serv/rtl/serv_decode.v:41.21-41.33]
+    output o_alu_cmp_sig: UInt<1> @[serv/rtl/serv_decode.v:40.21-40.34]
+    output o_alu_cmp_eq: UInt<1> @[serv/rtl/serv_decode.v:39.21-39.33]
+    output o_alu_bool_op: UInt<2> @[serv/rtl/serv_decode.v:38.21-38.34]
+    output o_alu_sub: UInt<1> @[serv/rtl/serv_decode.v:37.21-37.30]
+    output o_ctrl_mret: UInt<1> @[serv/rtl/serv_decode.v:35.21-35.32]
+    output o_ctrl_pc_rel: UInt<1> @[serv/rtl/serv_decode.v:34.21-34.34]
+    output o_ctrl_utype: UInt<1> @[serv/rtl/serv_decode.v:33.21-33.33]
+    output o_ctrl_jal_or_jalr: UInt<1> @[serv/rtl/serv_decode.v:32.21-32.39]
+    output o_bufreg_sh_signed: UInt<1> @[serv/rtl/serv_decode.v:30.21-30.39]
+    output o_bufreg_clr_lsb: UInt<1> @[serv/rtl/serv_decode.v:29.21-29.37]
+    output o_bufreg_imm_en: UInt<1> @[serv/rtl/serv_decode.v:28.21-28.36]
+    output o_bufreg_rs1_en: UInt<1> @[serv/rtl/serv_decode.v:27.21-27.36]
+    output o_ext_funct3: UInt<3> @[serv/rtl/serv_decode.v:25.21-25.33]
+    output o_mdu_op: UInt<1> @[serv/rtl/serv_decode.v:23.21-23.29]
+    output o_dbus_en: UInt<1> @[serv/rtl/serv_decode.v:21.21-21.30]
+    output o_two_stage_op: UInt<1> @[serv/rtl/serv_decode.v:20.21-20.35]
+    output o_rd_op: UInt<1> @[serv/rtl/serv_decode.v:19.21-19.28]
+    output o_slt_or_branch: UInt<1> @[serv/rtl/serv_decode.v:18.21-18.36]
+    output o_shift_op: UInt<1> @[serv/rtl/serv_decode.v:17.21-17.31]
+    output o_branch_op: UInt<1> @[serv/rtl/serv_decode.v:16.21-16.32]
+    output o_ebreak: UInt<1> @[serv/rtl/serv_decode.v:15.21-15.29]
+    output o_e_op: UInt<1> @[serv/rtl/serv_decode.v:14.21-14.27]
+    output o_cond_branch: UInt<1> @[serv/rtl/serv_decode.v:13.21-13.34]
+    output o_bne_or_bge: UInt<1> @[serv/rtl/serv_decode.v:12.21-12.33]
+    output o_sh_right: UInt<1> @[serv/rtl/serv_decode.v:11.21-11.31]
+    input i_wb_en: UInt<1> @[serv/rtl/serv_decode.v:9.22-9.29]
+    input i_wb_rdt: UInt<30> @[serv/rtl/serv_decode.v:8.22-8.30]
+    input clk: UInt<1> @[serv/rtl/serv_decode.v:6.22-6.25]
+
+    wire _0_o_rd_alu_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_rd_csr_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_rd_mem_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_op_b_source_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_immdec_en_3_0_: UInt<4> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_immdec_ctrl_3_0_: UInt<4> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mtval_pc_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_imm_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_d_sel_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_source_1_0_: UInt<2> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_mcause_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_mie_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_mstatus_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_addr_1_0_: UInt<2> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_csr_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mem_cmd_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mem_half_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mem_word_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mem_signed_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_alu_rd_sel_2_0_: UInt<3> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_alu_cmp_sig_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_alu_cmp_eq_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_alu_bool_op_1_0_: UInt<2> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_alu_sub_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ctrl_mret_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ctrl_pc_rel_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ctrl_utype_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ctrl_jal_or_jalr_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_bufreg_sh_signed_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_bufreg_clr_lsb_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_bufreg_imm_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_bufreg_rs1_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ext_funct3_2_0_: UInt<3> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_mdu_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_dbus_en_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_two_stage_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_rd_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_slt_or_branch_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_shift_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_branch_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_ebreak_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_e_op_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_cond_branch_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_bne_or_bge_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_o_sh_right_0_0_: UInt<1> @[serv/rtl/serv_decode.v:251.10-297.13]
+    wire _0_imm30_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_imm25_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_op26_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_op22_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_op21_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_op20_0_0_: UInt<1> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_funct3_2_0_: UInt<3> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _0_opcode_4_0_: UInt<5> @[serv/rtl/serv_decode.v:238.10-249.13]
+    wire _eq_serv_rtl_serv_decode_v_228_316_Y: UInt<1> @[serv/rtl/serv_decode.v:228.31-228.51]
+    wire _eq_serv_rtl_serv_decode_v_227_315_Y: UInt<1> @[serv/rtl/serv_decode.v:227.31-227.47]
+    wire _not_serv_rtl_serv_decode_v_224_314_Y: UInt<1> @[serv/rtl/serv_decode.v:224.29-224.38]
+    wire _or_serv_rtl_serv_decode_v_223_313_Y: UInt<1> @[serv/rtl/serv_decode.v:223.29-223.93]
+    wire _or_serv_rtl_serv_decode_v_223_312_Y: UInt<1> @[serv/rtl/serv_decode.v:223.29-223.77]
+    wire _and_serv_rtl_serv_decode_v_223_311_Y: UInt<1> @[serv/rtl/serv_decode.v:223.55-223.76]
+    wire _eq_serv_rtl_serv_decode_v_223_310_Y: UInt<1> @[serv/rtl/serv_decode.v:223.30-223.50]
+    wire _or_serv_rtl_serv_decode_v_222_309_Y: UInt<1> @[serv/rtl/serv_decode.v:222.29-222.77]
+    wire _or_serv_rtl_serv_decode_v_222_308_Y: UInt<1> @[serv/rtl/serv_decode.v:222.29-222.65]
+    wire _logic_not_serv_rtl_serv_decode_v_222_307_Y: UInt<1> @[serv/rtl/serv_decode.v:222.55-222.65]
+    wire _and_serv_rtl_serv_decode_v_222_306_Y: UInt<1> @[serv/rtl/serv_decode.v:222.30-222.51]
+    wire _or_serv_rtl_serv_decode_v_221_305_Y: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.75]
+    wire _logic_not_serv_rtl_serv_decode_v_221_304_Y: UInt<1> @[serv/rtl/serv_decode.v:221.65-221.75]
+    wire _or_serv_rtl_serv_decode_v_221_303_Y: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.62]
+    wire _or_serv_rtl_serv_decode_v_221_302_Y: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.50]
+    wire _and_serv_rtl_serv_decode_v_217_301_Y: UInt<1> @[serv/rtl/serv_decode.v:217.31-217.53]
+    wire _logic_not_serv_rtl_serv_decode_v_217_300_Y: UInt<1> @[serv/rtl/serv_decode.v:217.43-217.53]
+    wire _or_serv_rtl_serv_decode_v_216_299_Y: UInt<1> @[serv/rtl/serv_decode.v:216.31-216.78]
+    wire _eq_serv_rtl_serv_decode_v_216_298_Y: UInt<1> @[serv/rtl/serv_decode.v:216.57-216.77]
+    wire _eq_serv_rtl_serv_decode_v_216_297_Y: UInt<1> @[serv/rtl/serv_decode.v:216.32-216.52]
+    wire _eq_serv_rtl_serv_decode_v_213_296_Y: UInt<1> @[serv/rtl/serv_decode.v:213.31-213.53]
+    wire _not_serv_rtl_serv_decode_v_205_295_Y: UInt<1> @[serv/rtl/serv_decode.v:205.25-205.35]
+    wire _not_serv_rtl_serv_decode_v_202_294_Y: UInt<1> @[serv/rtl/serv_decode.v:202.26-202.78]
+    wire _or_serv_rtl_serv_decode_v_202_293_Y: UInt<1> @[serv/rtl/serv_decode.v:202.28-202.77]
+    wire _and_serv_rtl_serv_decode_v_202_292_Y: UInt<1> @[serv/rtl/serv_decode.v:202.55-202.76]
+    wire _and_serv_rtl_serv_decode_v_202_291_Y: UInt<1> @[serv/rtl/serv_decode.v:202.29-202.50]
+    wire _eq_serv_rtl_serv_decode_v_200_290_Y: UInt<1> @[serv/rtl/serv_decode.v:200.25-200.45]
+    wire _and_serv_rtl_serv_decode_v_198_289_Y: UInt<1> @[serv/rtl/serv_decode.v:198.30-198.41]
+    wire _or_serv_rtl_serv_decode_v_198_288_Y: UInt<1> @[serv/rtl/serv_decode.v:198.43-198.55]
+    wire _logic_not_serv_rtl_serv_decode_v_198_287_Y: UInt<1> @[serv/rtl/serv_decode.v:198.43-198.48]
+    wire _and_serv_rtl_serv_decode_v_197_286_Y: UInt<1> @[serv/rtl/serv_decode.v:197.25-197.58]
+    wire _and_serv_rtl_serv_decode_v_197_285_Y: UInt<1> @[serv/rtl/serv_decode.v:197.25-197.46]
+    wire _and_serv_rtl_serv_decode_v_193_284_Y: UInt<1> @[serv/rtl/serv_decode.v:193.29-193.59]
+    wire _logic_not_serv_rtl_serv_decode_v_193_283_Y: UInt<1> @[serv/rtl/serv_decode.v:193.54-193.59]
+    wire _and_serv_rtl_serv_decode_v_193_282_Y: UInt<1> @[serv/rtl/serv_decode.v:193.29-193.51]
+    wire _and_serv_rtl_serv_decode_v_192_281_Y: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.59]
+    wire _logic_not_serv_rtl_serv_decode_v_192_280_Y: UInt<1> @[serv/rtl/serv_decode.v:192.54-192.59]
+    wire _and_serv_rtl_serv_decode_v_192_279_Y: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.51]
+    wire _and_serv_rtl_serv_decode_v_192_278_Y: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.43]
+    wire _logic_not_serv_rtl_serv_decode_v_192_277_Y: UInt<1> @[serv/rtl/serv_decode.v:192.38-192.43]
+    wire _and_serv_rtl_serv_decode_v_191_276_Y: UInt<1> @[serv/rtl/serv_decode.v:191.29-191.51]
+    wire _logic_not_serv_rtl_serv_decode_v_191_275_Y: UInt<1> @[serv/rtl/serv_decode.v:191.46-191.51]
+    wire _and_serv_rtl_serv_decode_v_191_274_Y: UInt<1> @[serv/rtl/serv_decode.v:191.29-191.43]
+    wire _logic_not_serv_rtl_serv_decode_v_191_273_Y: UInt<1> @[serv/rtl/serv_decode.v:191.38-191.43]
+    wire _and_serv_rtl_serv_decode_v_190_272_Y: UInt<1> @[serv/rtl/serv_decode.v:190.29-190.47]
+    wire _or_serv_rtl_serv_decode_v_186_271_Y: UInt<1> @[serv/rtl/serv_decode.v:186.21-186.42]
+    wire _and_serv_rtl_serv_decode_v_186_270_Y: UInt<1> @[serv/rtl/serv_decode.v:186.29-186.41]
+    wire _logic_not_serv_rtl_serv_decode_v_186_269_Y: UInt<1> @[serv/rtl/serv_decode.v:186.36-186.41]
+    wire _or_serv_rtl_serv_decode_v_161_268_Y: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.77]
+    wire _or_serv_rtl_serv_decode_v_161_267_Y: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.65]
+    wire _and_serv_rtl_serv_decode_v_161_266_Y: UInt<1> @[serv/rtl/serv_decode.v:161.47-161.64]
+    wire _or_serv_rtl_serv_decode_v_161_265_Y: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.43]
+    wire _and_serv_rtl_serv_decode_v_145_264_Y: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.61]
+    wire _logic_not_serv_rtl_serv_decode_v_145_263_Y: UInt<1> @[serv/rtl/serv_decode.v:145.51-145.61]
+    wire _reduce_or_serv_rtl_serv_decode_v_145_262_Y: UInt<1> @[serv/rtl/serv_decode.v:145.53-145.60]
+    wire _and_serv_rtl_serv_decode_v_145_261_Y: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.48]
+    wire _logic_not_serv_rtl_serv_decode_v_145_260_Y: UInt<1> @[serv/rtl/serv_decode.v:145.43-145.48]
+    wire _and_serv_rtl_serv_decode_v_145_259_Y: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.40]
+    wire _and_serv_rtl_serv_decode_v_142_258_Y: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.65]
+    wire _logic_not_serv_rtl_serv_decode_v_142_257_Y: UInt<1> @[serv/rtl/serv_decode.v:142.55-142.65]
+    wire _reduce_or_serv_rtl_serv_decode_v_142_256_Y: UInt<1> @[serv/rtl/serv_decode.v:142.57-142.64]
+    wire _and_serv_rtl_serv_decode_v_142_255_Y: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.52]
+    wire _and_serv_rtl_serv_decode_v_142_254_Y: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.45]
+    wire _and_serv_rtl_serv_decode_v_133_253_Y: UInt<1> @[serv/rtl/serv_decode.v:133.18-133.51]
+    wire _reduce_or_serv_rtl_serv_decode_v_133_252_Y: UInt<1> @[serv/rtl/serv_decode.v:133.43-133.50]
+    wire _and_serv_rtl_serv_decode_v_133_251_Y: UInt<1> @[serv/rtl/serv_decode.v:133.18-133.39]
+    wire _or_serv_rtl_serv_decode_v_121_250_Y: UInt<1> @[serv/rtl/serv_decode.v:121.21-123.60]
+    wire _and_serv_rtl_serv_decode_v_123_249_Y: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.59]
+    wire _logic_not_serv_rtl_serv_decode_v_123_248_Y: UInt<1> @[serv/rtl/serv_decode.v:123.49-123.59]
+    wire _and_serv_rtl_serv_decode_v_123_247_Y: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.46]
+    wire _logic_not_serv_rtl_serv_decode_v_123_246_Y: UInt<1> @[serv/rtl/serv_decode.v:123.36-123.46]
+    wire _logic_not_serv_rtl_serv_decode_v_123_245_Y: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.33]
+    wire _or_serv_rtl_serv_decode_v_121_244_Y: UInt<1> @[serv/rtl/serv_decode.v:121.21-122.58]
+    wire _and_serv_rtl_serv_decode_v_122_243_Y: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.57]
+    wire _and_serv_rtl_serv_decode_v_122_242_Y: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.45]
+    wire _logic_not_serv_rtl_serv_decode_v_122_241_Y: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.33]
+    wire _or_serv_rtl_serv_decode_v_114_240_Y: UInt<1> @[serv/rtl/serv_decode.v:114.26-117.49]
+    wire _eq_serv_rtl_serv_decode_v_117_239_Y: UInt<1> @[serv/rtl/serv_decode.v:117.28-117.48]
+    wire _or_serv_rtl_serv_decode_v_114_238_Y: UInt<1> @[serv/rtl/serv_decode.v:114.26-116.57]
+    wire _and_serv_rtl_serv_decode_v_116_237_Y: UInt<1> @[serv/rtl/serv_decode.v:116.27-116.57]
+    wire _and_serv_rtl_serv_decode_v_116_236_Y: UInt<1> @[serv/rtl/serv_decode.v:116.28-116.49]
+    wire _or_serv_rtl_serv_decode_v_114_235_Y: UInt<1> @[serv/rtl/serv_decode.v:114.26-115.49]
+    wire _eq_serv_rtl_serv_decode_v_115_234_Y: UInt<1> @[serv/rtl/serv_decode.v:115.28-115.48]
+    wire _eq_serv_rtl_serv_decode_v_114_233_Y: UInt<1> @[serv/rtl/serv_decode.v:114.27-114.48]
+    wire _and_serv_rtl_serv_decode_v_109_232_Y: UInt<1> @[serv/rtl/serv_decode.v:109.31-109.52]
+    wire _and_serv_rtl_serv_decode_v_108_231_Y: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.65]
+    wire _and_serv_rtl_serv_decode_v_108_230_Y: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.53]
+    wire _logic_not_serv_rtl_serv_decode_v_108_229_Y: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.41]
+    wire _logic_not_serv_rtl_serv_decode_v_106_228_Y: UInt<1> @[serv/rtl/serv_decode.v:106.26-106.36]
+    wire _and_serv_rtl_serv_decode_v_101_227_Y: UInt<1> @[serv/rtl/serv_decode.v:101.29-101.90]
+    wire _or_serv_rtl_serv_decode_v_101_226_Y: UInt<1> @[serv/rtl/serv_decode.v:101.42-101.89]
+    wire _eq_serv_rtl_serv_decode_v_101_225_Y: UInt<1> @[serv/rtl/serv_decode.v:101.68-101.88]
+    wire _eq_serv_rtl_serv_decode_v_101_224_Y: UInt<1> @[serv/rtl/serv_decode.v:101.43-101.63]
+    wire _logic_not_serv_rtl_serv_decode_v_96_223_Y: UInt<1> @[serv/rtl/serv_decode.v:96.28-96.38]
+    wire _or_serv_rtl_serv_decode_v_95_222_Y: UInt<1> @[serv/rtl/serv_decode.v:95.28-95.65]
+    wire _and_serv_rtl_serv_decode_v_95_221_Y: UInt<1> @[serv/rtl/serv_decode.v:95.42-95.64]
+    wire _logic_not_serv_rtl_serv_decode_v_95_220_Y: UInt<1> @[serv/rtl/serv_decode.v:95.42-95.52]
+    wire _logic_not_serv_rtl_serv_decode_v_95_219_Y: UInt<1> @[serv/rtl/serv_decode.v:95.28-95.38]
+    wire _or_serv_rtl_serv_decode_v_88_218_Y: UInt<1> @[serv/rtl/serv_decode.v:88.25-88.62]
+    wire _and_serv_rtl_serv_decode_v_88_217_Y: UInt<1> @[serv/rtl/serv_decode.v:88.26-88.49]
+    wire _logic_not_serv_rtl_serv_decode_v_88_216_Y: UInt<1> @[serv/rtl/serv_decode.v:88.39-88.49]
+    wire _logic_not_serv_rtl_serv_decode_v_88_215_Y: UInt<1> @[serv/rtl/serv_decode.v:88.26-88.36]
+    wire _and_serv_rtl_serv_decode_v_87_214_Y: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.73]
+    wire _logic_not_serv_rtl_serv_decode_v_87_213_Y: UInt<1> @[serv/rtl/serv_decode.v:87.63-87.73]
+    wire _and_serv_rtl_serv_decode_v_87_212_Y: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.60]
+    wire _logic_not_serv_rtl_serv_decode_v_87_211_Y: UInt<1> @[serv/rtl/serv_decode.v:87.50-87.60]
+    wire _and_serv_rtl_serv_decode_v_87_210_Y: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.47]
+    wire _logic_not_serv_rtl_serv_decode_v_87_209_Y: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.35]
+    wire _and_serv_rtl_serv_decode_v_84_208_Y: UInt<1> @[serv/rtl/serv_decode.v:84.25-84.48]
+    wire _not_serv_rtl_serv_decode_v_84_207_Y: UInt<1> @[serv/rtl/serv_decode.v:84.38-84.48]
+    wire _not_serv_rtl_serv_decode_v_84_206_Y: UInt<1> @[serv/rtl/serv_decode.v:84.25-84.35]
+    wire _and_serv_rtl_serv_decode_v_82_205_Y: UInt<1> @[serv/rtl/serv_decode.v:82.28-82.125]
+    wire _logic_not_serv_rtl_serv_decode_v_82_204_Y: UInt<1> @[serv/rtl/serv_decode.v:82.115-82.125]
+    wire _or_serv_rtl_serv_decode_v_82_203_Y: UInt<1> @[serv/rtl/serv_decode.v:82.29-82.111]
+    wire _and_serv_rtl_serv_decode_v_82_202_Y: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.110]
+    wire _not_serv_rtl_serv_decode_v_82_201_Y: UInt<1> @[serv/rtl/serv_decode.v:82.100-82.110]
+    wire _and_serv_rtl_serv_decode_v_82_200_Y: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.97]
+    wire _and_serv_rtl_serv_decode_v_82_199_Y: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.85]
+    wire _or_serv_rtl_serv_decode_v_82_198_Y: UInt<1> @[serv/rtl/serv_decode.v:82.29-82.64]
+    wire _and_serv_rtl_serv_decode_v_82_197_Y: UInt<1> @[serv/rtl/serv_decode.v:82.42-82.63]
+    wire _and_serv_rtl_serv_decode_v_81_196_Y: UInt<1> @[serv/rtl/serv_decode.v:81.23-81.60]
+    wire _logic_not_serv_rtl_serv_decode_v_81_195_Y: UInt<1> @[serv/rtl/serv_decode.v:81.50-81.60]
+    wire _and_serv_rtl_serv_decode_v_81_194_Y: UInt<1> @[serv/rtl/serv_decode.v:81.24-81.46]
+    wire _not_serv_rtl_serv_decode_v_81_193_Y: UInt<1> @[serv/rtl/serv_decode.v:81.36-81.46]
+    wire _or_serv_rtl_serv_decode_v_79_192_Y: UInt<1> @[serv/rtl/serv_decode.v:79.2-80.64]
+    wire _or_serv_rtl_serv_decode_v_79_191_Y: UInt<1> @[serv/rtl/serv_decode.v:79.2-80.52]
+    wire _and_serv_rtl_serv_decode_v_80_190_Y: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.51]
+    wire _not_serv_rtl_serv_decode_v_80_189_Y: UInt<1> @[serv/rtl/serv_decode.v:80.41-80.51]
+    wire _and_serv_rtl_serv_decode_v_80_188_Y: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.38]
+    wire _not_serv_rtl_serv_decode_v_80_187_Y: UInt<1> @[serv/rtl/serv_decode.v:80.28-80.38]
+    wire _and_serv_rtl_serv_decode_v_80_186_Y: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.25]
+    wire _not_serv_rtl_serv_decode_v_80_185_Y: UInt<1> @[serv/rtl/serv_decode.v:80.15-80.25]
+    wire _or_serv_rtl_serv_decode_v_79_184_Y: UInt<1> @[serv/rtl/serv_decode.v:79.2-79.65]
+    wire _and_serv_rtl_serv_decode_v_79_183_Y: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.64]
+    wire _not_serv_rtl_serv_decode_v_79_182_Y: UInt<1> @[serv/rtl/serv_decode.v:79.54-79.64]
+    wire _and_serv_rtl_serv_decode_v_79_181_Y: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.51]
+    wire _not_serv_rtl_serv_decode_v_79_180_Y: UInt<1> @[serv/rtl/serv_decode.v:79.41-79.51]
+    wire _and_serv_rtl_serv_decode_v_79_179_Y: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.38]
+    wire _not_serv_rtl_serv_decode_v_79_178_Y: UInt<1> @[serv/rtl/serv_decode.v:79.28-79.38]
+    wire _not_serv_rtl_serv_decode_v_79_177_Y: UInt<1> @[serv/rtl/serv_decode.v:79.2-79.12]
+    wire _and_serv_rtl_serv_decode_v_76_176_Y: UInt<1> @[serv/rtl/serv_decode.v:76.25-76.59]
+    wire _and_serv_rtl_serv_decode_v_76_175_Y: UInt<1> @[serv/rtl/serv_decode.v:76.25-76.51]
+    wire _eq_serv_rtl_serv_decode_v_76_174_Y: UInt<1> @[serv/rtl/serv_decode.v:76.32-76.50]
+    wire co_op_b_source: UInt<1> @[serv/rtl/serv_decode.v:233.9-233.23]
+    wire co_alu_rd_sel: UInt<3> @[serv/rtl/serv_decode.v:226.15-226.28]
+    wire co_immdec_en: UInt<4> @[serv/rtl/serv_decode.v:220.15-220.27]
+    wire co_immdec_ctrl: UInt<4> @[serv/rtl/serv_decode.v:210.15-210.29]
+    wire co_alu_bool_op: UInt<2> @[serv/rtl/serv_decode.v:208.15-208.29]
+    wire co_mem_half: UInt<1> @[serv/rtl/serv_decode.v:206.9-206.20]
+    wire co_mem_signed: UInt<1> @[serv/rtl/serv_decode.v:205.9-205.22]
+    wire co_mem_cmd: UInt<1> @[serv/rtl/serv_decode.v:204.9-204.19]
+    wire co_alu_cmp_sig: UInt<1> @[serv/rtl/serv_decode.v:202.9-202.23]
+    wire co_alu_cmp_eq: UInt<1> @[serv/rtl/serv_decode.v:200.9-200.22]
+    wire co_csr_addr: UInt<2> @[serv/rtl/serv_decode.v:198.15-198.26]
+    wire co_csr_imm_en: UInt<1> @[serv/rtl/serv_decode.v:197.9-197.22]
+    wire co_csr_d_sel: UInt<1> @[serv/rtl/serv_decode.v:196.9-196.21]
+    wire co_csr_source: UInt<2> @[serv/rtl/serv_decode.v:195.15-195.28]
+    wire co_csr_mcause_en: UInt<1> @[serv/rtl/serv_decode.v:193.9-193.25]
+    wire co_csr_mie_en: UInt<1> @[serv/rtl/serv_decode.v:192.9-192.22]
+    wire co_csr_mstatus_en: UInt<1> @[serv/rtl/serv_decode.v:191.9-191.26]
+    wire co_csr_en: UInt<1> @[serv/rtl/serv_decode.v:190.9-190.18]
+    wire co_rd_csr_en: UInt<1> @[serv/rtl/serv_decode.v:188.9-188.21]
+    wire csr_valid: UInt<1> @[serv/rtl/serv_decode.v:186.9-186.18]
+    wire co_alu_sub: UInt<1> @[serv/rtl/serv_decode.v:161.9-161.19]
+    wire co_bufreg_sh_signed: UInt<1> @[serv/rtl/serv_decode.v:149.9-149.28]
+    wire co_e_op: UInt<1> @[serv/rtl/serv_decode.v:145.9-145.16]
+    wire co_ctrl_mret: UInt<1> @[serv/rtl/serv_decode.v:142.9-142.21]
+    wire co_ebreak: UInt<1> @[serv/rtl/serv_decode.v:137.9-137.18]
+    wire csr_op: UInt<1> @[serv/rtl/serv_decode.v:133.9-133.15]
+    wire co_bne_or_bge: UInt<1> @[serv/rtl/serv_decode.v:130.9-130.22]
+    wire co_sh_right: UInt<1> @[serv/rtl/serv_decode.v:129.9-129.20]
+    wire co_rd_op: UInt<1> @[serv/rtl/serv_decode.v:121.9-121.17]
+    wire co_ctrl_pc_rel: UInt<1> @[serv/rtl/serv_decode.v:114.9-114.23]
+    wire co_ctrl_jal_or_jalr: UInt<1> @[serv/rtl/serv_decode.v:109.9-109.28]
+    wire co_ctrl_utype: UInt<1> @[serv/rtl/serv_decode.v:108.9-108.22]
+    wire co_cond_branch: UInt<1> @[serv/rtl/serv_decode.v:106.9-106.23]
+    wire co_bufreg_clr_lsb: UInt<1> @[serv/rtl/serv_decode.v:101.9-101.26]
+    wire co_bufreg_imm_en: UInt<1> @[serv/rtl/serv_decode.v:96.9-96.25]
+    wire co_bufreg_rs1_en: UInt<1> @[serv/rtl/serv_decode.v:95.9-95.25]
+    wire co_ext_funct3: UInt<3> @[serv/rtl/serv_decode.v:89.15-89.28]
+    wire co_rd_mem_en: UInt<1> @[serv/rtl/serv_decode.v:88.9-88.21]
+    wire co_rd_alu_en: UInt<1> @[serv/rtl/serv_decode.v:87.9-87.21]
+    wire co_mem_word: UInt<1> @[serv/rtl/serv_decode.v:86.9-86.20]
+    wire co_mtval_pc: UInt<1> @[serv/rtl/serv_decode.v:85.9-85.20]
+    wire co_dbus_en: UInt<1> @[serv/rtl/serv_decode.v:84.9-84.19]
+    wire co_branch_op: UInt<1> @[serv/rtl/serv_decode.v:83.9-83.21]
+    wire co_slt_or_branch: UInt<1> @[serv/rtl/serv_decode.v:82.9-82.25]
+    wire co_shift_op: UInt<1> @[serv/rtl/serv_decode.v:81.9-81.20]
+    wire co_two_stage_op: UInt<1> @[serv/rtl/serv_decode.v:78.9-78.24]
+    wire co_mdu_op: UInt<1> @[serv/rtl/serv_decode.v:76.9-76.18]
+    wire imm30: UInt<1> @[serv/rtl/serv_decode.v:74.14-74.19]
+    wire imm25: UInt<1> @[serv/rtl/serv_decode.v:73.14-73.19]
+    wire op26: UInt<1> @[serv/rtl/serv_decode.v:71.15-71.19]
+    wire op22: UInt<1> @[serv/rtl/serv_decode.v:70.15-70.19]
+    wire op21: UInt<1> @[serv/rtl/serv_decode.v:69.15-69.19]
+    wire op20: UInt<1> @[serv/rtl/serv_decode.v:68.15-68.19]
+    wire funct3: UInt<3> @[serv/rtl/serv_decode.v:67.14-67.20]
+    wire opcode: UInt<5> @[serv/rtl/serv_decode.v:66.14-66.20]
+    wire _eq_serv_rtl_serv_decode_v_228_316: UInt<1> @[serv/rtl/serv_decode.v:228.31-228.51]
+    wire _eq_serv_rtl_serv_decode_v_227_315: UInt<1> @[serv/rtl/serv_decode.v:227.31-227.47]
+    wire _not_serv_rtl_serv_decode_v_224_314: UInt<1> @[serv/rtl/serv_decode.v:224.29-224.38]
+    wire _or_serv_rtl_serv_decode_v_223_313: UInt<1> @[serv/rtl/serv_decode.v:223.29-223.93]
+    wire _or_serv_rtl_serv_decode_v_223_312: UInt<1> @[serv/rtl/serv_decode.v:223.29-223.77]
+    wire _and_serv_rtl_serv_decode_v_223_311: UInt<1> @[serv/rtl/serv_decode.v:223.55-223.76]
+    wire _eq_serv_rtl_serv_decode_v_223_310: UInt<1> @[serv/rtl/serv_decode.v:223.30-223.50]
+    wire _or_serv_rtl_serv_decode_v_222_309: UInt<1> @[serv/rtl/serv_decode.v:222.29-222.77]
+    wire _or_serv_rtl_serv_decode_v_222_308: UInt<1> @[serv/rtl/serv_decode.v:222.29-222.65]
+    wire _logic_not_serv_rtl_serv_decode_v_222_307: UInt<1> @[serv/rtl/serv_decode.v:222.55-222.65]
+    wire _and_serv_rtl_serv_decode_v_222_306: UInt<1> @[serv/rtl/serv_decode.v:222.30-222.51]
+    wire _or_serv_rtl_serv_decode_v_221_305: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.75]
+    wire _logic_not_serv_rtl_serv_decode_v_221_304: UInt<1> @[serv/rtl/serv_decode.v:221.65-221.75]
+    wire _or_serv_rtl_serv_decode_v_221_303: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.62]
+    wire _or_serv_rtl_serv_decode_v_221_302: UInt<1> @[serv/rtl/serv_decode.v:221.29-221.50]
+    wire _and_serv_rtl_serv_decode_v_217_301: UInt<1> @[serv/rtl/serv_decode.v:217.31-217.53]
+    wire _logic_not_serv_rtl_serv_decode_v_217_300: UInt<1> @[serv/rtl/serv_decode.v:217.43-217.53]
+    wire _or_serv_rtl_serv_decode_v_216_299: UInt<1> @[serv/rtl/serv_decode.v:216.31-216.78]
+    wire _eq_serv_rtl_serv_decode_v_216_298: UInt<1> @[serv/rtl/serv_decode.v:216.57-216.77]
+    wire _eq_serv_rtl_serv_decode_v_216_297: UInt<1> @[serv/rtl/serv_decode.v:216.32-216.52]
+    wire _eq_serv_rtl_serv_decode_v_213_296: UInt<1> @[serv/rtl/serv_decode.v:213.31-213.53]
+    wire _not_serv_rtl_serv_decode_v_205_295: UInt<1> @[serv/rtl/serv_decode.v:205.25-205.35]
+    wire _not_serv_rtl_serv_decode_v_202_294: UInt<1> @[serv/rtl/serv_decode.v:202.26-202.78]
+    wire _or_serv_rtl_serv_decode_v_202_293: UInt<1> @[serv/rtl/serv_decode.v:202.28-202.77]
+    wire _and_serv_rtl_serv_decode_v_202_292: UInt<1> @[serv/rtl/serv_decode.v:202.55-202.76]
+    wire _and_serv_rtl_serv_decode_v_202_291: UInt<1> @[serv/rtl/serv_decode.v:202.29-202.50]
+    wire _eq_serv_rtl_serv_decode_v_200_290: UInt<1> @[serv/rtl/serv_decode.v:200.25-200.45]
+    wire _and_serv_rtl_serv_decode_v_198_289: UInt<1> @[serv/rtl/serv_decode.v:198.30-198.41]
+    wire _or_serv_rtl_serv_decode_v_198_288: UInt<1> @[serv/rtl/serv_decode.v:198.43-198.55]
+    wire _logic_not_serv_rtl_serv_decode_v_198_287: UInt<1> @[serv/rtl/serv_decode.v:198.43-198.48]
+    wire _and_serv_rtl_serv_decode_v_197_286: UInt<1> @[serv/rtl/serv_decode.v:197.25-197.58]
+    wire _and_serv_rtl_serv_decode_v_197_285: UInt<1> @[serv/rtl/serv_decode.v:197.25-197.46]
+    wire _and_serv_rtl_serv_decode_v_193_284: UInt<1> @[serv/rtl/serv_decode.v:193.29-193.59]
+    wire _logic_not_serv_rtl_serv_decode_v_193_283: UInt<1> @[serv/rtl/serv_decode.v:193.54-193.59]
+    wire _and_serv_rtl_serv_decode_v_193_282: UInt<1> @[serv/rtl/serv_decode.v:193.29-193.51]
+    wire _and_serv_rtl_serv_decode_v_192_281: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.59]
+    wire _logic_not_serv_rtl_serv_decode_v_192_280: UInt<1> @[serv/rtl/serv_decode.v:192.54-192.59]
+    wire _and_serv_rtl_serv_decode_v_192_279: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.51]
+    wire _and_serv_rtl_serv_decode_v_192_278: UInt<1> @[serv/rtl/serv_decode.v:192.29-192.43]
+    wire _logic_not_serv_rtl_serv_decode_v_192_277: UInt<1> @[serv/rtl/serv_decode.v:192.38-192.43]
+    wire _and_serv_rtl_serv_decode_v_191_276: UInt<1> @[serv/rtl/serv_decode.v:191.29-191.51]
+    wire _logic_not_serv_rtl_serv_decode_v_191_275: UInt<1> @[serv/rtl/serv_decode.v:191.46-191.51]
+    wire _and_serv_rtl_serv_decode_v_191_274: UInt<1> @[serv/rtl/serv_decode.v:191.29-191.43]
+    wire _logic_not_serv_rtl_serv_decode_v_191_273: UInt<1> @[serv/rtl/serv_decode.v:191.38-191.43]
+    wire _and_serv_rtl_serv_decode_v_190_272: UInt<1> @[serv/rtl/serv_decode.v:190.29-190.47]
+    wire _or_serv_rtl_serv_decode_v_186_271: UInt<1> @[serv/rtl/serv_decode.v:186.21-186.42]
+    wire _and_serv_rtl_serv_decode_v_186_270: UInt<1> @[serv/rtl/serv_decode.v:186.29-186.41]
+    wire _logic_not_serv_rtl_serv_decode_v_186_269: UInt<1> @[serv/rtl/serv_decode.v:186.36-186.41]
+    wire _or_serv_rtl_serv_decode_v_161_268: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.77]
+    wire _or_serv_rtl_serv_decode_v_161_267: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.65]
+    wire _and_serv_rtl_serv_decode_v_161_266: UInt<1> @[serv/rtl/serv_decode.v:161.47-161.64]
+    wire _or_serv_rtl_serv_decode_v_161_265: UInt<1> @[serv/rtl/serv_decode.v:161.22-161.43]
+    wire _and_serv_rtl_serv_decode_v_145_264: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.61]
+    wire _logic_not_serv_rtl_serv_decode_v_145_263: UInt<1> @[serv/rtl/serv_decode.v:145.51-145.61]
+    wire _reduce_or_serv_rtl_serv_decode_v_145_262: UInt<1> @[serv/rtl/serv_decode.v:145.53-145.60]
+    wire _and_serv_rtl_serv_decode_v_145_261: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.48]
+    wire _logic_not_serv_rtl_serv_decode_v_145_260: UInt<1> @[serv/rtl/serv_decode.v:145.43-145.48]
+    wire _and_serv_rtl_serv_decode_v_145_259: UInt<1> @[serv/rtl/serv_decode.v:145.19-145.40]
+    wire _and_serv_rtl_serv_decode_v_142_258: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.65]
+    wire _logic_not_serv_rtl_serv_decode_v_142_257: UInt<1> @[serv/rtl/serv_decode.v:142.55-142.65]
+    wire _reduce_or_serv_rtl_serv_decode_v_142_256: UInt<1> @[serv/rtl/serv_decode.v:142.57-142.64]
+    wire _and_serv_rtl_serv_decode_v_142_255: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.52]
+    wire _and_serv_rtl_serv_decode_v_142_254: UInt<1> @[serv/rtl/serv_decode.v:142.24-142.45]
+    wire _and_serv_rtl_serv_decode_v_133_253: UInt<1> @[serv/rtl/serv_decode.v:133.18-133.51]
+    wire _reduce_or_serv_rtl_serv_decode_v_133_252: UInt<1> @[serv/rtl/serv_decode.v:133.43-133.50]
+    wire _and_serv_rtl_serv_decode_v_133_251: UInt<1> @[serv/rtl/serv_decode.v:133.18-133.39]
+    wire _or_serv_rtl_serv_decode_v_121_250: UInt<1> @[serv/rtl/serv_decode.v:121.21-123.60]
+    wire _and_serv_rtl_serv_decode_v_123_249: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.59]
+    wire _logic_not_serv_rtl_serv_decode_v_123_248: UInt<1> @[serv/rtl/serv_decode.v:123.49-123.59]
+    wire _and_serv_rtl_serv_decode_v_123_247: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.46]
+    wire _logic_not_serv_rtl_serv_decode_v_123_246: UInt<1> @[serv/rtl/serv_decode.v:123.36-123.46]
+    wire _logic_not_serv_rtl_serv_decode_v_123_245: UInt<1> @[serv/rtl/serv_decode.v:123.23-123.33]
+    wire _or_serv_rtl_serv_decode_v_121_244: UInt<1> @[serv/rtl/serv_decode.v:121.21-122.58]
+    wire _and_serv_rtl_serv_decode_v_122_243: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.57]
+    wire _and_serv_rtl_serv_decode_v_122_242: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.45]
+    wire _logic_not_serv_rtl_serv_decode_v_122_241: UInt<1> @[serv/rtl/serv_decode.v:122.23-122.33]
+    wire _or_serv_rtl_serv_decode_v_114_240: UInt<1> @[serv/rtl/serv_decode.v:114.26-117.49]
+    wire _eq_serv_rtl_serv_decode_v_117_239: UInt<1> @[serv/rtl/serv_decode.v:117.28-117.48]
+    wire _or_serv_rtl_serv_decode_v_114_238: UInt<1> @[serv/rtl/serv_decode.v:114.26-116.57]
+    wire _and_serv_rtl_serv_decode_v_116_237: UInt<1> @[serv/rtl/serv_decode.v:116.27-116.57]
+    wire _and_serv_rtl_serv_decode_v_116_236: UInt<1> @[serv/rtl/serv_decode.v:116.28-116.49]
+    wire _or_serv_rtl_serv_decode_v_114_235: UInt<1> @[serv/rtl/serv_decode.v:114.26-115.49]
+    wire _eq_serv_rtl_serv_decode_v_115_234: UInt<1> @[serv/rtl/serv_decode.v:115.28-115.48]
+    wire _eq_serv_rtl_serv_decode_v_114_233: UInt<1> @[serv/rtl/serv_decode.v:114.27-114.48]
+    wire _and_serv_rtl_serv_decode_v_109_232: UInt<1> @[serv/rtl/serv_decode.v:109.31-109.52]
+    wire _and_serv_rtl_serv_decode_v_108_231: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.65]
+    wire _and_serv_rtl_serv_decode_v_108_230: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.53]
+    wire _logic_not_serv_rtl_serv_decode_v_108_229: UInt<1> @[serv/rtl/serv_decode.v:108.31-108.41]
+    wire _logic_not_serv_rtl_serv_decode_v_106_228: UInt<1> @[serv/rtl/serv_decode.v:106.26-106.36]
+    wire _and_serv_rtl_serv_decode_v_101_227: UInt<1> @[serv/rtl/serv_decode.v:101.29-101.90]
+    wire _or_serv_rtl_serv_decode_v_101_226: UInt<1> @[serv/rtl/serv_decode.v:101.42-101.89]
+    wire _eq_serv_rtl_serv_decode_v_101_225: UInt<1> @[serv/rtl/serv_decode.v:101.68-101.88]
+    wire _eq_serv_rtl_serv_decode_v_101_224: UInt<1> @[serv/rtl/serv_decode.v:101.43-101.63]
+    wire _logic_not_serv_rtl_serv_decode_v_96_223: UInt<1> @[serv/rtl/serv_decode.v:96.28-96.38]
+    wire _or_serv_rtl_serv_decode_v_95_222: UInt<1> @[serv/rtl/serv_decode.v:95.28-95.65]
+    wire _and_serv_rtl_serv_decode_v_95_221: UInt<1> @[serv/rtl/serv_decode.v:95.42-95.64]
+    wire _logic_not_serv_rtl_serv_decode_v_95_220: UInt<1> @[serv/rtl/serv_decode.v:95.42-95.52]
+    wire _logic_not_serv_rtl_serv_decode_v_95_219: UInt<1> @[serv/rtl/serv_decode.v:95.28-95.38]
+    wire _or_serv_rtl_serv_decode_v_88_218: UInt<1> @[serv/rtl/serv_decode.v:88.25-88.62]
+    wire _and_serv_rtl_serv_decode_v_88_217: UInt<1> @[serv/rtl/serv_decode.v:88.26-88.49]
+    wire _logic_not_serv_rtl_serv_decode_v_88_216: UInt<1> @[serv/rtl/serv_decode.v:88.39-88.49]
+    wire _logic_not_serv_rtl_serv_decode_v_88_215: UInt<1> @[serv/rtl/serv_decode.v:88.26-88.36]
+    wire _and_serv_rtl_serv_decode_v_87_214: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.73]
+    wire _logic_not_serv_rtl_serv_decode_v_87_213: UInt<1> @[serv/rtl/serv_decode.v:87.63-87.73]
+    wire _and_serv_rtl_serv_decode_v_87_212: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.60]
+    wire _logic_not_serv_rtl_serv_decode_v_87_211: UInt<1> @[serv/rtl/serv_decode.v:87.50-87.60]
+    wire _and_serv_rtl_serv_decode_v_87_210: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.47]
+    wire _logic_not_serv_rtl_serv_decode_v_87_209: UInt<1> @[serv/rtl/serv_decode.v:87.25-87.35]
+    wire _and_serv_rtl_serv_decode_v_84_208: UInt<1> @[serv/rtl/serv_decode.v:84.25-84.48]
+    wire _not_serv_rtl_serv_decode_v_84_207: UInt<1> @[serv/rtl/serv_decode.v:84.38-84.48]
+    wire _not_serv_rtl_serv_decode_v_84_206: UInt<1> @[serv/rtl/serv_decode.v:84.25-84.35]
+    wire _and_serv_rtl_serv_decode_v_82_205: UInt<1> @[serv/rtl/serv_decode.v:82.28-82.125]
+    wire _logic_not_serv_rtl_serv_decode_v_82_204: UInt<1> @[serv/rtl/serv_decode.v:82.115-82.125]
+    wire _or_serv_rtl_serv_decode_v_82_203: UInt<1> @[serv/rtl/serv_decode.v:82.29-82.111]
+    wire _and_serv_rtl_serv_decode_v_82_202: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.110]
+    wire _not_serv_rtl_serv_decode_v_82_201: UInt<1> @[serv/rtl/serv_decode.v:82.100-82.110]
+    wire _and_serv_rtl_serv_decode_v_82_200: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.97]
+    wire _and_serv_rtl_serv_decode_v_82_199: UInt<1> @[serv/rtl/serv_decode.v:82.68-82.85]
+    wire _or_serv_rtl_serv_decode_v_82_198: UInt<1> @[serv/rtl/serv_decode.v:82.29-82.64]
+    wire _and_serv_rtl_serv_decode_v_82_197: UInt<1> @[serv/rtl/serv_decode.v:82.42-82.63]
+    wire _and_serv_rtl_serv_decode_v_81_196: UInt<1> @[serv/rtl/serv_decode.v:81.23-81.60]
+    wire _logic_not_serv_rtl_serv_decode_v_81_195: UInt<1> @[serv/rtl/serv_decode.v:81.50-81.60]
+    wire _and_serv_rtl_serv_decode_v_81_194: UInt<1> @[serv/rtl/serv_decode.v:81.24-81.46]
+    wire _not_serv_rtl_serv_decode_v_81_193: UInt<1> @[serv/rtl/serv_decode.v:81.36-81.46]
+    wire _or_serv_rtl_serv_decode_v_79_192: UInt<1> @[serv/rtl/serv_decode.v:79.2-80.64]
+    wire _or_serv_rtl_serv_decode_v_79_191: UInt<1> @[serv/rtl/serv_decode.v:79.2-80.52]
+    wire _and_serv_rtl_serv_decode_v_80_190: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.51]
+    wire _not_serv_rtl_serv_decode_v_80_189: UInt<1> @[serv/rtl/serv_decode.v:80.41-80.51]
+    wire _and_serv_rtl_serv_decode_v_80_188: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.38]
+    wire _not_serv_rtl_serv_decode_v_80_187: UInt<1> @[serv/rtl/serv_decode.v:80.28-80.38]
+    wire _and_serv_rtl_serv_decode_v_80_186: UInt<1> @[serv/rtl/serv_decode.v:80.3-80.25]
+    wire _not_serv_rtl_serv_decode_v_80_185: UInt<1> @[serv/rtl/serv_decode.v:80.15-80.25]
+    wire _or_serv_rtl_serv_decode_v_79_184: UInt<1> @[serv/rtl/serv_decode.v:79.2-79.65]
+    wire _and_serv_rtl_serv_decode_v_79_183: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.64]
+    wire _not_serv_rtl_serv_decode_v_79_182: UInt<1> @[serv/rtl/serv_decode.v:79.54-79.64]
+    wire _and_serv_rtl_serv_decode_v_79_181: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.51]
+    wire _not_serv_rtl_serv_decode_v_79_180: UInt<1> @[serv/rtl/serv_decode.v:79.41-79.51]
+    wire _and_serv_rtl_serv_decode_v_79_179: UInt<1> @[serv/rtl/serv_decode.v:79.16-79.38]
+    wire _not_serv_rtl_serv_decode_v_79_178: UInt<1> @[serv/rtl/serv_decode.v:79.28-79.38]
+    wire _not_serv_rtl_serv_decode_v_79_177: UInt<1> @[serv/rtl/serv_decode.v:79.2-79.12]
+    wire _and_serv_rtl_serv_decode_v_76_176: UInt<1> @[serv/rtl/serv_decode.v:76.25-76.59]
+    wire _and_serv_rtl_serv_decode_v_76_175: UInt<1> @[serv/rtl/serv_decode.v:76.25-76.51]
+    wire _eq_serv_rtl_serv_decode_v_76_174: UInt<1> @[serv/rtl/serv_decode.v:76.32-76.50]
+    wire _302: UInt<1>
+    wire _303: UInt<1>
+    wire _304: UInt<1>
+    wire _305: UInt<1>
+    wire _306: UInt<1>
+    wire _307: UInt<1>
+    wire _308: UInt<1>
+    wire _309: UInt<1>
+    wire _310: UInt<1>
+    wire _311: UInt<1>
+    wire _312: UInt<3>
+    wire _313: UInt<1>
+    wire _314: UInt<1>
+    wire _315: UInt<1>
+    wire _316: UInt<1>
+    wire _317: UInt<1>
+    wire _318: UInt<1>
+    wire _319: UInt<1>
+    wire _320: UInt<1>
+    wire _321: UInt<1>
+    wire _322: UInt<1>
+    wire _323: UInt<1>
+    wire _324: UInt<1>
+    wire _325: UInt<1>
+    wire _326: UInt<1>
+    wire _327: UInt<1>
+    wire _328: UInt<1>
+    wire _329: UInt<1>
+    wire _330: UInt<1>
+    wire _331: UInt<1>
+    wire _332: UInt<1>
+    wire _333: UInt<1>
+    wire _334: UInt<1>
+    wire _335: UInt<2>
+    wire _336: UInt<1>
+    wire _337: UInt<1>
+    wire _338: UInt<2>
+    wire _339: UInt<1>
+    wire _340: UInt<1>
+    wire _341: UInt<1>
+    wire _342: UInt<1>
+    wire _343: UInt<1>
+    wire _344: UInt<2>
+    wire _345: UInt<1>
+    wire _346: UInt<1>
+    wire _347: UInt<1>
+    wire _348: UInt<1>
+    wire _349: UInt<1>
+    wire _350: UInt<1>
+    wire _351: UInt<1>
+    wire _352: UInt<1>
+    wire _353: UInt<1>
+    wire _354: UInt<1>
+    wire _355: UInt<1>
+    wire _356: UInt<1>
+    _0_o_rd_alu_en_0_0_ is invalid
+    _0_o_rd_csr_en_0_0_ is invalid
+    _0_o_rd_mem_en_0_0_ is invalid
+    _0_o_op_b_source_0_0_ is invalid
+    _0_o_immdec_en_3_0_ is invalid
+    _0_o_immdec_ctrl_3_0_ is invalid
+    _0_o_mtval_pc_0_0_ is invalid
+    _0_o_csr_imm_en_0_0_ is invalid
+    _0_o_csr_d_sel_0_0_ is invalid
+    _0_o_csr_source_1_0_ is invalid
+    _0_o_csr_mcause_en_0_0_ is invalid
+    _0_o_csr_mie_en_0_0_ is invalid
+    _0_o_csr_mstatus_en_0_0_ is invalid
+    _0_o_csr_addr_1_0_ is invalid
+    _0_o_csr_en_0_0_ is invalid
+    _0_o_mem_cmd_0_0_ is invalid
+    _0_o_mem_half_0_0_ is invalid
+    _0_o_mem_word_0_0_ is invalid
+    _0_o_mem_signed_0_0_ is invalid
+    _0_o_alu_rd_sel_2_0_ is invalid
+    _0_o_alu_cmp_sig_0_0_ is invalid
+    _0_o_alu_cmp_eq_0_0_ is invalid
+    _0_o_alu_bool_op_1_0_ is invalid
+    _0_o_alu_sub_0_0_ is invalid
+    _0_o_ctrl_mret_0_0_ is invalid
+    _0_o_ctrl_pc_rel_0_0_ is invalid
+    _0_o_ctrl_utype_0_0_ is invalid
+    _0_o_ctrl_jal_or_jalr_0_0_ is invalid
+    _0_o_bufreg_sh_signed_0_0_ is invalid
+    _0_o_bufreg_clr_lsb_0_0_ is invalid
+    _0_o_bufreg_imm_en_0_0_ is invalid
+    _0_o_bufreg_rs1_en_0_0_ is invalid
+    _0_o_ext_funct3_2_0_ is invalid
+    _0_o_mdu_op_0_0_ is invalid
+    _0_o_dbus_en_0_0_ is invalid
+    _0_o_two_stage_op_0_0_ is invalid
+    _0_o_rd_op_0_0_ is invalid
+    _0_o_slt_or_branch_0_0_ is invalid
+    _0_o_shift_op_0_0_ is invalid
+    _0_o_branch_op_0_0_ is invalid
+    _0_o_ebreak_0_0_ is invalid
+    _0_o_e_op_0_0_ is invalid
+    _0_o_cond_branch_0_0_ is invalid
+    _0_o_bne_or_bge_0_0_ is invalid
+    _0_o_sh_right_0_0_ is invalid
+    _0_imm30_0_0_ is invalid
+    _0_imm25_0_0_ is invalid
+    _0_op26_0_0_ is invalid
+    _0_op22_0_0_ is invalid
+    _0_op21_0_0_ is invalid
+    _0_op20_0_0_ is invalid
+    _0_funct3_2_0_ is invalid
+    _0_opcode_4_0_ is invalid
+    imm30 is invalid
+    imm25 is invalid
+    op26 is invalid
+    op22 is invalid
+    op21 is invalid
+    op20 is invalid
+    funct3 is invalid
+    opcode is invalid
+    o_rd_alu_en is invalid
+    o_rd_csr_en is invalid
+    o_rd_mem_en is invalid
+    o_op_b_source is invalid
+    o_immdec_en is invalid
+    o_immdec_ctrl is invalid
+    o_mtval_pc is invalid
+    o_csr_imm_en is invalid
+    o_csr_d_sel is invalid
+    o_csr_source is invalid
+    o_csr_mcause_en is invalid
+    o_csr_mie_en is invalid
+    o_csr_mstatus_en is invalid
+    o_csr_addr is invalid
+    o_csr_en is invalid
+    o_mem_cmd is invalid
+    o_mem_half is invalid
+    o_mem_word is invalid
+    o_mem_signed is invalid
+    o_alu_rd_sel is invalid
+    o_alu_cmp_sig is invalid
+    o_alu_cmp_eq is invalid
+    o_alu_bool_op is invalid
+    o_alu_sub is invalid
+    o_ctrl_mret is invalid
+    o_ctrl_pc_rel is invalid
+    o_ctrl_utype is invalid
+    o_ctrl_jal_or_jalr is invalid
+    o_bufreg_sh_signed is invalid
+    o_bufreg_clr_lsb is invalid
+    o_bufreg_imm_en is invalid
+    o_bufreg_rs1_en is invalid
+    o_ext_funct3 is invalid
+    o_mdu_op is invalid
+    o_dbus_en is invalid
+    o_two_stage_op is invalid
+    o_rd_op is invalid
+    o_slt_or_branch is invalid
+    o_shift_op is invalid
+    o_branch_op is invalid
+    o_ebreak is invalid
+    o_e_op is invalid
+    o_cond_branch is invalid
+    o_bne_or_bge is invalid
+    o_sh_right is invalid
+
+
+    _eq_serv_rtl_serv_decode_v_228_316 <= eq(bits(funct3, 2, 1), asUInt(UInt<2>("h1"))) @[serv/rtl/serv_decode.v:228.31-228.51]
+    _eq_serv_rtl_serv_decode_v_227_315 <= eq(funct3, asUInt(UInt<3>("h0"))) @[serv/rtl/serv_decode.v:227.31-227.47]
+    _not_serv_rtl_serv_decode_v_224_314 <= not(pad(co_rd_op, 1)) @[serv/rtl/serv_decode.v:224.29-224.38]
+    _or_serv_rtl_serv_decode_v_223_313 <= or(_or_serv_rtl_serv_decode_v_223_312_Y, asUInt(co_csr_imm_en)) @[serv/rtl/serv_decode.v:223.29-223.93]
+    _or_serv_rtl_serv_decode_v_223_312 <= or(_eq_serv_rtl_serv_decode_v_223_310_Y, asUInt(_and_serv_rtl_serv_decode_v_223_311_Y)) @[serv/rtl/serv_decode.v:223.29-223.77]
+    _and_serv_rtl_serv_decode_v_223_311 <= and(bits(opcode, 2, 2), asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:223.55-223.76]
+    _eq_serv_rtl_serv_decode_v_223_310 <= eq(bits(opcode, 2, 1), asUInt(UInt<2>("h1"))) @[serv/rtl/serv_decode.v:223.30-223.50]
+    _or_serv_rtl_serv_decode_v_222_309 <= or(_or_serv_rtl_serv_decode_v_222_308_Y, asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:222.29-222.77]
+    _or_serv_rtl_serv_decode_v_222_308 <= or(_and_serv_rtl_serv_decode_v_222_306_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_222_307_Y)) @[serv/rtl/serv_decode.v:222.29-222.65]
+    _logic_not_serv_rtl_serv_decode_v_222_307 <= eq(bits(opcode, 3, 3), UInt(0)) @[serv/rtl/serv_decode.v:222.55-222.65]
+    _and_serv_rtl_serv_decode_v_222_306 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:222.30-222.51]
+    _or_serv_rtl_serv_decode_v_221_305 <= or(_or_serv_rtl_serv_decode_v_221_303_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_221_304_Y)) @[serv/rtl/serv_decode.v:221.29-221.75]
+    _logic_not_serv_rtl_serv_decode_v_221_304 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:221.65-221.75]
+    _or_serv_rtl_serv_decode_v_221_303 <= or(_or_serv_rtl_serv_decode_v_221_302_Y, asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:221.29-221.62]
+    _or_serv_rtl_serv_decode_v_221_302 <= or(bits(opcode, 4, 4), asUInt(bits(opcode, 3, 3))) @[serv/rtl/serv_decode.v:221.29-221.50]
+    _and_serv_rtl_serv_decode_v_217_301 <= and(bits(opcode, 4, 4), asUInt(_logic_not_serv_rtl_serv_decode_v_217_300_Y)) @[serv/rtl/serv_decode.v:217.31-217.53]
+    _logic_not_serv_rtl_serv_decode_v_217_300 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:217.43-217.53]
+    _or_serv_rtl_serv_decode_v_216_299 <= or(_eq_serv_rtl_serv_decode_v_216_297_Y, asUInt(_eq_serv_rtl_serv_decode_v_216_298_Y)) @[serv/rtl/serv_decode.v:216.31-216.78]
+    _eq_serv_rtl_serv_decode_v_216_298 <= eq(bits(opcode, 2, 1), asUInt(UInt<2>("h0"))) @[serv/rtl/serv_decode.v:216.57-216.77]
+    _eq_serv_rtl_serv_decode_v_216_297 <= eq(bits(opcode, 1, 0), asUInt(UInt<2>("h0"))) @[serv/rtl/serv_decode.v:216.32-216.52]
+    _eq_serv_rtl_serv_decode_v_213_296 <= eq(bits(opcode, 3, 0), asUInt(UInt<4>("h8"))) @[serv/rtl/serv_decode.v:213.31-213.53]
+    _not_serv_rtl_serv_decode_v_205_295 <= not(pad(bits(funct3, 2, 2), 1)) @[serv/rtl/serv_decode.v:205.25-205.35]
+    _not_serv_rtl_serv_decode_v_202_294 <= not(pad(_or_serv_rtl_serv_decode_v_202_293_Y, 1)) @[serv/rtl/serv_decode.v:202.26-202.78]
+    _or_serv_rtl_serv_decode_v_202_293 <= or(_and_serv_rtl_serv_decode_v_202_291_Y, asUInt(_and_serv_rtl_serv_decode_v_202_292_Y)) @[serv/rtl/serv_decode.v:202.28-202.77]
+    _and_serv_rtl_serv_decode_v_202_292 <= and(bits(funct3, 1, 1), asUInt(bits(funct3, 2, 2))) @[serv/rtl/serv_decode.v:202.55-202.76]
+    _and_serv_rtl_serv_decode_v_202_291 <= and(bits(funct3, 0, 0), asUInt(bits(funct3, 1, 1))) @[serv/rtl/serv_decode.v:202.29-202.50]
+    _eq_serv_rtl_serv_decode_v_200_290 <= eq(bits(funct3, 2, 1), asUInt(UInt<2>("h0"))) @[serv/rtl/serv_decode.v:200.25-200.45]
+    _and_serv_rtl_serv_decode_v_198_289 <= and(op26, asUInt(op20)) @[serv/rtl/serv_decode.v:198.30-198.41]
+    _or_serv_rtl_serv_decode_v_198_288 <= or(_logic_not_serv_rtl_serv_decode_v_198_287_Y, asUInt(op21)) @[serv/rtl/serv_decode.v:198.43-198.55]
+    _logic_not_serv_rtl_serv_decode_v_198_287 <= eq(op26, UInt(0)) @[serv/rtl/serv_decode.v:198.43-198.48]
+    _and_serv_rtl_serv_decode_v_197_286 <= and(_and_serv_rtl_serv_decode_v_197_285_Y, asUInt(bits(funct3, 2, 2))) @[serv/rtl/serv_decode.v:197.25-197.58]
+    _and_serv_rtl_serv_decode_v_197_285 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:197.25-197.46]
+    _and_serv_rtl_serv_decode_v_193_284 <= and(_and_serv_rtl_serv_decode_v_193_282_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_193_283_Y)) @[serv/rtl/serv_decode.v:193.29-193.59]
+    _logic_not_serv_rtl_serv_decode_v_193_283 <= eq(op20, UInt(0)) @[serv/rtl/serv_decode.v:193.54-193.59]
+    _and_serv_rtl_serv_decode_v_193_282 <= and(csr_op, asUInt(op21)) @[serv/rtl/serv_decode.v:193.29-193.51]
+    _and_serv_rtl_serv_decode_v_192_281 <= and(_and_serv_rtl_serv_decode_v_192_279_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_192_280_Y)) @[serv/rtl/serv_decode.v:192.29-192.59]
+    _logic_not_serv_rtl_serv_decode_v_192_280 <= eq(op20, UInt(0)) @[serv/rtl/serv_decode.v:192.54-192.59]
+    _and_serv_rtl_serv_decode_v_192_279 <= and(_and_serv_rtl_serv_decode_v_192_278_Y, asUInt(op22)) @[serv/rtl/serv_decode.v:192.29-192.51]
+    _and_serv_rtl_serv_decode_v_192_278 <= and(csr_op, asUInt(_logic_not_serv_rtl_serv_decode_v_192_277_Y)) @[serv/rtl/serv_decode.v:192.29-192.43]
+    _logic_not_serv_rtl_serv_decode_v_192_277 <= eq(op26, UInt(0)) @[serv/rtl/serv_decode.v:192.38-192.43]
+    _and_serv_rtl_serv_decode_v_191_276 <= and(_and_serv_rtl_serv_decode_v_191_274_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_191_275_Y)) @[serv/rtl/serv_decode.v:191.29-191.51]
+    _logic_not_serv_rtl_serv_decode_v_191_275 <= eq(op22, UInt(0)) @[serv/rtl/serv_decode.v:191.46-191.51]
+    _and_serv_rtl_serv_decode_v_191_274 <= and(csr_op, asUInt(_logic_not_serv_rtl_serv_decode_v_191_273_Y)) @[serv/rtl/serv_decode.v:191.29-191.43]
+    _logic_not_serv_rtl_serv_decode_v_191_273 <= eq(op26, UInt(0)) @[serv/rtl/serv_decode.v:191.38-191.43]
+    _and_serv_rtl_serv_decode_v_190_272 <= and(csr_op, asUInt(csr_valid)) @[serv/rtl/serv_decode.v:190.29-190.47]
+    _or_serv_rtl_serv_decode_v_186_271 <= or(op20, asUInt(_and_serv_rtl_serv_decode_v_186_270_Y)) @[serv/rtl/serv_decode.v:186.21-186.42]
+    _and_serv_rtl_serv_decode_v_186_270 <= and(op26, asUInt(_logic_not_serv_rtl_serv_decode_v_186_269_Y)) @[serv/rtl/serv_decode.v:186.29-186.41]
+    _logic_not_serv_rtl_serv_decode_v_186_269 <= eq(op21, UInt(0)) @[serv/rtl/serv_decode.v:186.36-186.41]
+    _or_serv_rtl_serv_decode_v_161_268 <= or(_or_serv_rtl_serv_decode_v_161_267_Y, asUInt(bits(opcode, 4, 4))) @[serv/rtl/serv_decode.v:161.22-161.77]
+    _or_serv_rtl_serv_decode_v_161_267 <= or(_or_serv_rtl_serv_decode_v_161_265_Y, asUInt(_and_serv_rtl_serv_decode_v_161_266_Y)) @[serv/rtl/serv_decode.v:161.22-161.65]
+    _and_serv_rtl_serv_decode_v_161_266 <= and(bits(opcode, 3, 3), asUInt(imm30)) @[serv/rtl/serv_decode.v:161.47-161.64]
+    _or_serv_rtl_serv_decode_v_161_265 <= or(bits(funct3, 1, 1), asUInt(bits(funct3, 0, 0))) @[serv/rtl/serv_decode.v:161.22-161.43]
+    _and_serv_rtl_serv_decode_v_145_264 <= and(_and_serv_rtl_serv_decode_v_145_261_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_145_263_Y)) @[serv/rtl/serv_decode.v:145.19-145.61]
+    _logic_not_serv_rtl_serv_decode_v_145_263 <= eq(_reduce_or_serv_rtl_serv_decode_v_145_262_Y, UInt(0)) @[serv/rtl/serv_decode.v:145.51-145.61]
+    _reduce_or_serv_rtl_serv_decode_v_145_262 <= orr(pad(funct3, 1)) @[serv/rtl/serv_decode.v:145.53-145.60]
+    _and_serv_rtl_serv_decode_v_145_261 <= and(_and_serv_rtl_serv_decode_v_145_259_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_145_260_Y)) @[serv/rtl/serv_decode.v:145.19-145.48]
+    _logic_not_serv_rtl_serv_decode_v_145_260 <= eq(op21, UInt(0)) @[serv/rtl/serv_decode.v:145.43-145.48]
+    _and_serv_rtl_serv_decode_v_145_259 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:145.19-145.40]
+    _and_serv_rtl_serv_decode_v_142_258 <= and(_and_serv_rtl_serv_decode_v_142_255_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_142_257_Y)) @[serv/rtl/serv_decode.v:142.24-142.65]
+    _logic_not_serv_rtl_serv_decode_v_142_257 <= eq(_reduce_or_serv_rtl_serv_decode_v_142_256_Y, UInt(0)) @[serv/rtl/serv_decode.v:142.55-142.65]
+    _reduce_or_serv_rtl_serv_decode_v_142_256 <= orr(pad(funct3, 1)) @[serv/rtl/serv_decode.v:142.57-142.64]
+    _and_serv_rtl_serv_decode_v_142_255 <= and(_and_serv_rtl_serv_decode_v_142_254_Y, asUInt(op21)) @[serv/rtl/serv_decode.v:142.24-142.52]
+    _and_serv_rtl_serv_decode_v_142_254 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:142.24-142.45]
+    _and_serv_rtl_serv_decode_v_133_253 <= and(_and_serv_rtl_serv_decode_v_133_251_Y, asUInt(_reduce_or_serv_rtl_serv_decode_v_133_252_Y)) @[serv/rtl/serv_decode.v:133.18-133.51]
+    _reduce_or_serv_rtl_serv_decode_v_133_252 <= orr(pad(funct3, 1)) @[serv/rtl/serv_decode.v:133.43-133.50]
+    _and_serv_rtl_serv_decode_v_133_251 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:133.18-133.39]
+    _or_serv_rtl_serv_decode_v_121_250 <= or(_or_serv_rtl_serv_decode_v_121_244_Y, asUInt(_and_serv_rtl_serv_decode_v_123_249_Y)) @[serv/rtl/serv_decode.v:121.21-123.60]
+    _and_serv_rtl_serv_decode_v_123_249 <= and(_and_serv_rtl_serv_decode_v_123_247_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_123_248_Y)) @[serv/rtl/serv_decode.v:123.23-123.59]
+    _logic_not_serv_rtl_serv_decode_v_123_248 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:123.49-123.59]
+    _and_serv_rtl_serv_decode_v_123_247 <= and(_logic_not_serv_rtl_serv_decode_v_123_245_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_123_246_Y)) @[serv/rtl/serv_decode.v:123.23-123.46]
+    _logic_not_serv_rtl_serv_decode_v_123_246 <= eq(bits(opcode, 3, 3), UInt(0)) @[serv/rtl/serv_decode.v:123.36-123.46]
+    _logic_not_serv_rtl_serv_decode_v_123_245 <= eq(bits(opcode, 2, 2), UInt(0)) @[serv/rtl/serv_decode.v:123.23-123.33]
+    _or_serv_rtl_serv_decode_v_121_244 <= or(bits(opcode, 2, 2), asUInt(_and_serv_rtl_serv_decode_v_122_243_Y)) @[serv/rtl/serv_decode.v:121.21-122.58]
+    _and_serv_rtl_serv_decode_v_122_243 <= and(_and_serv_rtl_serv_decode_v_122_242_Y, asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:122.23-122.57]
+    _and_serv_rtl_serv_decode_v_122_242 <= and(_logic_not_serv_rtl_serv_decode_v_122_241_Y, asUInt(bits(opcode, 4, 4))) @[serv/rtl/serv_decode.v:122.23-122.45]
+    _logic_not_serv_rtl_serv_decode_v_122_241 <= eq(bits(opcode, 2, 2), UInt(0)) @[serv/rtl/serv_decode.v:122.23-122.33]
+    _or_serv_rtl_serv_decode_v_114_240 <= or(_or_serv_rtl_serv_decode_v_114_238_Y, asUInt(_eq_serv_rtl_serv_decode_v_117_239_Y)) @[serv/rtl/serv_decode.v:114.26-117.49]
+    _eq_serv_rtl_serv_decode_v_117_239 <= eq(bits(opcode, 4, 3), asUInt(UInt<2>("h0"))) @[serv/rtl/serv_decode.v:117.28-117.48]
+    _or_serv_rtl_serv_decode_v_114_238 <= or(_or_serv_rtl_serv_decode_v_114_235_Y, asUInt(_and_serv_rtl_serv_decode_v_116_237_Y)) @[serv/rtl/serv_decode.v:114.26-116.57]
+    _and_serv_rtl_serv_decode_v_116_237 <= and(_and_serv_rtl_serv_decode_v_116_236_Y, asUInt(op20)) @[serv/rtl/serv_decode.v:116.27-116.57]
+    _and_serv_rtl_serv_decode_v_116_236 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:116.28-116.49]
+    _or_serv_rtl_serv_decode_v_114_235 <= or(_eq_serv_rtl_serv_decode_v_114_233_Y, asUInt(_eq_serv_rtl_serv_decode_v_115_234_Y)) @[serv/rtl/serv_decode.v:114.26-115.49]
+    _eq_serv_rtl_serv_decode_v_115_234 <= eq(bits(opcode, 1, 0), asUInt(UInt<2>("h3"))) @[serv/rtl/serv_decode.v:115.28-115.48]
+    _eq_serv_rtl_serv_decode_v_114_233 <= eq(bits(opcode, 2, 0), asUInt(UInt<3>("h0"))) @[serv/rtl/serv_decode.v:114.27-114.48]
+    _and_serv_rtl_serv_decode_v_109_232 <= and(bits(opcode, 4, 4), asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:109.31-109.52]
+    _and_serv_rtl_serv_decode_v_108_231 <= and(_and_serv_rtl_serv_decode_v_108_230_Y, asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:108.31-108.65]
+    _and_serv_rtl_serv_decode_v_108_230 <= and(_logic_not_serv_rtl_serv_decode_v_108_229_Y, asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:108.31-108.53]
+    _logic_not_serv_rtl_serv_decode_v_108_229 <= eq(bits(opcode, 4, 4), UInt(0)) @[serv/rtl/serv_decode.v:108.31-108.41]
+    _logic_not_serv_rtl_serv_decode_v_106_228 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:106.26-106.36]
+    _and_serv_rtl_serv_decode_v_101_227 <= and(bits(opcode, 4, 4), asUInt(_or_serv_rtl_serv_decode_v_101_226_Y)) @[serv/rtl/serv_decode.v:101.29-101.90]
+    _or_serv_rtl_serv_decode_v_101_226 <= or(_eq_serv_rtl_serv_decode_v_101_224_Y, asUInt(_eq_serv_rtl_serv_decode_v_101_225_Y)) @[serv/rtl/serv_decode.v:101.42-101.89]
+    _eq_serv_rtl_serv_decode_v_101_225 <= eq(bits(opcode, 1, 0), asUInt(UInt<2>("h3"))) @[serv/rtl/serv_decode.v:101.68-101.88]
+    _eq_serv_rtl_serv_decode_v_101_224 <= eq(bits(opcode, 1, 0), asUInt(UInt<2>("h0"))) @[serv/rtl/serv_decode.v:101.43-101.63]
+    _logic_not_serv_rtl_serv_decode_v_96_223 <= eq(bits(opcode, 2, 2), UInt(0)) @[serv/rtl/serv_decode.v:96.28-96.38]
+    _or_serv_rtl_serv_decode_v_95_222 <= or(_logic_not_serv_rtl_serv_decode_v_95_219_Y, asUInt(_and_serv_rtl_serv_decode_v_95_221_Y)) @[serv/rtl/serv_decode.v:95.28-95.65]
+    _and_serv_rtl_serv_decode_v_95_221 <= and(_logic_not_serv_rtl_serv_decode_v_95_220_Y, asUInt(bits(opcode, 0, 0))) @[serv/rtl/serv_decode.v:95.42-95.64]
+    _logic_not_serv_rtl_serv_decode_v_95_220 <= eq(bits(opcode, 1, 1), UInt(0)) @[serv/rtl/serv_decode.v:95.42-95.52]
+    _logic_not_serv_rtl_serv_decode_v_95_219 <= eq(bits(opcode, 4, 4), UInt(0)) @[serv/rtl/serv_decode.v:95.28-95.38]
+    _or_serv_rtl_serv_decode_v_88_218 <= or(_and_serv_rtl_serv_decode_v_88_217_Y, asUInt(co_mdu_op)) @[serv/rtl/serv_decode.v:88.25-88.62]
+    _and_serv_rtl_serv_decode_v_88_217 <= and(_logic_not_serv_rtl_serv_decode_v_88_215_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_88_216_Y)) @[serv/rtl/serv_decode.v:88.26-88.49]
+    _logic_not_serv_rtl_serv_decode_v_88_216 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:88.39-88.49]
+    _logic_not_serv_rtl_serv_decode_v_88_215 <= eq(bits(opcode, 2, 2), UInt(0)) @[serv/rtl/serv_decode.v:88.26-88.36]
+    _and_serv_rtl_serv_decode_v_87_214 <= and(_and_serv_rtl_serv_decode_v_87_212_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_87_213_Y)) @[serv/rtl/serv_decode.v:87.25-87.73]
+    _logic_not_serv_rtl_serv_decode_v_87_213 <= eq(co_mdu_op, UInt(0)) @[serv/rtl/serv_decode.v:87.63-87.73]
+    _and_serv_rtl_serv_decode_v_87_212 <= and(_and_serv_rtl_serv_decode_v_87_210_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_87_211_Y)) @[serv/rtl/serv_decode.v:87.25-87.60]
+    _logic_not_serv_rtl_serv_decode_v_87_211 <= eq(bits(opcode, 4, 4), UInt(0)) @[serv/rtl/serv_decode.v:87.50-87.60]
+    _and_serv_rtl_serv_decode_v_87_210 <= and(_logic_not_serv_rtl_serv_decode_v_87_209_Y, asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:87.25-87.47]
+    _logic_not_serv_rtl_serv_decode_v_87_209 <= eq(bits(opcode, 0, 0), UInt(0)) @[serv/rtl/serv_decode.v:87.25-87.35]
+    _and_serv_rtl_serv_decode_v_84_208 <= and(_not_serv_rtl_serv_decode_v_84_206_Y, asUInt(_not_serv_rtl_serv_decode_v_84_207_Y)) @[serv/rtl/serv_decode.v:84.25-84.48]
+    _not_serv_rtl_serv_decode_v_84_207 <= not(pad(bits(opcode, 4, 4), 1)) @[serv/rtl/serv_decode.v:84.38-84.48]
+    _not_serv_rtl_serv_decode_v_84_206 <= not(pad(bits(opcode, 2, 2), 1)) @[serv/rtl/serv_decode.v:84.25-84.35]
+    _and_serv_rtl_serv_decode_v_82_205 <= and(_or_serv_rtl_serv_decode_v_82_203_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_82_204_Y)) @[serv/rtl/serv_decode.v:82.28-82.125]
+    _logic_not_serv_rtl_serv_decode_v_82_204 <= eq(co_mdu_op, UInt(0)) @[serv/rtl/serv_decode.v:82.115-82.125]
+    _or_serv_rtl_serv_decode_v_82_203 <= or(_or_serv_rtl_serv_decode_v_82_198_Y, asUInt(_and_serv_rtl_serv_decode_v_82_202_Y)) @[serv/rtl/serv_decode.v:82.29-82.111]
+    _and_serv_rtl_serv_decode_v_82_202 <= and(_and_serv_rtl_serv_decode_v_82_200_Y, asUInt(_not_serv_rtl_serv_decode_v_82_201_Y)) @[serv/rtl/serv_decode.v:82.68-82.110]
+    _not_serv_rtl_serv_decode_v_82_201 <= not(pad(bits(funct3, 2, 2), 1)) @[serv/rtl/serv_decode.v:82.100-82.110]
+    _and_serv_rtl_serv_decode_v_82_200 <= and(_and_serv_rtl_serv_decode_v_82_199_Y, asUInt(bits(opcode, 3, 3))) @[serv/rtl/serv_decode.v:82.68-82.97]
+    _and_serv_rtl_serv_decode_v_82_199 <= and(imm30, asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:82.68-82.85]
+    _or_serv_rtl_serv_decode_v_82_198 <= or(bits(opcode, 4, 4), asUInt(_and_serv_rtl_serv_decode_v_82_197_Y)) @[serv/rtl/serv_decode.v:82.29-82.64]
+    _and_serv_rtl_serv_decode_v_82_197 <= and(bits(funct3, 1, 1), asUInt(bits(opcode, 2, 2))) @[serv/rtl/serv_decode.v:82.42-82.63]
+    _and_serv_rtl_serv_decode_v_81_196 <= and(_and_serv_rtl_serv_decode_v_81_194_Y, asUInt(_logic_not_serv_rtl_serv_decode_v_81_195_Y)) @[serv/rtl/serv_decode.v:81.23-81.60]
+    _logic_not_serv_rtl_serv_decode_v_81_195 <= eq(co_mdu_op, UInt(0)) @[serv/rtl/serv_decode.v:81.50-81.60]
+    _and_serv_rtl_serv_decode_v_81_194 <= and(bits(opcode, 2, 2), asUInt(_not_serv_rtl_serv_decode_v_81_193_Y)) @[serv/rtl/serv_decode.v:81.24-81.46]
+    _not_serv_rtl_serv_decode_v_81_193 <= not(pad(bits(funct3, 1, 1), 1)) @[serv/rtl/serv_decode.v:81.36-81.46]
+    _or_serv_rtl_serv_decode_v_79_192 <= or(_or_serv_rtl_serv_decode_v_79_191_Y, asUInt(co_mdu_op)) @[serv/rtl/serv_decode.v:79.2-80.64]
+    _or_serv_rtl_serv_decode_v_79_191 <= or(_or_serv_rtl_serv_decode_v_79_184_Y, asUInt(_and_serv_rtl_serv_decode_v_80_190_Y)) @[serv/rtl/serv_decode.v:79.2-80.52]
+    _and_serv_rtl_serv_decode_v_80_190 <= and(_and_serv_rtl_serv_decode_v_80_188_Y, asUInt(_not_serv_rtl_serv_decode_v_80_189_Y)) @[serv/rtl/serv_decode.v:80.3-80.51]
+    _not_serv_rtl_serv_decode_v_80_189 <= not(pad(bits(opcode, 4, 4), 1)) @[serv/rtl/serv_decode.v:80.41-80.51]
+    _and_serv_rtl_serv_decode_v_80_188 <= and(_and_serv_rtl_serv_decode_v_80_186_Y, asUInt(_not_serv_rtl_serv_decode_v_80_187_Y)) @[serv/rtl/serv_decode.v:80.3-80.38]
+    _not_serv_rtl_serv_decode_v_80_187 <= not(pad(bits(opcode, 0, 0), 1)) @[serv/rtl/serv_decode.v:80.28-80.38]
+    _and_serv_rtl_serv_decode_v_80_186 <= and(bits(funct3, 1, 1), asUInt(_not_serv_rtl_serv_decode_v_80_185_Y)) @[serv/rtl/serv_decode.v:80.3-80.25]
+    _not_serv_rtl_serv_decode_v_80_185 <= not(pad(bits(funct3, 2, 2), 1)) @[serv/rtl/serv_decode.v:80.15-80.25]
+    _or_serv_rtl_serv_decode_v_79_184 <= or(_not_serv_rtl_serv_decode_v_79_177_Y, asUInt(_and_serv_rtl_serv_decode_v_79_183_Y)) @[serv/rtl/serv_decode.v:79.2-79.65]
+    _and_serv_rtl_serv_decode_v_79_183 <= and(_and_serv_rtl_serv_decode_v_79_181_Y, asUInt(_not_serv_rtl_serv_decode_v_79_182_Y)) @[serv/rtl/serv_decode.v:79.16-79.64]
+    _not_serv_rtl_serv_decode_v_79_182 <= not(pad(bits(opcode, 4, 4), 1)) @[serv/rtl/serv_decode.v:79.54-79.64]
+    _and_serv_rtl_serv_decode_v_79_181 <= and(_and_serv_rtl_serv_decode_v_79_179_Y, asUInt(_not_serv_rtl_serv_decode_v_79_180_Y)) @[serv/rtl/serv_decode.v:79.16-79.51]
+    _not_serv_rtl_serv_decode_v_79_180 <= not(pad(bits(opcode, 0, 0), 1)) @[serv/rtl/serv_decode.v:79.41-79.51]
+    _and_serv_rtl_serv_decode_v_79_179 <= and(bits(funct3, 0, 0), asUInt(_not_serv_rtl_serv_decode_v_79_178_Y)) @[serv/rtl/serv_decode.v:79.16-79.38]
+    _not_serv_rtl_serv_decode_v_79_178 <= not(pad(bits(funct3, 1, 1), 1)) @[serv/rtl/serv_decode.v:79.28-79.38]
+    _not_serv_rtl_serv_decode_v_79_177 <= not(pad(bits(opcode, 2, 2), 1)) @[serv/rtl/serv_decode.v:79.2-79.12]
+    _and_serv_rtl_serv_decode_v_76_176 <= and(_and_serv_rtl_serv_decode_v_76_175_Y, asUInt(imm25)) @[serv/rtl/serv_decode.v:76.25-76.59]
+    _and_serv_rtl_serv_decode_v_76_175 <= and(UInt<1>("h0"), asUInt(_eq_serv_rtl_serv_decode_v_76_174_Y)) @[serv/rtl/serv_decode.v:76.25-76.51]
+    _eq_serv_rtl_serv_decode_v_76_174 <= eq(opcode, asUInt(UInt<5>("h0c"))) @[serv/rtl/serv_decode.v:76.32-76.50]
+    _302 <= _and_serv_rtl_serv_decode_v_76_176_Y
+    _303 <= _or_serv_rtl_serv_decode_v_79_192_Y
+    _304 <= _and_serv_rtl_serv_decode_v_81_196_Y
+    _305 <= _and_serv_rtl_serv_decode_v_82_205_Y
+    _306 <= bits(opcode, 4, 4)
+    _307 <= _and_serv_rtl_serv_decode_v_84_208_Y
+    _308 <= bits(opcode, 4, 4)
+    _309 <= bits(funct3, 1, 1)
+    _310 <= _and_serv_rtl_serv_decode_v_87_214_Y
+    _311 <= _or_serv_rtl_serv_decode_v_88_218_Y
+    _312 <= funct3
+    _313 <= _or_serv_rtl_serv_decode_v_95_222_Y
+    _314 <= _logic_not_serv_rtl_serv_decode_v_96_223_Y
+    _315 <= _and_serv_rtl_serv_decode_v_101_227_Y
+    _316 <= _logic_not_serv_rtl_serv_decode_v_106_228_Y
+    _317 <= _and_serv_rtl_serv_decode_v_108_231_Y
+    _318 <= _and_serv_rtl_serv_decode_v_109_232_Y
+    _319 <= _or_serv_rtl_serv_decode_v_114_240_Y
+    _320 <= _or_serv_rtl_serv_decode_v_121_250_Y
+    _321 <= bits(funct3, 2, 2)
+    _322 <= bits(funct3, 0, 0)
+    _323 <= _and_serv_rtl_serv_decode_v_133_253_Y
+    _324 <= op20
+    _325 <= _and_serv_rtl_serv_decode_v_142_258_Y
+    _326 <= _and_serv_rtl_serv_decode_v_145_264_Y
+    _327 <= imm30
+    _328 <= _or_serv_rtl_serv_decode_v_161_268_Y
+    _329 <= _or_serv_rtl_serv_decode_v_186_271_Y
+    _330 <= csr_op
+    _331 <= _and_serv_rtl_serv_decode_v_190_272_Y
+    _332 <= _and_serv_rtl_serv_decode_v_191_276_Y
+    _333 <= _and_serv_rtl_serv_decode_v_192_281_Y
+    _334 <= _and_serv_rtl_serv_decode_v_193_284_Y
+    _335 <= bits(funct3, 1, 0)
+    _336 <= bits(funct3, 2, 2)
+    _337 <= _and_serv_rtl_serv_decode_v_197_286_Y
+    _338 <= cat(_and_serv_rtl_serv_decode_v_198_289_Y, _or_serv_rtl_serv_decode_v_198_288_Y)
+    _339 <= _eq_serv_rtl_serv_decode_v_200_290_Y
+    _340 <= _not_serv_rtl_serv_decode_v_202_294_Y
+    _341 <= bits(opcode, 3, 3)
+    _342 <= _not_serv_rtl_serv_decode_v_205_295_Y
+    _343 <= bits(funct3, 0, 0)
+    _344 <= bits(funct3, 1, 0)
+    _345 <= _eq_serv_rtl_serv_decode_v_213_296_Y
+    _346 <= _or_serv_rtl_serv_decode_v_216_299_Y
+    _347 <= _and_serv_rtl_serv_decode_v_217_301_Y
+    _348 <= bits(opcode, 4, 4)
+    _349 <= _or_serv_rtl_serv_decode_v_221_305_Y
+    _350 <= _or_serv_rtl_serv_decode_v_222_309_Y
+    _351 <= _or_serv_rtl_serv_decode_v_223_313_Y
+    _352 <= _not_serv_rtl_serv_decode_v_224_314_Y
+    _353 <= _eq_serv_rtl_serv_decode_v_227_315_Y
+    _354 <= _eq_serv_rtl_serv_decode_v_228_316_Y
+    _355 <= bits(funct3, 2, 2)
+    _356 <= bits(opcode, 3, 3)
+
+    _eq_serv_rtl_serv_decode_v_228_316_Y <= bits(_eq_serv_rtl_serv_decode_v_228_316, 0, 0) @[serv/rtl/serv_decode.v:228.31-228.51]
+    _eq_serv_rtl_serv_decode_v_227_315_Y <= bits(_eq_serv_rtl_serv_decode_v_227_315, 0, 0) @[serv/rtl/serv_decode.v:227.31-227.47]
+    _not_serv_rtl_serv_decode_v_224_314_Y <= bits(_not_serv_rtl_serv_decode_v_224_314, 0, 0) @[serv/rtl/serv_decode.v:224.29-224.38]
+    _or_serv_rtl_serv_decode_v_223_313_Y <= bits(_or_serv_rtl_serv_decode_v_223_313, 0, 0) @[serv/rtl/serv_decode.v:223.29-223.93]
+    _or_serv_rtl_serv_decode_v_223_312_Y <= bits(_or_serv_rtl_serv_decode_v_223_312, 0, 0) @[serv/rtl/serv_decode.v:223.29-223.77]
+    _and_serv_rtl_serv_decode_v_223_311_Y <= bits(_and_serv_rtl_serv_decode_v_223_311, 0, 0) @[serv/rtl/serv_decode.v:223.55-223.76]
+    _eq_serv_rtl_serv_decode_v_223_310_Y <= bits(_eq_serv_rtl_serv_decode_v_223_310, 0, 0) @[serv/rtl/serv_decode.v:223.30-223.50]
+    _or_serv_rtl_serv_decode_v_222_309_Y <= bits(_or_serv_rtl_serv_decode_v_222_309, 0, 0) @[serv/rtl/serv_decode.v:222.29-222.77]
+    _or_serv_rtl_serv_decode_v_222_308_Y <= bits(_or_serv_rtl_serv_decode_v_222_308, 0, 0) @[serv/rtl/serv_decode.v:222.29-222.65]
+    _logic_not_serv_rtl_serv_decode_v_222_307_Y <= bits(_logic_not_serv_rtl_serv_decode_v_222_307, 0, 0) @[serv/rtl/serv_decode.v:222.55-222.65]
+    _and_serv_rtl_serv_decode_v_222_306_Y <= bits(_and_serv_rtl_serv_decode_v_222_306, 0, 0) @[serv/rtl/serv_decode.v:222.30-222.51]
+    _or_serv_rtl_serv_decode_v_221_305_Y <= bits(_or_serv_rtl_serv_decode_v_221_305, 0, 0) @[serv/rtl/serv_decode.v:221.29-221.75]
+    _logic_not_serv_rtl_serv_decode_v_221_304_Y <= bits(_logic_not_serv_rtl_serv_decode_v_221_304, 0, 0) @[serv/rtl/serv_decode.v:221.65-221.75]
+    _or_serv_rtl_serv_decode_v_221_303_Y <= bits(_or_serv_rtl_serv_decode_v_221_303, 0, 0) @[serv/rtl/serv_decode.v:221.29-221.62]
+    _or_serv_rtl_serv_decode_v_221_302_Y <= bits(_or_serv_rtl_serv_decode_v_221_302, 0, 0) @[serv/rtl/serv_decode.v:221.29-221.50]
+    _and_serv_rtl_serv_decode_v_217_301_Y <= bits(_and_serv_rtl_serv_decode_v_217_301, 0, 0) @[serv/rtl/serv_decode.v:217.31-217.53]
+    _logic_not_serv_rtl_serv_decode_v_217_300_Y <= bits(_logic_not_serv_rtl_serv_decode_v_217_300, 0, 0) @[serv/rtl/serv_decode.v:217.43-217.53]
+    _or_serv_rtl_serv_decode_v_216_299_Y <= bits(_or_serv_rtl_serv_decode_v_216_299, 0, 0) @[serv/rtl/serv_decode.v:216.31-216.78]
+    _eq_serv_rtl_serv_decode_v_216_298_Y <= bits(_eq_serv_rtl_serv_decode_v_216_298, 0, 0) @[serv/rtl/serv_decode.v:216.57-216.77]
+    _eq_serv_rtl_serv_decode_v_216_297_Y <= bits(_eq_serv_rtl_serv_decode_v_216_297, 0, 0) @[serv/rtl/serv_decode.v:216.32-216.52]
+    _eq_serv_rtl_serv_decode_v_213_296_Y <= bits(_eq_serv_rtl_serv_decode_v_213_296, 0, 0) @[serv/rtl/serv_decode.v:213.31-213.53]
+    _not_serv_rtl_serv_decode_v_205_295_Y <= bits(_not_serv_rtl_serv_decode_v_205_295, 0, 0) @[serv/rtl/serv_decode.v:205.25-205.35]
+    _not_serv_rtl_serv_decode_v_202_294_Y <= bits(_not_serv_rtl_serv_decode_v_202_294, 0, 0) @[serv/rtl/serv_decode.v:202.26-202.78]
+    _or_serv_rtl_serv_decode_v_202_293_Y <= bits(_or_serv_rtl_serv_decode_v_202_293, 0, 0) @[serv/rtl/serv_decode.v:202.28-202.77]
+    _and_serv_rtl_serv_decode_v_202_292_Y <= bits(_and_serv_rtl_serv_decode_v_202_292, 0, 0) @[serv/rtl/serv_decode.v:202.55-202.76]
+    _and_serv_rtl_serv_decode_v_202_291_Y <= bits(_and_serv_rtl_serv_decode_v_202_291, 0, 0) @[serv/rtl/serv_decode.v:202.29-202.50]
+    _eq_serv_rtl_serv_decode_v_200_290_Y <= bits(_eq_serv_rtl_serv_decode_v_200_290, 0, 0) @[serv/rtl/serv_decode.v:200.25-200.45]
+    _and_serv_rtl_serv_decode_v_198_289_Y <= bits(_and_serv_rtl_serv_decode_v_198_289, 0, 0) @[serv/rtl/serv_decode.v:198.30-198.41]
+    _or_serv_rtl_serv_decode_v_198_288_Y <= bits(_or_serv_rtl_serv_decode_v_198_288, 0, 0) @[serv/rtl/serv_decode.v:198.43-198.55]
+    _logic_not_serv_rtl_serv_decode_v_198_287_Y <= bits(_logic_not_serv_rtl_serv_decode_v_198_287, 0, 0) @[serv/rtl/serv_decode.v:198.43-198.48]
+    _and_serv_rtl_serv_decode_v_197_286_Y <= bits(_and_serv_rtl_serv_decode_v_197_286, 0, 0) @[serv/rtl/serv_decode.v:197.25-197.58]
+    _and_serv_rtl_serv_decode_v_197_285_Y <= bits(_and_serv_rtl_serv_decode_v_197_285, 0, 0) @[serv/rtl/serv_decode.v:197.25-197.46]
+    _and_serv_rtl_serv_decode_v_193_284_Y <= bits(_and_serv_rtl_serv_decode_v_193_284, 0, 0) @[serv/rtl/serv_decode.v:193.29-193.59]
+    _logic_not_serv_rtl_serv_decode_v_193_283_Y <= bits(_logic_not_serv_rtl_serv_decode_v_193_283, 0, 0) @[serv/rtl/serv_decode.v:193.54-193.59]
+    _and_serv_rtl_serv_decode_v_193_282_Y <= bits(_and_serv_rtl_serv_decode_v_193_282, 0, 0) @[serv/rtl/serv_decode.v:193.29-193.51]
+    _and_serv_rtl_serv_decode_v_192_281_Y <= bits(_and_serv_rtl_serv_decode_v_192_281, 0, 0) @[serv/rtl/serv_decode.v:192.29-192.59]
+    _logic_not_serv_rtl_serv_decode_v_192_280_Y <= bits(_logic_not_serv_rtl_serv_decode_v_192_280, 0, 0) @[serv/rtl/serv_decode.v:192.54-192.59]
+    _and_serv_rtl_serv_decode_v_192_279_Y <= bits(_and_serv_rtl_serv_decode_v_192_279, 0, 0) @[serv/rtl/serv_decode.v:192.29-192.51]
+    _and_serv_rtl_serv_decode_v_192_278_Y <= bits(_and_serv_rtl_serv_decode_v_192_278, 0, 0) @[serv/rtl/serv_decode.v:192.29-192.43]
+    _logic_not_serv_rtl_serv_decode_v_192_277_Y <= bits(_logic_not_serv_rtl_serv_decode_v_192_277, 0, 0) @[serv/rtl/serv_decode.v:192.38-192.43]
+    _and_serv_rtl_serv_decode_v_191_276_Y <= bits(_and_serv_rtl_serv_decode_v_191_276, 0, 0) @[serv/rtl/serv_decode.v:191.29-191.51]
+    _logic_not_serv_rtl_serv_decode_v_191_275_Y <= bits(_logic_not_serv_rtl_serv_decode_v_191_275, 0, 0) @[serv/rtl/serv_decode.v:191.46-191.51]
+    _and_serv_rtl_serv_decode_v_191_274_Y <= bits(_and_serv_rtl_serv_decode_v_191_274, 0, 0) @[serv/rtl/serv_decode.v:191.29-191.43]
+    _logic_not_serv_rtl_serv_decode_v_191_273_Y <= bits(_logic_not_serv_rtl_serv_decode_v_191_273, 0, 0) @[serv/rtl/serv_decode.v:191.38-191.43]
+    _and_serv_rtl_serv_decode_v_190_272_Y <= bits(_and_serv_rtl_serv_decode_v_190_272, 0, 0) @[serv/rtl/serv_decode.v:190.29-190.47]
+    _or_serv_rtl_serv_decode_v_186_271_Y <= bits(_or_serv_rtl_serv_decode_v_186_271, 0, 0) @[serv/rtl/serv_decode.v:186.21-186.42]
+    _and_serv_rtl_serv_decode_v_186_270_Y <= bits(_and_serv_rtl_serv_decode_v_186_270, 0, 0) @[serv/rtl/serv_decode.v:186.29-186.41]
+    _logic_not_serv_rtl_serv_decode_v_186_269_Y <= bits(_logic_not_serv_rtl_serv_decode_v_186_269, 0, 0) @[serv/rtl/serv_decode.v:186.36-186.41]
+    _or_serv_rtl_serv_decode_v_161_268_Y <= bits(_or_serv_rtl_serv_decode_v_161_268, 0, 0) @[serv/rtl/serv_decode.v:161.22-161.77]
+    _or_serv_rtl_serv_decode_v_161_267_Y <= bits(_or_serv_rtl_serv_decode_v_161_267, 0, 0) @[serv/rtl/serv_decode.v:161.22-161.65]
+    _and_serv_rtl_serv_decode_v_161_266_Y <= bits(_and_serv_rtl_serv_decode_v_161_266, 0, 0) @[serv/rtl/serv_decode.v:161.47-161.64]
+    _or_serv_rtl_serv_decode_v_161_265_Y <= bits(_or_serv_rtl_serv_decode_v_161_265, 0, 0) @[serv/rtl/serv_decode.v:161.22-161.43]
+    _and_serv_rtl_serv_decode_v_145_264_Y <= bits(_and_serv_rtl_serv_decode_v_145_264, 0, 0) @[serv/rtl/serv_decode.v:145.19-145.61]
+    _logic_not_serv_rtl_serv_decode_v_145_263_Y <= bits(_logic_not_serv_rtl_serv_decode_v_145_263, 0, 0) @[serv/rtl/serv_decode.v:145.51-145.61]
+    _reduce_or_serv_rtl_serv_decode_v_145_262_Y <= bits(_reduce_or_serv_rtl_serv_decode_v_145_262, 0, 0) @[serv/rtl/serv_decode.v:145.53-145.60]
+    _and_serv_rtl_serv_decode_v_145_261_Y <= bits(_and_serv_rtl_serv_decode_v_145_261, 0, 0) @[serv/rtl/serv_decode.v:145.19-145.48]
+    _logic_not_serv_rtl_serv_decode_v_145_260_Y <= bits(_logic_not_serv_rtl_serv_decode_v_145_260, 0, 0) @[serv/rtl/serv_decode.v:145.43-145.48]
+    _and_serv_rtl_serv_decode_v_145_259_Y <= bits(_and_serv_rtl_serv_decode_v_145_259, 0, 0) @[serv/rtl/serv_decode.v:145.19-145.40]
+    _and_serv_rtl_serv_decode_v_142_258_Y <= bits(_and_serv_rtl_serv_decode_v_142_258, 0, 0) @[serv/rtl/serv_decode.v:142.24-142.65]
+    _logic_not_serv_rtl_serv_decode_v_142_257_Y <= bits(_logic_not_serv_rtl_serv_decode_v_142_257, 0, 0) @[serv/rtl/serv_decode.v:142.55-142.65]
+    _reduce_or_serv_rtl_serv_decode_v_142_256_Y <= bits(_reduce_or_serv_rtl_serv_decode_v_142_256, 0, 0) @[serv/rtl/serv_decode.v:142.57-142.64]
+    _and_serv_rtl_serv_decode_v_142_255_Y <= bits(_and_serv_rtl_serv_decode_v_142_255, 0, 0) @[serv/rtl/serv_decode.v:142.24-142.52]
+    _and_serv_rtl_serv_decode_v_142_254_Y <= bits(_and_serv_rtl_serv_decode_v_142_254, 0, 0) @[serv/rtl/serv_decode.v:142.24-142.45]
+    _and_serv_rtl_serv_decode_v_133_253_Y <= bits(_and_serv_rtl_serv_decode_v_133_253, 0, 0) @[serv/rtl/serv_decode.v:133.18-133.51]
+    _reduce_or_serv_rtl_serv_decode_v_133_252_Y <= bits(_reduce_or_serv_rtl_serv_decode_v_133_252, 0, 0) @[serv/rtl/serv_decode.v:133.43-133.50]
+    _and_serv_rtl_serv_decode_v_133_251_Y <= bits(_and_serv_rtl_serv_decode_v_133_251, 0, 0) @[serv/rtl/serv_decode.v:133.18-133.39]
+    _or_serv_rtl_serv_decode_v_121_250_Y <= bits(_or_serv_rtl_serv_decode_v_121_250, 0, 0) @[serv/rtl/serv_decode.v:121.21-123.60]
+    _and_serv_rtl_serv_decode_v_123_249_Y <= bits(_and_serv_rtl_serv_decode_v_123_249, 0, 0) @[serv/rtl/serv_decode.v:123.23-123.59]
+    _logic_not_serv_rtl_serv_decode_v_123_248_Y <= bits(_logic_not_serv_rtl_serv_decode_v_123_248, 0, 0) @[serv/rtl/serv_decode.v:123.49-123.59]
+    _and_serv_rtl_serv_decode_v_123_247_Y <= bits(_and_serv_rtl_serv_decode_v_123_247, 0, 0) @[serv/rtl/serv_decode.v:123.23-123.46]
+    _logic_not_serv_rtl_serv_decode_v_123_246_Y <= bits(_logic_not_serv_rtl_serv_decode_v_123_246, 0, 0) @[serv/rtl/serv_decode.v:123.36-123.46]
+    _logic_not_serv_rtl_serv_decode_v_123_245_Y <= bits(_logic_not_serv_rtl_serv_decode_v_123_245, 0, 0) @[serv/rtl/serv_decode.v:123.23-123.33]
+    _or_serv_rtl_serv_decode_v_121_244_Y <= bits(_or_serv_rtl_serv_decode_v_121_244, 0, 0) @[serv/rtl/serv_decode.v:121.21-122.58]
+    _and_serv_rtl_serv_decode_v_122_243_Y <= bits(_and_serv_rtl_serv_decode_v_122_243, 0, 0) @[serv/rtl/serv_decode.v:122.23-122.57]
+    _and_serv_rtl_serv_decode_v_122_242_Y <= bits(_and_serv_rtl_serv_decode_v_122_242, 0, 0) @[serv/rtl/serv_decode.v:122.23-122.45]
+    _logic_not_serv_rtl_serv_decode_v_122_241_Y <= bits(_logic_not_serv_rtl_serv_decode_v_122_241, 0, 0) @[serv/rtl/serv_decode.v:122.23-122.33]
+    _or_serv_rtl_serv_decode_v_114_240_Y <= bits(_or_serv_rtl_serv_decode_v_114_240, 0, 0) @[serv/rtl/serv_decode.v:114.26-117.49]
+    _eq_serv_rtl_serv_decode_v_117_239_Y <= bits(_eq_serv_rtl_serv_decode_v_117_239, 0, 0) @[serv/rtl/serv_decode.v:117.28-117.48]
+    _or_serv_rtl_serv_decode_v_114_238_Y <= bits(_or_serv_rtl_serv_decode_v_114_238, 0, 0) @[serv/rtl/serv_decode.v:114.26-116.57]
+    _and_serv_rtl_serv_decode_v_116_237_Y <= bits(_and_serv_rtl_serv_decode_v_116_237, 0, 0) @[serv/rtl/serv_decode.v:116.27-116.57]
+    _and_serv_rtl_serv_decode_v_116_236_Y <= bits(_and_serv_rtl_serv_decode_v_116_236, 0, 0) @[serv/rtl/serv_decode.v:116.28-116.49]
+    _or_serv_rtl_serv_decode_v_114_235_Y <= bits(_or_serv_rtl_serv_decode_v_114_235, 0, 0) @[serv/rtl/serv_decode.v:114.26-115.49]
+    _eq_serv_rtl_serv_decode_v_115_234_Y <= bits(_eq_serv_rtl_serv_decode_v_115_234, 0, 0) @[serv/rtl/serv_decode.v:115.28-115.48]
+    _eq_serv_rtl_serv_decode_v_114_233_Y <= bits(_eq_serv_rtl_serv_decode_v_114_233, 0, 0) @[serv/rtl/serv_decode.v:114.27-114.48]
+    _and_serv_rtl_serv_decode_v_109_232_Y <= bits(_and_serv_rtl_serv_decode_v_109_232, 0, 0) @[serv/rtl/serv_decode.v:109.31-109.52]
+    _and_serv_rtl_serv_decode_v_108_231_Y <= bits(_and_serv_rtl_serv_decode_v_108_231, 0, 0) @[serv/rtl/serv_decode.v:108.31-108.65]
+    _and_serv_rtl_serv_decode_v_108_230_Y <= bits(_and_serv_rtl_serv_decode_v_108_230, 0, 0) @[serv/rtl/serv_decode.v:108.31-108.53]
+    _logic_not_serv_rtl_serv_decode_v_108_229_Y <= bits(_logic_not_serv_rtl_serv_decode_v_108_229, 0, 0) @[serv/rtl/serv_decode.v:108.31-108.41]
+    _logic_not_serv_rtl_serv_decode_v_106_228_Y <= bits(_logic_not_serv_rtl_serv_decode_v_106_228, 0, 0) @[serv/rtl/serv_decode.v:106.26-106.36]
+    _and_serv_rtl_serv_decode_v_101_227_Y <= bits(_and_serv_rtl_serv_decode_v_101_227, 0, 0) @[serv/rtl/serv_decode.v:101.29-101.90]
+    _or_serv_rtl_serv_decode_v_101_226_Y <= bits(_or_serv_rtl_serv_decode_v_101_226, 0, 0) @[serv/rtl/serv_decode.v:101.42-101.89]
+    _eq_serv_rtl_serv_decode_v_101_225_Y <= bits(_eq_serv_rtl_serv_decode_v_101_225, 0, 0) @[serv/rtl/serv_decode.v:101.68-101.88]
+    _eq_serv_rtl_serv_decode_v_101_224_Y <= bits(_eq_serv_rtl_serv_decode_v_101_224, 0, 0) @[serv/rtl/serv_decode.v:101.43-101.63]
+    _logic_not_serv_rtl_serv_decode_v_96_223_Y <= bits(_logic_not_serv_rtl_serv_decode_v_96_223, 0, 0) @[serv/rtl/serv_decode.v:96.28-96.38]
+    _or_serv_rtl_serv_decode_v_95_222_Y <= bits(_or_serv_rtl_serv_decode_v_95_222, 0, 0) @[serv/rtl/serv_decode.v:95.28-95.65]
+    _and_serv_rtl_serv_decode_v_95_221_Y <= bits(_and_serv_rtl_serv_decode_v_95_221, 0, 0) @[serv/rtl/serv_decode.v:95.42-95.64]
+    _logic_not_serv_rtl_serv_decode_v_95_220_Y <= bits(_logic_not_serv_rtl_serv_decode_v_95_220, 0, 0) @[serv/rtl/serv_decode.v:95.42-95.52]
+    _logic_not_serv_rtl_serv_decode_v_95_219_Y <= bits(_logic_not_serv_rtl_serv_decode_v_95_219, 0, 0) @[serv/rtl/serv_decode.v:95.28-95.38]
+    _or_serv_rtl_serv_decode_v_88_218_Y <= bits(_or_serv_rtl_serv_decode_v_88_218, 0, 0) @[serv/rtl/serv_decode.v:88.25-88.62]
+    _and_serv_rtl_serv_decode_v_88_217_Y <= bits(_and_serv_rtl_serv_decode_v_88_217, 0, 0) @[serv/rtl/serv_decode.v:88.26-88.49]
+    _logic_not_serv_rtl_serv_decode_v_88_216_Y <= bits(_logic_not_serv_rtl_serv_decode_v_88_216, 0, 0) @[serv/rtl/serv_decode.v:88.39-88.49]
+    _logic_not_serv_rtl_serv_decode_v_88_215_Y <= bits(_logic_not_serv_rtl_serv_decode_v_88_215, 0, 0) @[serv/rtl/serv_decode.v:88.26-88.36]
+    _and_serv_rtl_serv_decode_v_87_214_Y <= bits(_and_serv_rtl_serv_decode_v_87_214, 0, 0) @[serv/rtl/serv_decode.v:87.25-87.73]
+    _logic_not_serv_rtl_serv_decode_v_87_213_Y <= bits(_logic_not_serv_rtl_serv_decode_v_87_213, 0, 0) @[serv/rtl/serv_decode.v:87.63-87.73]
+    _and_serv_rtl_serv_decode_v_87_212_Y <= bits(_and_serv_rtl_serv_decode_v_87_212, 0, 0) @[serv/rtl/serv_decode.v:87.25-87.60]
+    _logic_not_serv_rtl_serv_decode_v_87_211_Y <= bits(_logic_not_serv_rtl_serv_decode_v_87_211, 0, 0) @[serv/rtl/serv_decode.v:87.50-87.60]
+    _and_serv_rtl_serv_decode_v_87_210_Y <= bits(_and_serv_rtl_serv_decode_v_87_210, 0, 0) @[serv/rtl/serv_decode.v:87.25-87.47]
+    _logic_not_serv_rtl_serv_decode_v_87_209_Y <= bits(_logic_not_serv_rtl_serv_decode_v_87_209, 0, 0) @[serv/rtl/serv_decode.v:87.25-87.35]
+    _and_serv_rtl_serv_decode_v_84_208_Y <= bits(_and_serv_rtl_serv_decode_v_84_208, 0, 0) @[serv/rtl/serv_decode.v:84.25-84.48]
+    _not_serv_rtl_serv_decode_v_84_207_Y <= bits(_not_serv_rtl_serv_decode_v_84_207, 0, 0) @[serv/rtl/serv_decode.v:84.38-84.48]
+    _not_serv_rtl_serv_decode_v_84_206_Y <= bits(_not_serv_rtl_serv_decode_v_84_206, 0, 0) @[serv/rtl/serv_decode.v:84.25-84.35]
+    _and_serv_rtl_serv_decode_v_82_205_Y <= bits(_and_serv_rtl_serv_decode_v_82_205, 0, 0) @[serv/rtl/serv_decode.v:82.28-82.125]
+    _logic_not_serv_rtl_serv_decode_v_82_204_Y <= bits(_logic_not_serv_rtl_serv_decode_v_82_204, 0, 0) @[serv/rtl/serv_decode.v:82.115-82.125]
+    _or_serv_rtl_serv_decode_v_82_203_Y <= bits(_or_serv_rtl_serv_decode_v_82_203, 0, 0) @[serv/rtl/serv_decode.v:82.29-82.111]
+    _and_serv_rtl_serv_decode_v_82_202_Y <= bits(_and_serv_rtl_serv_decode_v_82_202, 0, 0) @[serv/rtl/serv_decode.v:82.68-82.110]
+    _not_serv_rtl_serv_decode_v_82_201_Y <= bits(_not_serv_rtl_serv_decode_v_82_201, 0, 0) @[serv/rtl/serv_decode.v:82.100-82.110]
+    _and_serv_rtl_serv_decode_v_82_200_Y <= bits(_and_serv_rtl_serv_decode_v_82_200, 0, 0) @[serv/rtl/serv_decode.v:82.68-82.97]
+    _and_serv_rtl_serv_decode_v_82_199_Y <= bits(_and_serv_rtl_serv_decode_v_82_199, 0, 0) @[serv/rtl/serv_decode.v:82.68-82.85]
+    _or_serv_rtl_serv_decode_v_82_198_Y <= bits(_or_serv_rtl_serv_decode_v_82_198, 0, 0) @[serv/rtl/serv_decode.v:82.29-82.64]
+    _and_serv_rtl_serv_decode_v_82_197_Y <= bits(_and_serv_rtl_serv_decode_v_82_197, 0, 0) @[serv/rtl/serv_decode.v:82.42-82.63]
+    _and_serv_rtl_serv_decode_v_81_196_Y <= bits(_and_serv_rtl_serv_decode_v_81_196, 0, 0) @[serv/rtl/serv_decode.v:81.23-81.60]
+    _logic_not_serv_rtl_serv_decode_v_81_195_Y <= bits(_logic_not_serv_rtl_serv_decode_v_81_195, 0, 0) @[serv/rtl/serv_decode.v:81.50-81.60]
+    _and_serv_rtl_serv_decode_v_81_194_Y <= bits(_and_serv_rtl_serv_decode_v_81_194, 0, 0) @[serv/rtl/serv_decode.v:81.24-81.46]
+    _not_serv_rtl_serv_decode_v_81_193_Y <= bits(_not_serv_rtl_serv_decode_v_81_193, 0, 0) @[serv/rtl/serv_decode.v:81.36-81.46]
+    _or_serv_rtl_serv_decode_v_79_192_Y <= bits(_or_serv_rtl_serv_decode_v_79_192, 0, 0) @[serv/rtl/serv_decode.v:79.2-80.64]
+    _or_serv_rtl_serv_decode_v_79_191_Y <= bits(_or_serv_rtl_serv_decode_v_79_191, 0, 0) @[serv/rtl/serv_decode.v:79.2-80.52]
+    _and_serv_rtl_serv_decode_v_80_190_Y <= bits(_and_serv_rtl_serv_decode_v_80_190, 0, 0) @[serv/rtl/serv_decode.v:80.3-80.51]
+    _not_serv_rtl_serv_decode_v_80_189_Y <= bits(_not_serv_rtl_serv_decode_v_80_189, 0, 0) @[serv/rtl/serv_decode.v:80.41-80.51]
+    _and_serv_rtl_serv_decode_v_80_188_Y <= bits(_and_serv_rtl_serv_decode_v_80_188, 0, 0) @[serv/rtl/serv_decode.v:80.3-80.38]
+    _not_serv_rtl_serv_decode_v_80_187_Y <= bits(_not_serv_rtl_serv_decode_v_80_187, 0, 0) @[serv/rtl/serv_decode.v:80.28-80.38]
+    _and_serv_rtl_serv_decode_v_80_186_Y <= bits(_and_serv_rtl_serv_decode_v_80_186, 0, 0) @[serv/rtl/serv_decode.v:80.3-80.25]
+    _not_serv_rtl_serv_decode_v_80_185_Y <= bits(_not_serv_rtl_serv_decode_v_80_185, 0, 0) @[serv/rtl/serv_decode.v:80.15-80.25]
+    _or_serv_rtl_serv_decode_v_79_184_Y <= bits(_or_serv_rtl_serv_decode_v_79_184, 0, 0) @[serv/rtl/serv_decode.v:79.2-79.65]
+    _and_serv_rtl_serv_decode_v_79_183_Y <= bits(_and_serv_rtl_serv_decode_v_79_183, 0, 0) @[serv/rtl/serv_decode.v:79.16-79.64]
+    _not_serv_rtl_serv_decode_v_79_182_Y <= bits(_not_serv_rtl_serv_decode_v_79_182, 0, 0) @[serv/rtl/serv_decode.v:79.54-79.64]
+    _and_serv_rtl_serv_decode_v_79_181_Y <= bits(_and_serv_rtl_serv_decode_v_79_181, 0, 0) @[serv/rtl/serv_decode.v:79.16-79.51]
+    _not_serv_rtl_serv_decode_v_79_180_Y <= bits(_not_serv_rtl_serv_decode_v_79_180, 0, 0) @[serv/rtl/serv_decode.v:79.41-79.51]
+    _and_serv_rtl_serv_decode_v_79_179_Y <= bits(_and_serv_rtl_serv_decode_v_79_179, 0, 0) @[serv/rtl/serv_decode.v:79.16-79.38]
+    _not_serv_rtl_serv_decode_v_79_178_Y <= bits(_not_serv_rtl_serv_decode_v_79_178, 0, 0) @[serv/rtl/serv_decode.v:79.28-79.38]
+    _not_serv_rtl_serv_decode_v_79_177_Y <= bits(_not_serv_rtl_serv_decode_v_79_177, 0, 0) @[serv/rtl/serv_decode.v:79.2-79.12]
+    _and_serv_rtl_serv_decode_v_76_176_Y <= bits(_and_serv_rtl_serv_decode_v_76_176, 0, 0) @[serv/rtl/serv_decode.v:76.25-76.59]
+    _and_serv_rtl_serv_decode_v_76_175_Y <= bits(_and_serv_rtl_serv_decode_v_76_175, 0, 0) @[serv/rtl/serv_decode.v:76.25-76.51]
+    _eq_serv_rtl_serv_decode_v_76_174_Y <= bits(_eq_serv_rtl_serv_decode_v_76_174, 0, 0) @[serv/rtl/serv_decode.v:76.32-76.50]
+    co_op_b_source <= bits(_356, 0, 0) @[serv/rtl/serv_decode.v:233.9-233.23]
+    co_alu_rd_sel <= cat(bits(_355, 0, 0), cat(bits(_354, 0, 0), bits(_353, 0, 0))) @[serv/rtl/serv_decode.v:226.15-226.28]
+    co_immdec_en <= cat(bits(_349, 0, 0), cat(bits(_350, 0, 0), cat(bits(_351, 0, 0), bits(_352, 0, 0)))) @[serv/rtl/serv_decode.v:220.15-220.27]
+    co_immdec_ctrl <= cat(bits(_348, 0, 0), cat(bits(_347, 0, 0), cat(bits(_346, 0, 0), bits(_345, 0, 0)))) @[serv/rtl/serv_decode.v:210.15-210.29]
+    co_alu_bool_op <= bits(_344, 1, 0) @[serv/rtl/serv_decode.v:208.15-208.29]
+    co_mem_half <= bits(_343, 0, 0) @[serv/rtl/serv_decode.v:206.9-206.20]
+    co_mem_signed <= bits(_342, 0, 0) @[serv/rtl/serv_decode.v:205.9-205.22]
+    co_mem_cmd <= bits(_341, 0, 0) @[serv/rtl/serv_decode.v:204.9-204.19]
+    co_alu_cmp_sig <= bits(_340, 0, 0) @[serv/rtl/serv_decode.v:202.9-202.23]
+    co_alu_cmp_eq <= bits(_339, 0, 0) @[serv/rtl/serv_decode.v:200.9-200.22]
+    co_csr_addr <= bits(_338, 1, 0) @[serv/rtl/serv_decode.v:198.15-198.26]
+    co_csr_imm_en <= bits(_337, 0, 0) @[serv/rtl/serv_decode.v:197.9-197.22]
+    co_csr_d_sel <= bits(_336, 0, 0) @[serv/rtl/serv_decode.v:196.9-196.21]
+    co_csr_source <= bits(_335, 1, 0) @[serv/rtl/serv_decode.v:195.15-195.28]
+    co_csr_mcause_en <= bits(_334, 0, 0) @[serv/rtl/serv_decode.v:193.9-193.25]
+    co_csr_mie_en <= bits(_333, 0, 0) @[serv/rtl/serv_decode.v:192.9-192.22]
+    co_csr_mstatus_en <= bits(_332, 0, 0) @[serv/rtl/serv_decode.v:191.9-191.26]
+    co_csr_en <= bits(_331, 0, 0) @[serv/rtl/serv_decode.v:190.9-190.18]
+    co_rd_csr_en <= bits(_330, 0, 0) @[serv/rtl/serv_decode.v:188.9-188.21]
+    csr_valid <= bits(_329, 0, 0) @[serv/rtl/serv_decode.v:186.9-186.18]
+    co_alu_sub <= bits(_328, 0, 0) @[serv/rtl/serv_decode.v:161.9-161.19]
+    co_bufreg_sh_signed <= bits(_327, 0, 0) @[serv/rtl/serv_decode.v:149.9-149.28]
+    co_e_op <= bits(_326, 0, 0) @[serv/rtl/serv_decode.v:145.9-145.16]
+    co_ctrl_mret <= bits(_325, 0, 0) @[serv/rtl/serv_decode.v:142.9-142.21]
+    co_ebreak <= bits(_324, 0, 0) @[serv/rtl/serv_decode.v:137.9-137.18]
+    csr_op <= bits(_323, 0, 0) @[serv/rtl/serv_decode.v:133.9-133.15]
+    co_bne_or_bge <= bits(_322, 0, 0) @[serv/rtl/serv_decode.v:130.9-130.22]
+    co_sh_right <= bits(_321, 0, 0) @[serv/rtl/serv_decode.v:129.9-129.20]
+    co_rd_op <= bits(_320, 0, 0) @[serv/rtl/serv_decode.v:121.9-121.17]
+    co_ctrl_pc_rel <= bits(_319, 0, 0) @[serv/rtl/serv_decode.v:114.9-114.23]
+    co_ctrl_jal_or_jalr <= bits(_318, 0, 0) @[serv/rtl/serv_decode.v:109.9-109.28]
+    co_ctrl_utype <= bits(_317, 0, 0) @[serv/rtl/serv_decode.v:108.9-108.22]
+    co_cond_branch <= bits(_316, 0, 0) @[serv/rtl/serv_decode.v:106.9-106.23]
+    co_bufreg_clr_lsb <= bits(_315, 0, 0) @[serv/rtl/serv_decode.v:101.9-101.26]
+    co_bufreg_imm_en <= bits(_314, 0, 0) @[serv/rtl/serv_decode.v:96.9-96.25]
+    co_bufreg_rs1_en <= bits(_313, 0, 0) @[serv/rtl/serv_decode.v:95.9-95.25]
+    co_ext_funct3 <= bits(_312, 2, 0) @[serv/rtl/serv_decode.v:89.15-89.28]
+    co_rd_mem_en <= bits(_311, 0, 0) @[serv/rtl/serv_decode.v:88.9-88.21]
+    co_rd_alu_en <= bits(_310, 0, 0) @[serv/rtl/serv_decode.v:87.9-87.21]
+    co_mem_word <= bits(_309, 0, 0) @[serv/rtl/serv_decode.v:86.9-86.20]
+    co_mtval_pc <= bits(_308, 0, 0) @[serv/rtl/serv_decode.v:85.9-85.20]
+    co_dbus_en <= bits(_307, 0, 0) @[serv/rtl/serv_decode.v:84.9-84.19]
+    co_branch_op <= bits(_306, 0, 0) @[serv/rtl/serv_decode.v:83.9-83.21]
+    co_slt_or_branch <= bits(_305, 0, 0) @[serv/rtl/serv_decode.v:82.9-82.25]
+    co_shift_op <= bits(_304, 0, 0) @[serv/rtl/serv_decode.v:81.9-81.20]
+    co_two_stage_op <= bits(_303, 0, 0) @[serv/rtl/serv_decode.v:78.9-78.24]
+    co_mdu_op <= bits(_302, 0, 0) @[serv/rtl/serv_decode.v:76.9-76.18]
+
+  module serv_ctrl: @[serv/rtl/serv_ctrl.v:2.1-83.10]
+    output o_ibus_adr: UInt<32> @[serv/rtl/serv_ctrl.v:29.22-29.32]
+    output o_bad_pc: UInt<1> @[serv/rtl/serv_ctrl.v:27.22-27.30]
+    output o_rd: UInt<1> @[serv/rtl/serv_ctrl.v:26.22-26.26]
+    input i_csr_pc: UInt<1> @[serv/rtl/serv_ctrl.v:25.21-25.29]
+    input i_buf: UInt<1> @[serv/rtl/serv_ctrl.v:24.21-24.26]
+    input i_imm: UInt<1> @[serv/rtl/serv_ctrl.v:23.21-23.26]
+    input i_iscomp: UInt<1> @[serv/rtl/serv_ctrl.v:21.22-21.30]
+    input i_trap: UInt<1> @[serv/rtl/serv_ctrl.v:20.21-20.27]
+    input i_pc_rel: UInt<1> @[serv/rtl/serv_ctrl.v:19.21-19.29]
+    input i_utype: UInt<1> @[serv/rtl/serv_ctrl.v:18.21-18.28]
+    input i_jal_or_jalr: UInt<1> @[serv/rtl/serv_ctrl.v:17.21-17.34]
+    input i_jump: UInt<1> @[serv/rtl/serv_ctrl.v:16.21-16.27]
+    input i_cnt2: UInt<1> @[serv/rtl/serv_ctrl.v:14.21-14.27]
+    input i_cnt1: UInt<1> @[serv/rtl/serv_ctrl.v:13.22-13.28]
+    input i_cnt0: UInt<1> @[serv/rtl/serv_ctrl.v:12.21-12.27]
+    input i_cnt12to31: UInt<1> @[serv/rtl/serv_ctrl.v:11.21-11.32]
+    input i_pc_en: UInt<1> @[serv/rtl/serv_ctrl.v:10.21-10.28]
+    input i_rst: UInt<1> @[serv/rtl/serv_ctrl.v:8.21-8.26]
+    input clk: UInt<1> @[serv/rtl/serv_ctrl.v:7.21-7.24]
+
+    wire _ternary_serv_rtl_serv_ctrl_v_57_172_Y: UInt<1> @[serv/rtl/serv_ctrl.v:57.18-57.93]
+    wire _ternary_serv_rtl_serv_ctrl_v_57_171_Y: UInt<1> @[serv/rtl/serv_ctrl.v:57.50-57.93]
+    wire _and_serv_rtl_serv_ctrl_v_57_170_Y: UInt<1> @[serv/rtl/serv_ctrl.v:57.28-57.46]
+    wire _logic_not_serv_rtl_serv_ctrl_v_57_169_Y: UInt<1> @[serv/rtl/serv_ctrl.v:57.39-57.46]
+    wire _ternary_serv_rtl_serv_ctrl_v_80_168_Y: UInt<32> @[serv/rtl/serv_ctrl.v:80.19-80.64]
+    wire _or_serv_rtl_serv_ctrl_v_79_167_Y: UInt<1> @[serv/rtl/serv_ctrl.v:79.7-79.22]
+    wire _and_serv_rtl_serv_ctrl_v_73_166_Y: UInt<1> @[serv/rtl/serv_ctrl.v:73.30-73.57]
+    wire _and_serv_rtl_serv_ctrl_v_72_165_Y: UInt<1> @[serv/rtl/serv_ctrl.v:72.25-72.47]
+    wire _0_pc_plus_offset_cy_r_0_0_: UInt<1> @[serv/rtl/serv_ctrl.v:71.4-82.7]
+    wire _0_pc_plus_4_cy_r_0_0_: UInt<1> @[serv/rtl/serv_ctrl.v:71.4-82.7]
+    wire _0_o_ibus_adr_31_0_: UInt<32> @[serv/rtl/serv_ctrl.v:71.4-82.7]
+    wire _and_serv_rtl_serv_ctrl_v_67_163_Y: UInt<1> @[serv/rtl/serv_ctrl.v:67.36-67.60]
+    wire _logic_not_serv_rtl_serv_ctrl_v_67_162_Y: UInt<1> @[serv/rtl/serv_ctrl.v:67.53-67.60]
+    wire _add_serv_rtl_serv_ctrl_v_65_161_Y: UInt<2> @[serv/rtl/serv_ctrl.v:65.48-65.85]
+    wire _add_serv_rtl_serv_ctrl_v_65_160_Y: UInt<2> @[serv/rtl/serv_ctrl.v:65.48-65.65]
+    wire _ternary_serv_rtl_serv_ctrl_v_64_159_Y: UInt<1> @[serv/rtl/serv_ctrl.v:64.22-64.60]
+    wire _and_serv_rtl_serv_ctrl_v_64_158_Y: UInt<1> @[serv/rtl/serv_ctrl.v:64.33-64.52]
+    wire _and_serv_rtl_serv_ctrl_v_63_157_Y: UInt<1> @[serv/rtl/serv_ctrl.v:63.22-63.35]
+    wire _or_serv_rtl_serv_ctrl_v_61_156_Y: UInt<1> @[serv/rtl/serv_ctrl.v:61.19-61.83]
+    wire _and_serv_rtl_serv_ctrl_v_61_155_Y: UInt<1> @[serv/rtl/serv_ctrl.v:61.57-61.82]
+    wire _and_serv_rtl_serv_ctrl_v_61_154_Y: UInt<1> @[serv/rtl/serv_ctrl.v:61.20-61.52]
+    wire _add_serv_rtl_serv_ctrl_v_53_153_Y: UInt<2> @[serv/rtl/serv_ctrl.v:53.38-53.62]
+    wire _add_serv_rtl_serv_ctrl_v_53_152_Y: UInt<2> @[serv/rtl/serv_ctrl.v:53.38-53.47]
+    wire _ternary_serv_rtl_serv_ctrl_v_49_151_Y: UInt<1> @[serv/rtl/serv_ctrl.v:49.27-49.53]
+    wire offset_b: UInt<1> @[serv/rtl/serv_ctrl.v:45.15-45.23]
+    wire offset_a: UInt<1> @[serv/rtl/serv_ctrl.v:44.15-44.23]
+    wire new_pc: UInt<1> @[serv/rtl/serv_ctrl.v:42.15-42.21]
+    wire pc: UInt<1> @[serv/rtl/serv_ctrl.v:40.15-40.17]
+    wire plus_4: UInt<1> @[serv/rtl/serv_ctrl.v:38.15-38.21]
+    wire pc_plus_offset_aligned: UInt<1> @[serv/rtl/serv_ctrl.v:37.15-37.37]
+    wire pc_plus_offset_cy_r: UInt<1> @[serv/rtl/serv_ctrl.v:36.15-36.34]
+    wire pc_plus_offset_cy: UInt<1> @[serv/rtl/serv_ctrl.v:35.15-35.32]
+    wire pc_plus_offset: UInt<1> @[serv/rtl/serv_ctrl.v:34.15-34.29]
+    wire pc_plus_4_cy_r: UInt<1> @[serv/rtl/serv_ctrl.v:33.15-33.29]
+    wire pc_plus_4_cy: UInt<1> @[serv/rtl/serv_ctrl.v:32.15-32.27]
+    wire pc_plus_4: UInt<1> @[serv/rtl/serv_ctrl.v:31.15-31.24]
+    wire _ternary_serv_rtl_serv_ctrl_v_57_172: UInt<1> @[serv/rtl/serv_ctrl.v:57.18-57.93]
+    wire _ternary_serv_rtl_serv_ctrl_v_57_171: UInt<1> @[serv/rtl/serv_ctrl.v:57.50-57.93]
+    wire _and_serv_rtl_serv_ctrl_v_57_170: UInt<1> @[serv/rtl/serv_ctrl.v:57.28-57.46]
+    wire _logic_not_serv_rtl_serv_ctrl_v_57_169: UInt<1> @[serv/rtl/serv_ctrl.v:57.39-57.46]
+    wire _ternary_serv_rtl_serv_ctrl_v_80_168: UInt<32> @[serv/rtl/serv_ctrl.v:80.19-80.64]
+    wire _or_serv_rtl_serv_ctrl_v_79_167: UInt<1> @[serv/rtl/serv_ctrl.v:79.7-79.22]
+    wire _and_serv_rtl_serv_ctrl_v_73_166: UInt<1> @[serv/rtl/serv_ctrl.v:73.30-73.57]
+    wire _and_serv_rtl_serv_ctrl_v_72_165: UInt<1> @[serv/rtl/serv_ctrl.v:72.25-72.47]
+    wire _and_serv_rtl_serv_ctrl_v_67_163: UInt<1> @[serv/rtl/serv_ctrl.v:67.36-67.60]
+    wire _logic_not_serv_rtl_serv_ctrl_v_67_162: UInt<1> @[serv/rtl/serv_ctrl.v:67.53-67.60]
+    wire _add_serv_rtl_serv_ctrl_v_65_161: UInt<2> @[serv/rtl/serv_ctrl.v:65.48-65.85]
+    wire _add_serv_rtl_serv_ctrl_v_65_160: UInt<2> @[serv/rtl/serv_ctrl.v:65.48-65.65]
+    wire _ternary_serv_rtl_serv_ctrl_v_64_159: UInt<1> @[serv/rtl/serv_ctrl.v:64.22-64.60]
+    wire _and_serv_rtl_serv_ctrl_v_64_158: UInt<1> @[serv/rtl/serv_ctrl.v:64.33-64.52]
+    wire _and_serv_rtl_serv_ctrl_v_63_157: UInt<1> @[serv/rtl/serv_ctrl.v:63.22-63.35]
+    wire _or_serv_rtl_serv_ctrl_v_61_156: UInt<1> @[serv/rtl/serv_ctrl.v:61.19-61.83]
+    wire _and_serv_rtl_serv_ctrl_v_61_155: UInt<1> @[serv/rtl/serv_ctrl.v:61.57-61.82]
+    wire _and_serv_rtl_serv_ctrl_v_61_154: UInt<1> @[serv/rtl/serv_ctrl.v:61.20-61.52]
+    wire _add_serv_rtl_serv_ctrl_v_53_153: UInt<2> @[serv/rtl/serv_ctrl.v:53.38-53.62]
+    wire _add_serv_rtl_serv_ctrl_v_53_152: UInt<2> @[serv/rtl/serv_ctrl.v:53.38-53.47]
+    wire _ternary_serv_rtl_serv_ctrl_v_49_151: UInt<1> @[serv/rtl/serv_ctrl.v:49.27-49.53]
+    wire _463: UInt<1>
+    wire _464: UInt<1>
+    wire _465: UInt<1>
+    wire _466: UInt<2>
+    wire _467: UInt<1>
+    wire _468: UInt<1>
+    wire _469: UInt<1>
+    wire _470: UInt<2>
+    wire _471: UInt<1>
+    wire _472: UInt<1>
+    _0_pc_plus_offset_cy_r_0_0_ is invalid
+    _0_pc_plus_4_cy_r_0_0_ is invalid
+    _0_o_ibus_adr_31_0_ is invalid
+    pc_plus_offset_cy_r is invalid
+    pc_plus_4_cy_r is invalid
+    o_ibus_adr is invalid
+
+
+    _ternary_serv_rtl_serv_ctrl_v_57_172 <= mux(i_trap, _and_serv_rtl_serv_ctrl_v_57_170_Y, _ternary_serv_rtl_serv_ctrl_v_57_171_Y) @[serv/rtl/serv_ctrl.v:57.18-57.93]
+    _ternary_serv_rtl_serv_ctrl_v_57_171 <= mux(i_jump, pc_plus_offset_aligned, pc_plus_4) @[serv/rtl/serv_ctrl.v:57.50-57.93]
+    _and_serv_rtl_serv_ctrl_v_57_170 <= and(i_csr_pc, asUInt(_logic_not_serv_rtl_serv_ctrl_v_57_169_Y)) @[serv/rtl/serv_ctrl.v:57.28-57.46]
+    _logic_not_serv_rtl_serv_ctrl_v_57_169 <= eq(i_cnt0, UInt(0)) @[serv/rtl/serv_ctrl.v:57.39-57.46]
+    _ternary_serv_rtl_serv_ctrl_v_80_168 <= mux(i_rst, UInt<32>("h00000000"), cat(new_pc, bits(o_ibus_adr, 31, 1))) @[serv/rtl/serv_ctrl.v:80.19-80.64]
+    _or_serv_rtl_serv_ctrl_v_79_167 <= or(i_pc_en, asUInt(i_rst)) @[serv/rtl/serv_ctrl.v:79.7-79.22]
+    _and_serv_rtl_serv_ctrl_v_73_166 <= and(i_pc_en, asUInt(pc_plus_offset_cy)) @[serv/rtl/serv_ctrl.v:73.30-73.57]
+    _and_serv_rtl_serv_ctrl_v_72_165 <= and(i_pc_en, asUInt(pc_plus_4_cy)) @[serv/rtl/serv_ctrl.v:72.25-72.47]
+    _and_serv_rtl_serv_ctrl_v_67_163 <= and(pc_plus_offset, asUInt(_logic_not_serv_rtl_serv_ctrl_v_67_162_Y)) @[serv/rtl/serv_ctrl.v:67.36-67.60]
+    _logic_not_serv_rtl_serv_ctrl_v_67_162 <= eq(i_cnt0, UInt(0)) @[serv/rtl/serv_ctrl.v:67.53-67.60]
+    _add_serv_rtl_serv_ctrl_v_65_161 <= add(_add_serv_rtl_serv_ctrl_v_65_160_Y, asUInt(pad(pc_plus_offset_cy_r, 2))) @[serv/rtl/serv_ctrl.v:65.48-65.85]
+    _add_serv_rtl_serv_ctrl_v_65_160 <= add(pad(offset_a, 2), asUInt(pad(offset_b, 2))) @[serv/rtl/serv_ctrl.v:65.48-65.65]
+    _ternary_serv_rtl_serv_ctrl_v_64_159 <= mux(i_utype, _and_serv_rtl_serv_ctrl_v_64_158_Y, i_buf) @[serv/rtl/serv_ctrl.v:64.22-64.60]
+    _and_serv_rtl_serv_ctrl_v_64_158 <= and(i_imm, asUInt(i_cnt12to31)) @[serv/rtl/serv_ctrl.v:64.33-64.52]
+    _and_serv_rtl_serv_ctrl_v_63_157 <= and(i_pc_rel, asUInt(pc)) @[serv/rtl/serv_ctrl.v:63.22-63.35]
+    _or_serv_rtl_serv_ctrl_v_61_156 <= or(_and_serv_rtl_serv_ctrl_v_61_154_Y, asUInt(_and_serv_rtl_serv_ctrl_v_61_155_Y)) @[serv/rtl/serv_ctrl.v:61.19-61.83]
+    _and_serv_rtl_serv_ctrl_v_61_155 <= and(pc_plus_4, asUInt(i_jal_or_jalr)) @[serv/rtl/serv_ctrl.v:61.57-61.82]
+    _and_serv_rtl_serv_ctrl_v_61_154 <= and(i_utype, asUInt(pc_plus_offset_aligned)) @[serv/rtl/serv_ctrl.v:61.20-61.52]
+    _add_serv_rtl_serv_ctrl_v_53_153 <= add(_add_serv_rtl_serv_ctrl_v_53_152_Y, asUInt(pad(pc_plus_4_cy_r, 2))) @[serv/rtl/serv_ctrl.v:53.38-53.62]
+    _add_serv_rtl_serv_ctrl_v_53_152 <= add(pad(pc, 2), asUInt(pad(plus_4, 2))) @[serv/rtl/serv_ctrl.v:53.38-53.47]
+    _ternary_serv_rtl_serv_ctrl_v_49_151 <= mux(i_iscomp, i_cnt1, i_cnt2) @[serv/rtl/serv_ctrl.v:49.27-49.53]
+    _463 <= bits(o_ibus_adr, 0, 0)
+    _464 <= _ternary_serv_rtl_serv_ctrl_v_49_151_Y
+    _465 <= pc_plus_offset_aligned
+    _466 <= _add_serv_rtl_serv_ctrl_v_53_153_Y
+    _467 <= _or_serv_rtl_serv_ctrl_v_61_156_Y
+    _468 <= _and_serv_rtl_serv_ctrl_v_63_157_Y
+    _469 <= _ternary_serv_rtl_serv_ctrl_v_64_159_Y
+    _470 <= _add_serv_rtl_serv_ctrl_v_65_161_Y
+    _471 <= _and_serv_rtl_serv_ctrl_v_67_163_Y
+    _472 <= _ternary_serv_rtl_serv_ctrl_v_57_172_Y
+
+    _ternary_serv_rtl_serv_ctrl_v_57_172_Y <= bits(_ternary_serv_rtl_serv_ctrl_v_57_172, 0, 0) @[serv/rtl/serv_ctrl.v:57.18-57.93]
+    _ternary_serv_rtl_serv_ctrl_v_57_171_Y <= bits(_ternary_serv_rtl_serv_ctrl_v_57_171, 0, 0) @[serv/rtl/serv_ctrl.v:57.50-57.93]
+    _and_serv_rtl_serv_ctrl_v_57_170_Y <= bits(_and_serv_rtl_serv_ctrl_v_57_170, 0, 0) @[serv/rtl/serv_ctrl.v:57.28-57.46]
+    _logic_not_serv_rtl_serv_ctrl_v_57_169_Y <= bits(_logic_not_serv_rtl_serv_ctrl_v_57_169, 0, 0) @[serv/rtl/serv_ctrl.v:57.39-57.46]
+    _ternary_serv_rtl_serv_ctrl_v_80_168_Y <= bits(_ternary_serv_rtl_serv_ctrl_v_80_168, 31, 0) @[serv/rtl/serv_ctrl.v:80.19-80.64]
+    _or_serv_rtl_serv_ctrl_v_79_167_Y <= bits(_or_serv_rtl_serv_ctrl_v_79_167, 0, 0) @[serv/rtl/serv_ctrl.v:79.7-79.22]
+    _and_serv_rtl_serv_ctrl_v_73_166_Y <= bits(_and_serv_rtl_serv_ctrl_v_73_166, 0, 0) @[serv/rtl/serv_ctrl.v:73.30-73.57]
+    _and_serv_rtl_serv_ctrl_v_72_165_Y <= bits(_and_serv_rtl_serv_ctrl_v_72_165, 0, 0) @[serv/rtl/serv_ctrl.v:72.25-72.47]
+    _and_serv_rtl_serv_ctrl_v_67_163_Y <= bits(_and_serv_rtl_serv_ctrl_v_67_163, 0, 0) @[serv/rtl/serv_ctrl.v:67.36-67.60]
+    _logic_not_serv_rtl_serv_ctrl_v_67_162_Y <= bits(_logic_not_serv_rtl_serv_ctrl_v_67_162, 0, 0) @[serv/rtl/serv_ctrl.v:67.53-67.60]
+    _add_serv_rtl_serv_ctrl_v_65_161_Y <= bits(_add_serv_rtl_serv_ctrl_v_65_161, 1, 0) @[serv/rtl/serv_ctrl.v:65.48-65.85]
+    _add_serv_rtl_serv_ctrl_v_65_160_Y <= bits(_add_serv_rtl_serv_ctrl_v_65_160, 1, 0) @[serv/rtl/serv_ctrl.v:65.48-65.65]
+    _ternary_serv_rtl_serv_ctrl_v_64_159_Y <= bits(_ternary_serv_rtl_serv_ctrl_v_64_159, 0, 0) @[serv/rtl/serv_ctrl.v:64.22-64.60]
+    _and_serv_rtl_serv_ctrl_v_64_158_Y <= bits(_and_serv_rtl_serv_ctrl_v_64_158, 0, 0) @[serv/rtl/serv_ctrl.v:64.33-64.52]
+    _and_serv_rtl_serv_ctrl_v_63_157_Y <= bits(_and_serv_rtl_serv_ctrl_v_63_157, 0, 0) @[serv/rtl/serv_ctrl.v:63.22-63.35]
+    _or_serv_rtl_serv_ctrl_v_61_156_Y <= bits(_or_serv_rtl_serv_ctrl_v_61_156, 0, 0) @[serv/rtl/serv_ctrl.v:61.19-61.83]
+    _and_serv_rtl_serv_ctrl_v_61_155_Y <= bits(_and_serv_rtl_serv_ctrl_v_61_155, 0, 0) @[serv/rtl/serv_ctrl.v:61.57-61.82]
+    _and_serv_rtl_serv_ctrl_v_61_154_Y <= bits(_and_serv_rtl_serv_ctrl_v_61_154, 0, 0) @[serv/rtl/serv_ctrl.v:61.20-61.52]
+    _add_serv_rtl_serv_ctrl_v_53_153_Y <= bits(_add_serv_rtl_serv_ctrl_v_53_153, 1, 0) @[serv/rtl/serv_ctrl.v:53.38-53.62]
+    _add_serv_rtl_serv_ctrl_v_53_152_Y <= bits(_add_serv_rtl_serv_ctrl_v_53_152, 1, 0) @[serv/rtl/serv_ctrl.v:53.38-53.47]
+    _ternary_serv_rtl_serv_ctrl_v_49_151_Y <= bits(_ternary_serv_rtl_serv_ctrl_v_49_151, 0, 0) @[serv/rtl/serv_ctrl.v:49.27-49.53]
+    offset_b <= bits(_469, 0, 0) @[serv/rtl/serv_ctrl.v:45.15-45.23]
+    offset_a <= bits(_468, 0, 0) @[serv/rtl/serv_ctrl.v:44.15-44.23]
+    new_pc <= bits(_472, 0, 0) @[serv/rtl/serv_ctrl.v:42.15-42.21]
+    pc <= bits(_463, 0, 0) @[serv/rtl/serv_ctrl.v:40.15-40.17]
+    plus_4 <= bits(_464, 0, 0) @[serv/rtl/serv_ctrl.v:38.15-38.21]
+    pc_plus_offset_aligned <= bits(_471, 0, 0) @[serv/rtl/serv_ctrl.v:37.15-37.37]
+    pc_plus_offset_cy <= bits(_470, 1, 1) @[serv/rtl/serv_ctrl.v:35.15-35.32]
+    pc_plus_offset <= bits(_470, 0, 0) @[serv/rtl/serv_ctrl.v:34.15-34.29]
+    pc_plus_4_cy <= bits(_466, 1, 1) @[serv/rtl/serv_ctrl.v:32.15-32.27]
+    pc_plus_4 <= bits(_466, 0, 0) @[serv/rtl/serv_ctrl.v:31.15-31.24]
+    o_bad_pc <= bits(_465, 0, 0) @[serv/rtl/serv_ctrl.v:27.22-27.30]
+    o_rd <= bits(_467, 0, 0) @[serv/rtl/serv_ctrl.v:26.22-26.26]
+
+  module serv_csr: @[serv/rtl/serv_csr.v:2.1-142.10]
+    output o_q: UInt<1> @[serv/rtl/serv_csr.v:33.21-33.24]
+    input i_rs1: UInt<1> @[serv/rtl/serv_csr.v:32.20-32.25]
+    input i_csr_imm: UInt<1> @[serv/rtl/serv_csr.v:31.20-31.29]
+    output o_csr_in: UInt<1> @[serv/rtl/serv_csr.v:30.21-30.29]
+    input i_rf_csr_out: UInt<1> @[serv/rtl/serv_csr.v:29.20-29.32]
+    input i_csr_d_sel: UInt<1> @[serv/rtl/serv_csr.v:27.20-27.31]
+    input i_mret: UInt<1> @[serv/rtl/serv_csr.v:26.20-26.26]
+    input i_csr_source: UInt<2> @[serv/rtl/serv_csr.v:25.21-25.33]
+    input i_mcause_en: UInt<1> @[serv/rtl/serv_csr.v:24.20-24.31]
+    input i_mie_en: UInt<1> @[serv/rtl/serv_csr.v:23.20-23.28]
+    input i_mstatus_en: UInt<1> @[serv/rtl/serv_csr.v:22.20-22.32]
+    input i_mem_cmd: UInt<1> @[serv/rtl/serv_csr.v:21.20-21.29]
+    input i_ebreak: UInt<1> @[serv/rtl/serv_csr.v:20.20-20.28]
+    input i_e_op: UInt<1> @[serv/rtl/serv_csr.v:19.20-19.26]
+    output o_new_irq: UInt<1> @[serv/rtl/serv_csr.v:17.20-17.29]
+    input i_trap: UInt<1> @[serv/rtl/serv_csr.v:16.20-16.26]
+    input i_mtip: UInt<1> @[serv/rtl/serv_csr.v:15.20-15.26]
+    input i_mem_op: UInt<1> @[serv/rtl/serv_csr.v:14.20-14.28]
+    input i_cnt_done: UInt<1> @[serv/rtl/serv_csr.v:13.20-13.30]
+    input i_cnt7: UInt<1> @[serv/rtl/serv_csr.v:12.20-12.26]
+    input i_cnt3: UInt<1> @[serv/rtl/serv_csr.v:11.20-11.26]
+    input i_cnt0to3: UInt<1> @[serv/rtl/serv_csr.v:10.20-10.29]
+    input i_en: UInt<1> @[serv/rtl/serv_csr.v:9.20-9.24]
+    input i_trig_irq: UInt<1> @[serv/rtl/serv_csr.v:8.20-8.30]
+    input i_rst: UInt<1> @[serv/rtl/serv_csr.v:6.20-6.25]
+    input i_clk: UInt<1> @[serv/rtl/serv_csr.v:5.20-5.25]
+
+    wire _ternary_serv_rtl_serv_csr_v_134_150_Y: UInt<1> @[serv/rtl/serv_csr.v:134.14-134.41]
+    wire _or_serv_rtl_serv_csr_v_133_149_Y: UInt<1> @[serv/rtl/serv_csr.v:133.11-133.44]
+    wire _and_serv_rtl_serv_csr_v_133_148_Y: UInt<1> @[serv/rtl/serv_csr.v:133.11-133.35]
+    wire _or_serv_rtl_serv_csr_v_131_147_Y: UInt<1> @[serv/rtl/serv_csr.v:131.19-131.64]
+    wire _and_serv_rtl_serv_csr_v_131_146_Y: UInt<1> @[serv/rtl/serv_csr.v:131.41-131.63]
+    wire _logic_not_serv_rtl_serv_csr_v_131_145_Y: UInt<1> @[serv/rtl/serv_csr.v:131.41-131.48]
+    wire _or_serv_rtl_serv_csr_v_131_144_Y: UInt<1> @[serv/rtl/serv_csr.v:131.19-131.37]
+    wire _or_serv_rtl_serv_csr_v_130_143_Y: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.89]
+    wire _and_serv_rtl_serv_csr_v_130_142_Y: UInt<1> @[serv/rtl/serv_csr.v:130.66-130.88]
+    wire _logic_not_serv_rtl_serv_csr_v_130_141_Y: UInt<1> @[serv/rtl/serv_csr.v:130.66-130.73]
+    wire _or_serv_rtl_serv_csr_v_130_140_Y: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.62]
+    wire _and_serv_rtl_serv_csr_v_130_139_Y: UInt<1> @[serv/rtl/serv_csr.v:130.41-130.61]
+    wire _or_serv_rtl_serv_csr_v_130_138_Y: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.37]
+    wire _or_serv_rtl_serv_csr_v_129_137_Y: UInt<1> @[serv/rtl/serv_csr.v:129.19-129.66]
+    wire _and_serv_rtl_serv_csr_v_129_136_Y: UInt<1> @[serv/rtl/serv_csr.v:129.43-129.65]
+    wire _logic_not_serv_rtl_serv_csr_v_129_135_Y: UInt<1> @[serv/rtl/serv_csr.v:129.43-129.50]
+    wire _or_serv_rtl_serv_csr_v_129_134_Y: UInt<1> @[serv/rtl/serv_csr.v:129.19-129.39]
+    wire _or_serv_rtl_serv_csr_v_128_133_Y: UInt<1> @[serv/rtl/serv_csr.v:128.19-128.60]
+    wire _and_serv_rtl_serv_csr_v_128_132_Y: UInt<1> @[serv/rtl/serv_csr.v:128.43-128.59]
+    wire _logic_not_serv_rtl_serv_csr_v_128_131_Y: UInt<1> @[serv/rtl/serv_csr.v:128.43-128.50]
+    wire _and_serv_rtl_serv_csr_v_128_130_Y: UInt<1> @[serv/rtl/serv_csr.v:128.20-128.38]
+    wire _logic_not_serv_rtl_serv_csr_v_128_129_Y: UInt<1> @[serv/rtl/serv_csr.v:128.29-128.38]
+    wire _or_serv_rtl_serv_csr_v_127_128_Y: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.65]
+    wire _and_serv_rtl_serv_csr_v_127_127_Y: UInt<1> @[serv/rtl/serv_csr.v:127.45-127.64]
+    wire _and_serv_rtl_serv_csr_v_127_126_Y: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.41]
+    wire _and_serv_rtl_serv_csr_v_127_125_Y: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.29]
+    wire _and_serv_rtl_serv_csr_v_102_124_Y: UInt<1> @[serv/rtl/serv_csr.v:102.11-102.30]
+    wire _and_serv_rtl_serv_csr_v_96_123_Y: UInt<1> @[serv/rtl/serv_csr.v:96.17-96.60]
+    wire _ternary_serv_rtl_serv_csr_v_96_122_Y: UInt<1> @[serv/rtl/serv_csr.v:96.28-96.59]
+    wire _logic_not_serv_rtl_serv_csr_v_96_121_Y: UInt<1> @[serv/rtl/serv_csr.v:96.17-96.24]
+    wire _or_serv_rtl_serv_csr_v_95_120_Y: UInt<1> @[serv/rtl/serv_csr.v:95.11-95.65]
+    wire _or_serv_rtl_serv_csr_v_95_119_Y: UInt<1> @[serv/rtl/serv_csr.v:95.11-95.56]
+    wire _and_serv_rtl_serv_csr_v_95_118_Y: UInt<1> @[serv/rtl/serv_csr.v:95.35-95.56]
+    wire _and_serv_rtl_serv_csr_v_95_117_Y: UInt<1> @[serv/rtl/serv_csr.v:95.12-95.31]
+    wire _and_serv_rtl_serv_csr_v_82_116_Y: UInt<1> @[serv/rtl/serv_csr.v:82.11-82.28]
+    wire _and_serv_rtl_serv_csr_v_79_115_Y: UInt<1> @[serv/rtl/serv_csr.v:79.18-79.42]
+    wire _logic_not_serv_rtl_serv_csr_v_79_114_Y: UInt<1> @[serv/rtl/serv_csr.v:79.30-79.42]
+    wire _0_timer_irq_r_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_mcause3_0_3_0_: UInt<4> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_mcause31_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_mie_mtie_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_mstatus_mpie_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_mstatus_mie_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _0_o_new_irq_0_0_: UInt<1> @[serv/rtl/serv_csr.v:76.4-140.7]
+    wire _ternary_serv_rtl_serv_csr_v_70_112_Y: UInt<1> @[serv/rtl/serv_csr.v:70.20-72.12]
+    wire _ternary_serv_rtl_serv_csr_v_71_111_Y: UInt<1> @[serv/rtl/serv_csr.v:71.6-72.12]
+    wire _and_serv_rtl_serv_csr_v_68_110_Y: UInt<1> @[serv/rtl/serv_csr.v:68.22-68.53]
+    wire _and_serv_rtl_serv_csr_v_68_109_Y: UInt<1> @[serv/rtl/serv_csr.v:68.22-68.42]
+    wire _or_serv_rtl_serv_csr_v_62_108_Y: UInt<1> @[serv/rtl/serv_csr.v:62.21-64.36]
+    wire _and_serv_rtl_serv_csr_v_64_107_Y: UInt<1> @[serv/rtl/serv_csr.v:64.8-64.35]
+    wire _and_serv_rtl_serv_csr_v_64_106_Y: UInt<1> @[serv/rtl/serv_csr.v:64.8-64.26]
+    wire _or_serv_rtl_serv_csr_v_62_105_Y: UInt<1> @[serv/rtl/serv_csr.v:62.21-63.19]
+    wire _and_serv_rtl_serv_csr_v_62_104_Y: UInt<1> @[serv/rtl/serv_csr.v:62.22-62.57]
+    wire _and_serv_rtl_serv_csr_v_62_103_Y: UInt<1> @[serv/rtl/serv_csr.v:62.22-62.48]
+    wire _ternary_serv_rtl_serv_csr_v_56_102_Y: UInt<1> @[serv/rtl/serv_csr.v:56.20-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_57_101_Y: UInt<1> @[serv/rtl/serv_csr.v:57.6-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_58_100_Y: UInt<1> @[serv/rtl/serv_csr.v:58.6-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_59_99_Y: UInt<1> @[serv/rtl/serv_csr.v:59.6-60.10]
+    wire _eq_serv_rtl_serv_csr_v_59_98_Y: UInt<1> @[serv/rtl/serv_csr.v:59.7-59.37]
+    wire _and_serv_rtl_serv_csr_v_58_97_Y: UInt<1> @[serv/rtl/serv_csr.v:58.41-58.53]
+    wire _not_serv_rtl_serv_csr_v_58_96_Y: UInt<1> @[serv/rtl/serv_csr.v:58.51-58.53]
+    wire _eq_serv_rtl_serv_csr_v_58_95_Y: UInt<1> @[serv/rtl/serv_csr.v:58.7-58.37]
+    wire _or_serv_rtl_serv_csr_v_57_94_Y: UInt<1> @[serv/rtl/serv_csr.v:57.41-57.52]
+    wire _eq_serv_rtl_serv_csr_v_57_93_Y: UInt<1> @[serv/rtl/serv_csr.v:57.7-57.37]
+    wire _eq_serv_rtl_serv_csr_v_56_92_Y: UInt<1> @[serv/rtl/serv_csr.v:56.21-56.51]
+    wire _ternary_serv_rtl_serv_csr_v_54_91_Y: UInt<1> @[serv/rtl/serv_csr.v:54.14-54.45]
+    wire timer_irq: UInt<1> @[serv/rtl/serv_csr.v:68.10-68.19]
+    wire d: UInt<1> @[serv/rtl/serv_csr.v:54.10-54.11]
+    wire timer_irq_r: UInt<1> @[serv/rtl/serv_csr.v:52.10-52.21]
+    wire csr_out: UInt<1> @[serv/rtl/serv_csr.v:50.10-50.17]
+    wire csr_in: UInt<1> @[serv/rtl/serv_csr.v:49.10-49.16]
+    wire mcause: UInt<1> @[serv/rtl/serv_csr.v:47.10-47.16]
+    wire mcause3_0: UInt<4> @[serv/rtl/serv_csr.v:46.15-46.24]
+    wire mcause31: UInt<1> @[serv/rtl/serv_csr.v:45.10-45.18]
+    wire mie_mtie: UInt<1> @[serv/rtl/serv_csr.v:43.14-43.22]
+    wire mstatus_mpie: UInt<1> @[serv/rtl/serv_csr.v:42.14-42.26]
+    wire mstatus_mie: UInt<1> @[serv/rtl/serv_csr.v:41.14-41.25]
+    wire _ternary_serv_rtl_serv_csr_v_134_150: UInt<1> @[serv/rtl/serv_csr.v:134.14-134.41]
+    wire _or_serv_rtl_serv_csr_v_133_149: UInt<1> @[serv/rtl/serv_csr.v:133.11-133.44]
+    wire _and_serv_rtl_serv_csr_v_133_148: UInt<1> @[serv/rtl/serv_csr.v:133.11-133.35]
+    wire _or_serv_rtl_serv_csr_v_131_147: UInt<1> @[serv/rtl/serv_csr.v:131.19-131.64]
+    wire _and_serv_rtl_serv_csr_v_131_146: UInt<1> @[serv/rtl/serv_csr.v:131.41-131.63]
+    wire _logic_not_serv_rtl_serv_csr_v_131_145: UInt<1> @[serv/rtl/serv_csr.v:131.41-131.48]
+    wire _or_serv_rtl_serv_csr_v_131_144: UInt<1> @[serv/rtl/serv_csr.v:131.19-131.37]
+    wire _or_serv_rtl_serv_csr_v_130_143: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.89]
+    wire _and_serv_rtl_serv_csr_v_130_142: UInt<1> @[serv/rtl/serv_csr.v:130.66-130.88]
+    wire _logic_not_serv_rtl_serv_csr_v_130_141: UInt<1> @[serv/rtl/serv_csr.v:130.66-130.73]
+    wire _or_serv_rtl_serv_csr_v_130_140: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.62]
+    wire _and_serv_rtl_serv_csr_v_130_139: UInt<1> @[serv/rtl/serv_csr.v:130.41-130.61]
+    wire _or_serv_rtl_serv_csr_v_130_138: UInt<1> @[serv/rtl/serv_csr.v:130.19-130.37]
+    wire _or_serv_rtl_serv_csr_v_129_137: UInt<1> @[serv/rtl/serv_csr.v:129.19-129.66]
+    wire _and_serv_rtl_serv_csr_v_129_136: UInt<1> @[serv/rtl/serv_csr.v:129.43-129.65]
+    wire _logic_not_serv_rtl_serv_csr_v_129_135: UInt<1> @[serv/rtl/serv_csr.v:129.43-129.50]
+    wire _or_serv_rtl_serv_csr_v_129_134: UInt<1> @[serv/rtl/serv_csr.v:129.19-129.39]
+    wire _or_serv_rtl_serv_csr_v_128_133: UInt<1> @[serv/rtl/serv_csr.v:128.19-128.60]
+    wire _and_serv_rtl_serv_csr_v_128_132: UInt<1> @[serv/rtl/serv_csr.v:128.43-128.59]
+    wire _logic_not_serv_rtl_serv_csr_v_128_131: UInt<1> @[serv/rtl/serv_csr.v:128.43-128.50]
+    wire _and_serv_rtl_serv_csr_v_128_130: UInt<1> @[serv/rtl/serv_csr.v:128.20-128.38]
+    wire _logic_not_serv_rtl_serv_csr_v_128_129: UInt<1> @[serv/rtl/serv_csr.v:128.29-128.38]
+    wire _or_serv_rtl_serv_csr_v_127_128: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.65]
+    wire _and_serv_rtl_serv_csr_v_127_127: UInt<1> @[serv/rtl/serv_csr.v:127.45-127.64]
+    wire _and_serv_rtl_serv_csr_v_127_126: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.41]
+    wire _and_serv_rtl_serv_csr_v_127_125: UInt<1> @[serv/rtl/serv_csr.v:127.11-127.29]
+    wire _and_serv_rtl_serv_csr_v_102_124: UInt<1> @[serv/rtl/serv_csr.v:102.11-102.30]
+    wire _and_serv_rtl_serv_csr_v_96_123: UInt<1> @[serv/rtl/serv_csr.v:96.17-96.60]
+    wire _ternary_serv_rtl_serv_csr_v_96_122: UInt<1> @[serv/rtl/serv_csr.v:96.28-96.59]
+    wire _logic_not_serv_rtl_serv_csr_v_96_121: UInt<1> @[serv/rtl/serv_csr.v:96.17-96.24]
+    wire _or_serv_rtl_serv_csr_v_95_120: UInt<1> @[serv/rtl/serv_csr.v:95.11-95.65]
+    wire _or_serv_rtl_serv_csr_v_95_119: UInt<1> @[serv/rtl/serv_csr.v:95.11-95.56]
+    wire _and_serv_rtl_serv_csr_v_95_118: UInt<1> @[serv/rtl/serv_csr.v:95.35-95.56]
+    wire _and_serv_rtl_serv_csr_v_95_117: UInt<1> @[serv/rtl/serv_csr.v:95.12-95.31]
+    wire _and_serv_rtl_serv_csr_v_82_116: UInt<1> @[serv/rtl/serv_csr.v:82.11-82.28]
+    wire _and_serv_rtl_serv_csr_v_79_115: UInt<1> @[serv/rtl/serv_csr.v:79.18-79.42]
+    wire _logic_not_serv_rtl_serv_csr_v_79_114: UInt<1> @[serv/rtl/serv_csr.v:79.30-79.42]
+    wire _ternary_serv_rtl_serv_csr_v_70_112: UInt<1> @[serv/rtl/serv_csr.v:70.20-72.12]
+    wire _ternary_serv_rtl_serv_csr_v_71_111: UInt<1> @[serv/rtl/serv_csr.v:71.6-72.12]
+    wire _and_serv_rtl_serv_csr_v_68_110: UInt<1> @[serv/rtl/serv_csr.v:68.22-68.53]
+    wire _and_serv_rtl_serv_csr_v_68_109: UInt<1> @[serv/rtl/serv_csr.v:68.22-68.42]
+    wire _or_serv_rtl_serv_csr_v_62_108: UInt<1> @[serv/rtl/serv_csr.v:62.21-64.36]
+    wire _and_serv_rtl_serv_csr_v_64_107: UInt<1> @[serv/rtl/serv_csr.v:64.8-64.35]
+    wire _and_serv_rtl_serv_csr_v_64_106: UInt<1> @[serv/rtl/serv_csr.v:64.8-64.26]
+    wire _or_serv_rtl_serv_csr_v_62_105: UInt<1> @[serv/rtl/serv_csr.v:62.21-63.19]
+    wire _and_serv_rtl_serv_csr_v_62_104: UInt<1> @[serv/rtl/serv_csr.v:62.22-62.57]
+    wire _and_serv_rtl_serv_csr_v_62_103: UInt<1> @[serv/rtl/serv_csr.v:62.22-62.48]
+    wire _ternary_serv_rtl_serv_csr_v_56_102: UInt<1> @[serv/rtl/serv_csr.v:56.20-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_57_101: UInt<1> @[serv/rtl/serv_csr.v:57.6-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_58_100: UInt<1> @[serv/rtl/serv_csr.v:58.6-60.10]
+    wire _ternary_serv_rtl_serv_csr_v_59_99: UInt<1> @[serv/rtl/serv_csr.v:59.6-60.10]
+    wire _eq_serv_rtl_serv_csr_v_59_98: UInt<1> @[serv/rtl/serv_csr.v:59.7-59.37]
+    wire _and_serv_rtl_serv_csr_v_58_97: UInt<1> @[serv/rtl/serv_csr.v:58.41-58.53]
+    wire _not_serv_rtl_serv_csr_v_58_96: UInt<1> @[serv/rtl/serv_csr.v:58.51-58.53]
+    wire _eq_serv_rtl_serv_csr_v_58_95: UInt<1> @[serv/rtl/serv_csr.v:58.7-58.37]
+    wire _or_serv_rtl_serv_csr_v_57_94: UInt<1> @[serv/rtl/serv_csr.v:57.41-57.52]
+    wire _eq_serv_rtl_serv_csr_v_57_93: UInt<1> @[serv/rtl/serv_csr.v:57.7-57.37]
+    wire _eq_serv_rtl_serv_csr_v_56_92: UInt<1> @[serv/rtl/serv_csr.v:56.21-56.51]
+    wire _ternary_serv_rtl_serv_csr_v_54_91: UInt<1> @[serv/rtl/serv_csr.v:54.14-54.45]
+    wire _479: UInt<1>
+    wire _480: UInt<1>
+    wire _481: UInt<1>
+    wire _482: UInt<1>
+    wire _483: UInt<1>
+    wire _484: UInt<1>
+    wire _485: UInt<1>
+    _0_timer_irq_r_0_0_ is invalid
+    _0_mcause3_0_3_0_ is invalid
+    _0_mcause31_0_0_ is invalid
+    _0_mie_mtie_0_0_ is invalid
+    _0_mstatus_mpie_0_0_ is invalid
+    _0_mstatus_mie_0_0_ is invalid
+    _0_o_new_irq_0_0_ is invalid
+    timer_irq_r is invalid
+    mcause3_0 is invalid
+    mcause31 is invalid
+    mie_mtie is invalid
+    mstatus_mpie is invalid
+    mstatus_mie is invalid
+    o_new_irq is invalid
+
+
+    _ternary_serv_rtl_serv_csr_v_134_150 <= mux(i_trap, o_new_irq, csr_in) @[serv/rtl/serv_csr.v:134.14-134.41]
+    _or_serv_rtl_serv_csr_v_133_149 <= or(_and_serv_rtl_serv_csr_v_133_148_Y, asUInt(i_trap)) @[serv/rtl/serv_csr.v:133.11-133.44]
+    _and_serv_rtl_serv_csr_v_133_148 <= and(i_mcause_en, asUInt(i_cnt_done)) @[serv/rtl/serv_csr.v:133.11-133.35]
+    _or_serv_rtl_serv_csr_v_131_147 <= or(_or_serv_rtl_serv_csr_v_131_144_Y, asUInt(_and_serv_rtl_serv_csr_v_131_146_Y)) @[serv/rtl/serv_csr.v:131.19-131.64]
+    _and_serv_rtl_serv_csr_v_131_146 <= and(_logic_not_serv_rtl_serv_csr_v_131_145_Y, asUInt(bits(mcause3_0, 1, 1))) @[serv/rtl/serv_csr.v:131.41-131.63]
+    _logic_not_serv_rtl_serv_csr_v_131_145 <= eq(i_trap, UInt(0)) @[serv/rtl/serv_csr.v:131.41-131.48]
+    _or_serv_rtl_serv_csr_v_131_144 <= or(o_new_irq, asUInt(i_e_op)) @[serv/rtl/serv_csr.v:131.19-131.37]
+    _or_serv_rtl_serv_csr_v_130_143 <= or(_or_serv_rtl_serv_csr_v_130_140_Y, asUInt(_and_serv_rtl_serv_csr_v_130_142_Y)) @[serv/rtl/serv_csr.v:130.19-130.89]
+    _and_serv_rtl_serv_csr_v_130_142 <= and(_logic_not_serv_rtl_serv_csr_v_130_141_Y, asUInt(bits(mcause3_0, 2, 2))) @[serv/rtl/serv_csr.v:130.66-130.88]
+    _logic_not_serv_rtl_serv_csr_v_130_141 <= eq(i_trap, UInt(0)) @[serv/rtl/serv_csr.v:130.66-130.73]
+    _or_serv_rtl_serv_csr_v_130_140 <= or(_or_serv_rtl_serv_csr_v_130_138_Y, asUInt(_and_serv_rtl_serv_csr_v_130_139_Y)) @[serv/rtl/serv_csr.v:130.19-130.62]
+    _and_serv_rtl_serv_csr_v_130_139 <= and(i_mem_op, asUInt(i_mem_cmd)) @[serv/rtl/serv_csr.v:130.41-130.61]
+    _or_serv_rtl_serv_csr_v_130_138 <= or(o_new_irq, asUInt(i_e_op)) @[serv/rtl/serv_csr.v:130.19-130.37]
+    _or_serv_rtl_serv_csr_v_129_137 <= or(_or_serv_rtl_serv_csr_v_129_134_Y, asUInt(_and_serv_rtl_serv_csr_v_129_136_Y)) @[serv/rtl/serv_csr.v:129.19-129.66]
+    _and_serv_rtl_serv_csr_v_129_136 <= and(_logic_not_serv_rtl_serv_csr_v_129_135_Y, asUInt(bits(mcause3_0, 3, 3))) @[serv/rtl/serv_csr.v:129.43-129.65]
+    _logic_not_serv_rtl_serv_csr_v_129_135 <= eq(i_trap, UInt(0)) @[serv/rtl/serv_csr.v:129.43-129.50]
+    _or_serv_rtl_serv_csr_v_129_134 <= or(o_new_irq, asUInt(i_mem_op)) @[serv/rtl/serv_csr.v:129.19-129.39]
+    _or_serv_rtl_serv_csr_v_128_133 <= or(_and_serv_rtl_serv_csr_v_128_130_Y, asUInt(_and_serv_rtl_serv_csr_v_128_132_Y)) @[serv/rtl/serv_csr.v:128.19-128.60]
+    _and_serv_rtl_serv_csr_v_128_132 <= and(_logic_not_serv_rtl_serv_csr_v_128_131_Y, asUInt(csr_in)) @[serv/rtl/serv_csr.v:128.43-128.59]
+    _logic_not_serv_rtl_serv_csr_v_128_131 <= eq(i_trap, UInt(0)) @[serv/rtl/serv_csr.v:128.43-128.50]
+    _and_serv_rtl_serv_csr_v_128_130 <= and(i_e_op, asUInt(_logic_not_serv_rtl_serv_csr_v_128_129_Y)) @[serv/rtl/serv_csr.v:128.20-128.38]
+    _logic_not_serv_rtl_serv_csr_v_128_129 <= eq(i_ebreak, UInt(0)) @[serv/rtl/serv_csr.v:128.29-128.38]
+    _or_serv_rtl_serv_csr_v_127_128 <= or(_and_serv_rtl_serv_csr_v_127_126_Y, asUInt(_and_serv_rtl_serv_csr_v_127_127_Y)) @[serv/rtl/serv_csr.v:127.11-127.65]
+    _and_serv_rtl_serv_csr_v_127_127 <= and(i_trap, asUInt(i_cnt_done)) @[serv/rtl/serv_csr.v:127.45-127.64]
+    _and_serv_rtl_serv_csr_v_127_126 <= and(_and_serv_rtl_serv_csr_v_127_125_Y, asUInt(i_cnt0to3)) @[serv/rtl/serv_csr.v:127.11-127.41]
+    _and_serv_rtl_serv_csr_v_127_125 <= and(i_mcause_en, asUInt(i_en)) @[serv/rtl/serv_csr.v:127.11-127.29]
+    _and_serv_rtl_serv_csr_v_102_124 <= and(i_trap, asUInt(i_cnt_done)) @[serv/rtl/serv_csr.v:102.11-102.30]
+    _and_serv_rtl_serv_csr_v_96_123 <= and(_logic_not_serv_rtl_serv_csr_v_96_121_Y, asUInt(_ternary_serv_rtl_serv_csr_v_96_122_Y)) @[serv/rtl/serv_csr.v:96.17-96.60]
+    _ternary_serv_rtl_serv_csr_v_96_122 <= mux(i_mret, mstatus_mpie, csr_in) @[serv/rtl/serv_csr.v:96.28-96.59]
+    _logic_not_serv_rtl_serv_csr_v_96_121 <= eq(i_trap, UInt(0)) @[serv/rtl/serv_csr.v:96.17-96.24]
+    _or_serv_rtl_serv_csr_v_95_120 <= or(_or_serv_rtl_serv_csr_v_95_119_Y, asUInt(i_mret)) @[serv/rtl/serv_csr.v:95.11-95.65]
+    _or_serv_rtl_serv_csr_v_95_119 <= or(_and_serv_rtl_serv_csr_v_95_117_Y, asUInt(_and_serv_rtl_serv_csr_v_95_118_Y)) @[serv/rtl/serv_csr.v:95.11-95.56]
+    _and_serv_rtl_serv_csr_v_95_118 <= and(i_mstatus_en, asUInt(i_cnt3)) @[serv/rtl/serv_csr.v:95.35-95.56]
+    _and_serv_rtl_serv_csr_v_95_117 <= and(i_trap, asUInt(i_cnt_done)) @[serv/rtl/serv_csr.v:95.12-95.31]
+    _and_serv_rtl_serv_csr_v_82_116 <= and(i_mie_en, asUInt(i_cnt7)) @[serv/rtl/serv_csr.v:82.11-82.28]
+    _and_serv_rtl_serv_csr_v_79_115 <= and(timer_irq, asUInt(_logic_not_serv_rtl_serv_csr_v_79_114_Y)) @[serv/rtl/serv_csr.v:79.18-79.42]
+    _logic_not_serv_rtl_serv_csr_v_79_114 <= eq(timer_irq_r, UInt(0)) @[serv/rtl/serv_csr.v:79.30-79.42]
+    _ternary_serv_rtl_serv_csr_v_70_112 <= mux(i_cnt0to3, bits(mcause3_0, 0, 0), _ternary_serv_rtl_serv_csr_v_71_111_Y) @[serv/rtl/serv_csr.v:70.20-72.12]
+    _ternary_serv_rtl_serv_csr_v_71_111 <= mux(i_cnt_done, mcause31, UInt<1>("h0")) @[serv/rtl/serv_csr.v:71.6-72.12]
+    _and_serv_rtl_serv_csr_v_68_110 <= and(_and_serv_rtl_serv_csr_v_68_109_Y, asUInt(mie_mtie)) @[serv/rtl/serv_csr.v:68.22-68.53]
+    _and_serv_rtl_serv_csr_v_68_109 <= and(i_mtip, asUInt(mstatus_mie)) @[serv/rtl/serv_csr.v:68.22-68.42]
+    _or_serv_rtl_serv_csr_v_62_108 <= or(_or_serv_rtl_serv_csr_v_62_105_Y, asUInt(_and_serv_rtl_serv_csr_v_64_107_Y)) @[serv/rtl/serv_csr.v:62.21-64.36]
+    _and_serv_rtl_serv_csr_v_64_107 <= and(_and_serv_rtl_serv_csr_v_64_106_Y, asUInt(mcause)) @[serv/rtl/serv_csr.v:64.8-64.35]
+    _and_serv_rtl_serv_csr_v_64_106 <= and(i_mcause_en, asUInt(i_en)) @[serv/rtl/serv_csr.v:64.8-64.26]
+    _or_serv_rtl_serv_csr_v_62_105 <= or(_and_serv_rtl_serv_csr_v_62_104_Y, asUInt(i_rf_csr_out)) @[serv/rtl/serv_csr.v:62.21-63.19]
+    _and_serv_rtl_serv_csr_v_62_104 <= and(_and_serv_rtl_serv_csr_v_62_103_Y, asUInt(i_cnt3)) @[serv/rtl/serv_csr.v:62.22-62.57]
+    _and_serv_rtl_serv_csr_v_62_103 <= and(i_mstatus_en, asUInt(mstatus_mie)) @[serv/rtl/serv_csr.v:62.22-62.48]
+    _ternary_serv_rtl_serv_csr_v_56_102 <= mux(_eq_serv_rtl_serv_csr_v_56_92_Y, d, _ternary_serv_rtl_serv_csr_v_57_101_Y) @[serv/rtl/serv_csr.v:56.20-60.10]
+    _ternary_serv_rtl_serv_csr_v_57_101 <= mux(_eq_serv_rtl_serv_csr_v_57_93_Y, _or_serv_rtl_serv_csr_v_57_94_Y, _ternary_serv_rtl_serv_csr_v_58_100_Y) @[serv/rtl/serv_csr.v:57.6-60.10]
+    _ternary_serv_rtl_serv_csr_v_58_100 <= mux(_eq_serv_rtl_serv_csr_v_58_95_Y, _and_serv_rtl_serv_csr_v_58_97_Y, _ternary_serv_rtl_serv_csr_v_59_99_Y) @[serv/rtl/serv_csr.v:58.6-60.10]
+    _ternary_serv_rtl_serv_csr_v_59_99 <= mux(_eq_serv_rtl_serv_csr_v_59_98_Y, csr_out, UInt<1>("h0")) @[serv/rtl/serv_csr.v:59.6-60.10]
+    _eq_serv_rtl_serv_csr_v_59_98 <= eq(i_csr_source, asUInt(UInt<2>("h0"))) @[serv/rtl/serv_csr.v:59.7-59.37]
+    _and_serv_rtl_serv_csr_v_58_97 <= and(csr_out, asUInt(_not_serv_rtl_serv_csr_v_58_96_Y)) @[serv/rtl/serv_csr.v:58.41-58.53]
+    _not_serv_rtl_serv_csr_v_58_96 <= not(pad(d, 1)) @[serv/rtl/serv_csr.v:58.51-58.53]
+    _eq_serv_rtl_serv_csr_v_58_95 <= eq(i_csr_source, asUInt(UInt<2>("h3"))) @[serv/rtl/serv_csr.v:58.7-58.37]
+    _or_serv_rtl_serv_csr_v_57_94 <= or(csr_out, asUInt(d)) @[serv/rtl/serv_csr.v:57.41-57.52]
+    _eq_serv_rtl_serv_csr_v_57_93 <= eq(i_csr_source, asUInt(UInt<2>("h2"))) @[serv/rtl/serv_csr.v:57.7-57.37]
+    _eq_serv_rtl_serv_csr_v_56_92 <= eq(i_csr_source, asUInt(UInt<2>("h1"))) @[serv/rtl/serv_csr.v:56.21-56.51]
+    _ternary_serv_rtl_serv_csr_v_54_91 <= mux(i_csr_d_sel, i_csr_imm, i_rs1) @[serv/rtl/serv_csr.v:54.14-54.45]
+    _479 <= _ternary_serv_rtl_serv_csr_v_54_91_Y
+    _480 <= _ternary_serv_rtl_serv_csr_v_56_102_Y
+    _481 <= _or_serv_rtl_serv_csr_v_62_108_Y
+    _482 <= csr_out
+    _483 <= _and_serv_rtl_serv_csr_v_68_110_Y
+    _484 <= _ternary_serv_rtl_serv_csr_v_70_112_Y
+    _485 <= csr_in
+
+    _ternary_serv_rtl_serv_csr_v_134_150_Y <= bits(_ternary_serv_rtl_serv_csr_v_134_150, 0, 0) @[serv/rtl/serv_csr.v:134.14-134.41]
+    _or_serv_rtl_serv_csr_v_133_149_Y <= bits(_or_serv_rtl_serv_csr_v_133_149, 0, 0) @[serv/rtl/serv_csr.v:133.11-133.44]
+    _and_serv_rtl_serv_csr_v_133_148_Y <= bits(_and_serv_rtl_serv_csr_v_133_148, 0, 0) @[serv/rtl/serv_csr.v:133.11-133.35]
+    _or_serv_rtl_serv_csr_v_131_147_Y <= bits(_or_serv_rtl_serv_csr_v_131_147, 0, 0) @[serv/rtl/serv_csr.v:131.19-131.64]
+    _and_serv_rtl_serv_csr_v_131_146_Y <= bits(_and_serv_rtl_serv_csr_v_131_146, 0, 0) @[serv/rtl/serv_csr.v:131.41-131.63]
+    _logic_not_serv_rtl_serv_csr_v_131_145_Y <= bits(_logic_not_serv_rtl_serv_csr_v_131_145, 0, 0) @[serv/rtl/serv_csr.v:131.41-131.48]
+    _or_serv_rtl_serv_csr_v_131_144_Y <= bits(_or_serv_rtl_serv_csr_v_131_144, 0, 0) @[serv/rtl/serv_csr.v:131.19-131.37]
+    _or_serv_rtl_serv_csr_v_130_143_Y <= bits(_or_serv_rtl_serv_csr_v_130_143, 0, 0) @[serv/rtl/serv_csr.v:130.19-130.89]
+    _and_serv_rtl_serv_csr_v_130_142_Y <= bits(_and_serv_rtl_serv_csr_v_130_142, 0, 0) @[serv/rtl/serv_csr.v:130.66-130.88]
+    _logic_not_serv_rtl_serv_csr_v_130_141_Y <= bits(_logic_not_serv_rtl_serv_csr_v_130_141, 0, 0) @[serv/rtl/serv_csr.v:130.66-130.73]
+    _or_serv_rtl_serv_csr_v_130_140_Y <= bits(_or_serv_rtl_serv_csr_v_130_140, 0, 0) @[serv/rtl/serv_csr.v:130.19-130.62]
+    _and_serv_rtl_serv_csr_v_130_139_Y <= bits(_and_serv_rtl_serv_csr_v_130_139, 0, 0) @[serv/rtl/serv_csr.v:130.41-130.61]
+    _or_serv_rtl_serv_csr_v_130_138_Y <= bits(_or_serv_rtl_serv_csr_v_130_138, 0, 0) @[serv/rtl/serv_csr.v:130.19-130.37]
+    _or_serv_rtl_serv_csr_v_129_137_Y <= bits(_or_serv_rtl_serv_csr_v_129_137, 0, 0) @[serv/rtl/serv_csr.v:129.19-129.66]
+    _and_serv_rtl_serv_csr_v_129_136_Y <= bits(_and_serv_rtl_serv_csr_v_129_136, 0, 0) @[serv/rtl/serv_csr.v:129.43-129.65]
+    _logic_not_serv_rtl_serv_csr_v_129_135_Y <= bits(_logic_not_serv_rtl_serv_csr_v_129_135, 0, 0) @[serv/rtl/serv_csr.v:129.43-129.50]
+    _or_serv_rtl_serv_csr_v_129_134_Y <= bits(_or_serv_rtl_serv_csr_v_129_134, 0, 0) @[serv/rtl/serv_csr.v:129.19-129.39]
+    _or_serv_rtl_serv_csr_v_128_133_Y <= bits(_or_serv_rtl_serv_csr_v_128_133, 0, 0) @[serv/rtl/serv_csr.v:128.19-128.60]
+    _and_serv_rtl_serv_csr_v_128_132_Y <= bits(_and_serv_rtl_serv_csr_v_128_132, 0, 0) @[serv/rtl/serv_csr.v:128.43-128.59]
+    _logic_not_serv_rtl_serv_csr_v_128_131_Y <= bits(_logic_not_serv_rtl_serv_csr_v_128_131, 0, 0) @[serv/rtl/serv_csr.v:128.43-128.50]
+    _and_serv_rtl_serv_csr_v_128_130_Y <= bits(_and_serv_rtl_serv_csr_v_128_130, 0, 0) @[serv/rtl/serv_csr.v:128.20-128.38]
+    _logic_not_serv_rtl_serv_csr_v_128_129_Y <= bits(_logic_not_serv_rtl_serv_csr_v_128_129, 0, 0) @[serv/rtl/serv_csr.v:128.29-128.38]
+    _or_serv_rtl_serv_csr_v_127_128_Y <= bits(_or_serv_rtl_serv_csr_v_127_128, 0, 0) @[serv/rtl/serv_csr.v:127.11-127.65]
+    _and_serv_rtl_serv_csr_v_127_127_Y <= bits(_and_serv_rtl_serv_csr_v_127_127, 0, 0) @[serv/rtl/serv_csr.v:127.45-127.64]
+    _and_serv_rtl_serv_csr_v_127_126_Y <= bits(_and_serv_rtl_serv_csr_v_127_126, 0, 0) @[serv/rtl/serv_csr.v:127.11-127.41]
+    _and_serv_rtl_serv_csr_v_127_125_Y <= bits(_and_serv_rtl_serv_csr_v_127_125, 0, 0) @[serv/rtl/serv_csr.v:127.11-127.29]
+    _and_serv_rtl_serv_csr_v_102_124_Y <= bits(_and_serv_rtl_serv_csr_v_102_124, 0, 0) @[serv/rtl/serv_csr.v:102.11-102.30]
+    _and_serv_rtl_serv_csr_v_96_123_Y <= bits(_and_serv_rtl_serv_csr_v_96_123, 0, 0) @[serv/rtl/serv_csr.v:96.17-96.60]
+    _ternary_serv_rtl_serv_csr_v_96_122_Y <= bits(_ternary_serv_rtl_serv_csr_v_96_122, 0, 0) @[serv/rtl/serv_csr.v:96.28-96.59]
+    _logic_not_serv_rtl_serv_csr_v_96_121_Y <= bits(_logic_not_serv_rtl_serv_csr_v_96_121, 0, 0) @[serv/rtl/serv_csr.v:96.17-96.24]
+    _or_serv_rtl_serv_csr_v_95_120_Y <= bits(_or_serv_rtl_serv_csr_v_95_120, 0, 0) @[serv/rtl/serv_csr.v:95.11-95.65]
+    _or_serv_rtl_serv_csr_v_95_119_Y <= bits(_or_serv_rtl_serv_csr_v_95_119, 0, 0) @[serv/rtl/serv_csr.v:95.11-95.56]
+    _and_serv_rtl_serv_csr_v_95_118_Y <= bits(_and_serv_rtl_serv_csr_v_95_118, 0, 0) @[serv/rtl/serv_csr.v:95.35-95.56]
+    _and_serv_rtl_serv_csr_v_95_117_Y <= bits(_and_serv_rtl_serv_csr_v_95_117, 0, 0) @[serv/rtl/serv_csr.v:95.12-95.31]
+    _and_serv_rtl_serv_csr_v_82_116_Y <= bits(_and_serv_rtl_serv_csr_v_82_116, 0, 0) @[serv/rtl/serv_csr.v:82.11-82.28]
+    _and_serv_rtl_serv_csr_v_79_115_Y <= bits(_and_serv_rtl_serv_csr_v_79_115, 0, 0) @[serv/rtl/serv_csr.v:79.18-79.42]
+    _logic_not_serv_rtl_serv_csr_v_79_114_Y <= bits(_logic_not_serv_rtl_serv_csr_v_79_114, 0, 0) @[serv/rtl/serv_csr.v:79.30-79.42]
+    _ternary_serv_rtl_serv_csr_v_70_112_Y <= bits(_ternary_serv_rtl_serv_csr_v_70_112, 0, 0) @[serv/rtl/serv_csr.v:70.20-72.12]
+    _ternary_serv_rtl_serv_csr_v_71_111_Y <= bits(_ternary_serv_rtl_serv_csr_v_71_111, 0, 0) @[serv/rtl/serv_csr.v:71.6-72.12]
+    _and_serv_rtl_serv_csr_v_68_110_Y <= bits(_and_serv_rtl_serv_csr_v_68_110, 0, 0) @[serv/rtl/serv_csr.v:68.22-68.53]
+    _and_serv_rtl_serv_csr_v_68_109_Y <= bits(_and_serv_rtl_serv_csr_v_68_109, 0, 0) @[serv/rtl/serv_csr.v:68.22-68.42]
+    _or_serv_rtl_serv_csr_v_62_108_Y <= bits(_or_serv_rtl_serv_csr_v_62_108, 0, 0) @[serv/rtl/serv_csr.v:62.21-64.36]
+    _and_serv_rtl_serv_csr_v_64_107_Y <= bits(_and_serv_rtl_serv_csr_v_64_107, 0, 0) @[serv/rtl/serv_csr.v:64.8-64.35]
+    _and_serv_rtl_serv_csr_v_64_106_Y <= bits(_and_serv_rtl_serv_csr_v_64_106, 0, 0) @[serv/rtl/serv_csr.v:64.8-64.26]
+    _or_serv_rtl_serv_csr_v_62_105_Y <= bits(_or_serv_rtl_serv_csr_v_62_105, 0, 0) @[serv/rtl/serv_csr.v:62.21-63.19]
+    _and_serv_rtl_serv_csr_v_62_104_Y <= bits(_and_serv_rtl_serv_csr_v_62_104, 0, 0) @[serv/rtl/serv_csr.v:62.22-62.57]
+    _and_serv_rtl_serv_csr_v_62_103_Y <= bits(_and_serv_rtl_serv_csr_v_62_103, 0, 0) @[serv/rtl/serv_csr.v:62.22-62.48]
+    _ternary_serv_rtl_serv_csr_v_56_102_Y <= bits(_ternary_serv_rtl_serv_csr_v_56_102, 0, 0) @[serv/rtl/serv_csr.v:56.20-60.10]
+    _ternary_serv_rtl_serv_csr_v_57_101_Y <= bits(_ternary_serv_rtl_serv_csr_v_57_101, 0, 0) @[serv/rtl/serv_csr.v:57.6-60.10]
+    _ternary_serv_rtl_serv_csr_v_58_100_Y <= bits(_ternary_serv_rtl_serv_csr_v_58_100, 0, 0) @[serv/rtl/serv_csr.v:58.6-60.10]
+    _ternary_serv_rtl_serv_csr_v_59_99_Y <= bits(_ternary_serv_rtl_serv_csr_v_59_99, 0, 0) @[serv/rtl/serv_csr.v:59.6-60.10]
+    _eq_serv_rtl_serv_csr_v_59_98_Y <= bits(_eq_serv_rtl_serv_csr_v_59_98, 0, 0) @[serv/rtl/serv_csr.v:59.7-59.37]
+    _and_serv_rtl_serv_csr_v_58_97_Y <= bits(_and_serv_rtl_serv_csr_v_58_97, 0, 0) @[serv/rtl/serv_csr.v:58.41-58.53]
+    _not_serv_rtl_serv_csr_v_58_96_Y <= bits(_not_serv_rtl_serv_csr_v_58_96, 0, 0) @[serv/rtl/serv_csr.v:58.51-58.53]
+    _eq_serv_rtl_serv_csr_v_58_95_Y <= bits(_eq_serv_rtl_serv_csr_v_58_95, 0, 0) @[serv/rtl/serv_csr.v:58.7-58.37]
+    _or_serv_rtl_serv_csr_v_57_94_Y <= bits(_or_serv_rtl_serv_csr_v_57_94, 0, 0) @[serv/rtl/serv_csr.v:57.41-57.52]
+    _eq_serv_rtl_serv_csr_v_57_93_Y <= bits(_eq_serv_rtl_serv_csr_v_57_93, 0, 0) @[serv/rtl/serv_csr.v:57.7-57.37]
+    _eq_serv_rtl_serv_csr_v_56_92_Y <= bits(_eq_serv_rtl_serv_csr_v_56_92, 0, 0) @[serv/rtl/serv_csr.v:56.21-56.51]
+    _ternary_serv_rtl_serv_csr_v_54_91_Y <= bits(_ternary_serv_rtl_serv_csr_v_54_91, 0, 0) @[serv/rtl/serv_csr.v:54.14-54.45]
+    timer_irq <= bits(_483, 0, 0) @[serv/rtl/serv_csr.v:68.10-68.19]
+    d <= bits(_479, 0, 0) @[serv/rtl/serv_csr.v:54.10-54.11]
+    csr_out <= bits(_481, 0, 0) @[serv/rtl/serv_csr.v:50.10-50.17]
+    csr_in <= bits(_480, 0, 0) @[serv/rtl/serv_csr.v:49.10-49.16]
+    mcause <= bits(_484, 0, 0) @[serv/rtl/serv_csr.v:47.10-47.16]
+    o_q <= bits(_482, 0, 0) @[serv/rtl/serv_csr.v:33.21-33.24]
+    o_csr_in <= bits(_485, 0, 0) @[serv/rtl/serv_csr.v:30.21-30.29]
+
+  module serv_compdec: @[serv/rtl/serv_compdec.v:10.1-232.12]
+    output o_iscomp: UInt<1> @[serv/rtl/serv_compdec.v:16.15-16.23]
+    output o_instr: UInt<32> @[serv/rtl/serv_compdec.v:15.23-15.30]
+    input i_ack: UInt<1> @[serv/rtl/serv_compdec.v:14.16-14.21]
+    input i_instr: UInt<32> @[serv/rtl/serv_compdec.v:13.23-13.30]
+    input i_clk: UInt<1> @[serv/rtl/serv_compdec.v:12.15-12.20]
+
+    wire _11_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _eq_serv_rtl_serv_compdec_v_207_90_Y: UInt<1> @[serv/rtl/serv_compdec.v:207.21-207.42]
+    wire _10_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _ne_serv_rtl_serv_compdec_v_202_89_Y: UInt<1> @[serv/rtl/serv_compdec.v:202.19-202.39]
+    wire _9_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _ne_serv_rtl_serv_compdec_v_193_88_Y: UInt<1> @[serv/rtl/serv_compdec.v:193.19-193.39]
+    wire _8_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _eq_serv_rtl_serv_compdec_v_192_87_Y: UInt<1> @[serv/rtl/serv_compdec.v:192.17-192.36]
+    wire _7_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _6_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _5_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _4_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _eq_serv_rtl_serv_compdec_v_107_86_Y: UInt<1> @[serv/rtl/serv_compdec.v:107.17-107.39]
+    wire _not_serv_rtl_serv_compdec_v_92_85_Y: UInt<1> @[serv/rtl/serv_compdec.v:92.48-92.60]
+    wire _3_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _2_illegal_instr_0_0_: UInt<1> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _2_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _1_illegal_instr_0_0_: UInt<1> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _1_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _0_illegal_instr_0_0_: UInt<1> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _0_comp_instr_31_0_: UInt<32> @[serv/rtl/serv_compdec.v:37.3-230.6]
+    wire _logic_not_serv_rtl_serv_compdec_v_34_83_Y: UInt<1> @[serv/rtl/serv_compdec.v:34.19-34.33]
+    wire _0_o_iscomp_0_0_: UInt<1> @[serv/rtl/serv_compdec.v:32.3-35.6]
+    wire _ternary_serv_rtl_serv_compdec_v_30_81_Y: UInt<32> @[serv/rtl/serv_compdec.v:30.20-30.56]
+    wire illegal_instr: UInt<1> @[serv/rtl/serv_compdec.v:28.8-28.21]
+    wire comp_instr: UInt<32> @[serv/rtl/serv_compdec.v:27.15-27.25]
+    wire _eq_serv_rtl_serv_compdec_v_207_90: UInt<1> @[serv/rtl/serv_compdec.v:207.21-207.42]
+    wire _ne_serv_rtl_serv_compdec_v_202_89: UInt<1> @[serv/rtl/serv_compdec.v:202.19-202.39]
+    wire _ne_serv_rtl_serv_compdec_v_193_88: UInt<1> @[serv/rtl/serv_compdec.v:193.19-193.39]
+    wire _eq_serv_rtl_serv_compdec_v_192_87: UInt<1> @[serv/rtl/serv_compdec.v:192.17-192.36]
+    wire _eq_serv_rtl_serv_compdec_v_107_86: UInt<1> @[serv/rtl/serv_compdec.v:107.17-107.39]
+    wire _not_serv_rtl_serv_compdec_v_92_85: UInt<1> @[serv/rtl/serv_compdec.v:92.48-92.60]
+    wire _logic_not_serv_rtl_serv_compdec_v_34_83: UInt<1> @[serv/rtl/serv_compdec.v:34.19-34.33]
+    wire _ternary_serv_rtl_serv_compdec_v_30_81: UInt<32> @[serv/rtl/serv_compdec.v:30.20-30.56]
+    wire _500: UInt<32>
+    _11_comp_instr_31_0_ is invalid
+    _10_comp_instr_31_0_ is invalid
+    _9_comp_instr_31_0_ is invalid
+    _8_comp_instr_31_0_ is invalid
+    _7_comp_instr_31_0_ is invalid
+    _6_comp_instr_31_0_ is invalid
+    _5_comp_instr_31_0_ is invalid
+    _4_comp_instr_31_0_ is invalid
+    _3_comp_instr_31_0_ is invalid
+    _2_illegal_instr_0_0_ is invalid
+    _2_comp_instr_31_0_ is invalid
+    _1_illegal_instr_0_0_ is invalid
+    _1_comp_instr_31_0_ is invalid
+    _0_illegal_instr_0_0_ is invalid
+    _0_comp_instr_31_0_ is invalid
+    _0_o_iscomp_0_0_ is invalid
+    illegal_instr is invalid
+    comp_instr is invalid
+    o_iscomp is invalid
+
+
+    _eq_serv_rtl_serv_compdec_v_207_90 <= eq(bits(i_instr, 11, 7), asUInt(UInt<5>("h00"))) @[serv/rtl/serv_compdec.v:207.21-207.42]
+    _ne_serv_rtl_serv_compdec_v_202_89 <= neq(bits(i_instr, 6, 2), asUInt(UInt<5>("h00"))) @[serv/rtl/serv_compdec.v:202.19-202.39]
+    _ne_serv_rtl_serv_compdec_v_193_88 <= neq(bits(i_instr, 6, 2), asUInt(UInt<5>("h00"))) @[serv/rtl/serv_compdec.v:193.19-193.39]
+    _eq_serv_rtl_serv_compdec_v_192_87 <= eq(bits(i_instr, 12, 12), asUInt(UInt<1>("h0"))) @[serv/rtl/serv_compdec.v:192.17-192.36]
+    _eq_serv_rtl_serv_compdec_v_107_86 <= eq(bits(i_instr, 11, 7), asUInt(UInt<5>("h02"))) @[serv/rtl/serv_compdec.v:107.17-107.39]
+    _not_serv_rtl_serv_compdec_v_92_85 <= not(pad(bits(i_instr, 15, 15), 1)) @[serv/rtl/serv_compdec.v:92.48-92.60]
+    _logic_not_serv_rtl_serv_compdec_v_34_83 <= eq(illegal_instr, UInt(0)) @[serv/rtl/serv_compdec.v:34.19-34.33]
+    _ternary_serv_rtl_serv_compdec_v_30_81 <= mux(illegal_instr, i_instr, comp_instr) @[serv/rtl/serv_compdec.v:30.20-30.56]
+    _500 <= _ternary_serv_rtl_serv_compdec_v_30_81_Y
+
+    _eq_serv_rtl_serv_compdec_v_207_90_Y <= bits(_eq_serv_rtl_serv_compdec_v_207_90, 0, 0) @[serv/rtl/serv_compdec.v:207.21-207.42]
+    _ne_serv_rtl_serv_compdec_v_202_89_Y <= bits(_ne_serv_rtl_serv_compdec_v_202_89, 0, 0) @[serv/rtl/serv_compdec.v:202.19-202.39]
+    _ne_serv_rtl_serv_compdec_v_193_88_Y <= bits(_ne_serv_rtl_serv_compdec_v_193_88, 0, 0) @[serv/rtl/serv_compdec.v:193.19-193.39]
+    _eq_serv_rtl_serv_compdec_v_192_87_Y <= bits(_eq_serv_rtl_serv_compdec_v_192_87, 0, 0) @[serv/rtl/serv_compdec.v:192.17-192.36]
+    _eq_serv_rtl_serv_compdec_v_107_86_Y <= bits(_eq_serv_rtl_serv_compdec_v_107_86, 0, 0) @[serv/rtl/serv_compdec.v:107.17-107.39]
+    _not_serv_rtl_serv_compdec_v_92_85_Y <= bits(_not_serv_rtl_serv_compdec_v_92_85, 0, 0) @[serv/rtl/serv_compdec.v:92.48-92.60]
+    _logic_not_serv_rtl_serv_compdec_v_34_83_Y <= bits(_logic_not_serv_rtl_serv_compdec_v_34_83, 0, 0) @[serv/rtl/serv_compdec.v:34.19-34.33]
+    _ternary_serv_rtl_serv_compdec_v_30_81_Y <= bits(_ternary_serv_rtl_serv_compdec_v_30_81, 31, 0) @[serv/rtl/serv_compdec.v:30.20-30.56]
+    o_instr <= bits(_500, 31, 0) @[serv/rtl/serv_compdec.v:15.23-15.30]
+
+  module serv_bufreg2: @[serv/rtl/serv_bufreg2.v:1.1-65.10]
+    input i_dat: UInt<32> @[serv/rtl/serv_bufreg2.v:23.23-23.28]
+    input i_load: UInt<1> @[serv/rtl/serv_bufreg2.v:22.22-22.28]
+    output o_dat: UInt<32> @[serv/rtl/serv_bufreg2.v:21.23-21.28]
+    output o_q: UInt<1> @[serv/rtl/serv_bufreg2.v:19.23-19.26]
+    output o_op_b: UInt<1> @[serv/rtl/serv_bufreg2.v:18.23-18.29]
+    input i_imm: UInt<1> @[serv/rtl/serv_bufreg2.v:17.22-17.27]
+    input i_rs2: UInt<1> @[serv/rtl/serv_bufreg2.v:16.22-16.27]
+    input i_shift_op: UInt<1> @[serv/rtl/serv_bufreg2.v:14.22-14.32]
+    input i_op_b_sel: UInt<1> @[serv/rtl/serv_bufreg2.v:13.22-13.32]
+    output o_sh_done_r: UInt<1> @[serv/rtl/serv_bufreg2.v:11.23-11.34]
+    output o_sh_done: UInt<1> @[serv/rtl/serv_bufreg2.v:10.23-10.32]
+    input i_byte_valid: UInt<1> @[serv/rtl/serv_bufreg2.v:9.22-9.34]
+    input i_lsb: UInt<2> @[serv/rtl/serv_bufreg2.v:8.23-8.28]
+    input i_cnt_done: UInt<1> @[serv/rtl/serv_bufreg2.v:7.22-7.32]
+    input i_init: UInt<1> @[serv/rtl/serv_bufreg2.v:6.22-6.28]
+    input i_en: UInt<1> @[serv/rtl/serv_bufreg2.v:5.22-5.26]
+    input i_clk: UInt<1> @[serv/rtl/serv_bufreg2.v:3.22-3.27]
+
+    wire _ternary_serv_rtl_serv_bufreg2_v_62_80_Y: UInt<32> @[serv/rtl/serv_bufreg2.v:62.9-62.56]
+    wire _or_serv_rtl_serv_bufreg2_v_61_79_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:61.11-61.26]
+    wire _0_dat_31_0_: UInt<32> @[serv/rtl/serv_bufreg2.v:60.4-63.7]
+    wire _or_serv_rtl_serv_bufreg2_v_53_77_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-56.35]
+    wire _and_serv_rtl_serv_bufreg2_v_56_76_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:56.10-56.34]
+    wire _eq_serv_rtl_serv_bufreg2_v_56_75_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:56.11-56.24]
+    wire _or_serv_rtl_serv_bufreg2_v_53_74_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-55.35]
+    wire _and_serv_rtl_serv_bufreg2_v_55_73_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:55.10-55.34]
+    wire _eq_serv_rtl_serv_bufreg2_v_55_72_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:55.11-55.24]
+    wire _or_serv_rtl_serv_bufreg2_v_53_71_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-54.36]
+    wire _and_serv_rtl_serv_bufreg2_v_54_70_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:54.10-54.35]
+    wire _eq_serv_rtl_serv_bufreg2_v_54_69_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:54.11-54.24]
+    wire _and_serv_rtl_serv_bufreg2_v_53_68_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:53.10-53.35]
+    wire _eq_serv_rtl_serv_bufreg2_v_53_67_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:53.11-53.24]
+    wire _ternary_serv_rtl_serv_bufreg2_v_43_66_Y: UInt<32> @[serv/rtl/serv_bufreg2.v:43.27-47.54]
+    wire _and_serv_rtl_serv_bufreg2_v_47_65_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:47.9-47.44]
+    wire _logic_not_serv_rtl_serv_bufreg2_v_47_64_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:47.18-47.44]
+    wire _and_serv_rtl_serv_bufreg2_v_47_63_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:47.20-47.43]
+    wire _sub_serv_rtl_serv_bufreg2_v_45_62_Y: UInt<32> @[serv/rtl/serv_bufreg2.v:45.8-45.18]
+    wire _and_serv_rtl_serv_bufreg2_v_43_61_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:43.28-43.48]
+    wire _logic_not_serv_rtl_serv_bufreg2_v_43_60_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:43.41-43.48]
+    wire _or_serv_rtl_serv_bufreg2_v_29_59_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:29.20-29.54]
+    wire _and_serv_rtl_serv_bufreg2_v_29_58_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:29.34-29.53]
+    wire _ternary_serv_rtl_serv_bufreg2_v_27_57_Y: UInt<1> @[serv/rtl/serv_bufreg2.v:27.20-27.46]
+    wire dat_shamt: UInt<6> @[serv/rtl/serv_bufreg2.v:43.15-43.24]
+    wire dat_en: UInt<1> @[serv/rtl/serv_bufreg2.v:29.11-29.17]
+    wire dat: UInt<32> @[serv/rtl/serv_bufreg2.v:25.17-25.20]
+    wire _ternary_serv_rtl_serv_bufreg2_v_62_80: UInt<32> @[serv/rtl/serv_bufreg2.v:62.9-62.56]
+    wire _or_serv_rtl_serv_bufreg2_v_61_79: UInt<1> @[serv/rtl/serv_bufreg2.v:61.11-61.26]
+    wire _or_serv_rtl_serv_bufreg2_v_53_77: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-56.35]
+    wire _and_serv_rtl_serv_bufreg2_v_56_76: UInt<1> @[serv/rtl/serv_bufreg2.v:56.10-56.34]
+    wire _eq_serv_rtl_serv_bufreg2_v_56_75: UInt<1> @[serv/rtl/serv_bufreg2.v:56.11-56.24]
+    wire _or_serv_rtl_serv_bufreg2_v_53_74: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-55.35]
+    wire _and_serv_rtl_serv_bufreg2_v_55_73: UInt<1> @[serv/rtl/serv_bufreg2.v:55.10-55.34]
+    wire _eq_serv_rtl_serv_bufreg2_v_55_72: UInt<1> @[serv/rtl/serv_bufreg2.v:55.11-55.24]
+    wire _or_serv_rtl_serv_bufreg2_v_53_71: UInt<1> @[serv/rtl/serv_bufreg2.v:53.9-54.36]
+    wire _and_serv_rtl_serv_bufreg2_v_54_70: UInt<1> @[serv/rtl/serv_bufreg2.v:54.10-54.35]
+    wire _eq_serv_rtl_serv_bufreg2_v_54_69: UInt<1> @[serv/rtl/serv_bufreg2.v:54.11-54.24]
+    wire _and_serv_rtl_serv_bufreg2_v_53_68: UInt<1> @[serv/rtl/serv_bufreg2.v:53.10-53.35]
+    wire _eq_serv_rtl_serv_bufreg2_v_53_67: UInt<1> @[serv/rtl/serv_bufreg2.v:53.11-53.24]
+    wire _ternary_serv_rtl_serv_bufreg2_v_43_66: UInt<32> @[serv/rtl/serv_bufreg2.v:43.27-47.54]
+    wire _and_serv_rtl_serv_bufreg2_v_47_65: UInt<1> @[serv/rtl/serv_bufreg2.v:47.9-47.44]
+    wire _logic_not_serv_rtl_serv_bufreg2_v_47_64: UInt<1> @[serv/rtl/serv_bufreg2.v:47.18-47.44]
+    wire _and_serv_rtl_serv_bufreg2_v_47_63: UInt<1> @[serv/rtl/serv_bufreg2.v:47.20-47.43]
+    wire _sub_serv_rtl_serv_bufreg2_v_45_62: UInt<32> @[serv/rtl/serv_bufreg2.v:45.8-45.18]
+    wire _and_serv_rtl_serv_bufreg2_v_43_61: UInt<1> @[serv/rtl/serv_bufreg2.v:43.28-43.48]
+    wire _logic_not_serv_rtl_serv_bufreg2_v_43_60: UInt<1> @[serv/rtl/serv_bufreg2.v:43.41-43.48]
+    wire _or_serv_rtl_serv_bufreg2_v_29_59: UInt<1> @[serv/rtl/serv_bufreg2.v:29.20-29.54]
+    wire _and_serv_rtl_serv_bufreg2_v_29_58: UInt<1> @[serv/rtl/serv_bufreg2.v:29.34-29.53]
+    wire _ternary_serv_rtl_serv_bufreg2_v_27_57: UInt<1> @[serv/rtl/serv_bufreg2.v:27.20-27.46]
+    wire _520: UInt<1>
+    wire _521: UInt<1>
+    wire _522: UInt<6>
+    wire _523: UInt<1>
+    wire _524: UInt<1>
+    wire _525: UInt<1>
+    wire _526: UInt<32>
+    _0_dat_31_0_ is invalid
+    dat is invalid
+
+
+    _ternary_serv_rtl_serv_bufreg2_v_62_80 <= mux(i_load, i_dat, cat(o_op_b, cat(bits(dat, 31, 7), dat_shamt))) @[serv/rtl/serv_bufreg2.v:62.9-62.56]
+    _or_serv_rtl_serv_bufreg2_v_61_79 <= or(dat_en, asUInt(i_load)) @[serv/rtl/serv_bufreg2.v:61.11-61.26]
+    _or_serv_rtl_serv_bufreg2_v_53_77 <= or(_or_serv_rtl_serv_bufreg2_v_53_74_Y, asUInt(_and_serv_rtl_serv_bufreg2_v_56_76_Y)) @[serv/rtl/serv_bufreg2.v:53.9-56.35]
+    _and_serv_rtl_serv_bufreg2_v_56_76 <= and(_eq_serv_rtl_serv_bufreg2_v_56_75_Y, asUInt(bits(dat, 0, 0))) @[serv/rtl/serv_bufreg2.v:56.10-56.34]
+    _eq_serv_rtl_serv_bufreg2_v_56_75 <= eq(i_lsb, asUInt(UInt<2>("h0"))) @[serv/rtl/serv_bufreg2.v:56.11-56.24]
+    _or_serv_rtl_serv_bufreg2_v_53_74 <= or(_or_serv_rtl_serv_bufreg2_v_53_71_Y, asUInt(_and_serv_rtl_serv_bufreg2_v_55_73_Y)) @[serv/rtl/serv_bufreg2.v:53.9-55.35]
+    _and_serv_rtl_serv_bufreg2_v_55_73 <= and(_eq_serv_rtl_serv_bufreg2_v_55_72_Y, asUInt(bits(dat, 8, 8))) @[serv/rtl/serv_bufreg2.v:55.10-55.34]
+    _eq_serv_rtl_serv_bufreg2_v_55_72 <= eq(i_lsb, asUInt(UInt<2>("h1"))) @[serv/rtl/serv_bufreg2.v:55.11-55.24]
+    _or_serv_rtl_serv_bufreg2_v_53_71 <= or(_and_serv_rtl_serv_bufreg2_v_53_68_Y, asUInt(_and_serv_rtl_serv_bufreg2_v_54_70_Y)) @[serv/rtl/serv_bufreg2.v:53.9-54.36]
+    _and_serv_rtl_serv_bufreg2_v_54_70 <= and(_eq_serv_rtl_serv_bufreg2_v_54_69_Y, asUInt(bits(dat, 16, 16))) @[serv/rtl/serv_bufreg2.v:54.10-54.35]
+    _eq_serv_rtl_serv_bufreg2_v_54_69 <= eq(i_lsb, asUInt(UInt<2>("h2"))) @[serv/rtl/serv_bufreg2.v:54.11-54.24]
+    _and_serv_rtl_serv_bufreg2_v_53_68 <= and(_eq_serv_rtl_serv_bufreg2_v_53_67_Y, asUInt(bits(dat, 24, 24))) @[serv/rtl/serv_bufreg2.v:53.10-53.35]
+    _eq_serv_rtl_serv_bufreg2_v_53_67 <= eq(i_lsb, asUInt(UInt<2>("h3"))) @[serv/rtl/serv_bufreg2.v:53.11-53.24]
+    _ternary_serv_rtl_serv_bufreg2_v_43_66 <= mux(_and_serv_rtl_serv_bufreg2_v_43_61_Y, _sub_serv_rtl_serv_bufreg2_v_45_62_Y, cat(UInt<26>("h0000000"), cat(_and_serv_rtl_serv_bufreg2_v_47_65_Y, bits(dat, 5, 1)))) @[serv/rtl/serv_bufreg2.v:43.27-47.54]
+    _and_serv_rtl_serv_bufreg2_v_47_65 <= and(bits(dat, 6, 6), asUInt(_logic_not_serv_rtl_serv_bufreg2_v_47_64_Y)) @[serv/rtl/serv_bufreg2.v:47.9-47.44]
+    _logic_not_serv_rtl_serv_bufreg2_v_47_64 <= eq(_and_serv_rtl_serv_bufreg2_v_47_63_Y, UInt(0)) @[serv/rtl/serv_bufreg2.v:47.18-47.44]
+    _and_serv_rtl_serv_bufreg2_v_47_63 <= and(i_shift_op, asUInt(i_cnt_done)) @[serv/rtl/serv_bufreg2.v:47.20-47.43]
+    _sub_serv_rtl_serv_bufreg2_v_45_62 <= asUInt(sub(pad(bits(dat, 5, 0), 32), asUInt(UInt<32>("h00000001")))) @[serv/rtl/serv_bufreg2.v:45.8-45.18]
+    _and_serv_rtl_serv_bufreg2_v_43_61 <= and(i_shift_op, asUInt(_logic_not_serv_rtl_serv_bufreg2_v_43_60_Y)) @[serv/rtl/serv_bufreg2.v:43.28-43.48]
+    _logic_not_serv_rtl_serv_bufreg2_v_43_60 <= eq(i_init, UInt(0)) @[serv/rtl/serv_bufreg2.v:43.41-43.48]
+    _or_serv_rtl_serv_bufreg2_v_29_59 <= or(i_shift_op, asUInt(_and_serv_rtl_serv_bufreg2_v_29_58_Y)) @[serv/rtl/serv_bufreg2.v:29.20-29.54]
+    _and_serv_rtl_serv_bufreg2_v_29_58 <= and(i_en, asUInt(i_byte_valid)) @[serv/rtl/serv_bufreg2.v:29.34-29.53]
+    _ternary_serv_rtl_serv_bufreg2_v_27_57 <= mux(i_op_b_sel, i_rs2, i_imm) @[serv/rtl/serv_bufreg2.v:27.20-27.46]
+    _520 <= _ternary_serv_rtl_serv_bufreg2_v_27_57_Y
+    _521 <= _or_serv_rtl_serv_bufreg2_v_29_59_Y
+    _522 <= bits(_ternary_serv_rtl_serv_bufreg2_v_43_66_Y, 5, 0)
+    _523 <= bits(dat_shamt, 5, 5)
+    _524 <= bits(dat, 5, 5)
+    _525 <= _or_serv_rtl_serv_bufreg2_v_53_77_Y
+    _526 <= dat
+
+    _ternary_serv_rtl_serv_bufreg2_v_62_80_Y <= bits(_ternary_serv_rtl_serv_bufreg2_v_62_80, 31, 0) @[serv/rtl/serv_bufreg2.v:62.9-62.56]
+    _or_serv_rtl_serv_bufreg2_v_61_79_Y <= bits(_or_serv_rtl_serv_bufreg2_v_61_79, 0, 0) @[serv/rtl/serv_bufreg2.v:61.11-61.26]
+    _or_serv_rtl_serv_bufreg2_v_53_77_Y <= bits(_or_serv_rtl_serv_bufreg2_v_53_77, 0, 0) @[serv/rtl/serv_bufreg2.v:53.9-56.35]
+    _and_serv_rtl_serv_bufreg2_v_56_76_Y <= bits(_and_serv_rtl_serv_bufreg2_v_56_76, 0, 0) @[serv/rtl/serv_bufreg2.v:56.10-56.34]
+    _eq_serv_rtl_serv_bufreg2_v_56_75_Y <= bits(_eq_serv_rtl_serv_bufreg2_v_56_75, 0, 0) @[serv/rtl/serv_bufreg2.v:56.11-56.24]
+    _or_serv_rtl_serv_bufreg2_v_53_74_Y <= bits(_or_serv_rtl_serv_bufreg2_v_53_74, 0, 0) @[serv/rtl/serv_bufreg2.v:53.9-55.35]
+    _and_serv_rtl_serv_bufreg2_v_55_73_Y <= bits(_and_serv_rtl_serv_bufreg2_v_55_73, 0, 0) @[serv/rtl/serv_bufreg2.v:55.10-55.34]
+    _eq_serv_rtl_serv_bufreg2_v_55_72_Y <= bits(_eq_serv_rtl_serv_bufreg2_v_55_72, 0, 0) @[serv/rtl/serv_bufreg2.v:55.11-55.24]
+    _or_serv_rtl_serv_bufreg2_v_53_71_Y <= bits(_or_serv_rtl_serv_bufreg2_v_53_71, 0, 0) @[serv/rtl/serv_bufreg2.v:53.9-54.36]
+    _and_serv_rtl_serv_bufreg2_v_54_70_Y <= bits(_and_serv_rtl_serv_bufreg2_v_54_70, 0, 0) @[serv/rtl/serv_bufreg2.v:54.10-54.35]
+    _eq_serv_rtl_serv_bufreg2_v_54_69_Y <= bits(_eq_serv_rtl_serv_bufreg2_v_54_69, 0, 0) @[serv/rtl/serv_bufreg2.v:54.11-54.24]
+    _and_serv_rtl_serv_bufreg2_v_53_68_Y <= bits(_and_serv_rtl_serv_bufreg2_v_53_68, 0, 0) @[serv/rtl/serv_bufreg2.v:53.10-53.35]
+    _eq_serv_rtl_serv_bufreg2_v_53_67_Y <= bits(_eq_serv_rtl_serv_bufreg2_v_53_67, 0, 0) @[serv/rtl/serv_bufreg2.v:53.11-53.24]
+    _ternary_serv_rtl_serv_bufreg2_v_43_66_Y <= bits(_ternary_serv_rtl_serv_bufreg2_v_43_66, 31, 0) @[serv/rtl/serv_bufreg2.v:43.27-47.54]
+    _and_serv_rtl_serv_bufreg2_v_47_65_Y <= bits(_and_serv_rtl_serv_bufreg2_v_47_65, 0, 0) @[serv/rtl/serv_bufreg2.v:47.9-47.44]
+    _logic_not_serv_rtl_serv_bufreg2_v_47_64_Y <= bits(_logic_not_serv_rtl_serv_bufreg2_v_47_64, 0, 0) @[serv/rtl/serv_bufreg2.v:47.18-47.44]
+    _and_serv_rtl_serv_bufreg2_v_47_63_Y <= bits(_and_serv_rtl_serv_bufreg2_v_47_63, 0, 0) @[serv/rtl/serv_bufreg2.v:47.20-47.43]
+    _sub_serv_rtl_serv_bufreg2_v_45_62_Y <= bits(_sub_serv_rtl_serv_bufreg2_v_45_62, 31, 0) @[serv/rtl/serv_bufreg2.v:45.8-45.18]
+    _and_serv_rtl_serv_bufreg2_v_43_61_Y <= bits(_and_serv_rtl_serv_bufreg2_v_43_61, 0, 0) @[serv/rtl/serv_bufreg2.v:43.28-43.48]
+    _logic_not_serv_rtl_serv_bufreg2_v_43_60_Y <= bits(_logic_not_serv_rtl_serv_bufreg2_v_43_60, 0, 0) @[serv/rtl/serv_bufreg2.v:43.41-43.48]
+    _or_serv_rtl_serv_bufreg2_v_29_59_Y <= bits(_or_serv_rtl_serv_bufreg2_v_29_59, 0, 0) @[serv/rtl/serv_bufreg2.v:29.20-29.54]
+    _and_serv_rtl_serv_bufreg2_v_29_58_Y <= bits(_and_serv_rtl_serv_bufreg2_v_29_58, 0, 0) @[serv/rtl/serv_bufreg2.v:29.34-29.53]
+    _ternary_serv_rtl_serv_bufreg2_v_27_57_Y <= bits(_ternary_serv_rtl_serv_bufreg2_v_27_57, 0, 0) @[serv/rtl/serv_bufreg2.v:27.20-27.46]
+    dat_shamt <= bits(_522, 5, 0) @[serv/rtl/serv_bufreg2.v:43.15-43.24]
+    dat_en <= bits(_521, 0, 0) @[serv/rtl/serv_bufreg2.v:29.11-29.17]
+    o_dat <= bits(_526, 31, 0) @[serv/rtl/serv_bufreg2.v:21.23-21.28]
+    o_q <= bits(_525, 0, 0) @[serv/rtl/serv_bufreg2.v:19.23-19.26]
+    o_op_b <= bits(_520, 0, 0) @[serv/rtl/serv_bufreg2.v:18.23-18.29]
+    o_sh_done_r <= bits(_524, 0, 0) @[serv/rtl/serv_bufreg2.v:11.23-11.34]
+    o_sh_done <= bits(_523, 0, 0) @[serv/rtl/serv_bufreg2.v:10.23-10.32]
+
+  module serv_bufreg: @[serv/rtl/serv_bufreg.v:1.1-51.10]
+    output o_ext_rs1: UInt<32> @[serv/rtl/serv_bufreg.v:24.23-24.32]
+    output o_dbus_adr: UInt<32> @[serv/rtl/serv_bufreg.v:22.23-22.33]
+    output o_q: UInt<1> @[serv/rtl/serv_bufreg.v:20.23-20.26]
+    input i_imm: UInt<1> @[serv/rtl/serv_bufreg.v:19.22-19.27]
+    input i_rs1: UInt<1> @[serv/rtl/serv_bufreg.v:18.22-18.27]
+    input i_sh_signed: UInt<1> @[serv/rtl/serv_bufreg.v:16.22-16.33]
+    input i_clr_lsb: UInt<1> @[serv/rtl/serv_bufreg.v:15.22-15.31]
+    input i_imm_en: UInt<1> @[serv/rtl/serv_bufreg.v:14.22-14.30]
+    input i_rs1_en: UInt<1> @[serv/rtl/serv_bufreg.v:13.22-13.30]
+    output o_lsb: UInt<2> @[serv/rtl/serv_bufreg.v:11.25-11.30]
+    input i_mdu_op: UInt<1> @[serv/rtl/serv_bufreg.v:10.25-10.33]
+    input i_init: UInt<1> @[serv/rtl/serv_bufreg.v:9.22-9.28]
+    input i_en: UInt<1> @[serv/rtl/serv_bufreg.v:8.22-8.26]
+    input i_cnt1: UInt<1> @[serv/rtl/serv_bufreg.v:7.22-7.28]
+    input i_cnt0: UInt<1> @[serv/rtl/serv_bufreg.v:6.22-6.28]
+    input i_clk: UInt<1> @[serv/rtl/serv_bufreg.v:4.22-4.27]
+
+    wire _ternary_serv_rtl_serv_bufreg_v_49_56_Y: UInt<2> @[serv/rtl/serv_bufreg.v:49.19-49.49]
+    wire _and_serv_rtl_serv_bufreg_v_49_55_Y: UInt<1> @[serv/rtl/serv_bufreg.v:49.20-49.34]
+    wire _and_serv_rtl_serv_bufreg_v_46_54_Y: UInt<1> @[serv/rtl/serv_bufreg.v:46.17-46.30]
+    wire _ternary_serv_rtl_serv_bufreg_v_43_53_Y: UInt<1> @[serv/rtl/serv_bufreg.v:43.10-43.30]
+    wire _ternary_serv_rtl_serv_bufreg_v_42_52_Y: UInt<1> @[serv/rtl/serv_bufreg.v:42.11-42.44]
+    wire _or_serv_rtl_serv_bufreg_v_42_51_Y: UInt<1> @[serv/rtl/serv_bufreg.v:42.21-42.36]
+    wire _ternary_serv_rtl_serv_bufreg_v_40_50_Y: UInt<1> @[serv/rtl/serv_bufreg.v:40.11-40.48]
+    wire _and_serv_rtl_serv_bufreg_v_40_49_Y: UInt<1> @[serv/rtl/serv_bufreg.v:40.25-40.47]
+    wire _and_serv_rtl_serv_bufreg_v_37_48_Y: UInt<1> @[serv/rtl/serv_bufreg.v:37.14-37.22]
+    wire _0_lsb_1_0_: UInt<2> @[serv/rtl/serv_bufreg.v:35.4-44.7]
+    wire _0_data_29_0_: UInt<30> @[serv/rtl/serv_bufreg.v:35.4-44.7]
+    wire _0_c_r_0_0_: UInt<1> @[serv/rtl/serv_bufreg.v:35.4-44.7]
+    wire _add_serv_rtl_serv_bufreg_v_33_46_Y: UInt<2> @[serv/rtl/serv_bufreg.v:33.19-33.89]
+    wire _add_serv_rtl_serv_bufreg_v_33_45_Y: UInt<2> @[serv/rtl/serv_bufreg.v:33.19-33.83]
+    wire _and_serv_rtl_serv_bufreg_v_33_44_Y: UInt<1> @[serv/rtl/serv_bufreg.v:33.54-33.81]
+    wire _logic_not_serv_rtl_serv_bufreg_v_33_43_Y: UInt<1> @[serv/rtl/serv_bufreg.v:33.73-33.81]
+    wire _and_serv_rtl_serv_bufreg_v_33_42_Y: UInt<1> @[serv/rtl/serv_bufreg.v:33.54-33.70]
+    wire _and_serv_rtl_serv_bufreg_v_33_41_Y: UInt<1> @[serv/rtl/serv_bufreg.v:33.26-33.42]
+    wire _and_serv_rtl_serv_bufreg_v_31_40_Y: UInt<1> @[serv/rtl/serv_bufreg.v:31.26-31.44]
+    wire clr_lsb: UInt<1> @[serv/rtl/serv_bufreg.v:31.16-31.23]
+    wire lsb: UInt<2> @[serv/rtl/serv_bufreg.v:29.25-29.28]
+    wire data: UInt<30> @[serv/rtl/serv_bufreg.v:28.22-28.26]
+    wire c_r: UInt<1> @[serv/rtl/serv_bufreg.v:27.16-27.19]
+    wire q: UInt<1> @[serv/rtl/serv_bufreg.v:26.19-26.20]
+    wire c: UInt<1> @[serv/rtl/serv_bufreg.v:26.16-26.17]
+    wire _ternary_serv_rtl_serv_bufreg_v_49_56: UInt<2> @[serv/rtl/serv_bufreg.v:49.19-49.49]
+    wire _and_serv_rtl_serv_bufreg_v_49_55: UInt<1> @[serv/rtl/serv_bufreg.v:49.20-49.34]
+    wire _and_serv_rtl_serv_bufreg_v_46_54: UInt<1> @[serv/rtl/serv_bufreg.v:46.17-46.30]
+    wire _ternary_serv_rtl_serv_bufreg_v_43_53: UInt<1> @[serv/rtl/serv_bufreg.v:43.10-43.30]
+    wire _ternary_serv_rtl_serv_bufreg_v_42_52: UInt<1> @[serv/rtl/serv_bufreg.v:42.11-42.44]
+    wire _or_serv_rtl_serv_bufreg_v_42_51: UInt<1> @[serv/rtl/serv_bufreg.v:42.21-42.36]
+    wire _ternary_serv_rtl_serv_bufreg_v_40_50: UInt<1> @[serv/rtl/serv_bufreg.v:40.11-40.48]
+    wire _and_serv_rtl_serv_bufreg_v_40_49: UInt<1> @[serv/rtl/serv_bufreg.v:40.25-40.47]
+    wire _and_serv_rtl_serv_bufreg_v_37_48: UInt<1> @[serv/rtl/serv_bufreg.v:37.14-37.22]
+    wire _add_serv_rtl_serv_bufreg_v_33_46: UInt<2> @[serv/rtl/serv_bufreg.v:33.19-33.89]
+    wire _add_serv_rtl_serv_bufreg_v_33_45: UInt<2> @[serv/rtl/serv_bufreg.v:33.19-33.83]
+    wire _and_serv_rtl_serv_bufreg_v_33_44: UInt<1> @[serv/rtl/serv_bufreg.v:33.54-33.81]
+    wire _logic_not_serv_rtl_serv_bufreg_v_33_43: UInt<1> @[serv/rtl/serv_bufreg.v:33.73-33.81]
+    wire _and_serv_rtl_serv_bufreg_v_33_42: UInt<1> @[serv/rtl/serv_bufreg.v:33.54-33.70]
+    wire _and_serv_rtl_serv_bufreg_v_33_41: UInt<1> @[serv/rtl/serv_bufreg.v:33.26-33.42]
+    wire _and_serv_rtl_serv_bufreg_v_31_40: UInt<1> @[serv/rtl/serv_bufreg.v:31.26-31.44]
+    wire _529: UInt<1>
+    wire _530: UInt<2>
+    wire _531: UInt<1>
+    wire _532: UInt<32>
+    wire _533: UInt<32>
+    wire _534: UInt<2>
+    _0_lsb_1_0_ is invalid
+    _0_data_29_0_ is invalid
+    _0_c_r_0_0_ is invalid
+    lsb is invalid
+    data is invalid
+    c_r is invalid
+
+
+    _ternary_serv_rtl_serv_bufreg_v_49_56 <= mux(_and_serv_rtl_serv_bufreg_v_49_55_Y, UInt<2>("h0"), lsb) @[serv/rtl/serv_bufreg.v:49.19-49.49]
+    _and_serv_rtl_serv_bufreg_v_49_55 <= and(UInt<1>("h0"), asUInt(i_mdu_op)) @[serv/rtl/serv_bufreg.v:49.20-49.34]
+    _and_serv_rtl_serv_bufreg_v_46_54 <= and(bits(lsb, 0, 0), asUInt(i_en)) @[serv/rtl/serv_bufreg.v:46.17-46.30]
+    _ternary_serv_rtl_serv_bufreg_v_43_53 <= mux(i_init, q, bits(data, 0, 0)) @[serv/rtl/serv_bufreg.v:43.10-43.30]
+    _ternary_serv_rtl_serv_bufreg_v_42_52 <= mux(i_init, _or_serv_rtl_serv_bufreg_v_42_51_Y, i_en) @[serv/rtl/serv_bufreg.v:42.11-42.44]
+    _or_serv_rtl_serv_bufreg_v_42_51 <= or(i_cnt0, asUInt(i_cnt1)) @[serv/rtl/serv_bufreg.v:42.21-42.36]
+    _ternary_serv_rtl_serv_bufreg_v_40_50 <= mux(i_init, q, _and_serv_rtl_serv_bufreg_v_40_49_Y) @[serv/rtl/serv_bufreg.v:40.11-40.48]
+    _and_serv_rtl_serv_bufreg_v_40_49 <= and(bits(data, 29, 29), asUInt(i_sh_signed)) @[serv/rtl/serv_bufreg.v:40.25-40.47]
+    _and_serv_rtl_serv_bufreg_v_37_48 <= and(c, asUInt(i_en)) @[serv/rtl/serv_bufreg.v:37.14-37.22]
+    _add_serv_rtl_serv_bufreg_v_33_46 <= add(_add_serv_rtl_serv_bufreg_v_33_45_Y, asUInt(pad(c_r, 2))) @[serv/rtl/serv_bufreg.v:33.19-33.89]
+    _add_serv_rtl_serv_bufreg_v_33_45 <= add(cat(UInt<1>("h0"), _and_serv_rtl_serv_bufreg_v_33_41_Y), asUInt(cat(UInt<1>("h0"), _and_serv_rtl_serv_bufreg_v_33_44_Y))) @[serv/rtl/serv_bufreg.v:33.19-33.83]
+    _and_serv_rtl_serv_bufreg_v_33_44 <= and(_and_serv_rtl_serv_bufreg_v_33_42_Y, asUInt(_logic_not_serv_rtl_serv_bufreg_v_33_43_Y)) @[serv/rtl/serv_bufreg.v:33.54-33.81]
+    _logic_not_serv_rtl_serv_bufreg_v_33_43 <= eq(clr_lsb, UInt(0)) @[serv/rtl/serv_bufreg.v:33.73-33.81]
+    _and_serv_rtl_serv_bufreg_v_33_42 <= and(i_imm, asUInt(i_imm_en)) @[serv/rtl/serv_bufreg.v:33.54-33.70]
+    _and_serv_rtl_serv_bufreg_v_33_41 <= and(i_rs1, asUInt(i_rs1_en)) @[serv/rtl/serv_bufreg.v:33.26-33.42]
+    _and_serv_rtl_serv_bufreg_v_31_40 <= and(i_cnt0, asUInt(i_clr_lsb)) @[serv/rtl/serv_bufreg.v:31.26-31.44]
+    _529 <= _and_serv_rtl_serv_bufreg_v_31_40_Y
+    _530 <= _add_serv_rtl_serv_bufreg_v_33_46_Y
+    _531 <= _and_serv_rtl_serv_bufreg_v_46_54_Y
+    _532 <= cat(data, UInt<2>("h0"))
+    _533 <= cat(bits(o_dbus_adr, 31, 2), lsb)
+    _534 <= _ternary_serv_rtl_serv_bufreg_v_49_56_Y
+
+    _ternary_serv_rtl_serv_bufreg_v_49_56_Y <= bits(_ternary_serv_rtl_serv_bufreg_v_49_56, 1, 0) @[serv/rtl/serv_bufreg.v:49.19-49.49]
+    _and_serv_rtl_serv_bufreg_v_49_55_Y <= bits(_and_serv_rtl_serv_bufreg_v_49_55, 0, 0) @[serv/rtl/serv_bufreg.v:49.20-49.34]
+    _and_serv_rtl_serv_bufreg_v_46_54_Y <= bits(_and_serv_rtl_serv_bufreg_v_46_54, 0, 0) @[serv/rtl/serv_bufreg.v:46.17-46.30]
+    _ternary_serv_rtl_serv_bufreg_v_43_53_Y <= bits(_ternary_serv_rtl_serv_bufreg_v_43_53, 0, 0) @[serv/rtl/serv_bufreg.v:43.10-43.30]
+    _ternary_serv_rtl_serv_bufreg_v_42_52_Y <= bits(_ternary_serv_rtl_serv_bufreg_v_42_52, 0, 0) @[serv/rtl/serv_bufreg.v:42.11-42.44]
+    _or_serv_rtl_serv_bufreg_v_42_51_Y <= bits(_or_serv_rtl_serv_bufreg_v_42_51, 0, 0) @[serv/rtl/serv_bufreg.v:42.21-42.36]
+    _ternary_serv_rtl_serv_bufreg_v_40_50_Y <= bits(_ternary_serv_rtl_serv_bufreg_v_40_50, 0, 0) @[serv/rtl/serv_bufreg.v:40.11-40.48]
+    _and_serv_rtl_serv_bufreg_v_40_49_Y <= bits(_and_serv_rtl_serv_bufreg_v_40_49, 0, 0) @[serv/rtl/serv_bufreg.v:40.25-40.47]
+    _and_serv_rtl_serv_bufreg_v_37_48_Y <= bits(_and_serv_rtl_serv_bufreg_v_37_48, 0, 0) @[serv/rtl/serv_bufreg.v:37.14-37.22]
+    _add_serv_rtl_serv_bufreg_v_33_46_Y <= bits(_add_serv_rtl_serv_bufreg_v_33_46, 1, 0) @[serv/rtl/serv_bufreg.v:33.19-33.89]
+    _add_serv_rtl_serv_bufreg_v_33_45_Y <= bits(_add_serv_rtl_serv_bufreg_v_33_45, 1, 0) @[serv/rtl/serv_bufreg.v:33.19-33.83]
+    _and_serv_rtl_serv_bufreg_v_33_44_Y <= bits(_and_serv_rtl_serv_bufreg_v_33_44, 0, 0) @[serv/rtl/serv_bufreg.v:33.54-33.81]
+    _logic_not_serv_rtl_serv_bufreg_v_33_43_Y <= bits(_logic_not_serv_rtl_serv_bufreg_v_33_43, 0, 0) @[serv/rtl/serv_bufreg.v:33.73-33.81]
+    _and_serv_rtl_serv_bufreg_v_33_42_Y <= bits(_and_serv_rtl_serv_bufreg_v_33_42, 0, 0) @[serv/rtl/serv_bufreg.v:33.54-33.70]
+    _and_serv_rtl_serv_bufreg_v_33_41_Y <= bits(_and_serv_rtl_serv_bufreg_v_33_41, 0, 0) @[serv/rtl/serv_bufreg.v:33.26-33.42]
+    _and_serv_rtl_serv_bufreg_v_31_40_Y <= bits(_and_serv_rtl_serv_bufreg_v_31_40, 0, 0) @[serv/rtl/serv_bufreg.v:31.26-31.44]
+    clr_lsb <= bits(_529, 0, 0) @[serv/rtl/serv_bufreg.v:31.16-31.23]
+    q <= bits(_530, 0, 0) @[serv/rtl/serv_bufreg.v:26.19-26.20]
+    c <= bits(_530, 1, 1) @[serv/rtl/serv_bufreg.v:26.16-26.17]
+    o_ext_rs1 <= bits(_533, 31, 0) @[serv/rtl/serv_bufreg.v:24.23-24.32]
+    o_dbus_adr <= bits(_532, 31, 0) @[serv/rtl/serv_bufreg.v:22.23-22.33]
+    o_q <= bits(_531, 0, 0) @[serv/rtl/serv_bufreg.v:20.23-20.26]
+    o_lsb <= bits(_534, 1, 0) @[serv/rtl/serv_bufreg.v:11.25-11.30]
+
+  module serv_alu: @[serv/rtl/serv_alu.v:2.1-79.10]
+    output o_rd: UInt<1> @[serv/rtl/serv_alu.v:23.22-23.26]
+    input i_buf: UInt<1> @[serv/rtl/serv_alu.v:22.22-22.27]
+    input i_op_b: UInt<1> @[serv/rtl/serv_alu.v:21.22-21.28]
+    input i_rs1: UInt<1> @[serv/rtl/serv_alu.v:20.22-20.27]
+    input i_rd_sel: UInt<3> @[serv/rtl/serv_alu.v:18.21-18.29]
+    input i_cmp_sig: UInt<1> @[serv/rtl/serv_alu.v:17.20-17.29]
+    input i_cmp_eq: UInt<1> @[serv/rtl/serv_alu.v:16.20-16.28]
+    input i_bool_op: UInt<2> @[serv/rtl/serv_alu.v:15.21-15.30]
+    input i_sub: UInt<1> @[serv/rtl/serv_alu.v:14.20-14.25]
+    output o_cmp: UInt<1> @[serv/rtl/serv_alu.v:12.21-12.26]
+    input i_cnt0: UInt<1> @[serv/rtl/serv_alu.v:11.20-11.26]
+    input i_en: UInt<1> @[serv/rtl/serv_alu.v:10.20-10.24]
+    input clk: UInt<1> @[serv/rtl/serv_alu.v:8.20-8.23]
+
+    wire _ternary_serv_rtl_serv_alu_v_73_39_Y: UInt<1> @[serv/rtl/serv_alu.v:73.22-73.43]
+    wire _0_add_cy_r_0_0_: UInt<1> @[serv/rtl/serv_alu.v:71.4-77.7]
+    wire _0_cmp_r_0_0_: UInt<1> @[serv/rtl/serv_alu.v:71.4-77.7]
+    wire _or_serv_rtl_serv_alu_v_66_37_Y: UInt<1> @[serv/rtl/serv_alu.v:66.18-69.50]
+    wire _and_serv_rtl_serv_alu_v_69_36_Y: UInt<1> @[serv/rtl/serv_alu.v:69.19-69.49]
+    wire _or_serv_rtl_serv_alu_v_66_35_Y: UInt<1> @[serv/rtl/serv_alu.v:66.18-68.49]
+    wire _and_serv_rtl_serv_alu_v_68_34_Y: UInt<1> @[serv/rtl/serv_alu.v:68.19-68.48]
+    wire _or_serv_rtl_serv_alu_v_66_33_Y: UInt<1> @[serv/rtl/serv_alu.v:66.18-67.49]
+    wire _and_serv_rtl_serv_alu_v_67_32_Y: UInt<1> @[serv/rtl/serv_alu.v:67.19-67.48]
+    wire _and_serv_rtl_serv_alu_v_61_31_Y: UInt<1> @[serv/rtl/serv_alu.v:61.27-61.41]
+    wire _or_serv_rtl_serv_alu_v_59_30_Y: UInt<1> @[serv/rtl/serv_alu.v:59.29-59.107]
+    wire _and_serv_rtl_serv_alu_v_59_29_Y: UInt<1> @[serv/rtl/serv_alu.v:59.72-59.106]
+    wire _and_serv_rtl_serv_alu_v_59_28_Y: UInt<1> @[serv/rtl/serv_alu.v:59.72-59.98]
+    wire _and_serv_rtl_serv_alu_v_59_27_Y: UInt<1> @[serv/rtl/serv_alu.v:59.30-59.67]
+    wire _not_serv_rtl_serv_alu_v_59_26_Y: UInt<1> @[serv/rtl/serv_alu.v:59.49-59.67]
+    wire _xor_serv_rtl_serv_alu_v_59_25_Y: UInt<1> @[serv/rtl/serv_alu.v:59.31-59.45]
+    wire _ternary_serv_rtl_serv_alu_v_45_24_Y: UInt<1> @[serv/rtl/serv_alu.v:45.19-45.51]
+    wire _and_serv_rtl_serv_alu_v_43_23_Y: UInt<1> @[serv/rtl/serv_alu.v:43.21-43.54]
+    wire _or_serv_rtl_serv_alu_v_43_22_Y: UInt<1> @[serv/rtl/serv_alu.v:43.39-43.53]
+    wire _logic_not_serv_rtl_serv_alu_v_43_21_Y: UInt<1> @[serv/rtl/serv_alu.v:43.21-43.35]
+    wire _reduce_or_serv_rtl_serv_alu_v_43_20_Y: UInt<1> @[serv/rtl/serv_alu.v:43.23-43.34]
+    wire _add_serv_rtl_serv_alu_v_41_19_Y: UInt<1> @[serv/rtl/serv_alu.v:41.21-41.47]
+    wire _add_serv_rtl_serv_alu_v_41_18_Y: UInt<1> @[serv/rtl/serv_alu.v:41.21-41.38]
+    wire _not_serv_rtl_serv_alu_v_41_17_Y: UInt<1> @[serv/rtl/serv_alu.v:41.30-41.38]
+    wire _add_serv_rtl_serv_alu_v_39_16_Y: UInt<2> @[serv/rtl/serv_alu.v:39.35-39.55]
+    wire _add_serv_rtl_serv_alu_v_39_15_Y: UInt<2> @[serv/rtl/serv_alu.v:39.35-39.46]
+    wire _xor_serv_rtl_serv_alu_v_37_14_Y: UInt<1> @[serv/rtl/serv_alu.v:37.23-37.40]
+    wire _and_serv_rtl_serv_alu_v_35_13_Y: UInt<1> @[serv/rtl/serv_alu.v:35.19-35.41]
+    wire _and_serv_rtl_serv_alu_v_34_12_Y: UInt<1> @[serv/rtl/serv_alu.v:34.19-34.39]
+    wire result_bool: UInt<1> @[serv/rtl/serv_alu.v:59.15-59.26]
+    wire result_eq: UInt<1> @[serv/rtl/serv_alu.v:43.9-43.18]
+    wire result_lt: UInt<1> @[serv/rtl/serv_alu.v:41.9-41.18]
+    wire add_b: UInt<1> @[serv/rtl/serv_alu.v:37.15-37.20]
+    wire op_b_sx: UInt<1> @[serv/rtl/serv_alu.v:35.9-35.16]
+    wire rs1_sx: UInt<1> @[serv/rtl/serv_alu.v:34.9-34.15]
+    wire add_cy_r: UInt<1> @[serv/rtl/serv_alu.v:31.16-31.24]
+    wire add_cy: UInt<1> @[serv/rtl/serv_alu.v:30.16-30.22]
+    wire cmp_r: UInt<1> @[serv/rtl/serv_alu.v:28.16-28.21]
+    wire result_slt: UInt<1> @[serv/rtl/serv_alu.v:26.16-26.26]
+    wire result_add: UInt<1> @[serv/rtl/serv_alu.v:25.16-25.26]
+    wire _ternary_serv_rtl_serv_alu_v_73_39: UInt<1> @[serv/rtl/serv_alu.v:73.22-73.43]
+    wire _or_serv_rtl_serv_alu_v_66_37: UInt<1> @[serv/rtl/serv_alu.v:66.18-69.50]
+    wire _and_serv_rtl_serv_alu_v_69_36: UInt<1> @[serv/rtl/serv_alu.v:69.19-69.49]
+    wire _or_serv_rtl_serv_alu_v_66_35: UInt<1> @[serv/rtl/serv_alu.v:66.18-68.49]
+    wire _and_serv_rtl_serv_alu_v_68_34: UInt<1> @[serv/rtl/serv_alu.v:68.19-68.48]
+    wire _or_serv_rtl_serv_alu_v_66_33: UInt<1> @[serv/rtl/serv_alu.v:66.18-67.49]
+    wire _and_serv_rtl_serv_alu_v_67_32: UInt<1> @[serv/rtl/serv_alu.v:67.19-67.48]
+    wire _and_serv_rtl_serv_alu_v_61_31: UInt<1> @[serv/rtl/serv_alu.v:61.27-61.41]
+    wire _or_serv_rtl_serv_alu_v_59_30: UInt<1> @[serv/rtl/serv_alu.v:59.29-59.107]
+    wire _and_serv_rtl_serv_alu_v_59_29: UInt<1> @[serv/rtl/serv_alu.v:59.72-59.106]
+    wire _and_serv_rtl_serv_alu_v_59_28: UInt<1> @[serv/rtl/serv_alu.v:59.72-59.98]
+    wire _and_serv_rtl_serv_alu_v_59_27: UInt<1> @[serv/rtl/serv_alu.v:59.30-59.67]
+    wire _not_serv_rtl_serv_alu_v_59_26: UInt<1> @[serv/rtl/serv_alu.v:59.49-59.67]
+    wire _xor_serv_rtl_serv_alu_v_59_25: UInt<1> @[serv/rtl/serv_alu.v:59.31-59.45]
+    wire _ternary_serv_rtl_serv_alu_v_45_24: UInt<1> @[serv/rtl/serv_alu.v:45.19-45.51]
+    wire _and_serv_rtl_serv_alu_v_43_23: UInt<1> @[serv/rtl/serv_alu.v:43.21-43.54]
+    wire _or_serv_rtl_serv_alu_v_43_22: UInt<1> @[serv/rtl/serv_alu.v:43.39-43.53]
+    wire _logic_not_serv_rtl_serv_alu_v_43_21: UInt<1> @[serv/rtl/serv_alu.v:43.21-43.35]
+    wire _reduce_or_serv_rtl_serv_alu_v_43_20: UInt<1> @[serv/rtl/serv_alu.v:43.23-43.34]
+    wire _add_serv_rtl_serv_alu_v_41_19: UInt<1> @[serv/rtl/serv_alu.v:41.21-41.47]
+    wire _add_serv_rtl_serv_alu_v_41_18: UInt<1> @[serv/rtl/serv_alu.v:41.21-41.38]
+    wire _not_serv_rtl_serv_alu_v_41_17: UInt<1> @[serv/rtl/serv_alu.v:41.30-41.38]
+    wire _add_serv_rtl_serv_alu_v_39_16: UInt<2> @[serv/rtl/serv_alu.v:39.35-39.55]
+    wire _add_serv_rtl_serv_alu_v_39_15: UInt<2> @[serv/rtl/serv_alu.v:39.35-39.46]
+    wire _xor_serv_rtl_serv_alu_v_37_14: UInt<1> @[serv/rtl/serv_alu.v:37.23-37.40]
+    wire _and_serv_rtl_serv_alu_v_35_13: UInt<1> @[serv/rtl/serv_alu.v:35.19-35.41]
+    wire _and_serv_rtl_serv_alu_v_34_12: UInt<1> @[serv/rtl/serv_alu.v:34.19-34.39]
+    wire _541: UInt<1>
+    wire _542: UInt<1>
+    wire _543: UInt<1>
+    wire _544: UInt<2>
+    wire _545: UInt<1>
+    wire _546: UInt<1>
+    wire _547: UInt<1>
+    wire _548: UInt<1>
+    wire _549: UInt<1>
+    wire _550: UInt<1>
+    _0_add_cy_r_0_0_ is invalid
+    _0_cmp_r_0_0_ is invalid
+    add_cy_r is invalid
+    cmp_r is invalid
+
+
+    _ternary_serv_rtl_serv_alu_v_73_39 <= mux(i_en, add_cy, i_sub) @[serv/rtl/serv_alu.v:73.22-73.43]
+    _or_serv_rtl_serv_alu_v_66_37 <= or(_or_serv_rtl_serv_alu_v_66_35_Y, asUInt(_and_serv_rtl_serv_alu_v_69_36_Y)) @[serv/rtl/serv_alu.v:66.18-69.50]
+    _and_serv_rtl_serv_alu_v_69_36 <= and(bits(i_rd_sel, 2, 2), asUInt(result_bool)) @[serv/rtl/serv_alu.v:69.19-69.49]
+    _or_serv_rtl_serv_alu_v_66_35 <= or(_or_serv_rtl_serv_alu_v_66_33_Y, asUInt(_and_serv_rtl_serv_alu_v_68_34_Y)) @[serv/rtl/serv_alu.v:66.18-68.49]
+    _and_serv_rtl_serv_alu_v_68_34 <= and(bits(i_rd_sel, 1, 1), asUInt(result_slt)) @[serv/rtl/serv_alu.v:68.19-68.48]
+    _or_serv_rtl_serv_alu_v_66_33 <= or(i_buf, asUInt(_and_serv_rtl_serv_alu_v_67_32_Y)) @[serv/rtl/serv_alu.v:66.18-67.49]
+    _and_serv_rtl_serv_alu_v_67_32 <= and(bits(i_rd_sel, 0, 0), asUInt(result_add)) @[serv/rtl/serv_alu.v:67.19-67.48]
+    _and_serv_rtl_serv_alu_v_61_31 <= and(cmp_r, asUInt(i_cnt0)) @[serv/rtl/serv_alu.v:61.27-61.41]
+    _or_serv_rtl_serv_alu_v_59_30 <= or(_and_serv_rtl_serv_alu_v_59_27_Y, asUInt(_and_serv_rtl_serv_alu_v_59_29_Y)) @[serv/rtl/serv_alu.v:59.29-59.107]
+    _and_serv_rtl_serv_alu_v_59_29 <= and(_and_serv_rtl_serv_alu_v_59_28_Y, asUInt(i_rs1)) @[serv/rtl/serv_alu.v:59.72-59.106]
+    _and_serv_rtl_serv_alu_v_59_28 <= and(bits(i_bool_op, 1, 1), asUInt(i_op_b)) @[serv/rtl/serv_alu.v:59.72-59.98]
+    _and_serv_rtl_serv_alu_v_59_27 <= and(_xor_serv_rtl_serv_alu_v_59_25_Y, asUInt(_not_serv_rtl_serv_alu_v_59_26_Y)) @[serv/rtl/serv_alu.v:59.30-59.67]
+    _not_serv_rtl_serv_alu_v_59_26 <= not(pad(bits(i_bool_op, 0, 0), 1)) @[serv/rtl/serv_alu.v:59.49-59.67]
+    _xor_serv_rtl_serv_alu_v_59_25 <= xor(i_rs1, asUInt(i_op_b)) @[serv/rtl/serv_alu.v:59.31-59.45]
+    _ternary_serv_rtl_serv_alu_v_45_24 <= mux(i_cmp_eq, result_eq, result_lt) @[serv/rtl/serv_alu.v:45.19-45.51]
+    _and_serv_rtl_serv_alu_v_43_23 <= and(_logic_not_serv_rtl_serv_alu_v_43_21_Y, asUInt(_or_serv_rtl_serv_alu_v_43_22_Y)) @[serv/rtl/serv_alu.v:43.21-43.54]
+    _or_serv_rtl_serv_alu_v_43_22 <= or(cmp_r, asUInt(i_cnt0)) @[serv/rtl/serv_alu.v:43.39-43.53]
+    _logic_not_serv_rtl_serv_alu_v_43_21 <= eq(_reduce_or_serv_rtl_serv_alu_v_43_20_Y, UInt(0)) @[serv/rtl/serv_alu.v:43.21-43.35]
+    _reduce_or_serv_rtl_serv_alu_v_43_20 <= orr(pad(result_add, 1)) @[serv/rtl/serv_alu.v:43.23-43.34]
+    _add_serv_rtl_serv_alu_v_41_19 <= add(_add_serv_rtl_serv_alu_v_41_18_Y, asUInt(add_cy)) @[serv/rtl/serv_alu.v:41.21-41.47]
+    _add_serv_rtl_serv_alu_v_41_18 <= add(rs1_sx, asUInt(_not_serv_rtl_serv_alu_v_41_17_Y)) @[serv/rtl/serv_alu.v:41.21-41.38]
+    _not_serv_rtl_serv_alu_v_41_17 <= not(pad(op_b_sx, 1)) @[serv/rtl/serv_alu.v:41.30-41.38]
+    _add_serv_rtl_serv_alu_v_39_16 <= add(_add_serv_rtl_serv_alu_v_39_15_Y, asUInt(pad(add_cy_r, 2))) @[serv/rtl/serv_alu.v:39.35-39.55]
+    _add_serv_rtl_serv_alu_v_39_15 <= add(pad(i_rs1, 2), asUInt(pad(add_b, 2))) @[serv/rtl/serv_alu.v:39.35-39.46]
+    _xor_serv_rtl_serv_alu_v_37_14 <= xor(i_op_b, asUInt(i_sub)) @[serv/rtl/serv_alu.v:37.23-37.40]
+    _and_serv_rtl_serv_alu_v_35_13 <= and(i_op_b, asUInt(i_cmp_sig)) @[serv/rtl/serv_alu.v:35.19-35.41]
+    _and_serv_rtl_serv_alu_v_34_12 <= and(i_rs1, asUInt(i_cmp_sig)) @[serv/rtl/serv_alu.v:34.19-34.39]
+    _541 <= _and_serv_rtl_serv_alu_v_34_12_Y
+    _542 <= _and_serv_rtl_serv_alu_v_35_13_Y
+    _543 <= _xor_serv_rtl_serv_alu_v_37_14_Y
+    _544 <= _add_serv_rtl_serv_alu_v_39_16_Y
+    _545 <= _add_serv_rtl_serv_alu_v_41_19_Y
+    _546 <= _and_serv_rtl_serv_alu_v_43_23_Y
+    _547 <= _ternary_serv_rtl_serv_alu_v_45_24_Y
+    _548 <= _or_serv_rtl_serv_alu_v_59_30_Y
+    _549 <= _and_serv_rtl_serv_alu_v_61_31_Y
+    _550 <= _or_serv_rtl_serv_alu_v_66_37_Y
+
+    _ternary_serv_rtl_serv_alu_v_73_39_Y <= bits(_ternary_serv_rtl_serv_alu_v_73_39, 0, 0) @[serv/rtl/serv_alu.v:73.22-73.43]
+    _or_serv_rtl_serv_alu_v_66_37_Y <= bits(_or_serv_rtl_serv_alu_v_66_37, 0, 0) @[serv/rtl/serv_alu.v:66.18-69.50]
+    _and_serv_rtl_serv_alu_v_69_36_Y <= bits(_and_serv_rtl_serv_alu_v_69_36, 0, 0) @[serv/rtl/serv_alu.v:69.19-69.49]
+    _or_serv_rtl_serv_alu_v_66_35_Y <= bits(_or_serv_rtl_serv_alu_v_66_35, 0, 0) @[serv/rtl/serv_alu.v:66.18-68.49]
+    _and_serv_rtl_serv_alu_v_68_34_Y <= bits(_and_serv_rtl_serv_alu_v_68_34, 0, 0) @[serv/rtl/serv_alu.v:68.19-68.48]
+    _or_serv_rtl_serv_alu_v_66_33_Y <= bits(_or_serv_rtl_serv_alu_v_66_33, 0, 0) @[serv/rtl/serv_alu.v:66.18-67.49]
+    _and_serv_rtl_serv_alu_v_67_32_Y <= bits(_and_serv_rtl_serv_alu_v_67_32, 0, 0) @[serv/rtl/serv_alu.v:67.19-67.48]
+    _and_serv_rtl_serv_alu_v_61_31_Y <= bits(_and_serv_rtl_serv_alu_v_61_31, 0, 0) @[serv/rtl/serv_alu.v:61.27-61.41]
+    _or_serv_rtl_serv_alu_v_59_30_Y <= bits(_or_serv_rtl_serv_alu_v_59_30, 0, 0) @[serv/rtl/serv_alu.v:59.29-59.107]
+    _and_serv_rtl_serv_alu_v_59_29_Y <= bits(_and_serv_rtl_serv_alu_v_59_29, 0, 0) @[serv/rtl/serv_alu.v:59.72-59.106]
+    _and_serv_rtl_serv_alu_v_59_28_Y <= bits(_and_serv_rtl_serv_alu_v_59_28, 0, 0) @[serv/rtl/serv_alu.v:59.72-59.98]
+    _and_serv_rtl_serv_alu_v_59_27_Y <= bits(_and_serv_rtl_serv_alu_v_59_27, 0, 0) @[serv/rtl/serv_alu.v:59.30-59.67]
+    _not_serv_rtl_serv_alu_v_59_26_Y <= bits(_not_serv_rtl_serv_alu_v_59_26, 0, 0) @[serv/rtl/serv_alu.v:59.49-59.67]
+    _xor_serv_rtl_serv_alu_v_59_25_Y <= bits(_xor_serv_rtl_serv_alu_v_59_25, 0, 0) @[serv/rtl/serv_alu.v:59.31-59.45]
+    _ternary_serv_rtl_serv_alu_v_45_24_Y <= bits(_ternary_serv_rtl_serv_alu_v_45_24, 0, 0) @[serv/rtl/serv_alu.v:45.19-45.51]
+    _and_serv_rtl_serv_alu_v_43_23_Y <= bits(_and_serv_rtl_serv_alu_v_43_23, 0, 0) @[serv/rtl/serv_alu.v:43.21-43.54]
+    _or_serv_rtl_serv_alu_v_43_22_Y <= bits(_or_serv_rtl_serv_alu_v_43_22, 0, 0) @[serv/rtl/serv_alu.v:43.39-43.53]
+    _logic_not_serv_rtl_serv_alu_v_43_21_Y <= bits(_logic_not_serv_rtl_serv_alu_v_43_21, 0, 0) @[serv/rtl/serv_alu.v:43.21-43.35]
+    _reduce_or_serv_rtl_serv_alu_v_43_20_Y <= bits(_reduce_or_serv_rtl_serv_alu_v_43_20, 0, 0) @[serv/rtl/serv_alu.v:43.23-43.34]
+    _add_serv_rtl_serv_alu_v_41_19_Y <= bits(_add_serv_rtl_serv_alu_v_41_19, 0, 0) @[serv/rtl/serv_alu.v:41.21-41.47]
+    _add_serv_rtl_serv_alu_v_41_18_Y <= bits(_add_serv_rtl_serv_alu_v_41_18, 0, 0) @[serv/rtl/serv_alu.v:41.21-41.38]
+    _not_serv_rtl_serv_alu_v_41_17_Y <= bits(_not_serv_rtl_serv_alu_v_41_17, 0, 0) @[serv/rtl/serv_alu.v:41.30-41.38]
+    _add_serv_rtl_serv_alu_v_39_16_Y <= bits(_add_serv_rtl_serv_alu_v_39_16, 1, 0) @[serv/rtl/serv_alu.v:39.35-39.55]
+    _add_serv_rtl_serv_alu_v_39_15_Y <= bits(_add_serv_rtl_serv_alu_v_39_15, 1, 0) @[serv/rtl/serv_alu.v:39.35-39.46]
+    _xor_serv_rtl_serv_alu_v_37_14_Y <= bits(_xor_serv_rtl_serv_alu_v_37_14, 0, 0) @[serv/rtl/serv_alu.v:37.23-37.40]
+    _and_serv_rtl_serv_alu_v_35_13_Y <= bits(_and_serv_rtl_serv_alu_v_35_13, 0, 0) @[serv/rtl/serv_alu.v:35.19-35.41]
+    _and_serv_rtl_serv_alu_v_34_12_Y <= bits(_and_serv_rtl_serv_alu_v_34_12, 0, 0) @[serv/rtl/serv_alu.v:34.19-34.39]
+    result_bool <= bits(_548, 0, 0) @[serv/rtl/serv_alu.v:59.15-59.26]
+    result_eq <= bits(_546, 0, 0) @[serv/rtl/serv_alu.v:43.9-43.18]
+    result_lt <= bits(_545, 0, 0) @[serv/rtl/serv_alu.v:41.9-41.18]
+    add_b <= bits(_543, 0, 0) @[serv/rtl/serv_alu.v:37.15-37.20]
+    op_b_sx <= bits(_542, 0, 0) @[serv/rtl/serv_alu.v:35.9-35.16]
+    rs1_sx <= bits(_541, 0, 0) @[serv/rtl/serv_alu.v:34.9-34.15]
+    add_cy <= bits(_544, 1, 1) @[serv/rtl/serv_alu.v:30.16-30.22]
+    result_slt <= bits(_549, 0, 0) @[serv/rtl/serv_alu.v:26.16-26.26]
+    result_add <= bits(_544, 0, 0) @[serv/rtl/serv_alu.v:25.16-25.26]
+    o_rd <= bits(_550, 0, 0) @[serv/rtl/serv_alu.v:23.22-23.26]
+    o_cmp <= bits(_547, 0, 0) @[serv/rtl/serv_alu.v:12.21-12.26]
+
+  module serv_aligner: @[serv/rtl/serv_aligner.v:1.1-67.10]
+    input i_wb_ibus_ack: UInt<1> @[serv/rtl/serv_aligner.v:14.25-14.38]
+    input i_wb_ibus_rdt: UInt<32> @[serv/rtl/serv_aligner.v:13.25-13.38]
+    output o_wb_ibus_cyc: UInt<1> @[serv/rtl/serv_aligner.v:12.25-12.38]
+    output o_wb_ibus_adr: UInt<32> @[serv/rtl/serv_aligner.v:11.25-11.38]
+    output o_ibus_ack: UInt<1> @[serv/rtl/serv_aligner.v:9.25-9.35]
+    output o_ibus_rdt: UInt<32> @[serv/rtl/serv_aligner.v:8.25-8.35]
+    input i_ibus_cyc: UInt<1> @[serv/rtl/serv_aligner.v:7.25-7.35]
+    input i_ibus_adr: UInt<32> @[serv/rtl/serv_aligner.v:6.25-6.35]
+    input rst: UInt<1> @[serv/rtl/serv_aligner.v:4.16-4.19]
+    input clk: UInt<1> @[serv/rtl/serv_aligner.v:3.16-3.19]
+
+    wire _logic_not_serv_rtl_serv_aligner_v_64_11_Y: UInt<1> @[serv/rtl/serv_aligner.v:64.27-64.38]
+    wire _and_serv_rtl_serv_aligner_v_63_10_Y: UInt<1> @[serv/rtl/serv_aligner.v:63.17-63.46]
+    wire _0_ctrl_misal_0_0_: UInt<1> @[serv/rtl/serv_aligner.v:60.5-65.8]
+    wire _logic_not_serv_rtl_serv_aligner_v_58_8_Y: UInt<1> @[serv/rtl/serv_aligner.v:58.23-58.53]
+    wire _and_serv_rtl_serv_aligner_v_58_7_Y: UInt<1> @[serv/rtl/serv_aligner.v:58.25-58.52]
+    wire _logic_not_serv_rtl_serv_aligner_v_58_6_Y: UInt<1> @[serv/rtl/serv_aligner.v:58.41-58.52]
+    wire _0_lower_hw_15_0_: UInt<16> @[serv/rtl/serv_aligner.v:47.5-51.8]
+    wire _ternary_serv_rtl_serv_aligner_v_42_4_Y: UInt<32> @[serv/rtl/serv_aligner.v:42.25-42.69]
+    wire _and_serv_rtl_serv_aligner_v_41_3_Y: UInt<1> @[serv/rtl/serv_aligner.v:41.25-41.47]
+    wire _ternary_serv_rtl_serv_aligner_v_30_2_Y: UInt<32> @[serv/rtl/serv_aligner.v:30.28-30.74]
+    wire _add_serv_rtl_serv_aligner_v_30_1_Y: UInt<32> @[serv/rtl/serv_aligner.v:30.42-30.60]
+    wire ctrl_misal: UInt<1> @[serv/rtl/serv_aligner.v:20.17-20.27]
+    wire lower_hw: UInt<16> @[serv/rtl/serv_aligner.v:19.17-19.25]
+    wire ack_en: UInt<1> @[serv/rtl/serv_aligner.v:17.17-17.23]
+    wire ibus_rdt_concat: UInt<32> @[serv/rtl/serv_aligner.v:16.17-16.32]
+    wire _logic_not_serv_rtl_serv_aligner_v_64_11: UInt<1> @[serv/rtl/serv_aligner.v:64.27-64.38]
+    wire _and_serv_rtl_serv_aligner_v_63_10: UInt<1> @[serv/rtl/serv_aligner.v:63.17-63.46]
+    wire _logic_not_serv_rtl_serv_aligner_v_58_8: UInt<1> @[serv/rtl/serv_aligner.v:58.23-58.53]
+    wire _and_serv_rtl_serv_aligner_v_58_7: UInt<1> @[serv/rtl/serv_aligner.v:58.25-58.52]
+    wire _logic_not_serv_rtl_serv_aligner_v_58_6: UInt<1> @[serv/rtl/serv_aligner.v:58.41-58.52]
+    wire _ternary_serv_rtl_serv_aligner_v_42_4: UInt<32> @[serv/rtl/serv_aligner.v:42.25-42.69]
+    wire _and_serv_rtl_serv_aligner_v_41_3: UInt<1> @[serv/rtl/serv_aligner.v:41.25-41.47]
+    wire _ternary_serv_rtl_serv_aligner_v_30_2: UInt<32> @[serv/rtl/serv_aligner.v:30.28-30.74]
+    wire _add_serv_rtl_serv_aligner_v_30_1: UInt<32> @[serv/rtl/serv_aligner.v:30.42-30.60]
+    wire _555: UInt<32>
+    wire _556: UInt<1>
+    wire _557: UInt<1>
+    wire _558: UInt<32>
+    wire _559: UInt<32>
+    wire _560: UInt<1>
+    _0_ctrl_misal_0_0_ is invalid
+    _0_lower_hw_15_0_ is invalid
+    ctrl_misal is invalid
+    lower_hw is invalid
+
+
+    _logic_not_serv_rtl_serv_aligner_v_64_11 <= eq(ctrl_misal, UInt(0)) @[serv/rtl/serv_aligner.v:64.27-64.38]
+    _and_serv_rtl_serv_aligner_v_63_10 <= and(i_wb_ibus_ack, asUInt(bits(i_ibus_adr, 1, 1))) @[serv/rtl/serv_aligner.v:63.17-63.46]
+    _logic_not_serv_rtl_serv_aligner_v_58_8 <= eq(_and_serv_rtl_serv_aligner_v_58_7_Y, UInt(0)) @[serv/rtl/serv_aligner.v:58.23-58.53]
+    _and_serv_rtl_serv_aligner_v_58_7 <= and(bits(i_ibus_adr, 1, 1), asUInt(_logic_not_serv_rtl_serv_aligner_v_58_6_Y)) @[serv/rtl/serv_aligner.v:58.25-58.52]
+    _logic_not_serv_rtl_serv_aligner_v_58_6 <= eq(ctrl_misal, UInt(0)) @[serv/rtl/serv_aligner.v:58.41-58.52]
+    _ternary_serv_rtl_serv_aligner_v_42_4 <= mux(ctrl_misal, ibus_rdt_concat, i_wb_ibus_rdt) @[serv/rtl/serv_aligner.v:42.25-42.69]
+    _and_serv_rtl_serv_aligner_v_41_3 <= and(i_wb_ibus_ack, asUInt(ack_en)) @[serv/rtl/serv_aligner.v:41.25-41.47]
+    _ternary_serv_rtl_serv_aligner_v_30_2 <= mux(ctrl_misal, _add_serv_rtl_serv_aligner_v_30_1_Y, i_ibus_adr) @[serv/rtl/serv_aligner.v:30.28-30.74]
+    _add_serv_rtl_serv_aligner_v_30_1 <= add(i_ibus_adr, asUInt(UInt<32>("h00000004"))) @[serv/rtl/serv_aligner.v:30.42-30.60]
+    _555 <= _ternary_serv_rtl_serv_aligner_v_30_2_Y
+    _556 <= i_ibus_cyc
+    _557 <= _and_serv_rtl_serv_aligner_v_41_3_Y
+    _558 <= _ternary_serv_rtl_serv_aligner_v_42_4_Y
+    _559 <= cat(bits(i_wb_ibus_rdt, 15, 0), lower_hw)
+    _560 <= _logic_not_serv_rtl_serv_aligner_v_58_8_Y
+
+    _logic_not_serv_rtl_serv_aligner_v_64_11_Y <= bits(_logic_not_serv_rtl_serv_aligner_v_64_11, 0, 0) @[serv/rtl/serv_aligner.v:64.27-64.38]
+    _and_serv_rtl_serv_aligner_v_63_10_Y <= bits(_and_serv_rtl_serv_aligner_v_63_10, 0, 0) @[serv/rtl/serv_aligner.v:63.17-63.46]
+    _logic_not_serv_rtl_serv_aligner_v_58_8_Y <= bits(_logic_not_serv_rtl_serv_aligner_v_58_8, 0, 0) @[serv/rtl/serv_aligner.v:58.23-58.53]
+    _and_serv_rtl_serv_aligner_v_58_7_Y <= bits(_and_serv_rtl_serv_aligner_v_58_7, 0, 0) @[serv/rtl/serv_aligner.v:58.25-58.52]
+    _logic_not_serv_rtl_serv_aligner_v_58_6_Y <= bits(_logic_not_serv_rtl_serv_aligner_v_58_6, 0, 0) @[serv/rtl/serv_aligner.v:58.41-58.52]
+    _ternary_serv_rtl_serv_aligner_v_42_4_Y <= bits(_ternary_serv_rtl_serv_aligner_v_42_4, 31, 0) @[serv/rtl/serv_aligner.v:42.25-42.69]
+    _and_serv_rtl_serv_aligner_v_41_3_Y <= bits(_and_serv_rtl_serv_aligner_v_41_3, 0, 0) @[serv/rtl/serv_aligner.v:41.25-41.47]
+    _ternary_serv_rtl_serv_aligner_v_30_2_Y <= bits(_ternary_serv_rtl_serv_aligner_v_30_2, 31, 0) @[serv/rtl/serv_aligner.v:30.28-30.74]
+    _add_serv_rtl_serv_aligner_v_30_1_Y <= bits(_add_serv_rtl_serv_aligner_v_30_1, 31, 0) @[serv/rtl/serv_aligner.v:30.42-30.60]
+    ack_en <= bits(_560, 0, 0) @[serv/rtl/serv_aligner.v:17.17-17.23]
+    ibus_rdt_concat <= bits(_559, 31, 0) @[serv/rtl/serv_aligner.v:16.17-16.32]
+    o_wb_ibus_cyc <= bits(_556, 0, 0) @[serv/rtl/serv_aligner.v:12.25-12.38]
+    o_wb_ibus_adr <= bits(_555, 31, 0) @[serv/rtl/serv_aligner.v:11.25-11.38]
+    o_ibus_ack <= bits(_557, 0, 0) @[serv/rtl/serv_aligner.v:9.25-9.35]
+    o_ibus_rdt <= bits(_558, 31, 0) @[serv/rtl/serv_aligner.v:8.25-8.35]
+
